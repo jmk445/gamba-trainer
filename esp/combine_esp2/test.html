@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="bluetoothButton">BLE Connect</button>
+    <div>
+        <input type="text" id="textInput">
+        <button id="sendButton" disabled>Send Data</button>
+    </div>
+    
+    <button id="recieveButton" disabled>Recieve Data</button>
+    <button id="resetStoreButton" disabled>Reset Store</button>
+    <div id="receivedData"></div>
+
+    <script type="text/javascript">
+        const bluetoothButton = document.getElementById("bluetoothButton");
+        const sendButton = document.getElementById("sendButton");
+        const recieveButton = document.getElementById("recieveButton");
+        const resetStoreButton = document.getElementById("resetStoreButton");
+
+        const serviceUUID = 0x00FF;
+        const characteristicUUID = 0xFF01;
+        //const serviceUUID = "0000abf0-0000-1000-8000-00805f9b34fb";
+        //const characteristicUUID = "0000abf1-0000-1000-8000-00805f9b34fb";
+        const options = {
+            filters:[{namePrefix:"ESP"}],
+            optionalServices: [serviceUUID]
+        };
+        let device;
+        let characteristic;
+        let values = new Uint8Array();
+
+        function handleVauleChange(event) {
+            const additional_values = new Uint8Array(event.target.value.buffer);
+            values = new Uint8Array([...values, ...additional_values]);
+            console.log(values);
+        }
+
+        bluetoothButton.addEventListener("click", async () => {
+            try {
+                device = await navigator.bluetooth.requestDevice(options);
+                const server = await device.gatt.connect();
+                const service = await server.getPrimaryService(serviceUUID);
+                characteristic = await service.getCharacteristic(characteristicUUID);
+                await characteristic.startNotifications();
+                characteristic.addEventListener(
+                    "characteristicvaluechanged",
+                    handleVauleChange
+                );
+
+                sendButton.disabled = false;
+                recieveButton.disabled = false;
+                resetStoreButton.disabled = false;
+            } catch (error) {
+                console.error("Bluetooth 장치 요청 오류:", error);
+            }
+        });
+
+        sendButton.addEventListener("click", async () => {
+            const textInput = document.getElementById("textInput");
+            const message = textInput.value;
+            const encoder = new TextEncoder();
+            const data = encoder.encode(message);
+            await characteristic.writeValue(data);
+        });
+
+        recieveButton.addEventListener("click", async () => {
+            const promisedData = characteristic.readValue();
+            promisedData.then((data) => {
+                const decoder = new TextDecoder();
+                const receivedMessage = decoder.decode(data);
+                const receivedDataElement = document.getElementById("receivedData");
+
+                if (receivedMessage == "") {
+                    receivedDataElement.textContent = "Empty Store";
+                    console.log("Empty Store");
+                }
+                else {
+                    receivedDataElement.textContent = receivedMessage;
+                    console.log(receivedMessage);
+                }
+            }).catch((e) => {
+                console.error("데이터 수신 오류:", e);
+            });
+        });
+
+        resetStoreButton.addEventListener("click", async() => {
+            const message = "";
+            const encoder = new TextEncoder();
+            const data = encoder.encode(message);
+            await characteristic.writeValue(data);
+        });
+    </script>
+</body>
+</html>

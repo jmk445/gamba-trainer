@@ -1,0 +1,218 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xa (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037e4ae
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3810,len:0x1658
+load:0x403c9700,len:0xbe0
+load:0x403cc700,len:0x2d9c
+entry 0x403c9900
+[0;32mI (24) boot: ESP-IDF v5.0.2 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time 09:27:33[0m
+[0;32mI (25) boot: chip revision: v0.1[0m
+[0;32mI (26) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (31) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (36) boot.esp32s3: SPI Flash Size : 4MB[0m
+[0;32mI (41) boot: Enabling RNG early entropy source...[0m
+[0;32mI (46) boot: Partition Table:[0m
+[0;32mI (50) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 00210000 00001000[0m
+[0;32mI (72) boot:  2 nvs              WiFi data        01 02 00211000 00025800[0m
+[0;32mI (79) boot:  3 fr               unknown          20 20 00237000 00020000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c0c0020 size=3fa34h (260660) map[0m
+[0;32mI (146) esp_image: segment 1: paddr=0004fa5c vaddr=3fc99600 size=005bch (  1468) load[0m
+[0;32mI (147) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=bac10h (764944) map[0m
+[0;32mI (289) esp_image: segment 3: paddr=0010ac38 vaddr=3fc99bbc size=039ech ( 14828) load[0m
+[0;32mI (293) esp_image: segment 4: paddr=0010e62c vaddr=40374000 size=154fch ( 87292) load[0m
+[0;32mI (323) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (323) boot: Disabling RNG early entropy source...[0m
+[0;32mI (335) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (336) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (336) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (341) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (346) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (351) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (356) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (362) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (368) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (373) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (379) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (385) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (389) esp_psram: Speed: 40MHz[0m
+[0;32mI (393) cpu_start: Pro cpu up.[0m
+[0;32mI (397) cpu_start: Starting app cpu, entry point is 0x40375610[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1134) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1144) cpu_start: Pro cpu start user code[0m
+[0;32mI (1144) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (1144) cpu_start: Application information:[0m
+[0;32mI (1147) cpu_start: Project name:     gatt_server_service_table_demo[0m
+[0;32mI (1154) cpu_start: App version:      1[0m
+[0;32mI (1159) cpu_start: Compile time:     Nov  3 2023 09:26:56[0m
+[0;32mI (1165) cpu_start: ELF file SHA256:  b6953c77...[0m
+[0;32mI (1170) cpu_start: ESP-IDF:          v5.0.2[0m
+[0;32mI (1175) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (1180) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (1185) cpu_start: Chip rev:         v0.1[0m
+[0;32mI (1190) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1197) heap_init: At 3FCD5FB8 len 00013758 (77 KiB): DRAM[0m
+[0;32mI (1203) heap_init: At 3FCE9710 len 00005724 (21 KiB): STACK/DRAM[0m
+[0;32mI (1210) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (1216) heap_init: At 600FE010 len 00001FF0 (7 KiB): RTCRAM[0m
+[0;32mI (1223) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (1231) spi_flash: detected chip: generic[0m
+[0;32mI (1235) spi_flash: flash io: dio[0m
+[0;33mW (1240) i2s(legacy): legacy i2s driver is deprecated, please migrate to use driver/i2s_std.h, driver/i2s_pdm.h or driver/i2s_tdm.h[0m
+[0;32mI (1253) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1259) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1266) coexist: coexist rom version e7ae62f[0m
+[0;32mI (1271) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1292) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1352) BT_INIT: BT controller compile version [80abacd][0m
+[0;32mI (1352) phy_init: phy_version 540,a5d905b,Oct 20 2022,19:36:11[0m
+[0;32mI (1392) system_api: Base MAC address is not set[0m
+[0;32mI (1392) system_api: read default base MAC address from EFUSE[0m
+[0;32mI (1392) BT_INIT: Bluetooth MAC: 7c:df:a1:ea:64:4e
+[0m
+[0;32mI (1432) GATTS_TABLE_DEMO: create attribute table successfully, the number handle = 62
+[0m
+[0;32mI (1432) GATTS_TABLE_DEMO: SERVICE_START_EVT, status 0, service_handle 40[0m
+[0;32mI (1442) GATTS_TABLE_DEMO: advertising start successfully[0m
+[0;32mI (1442) Button App Init: Button App & ADC1.0 Init Complete. RunTime Log [0][0m
+[0;32mI (11432) GATTS_TABLE_DEMO: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (11432) GATTS_TABLE_DEMO: 34 13 e8 b4 4b f4 [0m
+[0;32mI (11492) GATTS_TABLE_DEMO: ESP_GATTS_MTU_EVT, MTU 500[0m
+[0;32mI (12222) GATTS_TABLE_DEMO: update connection params status = 0, min_int = 16, max_int = 32,conn_int = 30,latency = 0, timeout = 400[0m
+[0;32mI (12782) GATTS_TABLE_DEMO: update connection params status = 0, min_int = 0, max_int = 0,conn_int = 12,latency = 0, timeout = 400[0m
+[0;32mI (13532) GATTS_TABLE_DEMO: ESP_GATTS_WRITE_EVT,STATE handle = 62, value:[0m
+[0;32mI (13532) GATTS_TABLE_DEMO: 04 [0m
+[0;32mI (13562) imu: Temperature reading: -231.000000[0m
+[0;32mI (13562) imu: Acc -0.004639, -0.025513, 0.059113 | Gyro -1.000000, -1.000000, -1.000000[0m
+[0;32mI (13622) imu: Acc -0.004517, -0.025238, 0.058929 | Gyro -0.000397, -0.000214, 0.000122[0m
+[0;32mI (13672) imu: Acc -0.004669, -0.025299, 0.058960 | Gyro -0.000366, -0.000183, 0.000122[0m
+[0;32mI (13722) imu: Acc -0.004669, -0.025238, 0.058990 | Gyro -0.000366, -0.000153, 0.000092[0m
+[0;32mI (13772) imu: Acc -0.004578, -0.025238, 0.058960 | Gyro -0.000427, -0.000183, 0.000153[0m
+[0;32mI (13822) imu: Acc -0.004791, -0.025452, 0.058807 | Gyro -0.000427, -0.000183, 0.000092[0m
+[0;32mI (13872) imu: Acc -0.004456, -0.025238, 0.058899 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (13922) imu: Acc -0.004791, -0.025391, 0.058899 | Gyro -0.000397, -0.000153, 0.000092[0m
+[0;32mI (13972) imu: Acc -0.004669, -0.025269, 0.058960 | Gyro -0.000366, -0.000183, 0.000122[0m
+[0;32mI (14022) imu: Acc -0.004517, -0.025330, 0.058929 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (14072) imu: Acc -0.004883, -0.025238, 0.058838 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (14122) imu: Acc -0.004425, -0.025238, 0.058929 | Gyro -0.000397, -0.000183, 0.000183[0m
+[0;32mI (14172) imu: Acc -0.004791, -0.025360, 0.058838 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (14222) imu: Acc -0.004547, -0.025360, 0.058929 | Gyro -0.000397, -0.000214, 0.000122[0m
+[0;32mI (14272) imu: Acc -0.004700, -0.025208, 0.058899 | Gyro -0.000397, -0.000153, 0.000122[0m
+[0;32mI (14322) imu: Acc -0.004700, -0.025360, 0.058838 | Gyro -0.000366, -0.000153, 0.000092[0m
+[0;32mI (14372) imu: Acc -0.004578, -0.025330, 0.058868 | Gyro -0.000397, -0.000214, 0.000122[0m
+[0;32mI (14422) imu: Acc -0.004700, -0.025299, 0.058899 | Gyro -0.000427, -0.000183, 0.000092[0m
+[0;32mI (14472) imu: Acc -0.004608, -0.025360, 0.058990 | Gyro -0.000397, -0.000183, 0.000092[0m
+[0;32mI (14522) imu: Acc -0.004639, -0.025177, 0.058838 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (14542) GATTS_TABLE_DEMO: update connection params status = 0, min_int = 0, max_int = 0,conn_int = 30,latency = 0, timeout = 400[0m
+[0;32mI (14572) imu: Acc -0.004669, -0.025330, 0.058777 | Gyro -0.000397, -0.000153, 0.000122[0m
+[0;32mI (14622) imu: Acc -0.004639, -0.025421, 0.058868 | Gyro -0.000397, -0.000153, 0.000153[0m
+[0;32mI (14672) imu: Acc -0.004578, -0.025269, 0.058929 | Gyro -0.000397, -0.000183, 0.000092[0m
+[0;32mI (14722) imu: Acc -0.004730, -0.025330, 0.058868 | Gyro -0.000366, -0.000183, 0.000183[0m
+[0;32mI (14772) imu: Acc -0.004578, -0.025391, 0.058899 | Gyro -0.000427, -0.000183, 0.000092[0m
+[0;32mI (14822) imu: Acc -0.004669, -0.025238, 0.058868 | Gyro -0.000397, -0.000153, 0.000122[0m
+[0;32mI (14872) imu: Acc -0.004608, -0.025299, 0.058899 | Gyro -0.000427, -0.000153, 0.000122[0m
+[0;32mI (14922) imu: Acc -0.004761, -0.025330, 0.058807 | Gyro -0.000427, -0.000183, 0.000153[0m
+[0;32mI (14972) imu: Acc -0.004578, -0.025269, 0.058838 | Gyro -0.000397, -0.000183, 0.000092[0m
+[0;32mI (15022) imu: Acc -0.004669, -0.025330, 0.058777 | Gyro -0.000397, -0.000183, 0.000092[0m
+[0;32mI (15072) imu: Acc -0.004639, -0.025177, 0.058868 | Gyro -0.000397, -0.000183, 0.000122[0m
+[0;32mI (15122) imu: Acc -0.004700, -0.025330, 0.058807 | Gyro -0.000397, -0.000153, 0.000153[0m
+[0;32mI (15172) imu: Acc -0.004608, -0.025238, 0.058807 | Gyro -0.000427, -0.000183, 0.000092[0m
+[0;32mI (15222) imu: Acc -0.007233, -0.027527, 0.058075 | Gyro -0.018372, -0.000397, -0.003082[0m
+[0;32mI (15272) imu: Acc 0.004761, -0.038269, 0.062012 | Gyro 0.029907, -0.004578, -0.003937[0m
+[0;32mI (15322) imu: Acc -0.004059, -0.027008, 0.062927 | Gyro -0.021698, -0.002319, 0.007538[0m
+[0;32mI (15372) imu: Acc -0.023804, -0.024353, 0.079193 | Gyro -0.143311, -0.002747, 0.007507[0m
+[0;32mI (15422) imu: Acc -0.007050, -0.081635, 0.036560 | Gyro -0.348083, 0.019989, -0.098389[0m
+[0;32mI (15472) imu: Acc -0.024109, -0.067627, 0.047974 | Gyro 0.177032, -0.112366, -0.058075[0m
+[0;32mI (15522) imu: Acc 0.027466, -0.055267, 0.027374 | Gyro 0.072693, -0.081848, -0.047028[0m
+[0;32mI (15572) imu: Acc 0.030701, -0.047150, 0.026215 | Gyro 0.068451, -0.104248, -0.069092[0m
+[0;32mI (15622) imu: Acc 0.014801, 0.028992, -0.015686 | Gyro 0.032837, 0.003906, -0.027618[0m
+[0;32mI (15672) imu: Acc 0.048828, -0.017853, -0.014709 | Gyro -0.039490, 0.090698, 0.045746[0m
+[0;32mI (15722) imu: Acc -0.030457, -0.083649, 0.123413 | Gyro -0.182556, 0.084015, 0.012268[0m
+[0;32mI (15772) imu: Acc 0.021790, -0.080200, 0.067291 | Gyro 0.077087, -0.061371, -0.036377[0m
+[0;32mI (15822) imu: Acc 0.026367, -0.041718, 0.030334 | Gyro -0.005676, -0.049072, -0.064148[0m
+[0;32mI (15872) imu: Acc 0.044189, 0.000458, -0.011200 | Gyro 0.008514, -0.012390, -0.026398[0m
+[0;32mI (15922) imu: Acc 0.023499, -0.017426, 0.004578 | Gyro -0.142334, 0.100372, 0.050110[0m
+[0;32mI (15972) imu: Acc 0.018127, -0.140930, 0.093414 | Gyro 0.021301, 0.002197, 0.022064[0m
+[0;32mI (16022) imu: Acc -0.002258, -0.048431, 0.029572 | Gyro 0.044556, -0.075958, -0.082001[0m
+[0;32mI (16072) imu: Acc 0.035950, -0.032745, 0.009216 | Gyro 0.007416, -0.037384, -0.067352[0m
+[0;32mI (16122) imu: Acc 0.040253, 0.046875, -0.018463 | Gyro -0.050934, 0.046753, 0.049683[0m
+[0;32mI (16172) imu: Acc 0.015808, -0.102966, 0.045471 | Gyro -0.140839, 0.067047, 0.077179[0m
+[0;32mI (16222) imu: Acc 0.018188, -0.124420, 0.042145 | Gyro -0.050018, 0.005127, -0.010071[0m
+[0;32mI (16272) imu: Acc 0.036346, -0.089417, 0.028107 | Gyro 0.059204, -0.038452, -0.061707[0m
+[0;32mI (16322) imu: Acc 0.021729, -0.035675, 0.013458 | Gyro 0.051514, -0.051178, -0.108154[0m
+[0;32mI (16372) imu: Acc 0.054932, 0.095703, -0.012695 | Gyro -0.013245, 0.007477, -0.000092[0m
+[0;32mI (16422) imu: Acc 0.022034, 0.015930, -0.014648 | Gyro -0.030975, 0.040649, 0.167908[0m
+[0;32mI (16472) imu: Acc 0.012451, -0.179138, 0.068542 | Gyro -0.038177, -0.005096, 0.113922[0m
+[0;32mI (16522) imu: Acc 0.020935, -0.103455, 0.030121 | Gyro -0.025604, -0.042755, -0.100281[0m
+[0;32mI (16572) imu: Acc 0.031799, -0.078552, 0.010101 | Gyro 0.018311, -0.022888, -0.124634[0m
+[0;32mI (16622) imu: Acc 0.009979, 0.011780, 0.003601 | Gyro 0.027039, -0.015350, -0.123383[0m
+[0;32mI (16672) imu: Acc 0.060547, 0.108734, -0.002411 | Gyro -0.050690, 0.038086, 0.054779[0m
+[0;32mI (16722) imu: Acc 0.035431, -0.016846, -0.023224 | Gyro -0.036072, 0.000061, 0.162750[0m
+[0;32mI (16772) imu: Acc 0.026367, -0.154633, 0.039948 | Gyro -0.006653, 0.015564, 0.110870[0m
+[0;32mI (16822) imu: Acc 0.008545, -0.137695, 0.035736 | Gyro 0.010437, -0.027008, -0.115265[0m
+[0;32mI (16872) imu: Acc -0.006317, -0.023346, 0.010406 | Gyro 0.060669, -0.021820, -0.111847[0m
+[0;32mI (16922) imu: Acc 0.033875, 0.090637, -0.012604 | Gyro -0.016388, 0.007874, 0.016541[0m
+[0;32mI (16972) imu: Acc 0.031372, -0.026093, -0.005432 | Gyro 0.042938, 0.031555, 0.148590[0m
+[0;32mI (17022) imu: Acc 0.025513, -0.095825, 0.033508 | Gyro -0.001923, 0.084991, 0.102631[0m
+[0;32mI (17072) imu: Acc 0.003052, -0.064270, 0.037842 | Gyro 0.061310, -0.019226, 0.040222[0m
+[0;32mI (17122) imu: Acc 0.008331, -0.053253, 0.028442 | Gyro 0.042786, 0.017548, 0.018585[0m
+[0;32mI (17172) imu: Acc 0.018127, -0.042877, 0.017334 | Gyro -0.014008, 0.038696, 0.029907[0m
+[0;32mI (17222) imu: Acc 0.008514, -0.060333, 0.050751 | Gyro -0.007965, 0.046387, 0.041809[0m
+[0;32mI (17272) imu: Acc -0.001617, -0.047455, 0.037231 | Gyro 0.116211, 0.012268, 0.021759[0m
+[0;32mI (17322) imu: Acc 0.003754, -0.045013, 0.050446 | Gyro 0.102997, 0.022247, 0.016327[0m
+[0;32mI (17372) imu: Acc -0.005127, -0.032318, 0.062714 | Gyro 0.033081, -0.000366, -0.007812[0m
+[0;32mI (17422) imu: Acc -0.001923, -0.035461, 0.065826 | Gyro -0.010925, -0.004547, -0.000885[0m
+[0;32mI (17472) imu: Acc -0.002106, -0.033447, 0.057983 | Gyro -0.012268, 0.003754, -0.007477[0m
+[0;32mI (17522) imu: Acc -0.001312, -0.033569, 0.040436 | Gyro 0.016998, 0.002106, -0.002747[0m
+[0;32mI (17572) imu: Acc -0.001129, -0.026062, 0.069702 | Gyro -0.043701, -0.003082, -0.002686[0m
+[0;32mI (17622) imu: Acc -0.001373, -0.034790, 0.042633 | Gyro -0.018158, -0.003357, -0.000031[0m
+[0;32mI (17672) imu: Acc -0.001282, -0.033417, 0.056396 | Gyro 0.022400, 0.004150, -0.001160[0m
+[0;32mI (17722) imu: Acc -0.001312, -0.032318, 0.058228 | Gyro -0.009583, -0.002380, 0.000458[0m
+[0;32mI (17772) imu: Acc -0.001404, -0.034180, 0.050720 | Gyro -0.000275, -0.000031, 0.000122[0m
+[0;32mI (17822) imu: Acc -0.001526, -0.032990, 0.057068 | Gyro 0.004669, 0.000854, -0.000092[0m
+[0;32mI (17872) imu: Acc -0.001434, -0.033508, 0.053955 | Gyro -0.005005, -0.001251, 0.000305[0m
+[0;32mI (17922) imu: Acc -0.001373, -0.033325, 0.054352 | Gyro 0.003632, 0.000793, -0.000061[0m
+[0;32mI (17972) imu: Acc -0.001526, -0.033020, 0.055603 | Gyro -0.001953, -0.000580, 0.000183[0m
+[0;32mI (18022) imu: Acc -0.001343, -0.033417, 0.053894 | Gyro 0.000336, 0.000000, 0.000092[0m
+[0;32mI (18072) GATTS_TABLE_DEMO: ESP_GATTS_WRITE_EVT,STATE handle = 62, value:[0m
+[0;32mI (18072) GATTS_TABLE_DEMO: 00 [0m
+[0;32mI (18072) imu: Acc -0.001587, -0.033173, 0.055389 | Gyro 0.000366, 0.000031, 0.000092[0m
+[0;33mW (21222) BT_HCI: hcif disc complete: hdl 0x1, rsn 0x13[0m
+[0;32mI (21222) GATTS_TABLE_DEMO: ESP_GATTS_DISCONNECT_EVT, reason = 0x13[0m
+[0;32mI (21232) GATTS_TABLE_DEMO: advertising start successfully[0m
+[0;32mI (22982) GATTS_TABLE_DEMO: ESP_GATTS_CONNECT_EVT, conn_id = 0[0m
+[0;32mI (22982) GATTS_TABLE_DEMO: 34 13 e8 b4 4b f4 [0m
+[0;32mI (22982) GATTS_TABLE_DEMO: ESP_GATTS_MTU_EVT, MTU 500[0m
+[0;32mI (23962) GATTS_TABLE_DEMO: update connection params status = 0, min_int = 16, max_int = 32,conn_int = 12,latency = 0, timeout = 400[0m
+[0;32mI (25722) GATTS_TABLE_DEMO: update connection params status = 0, min_int = 0, max_int = 0,conn_int = 30,latency = 0, timeout = 400[0m
+[0;32mI (28312) GATTS_TABLE_DEMO: testsetse1[0m
+[0;32mI (28312) GATTS_TABLE_DEMO: testsetse2[0m
+[0;32mI (28312) AUDIO_PROVIDER: CaptureSamples() called![0m
+[0;31mE (28382) BT_INIT: Malloc failed[0m
+[0;31mE (28382) BT_INIT: Malloc failed[0m
+[0;31mE (28382) BT_INIT: Malloc failed[0m
+[0;31mE (28382) BT_INIT: Malloc failed[0m
+[0;31mE (28382) BT_INIT: Malloc failed[0m
+[0;31mE (28392) BT_INIT: Malloc failed[0m
+[0;31mE (28392) BT_INIT: Malloc failed[0m
+[0;31mE (28392) BT_INIT: Malloc failed[0m
+[0;31mE (28402) BT_INIT: Malloc failed[0m
+[0;31mE (28402) BT_INIT: Malloc failed[0m
+[0;32mI (28402) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28472) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28562) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28672) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28772) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28862) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (28972) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (29072) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (29162) AUDIO_PROVIDER: send COMPLETE!![0m
+[0;32mI (29272) AUDIO_PROVIDER: send COMPLETE!![0m

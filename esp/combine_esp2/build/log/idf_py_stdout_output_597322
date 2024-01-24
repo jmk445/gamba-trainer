@@ -1,0 +1,49 @@
+-- IDF_TARGET is not set, guessed 'esp32s3' from sdkconfig '/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/sdkconfig'
+-- Found Git: /usr/bin/git (found version "2.34.1") 
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: (현재 폴더 또는 상위 폴더 중 일부가) 깃 저장소가 아닙니다: .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32s3
+Processing 1 dependencies:
+[1/1] idf (5.1.1)
+-- Project sdkconfig file /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/sdkconfig
+Loading defaults file /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/sdkconfig.defaults...
+Loading defaults file /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/sdkconfig.defaults.esp32s3...
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Found Python3: /home/gamba/.espressif/python_env/idf5.1_py3.10_env/bin/python (found version "3.10.12") found components: Interpreter 
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- App "gatt_server_service_table_demo" version: 1
+-- Adding linker script /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_system/ld/esp32s3/sections.ld.in
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script /home/gamba/esp/esp-idf-v5.1.1/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt bus cmock console cxx driver efuse esp-dsp esp-nn esp-tls esp32-camera esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_idf_lib_helpers esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs fb_gfx freertos hal heap http_parser i2cdev icm42670 idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm pthread screen sdmmc soc spi_flash spiffs tcp_transport tflite-lib touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/gamba/esp/esp-idf-v5.1.1/components/app_trace /home/gamba/esp/esp-idf-v5.1.1/components/app_update /home/gamba/esp/esp-idf-v5.1.1/components/bootloader /home/gamba/esp/esp-idf-v5.1.1/components/bootloader_support /home/gamba/esp/esp-idf-v5.1.1/components/bt /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/bus /home/gamba/esp/esp-idf-v5.1.1/components/cmock /home/gamba/esp/esp-idf-v5.1.1/components/console /home/gamba/esp/esp-idf-v5.1.1/components/cxx /home/gamba/esp/esp-idf-v5.1.1/components/driver /home/gamba/esp/esp-idf-v5.1.1/components/efuse /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-nn /home/gamba/esp/esp-idf-v5.1.1/components/esp-tls /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp32-camera /home/gamba/esp/esp-idf-v5.1.1/components/esp_adc /home/gamba/esp/esp-idf-v5.1.1/components/esp_app_format /home/gamba/esp/esp-idf-v5.1.1/components/esp_coex /home/gamba/esp/esp-idf-v5.1.1/components/esp_common /home/gamba/esp/esp-idf-v5.1.1/components/esp_eth /home/gamba/esp/esp-idf-v5.1.1/components/esp_event /home/gamba/esp/esp-idf-v5.1.1/components/esp_gdbstub /home/gamba/esp/esp-idf-v5.1.1/components/esp_hid /home/gamba/esp/esp-idf-v5.1.1/components/esp_http_client /home/gamba/esp/esp-idf-v5.1.1/components/esp_http_server /home/gamba/esp/esp-idf-v5.1.1/components/esp_https_ota /home/gamba/esp/esp-idf-v5.1.1/components/esp_https_server /home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp_idf_lib_helpers /home/gamba/esp/esp-idf-v5.1.1/components/esp_lcd /home/gamba/esp/esp-idf-v5.1.1/components/esp_local_ctrl /home/gamba/esp/esp-idf-v5.1.1/components/esp_mm /home/gamba/esp/esp-idf-v5.1.1/components/esp_netif /home/gamba/esp/esp-idf-v5.1.1/components/esp_netif_stack /home/gamba/esp/esp-idf-v5.1.1/components/esp_partition /home/gamba/esp/esp-idf-v5.1.1/components/esp_phy /home/gamba/esp/esp-idf-v5.1.1/components/esp_pm /home/gamba/esp/esp-idf-v5.1.1/components/esp_psram /home/gamba/esp/esp-idf-v5.1.1/components/esp_ringbuf /home/gamba/esp/esp-idf-v5.1.1/components/esp_rom /home/gamba/esp/esp-idf-v5.1.1/components/esp_system /home/gamba/esp/esp-idf-v5.1.1/components/esp_timer /home/gamba/esp/esp-idf-v5.1.1/components/esp_wifi /home/gamba/esp/esp-idf-v5.1.1/components/espcoredump /home/gamba/esp/esp-idf-v5.1.1/components/esptool_py /home/gamba/esp/esp-idf-v5.1.1/components/fatfs /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/fb_gfx /home/gamba/esp/esp-idf-v5.1.1/components/freertos /home/gamba/esp/esp-idf-v5.1.1/components/hal /home/gamba/esp/esp-idf-v5.1.1/components/heap /home/gamba/esp/esp-idf-v5.1.1/components/http_parser /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/i2cdev /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670 /home/gamba/esp/esp-idf-v5.1.1/components/idf_test /home/gamba/esp/esp-idf-v5.1.1/components/ieee802154 /home/gamba/esp/esp-idf-v5.1.1/components/json /home/gamba/esp/esp-idf-v5.1.1/components/log /home/gamba/esp/esp-idf-v5.1.1/components/lwip /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main /home/gamba/esp/esp-idf-v5.1.1/components/mbedtls /home/gamba/esp/esp-idf-v5.1.1/components/mqtt /home/gamba/esp/esp-idf-v5.1.1/components/newlib /home/gamba/esp/esp-idf-v5.1.1/components/nvs_flash /home/gamba/esp/esp-idf-v5.1.1/components/openthread /home/gamba/esp/esp-idf-v5.1.1/components/partition_table /home/gamba/esp/esp-idf-v5.1.1/components/perfmon /home/gamba/esp/esp-idf-v5.1.1/components/protobuf-c /home/gamba/esp/esp-idf-v5.1.1/components/protocomm /home/gamba/esp/esp-idf-v5.1.1/components/pthread /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/screen /home/gamba/esp/esp-idf-v5.1.1/components/sdmmc /home/gamba/esp/esp-idf-v5.1.1/components/soc /home/gamba/esp/esp-idf-v5.1.1/components/spi_flash /home/gamba/esp/esp-idf-v5.1.1/components/spiffs /home/gamba/esp/esp-idf-v5.1.1/components/tcp_transport /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib /home/gamba/esp/esp-idf-v5.1.1/components/touch_element /home/gamba/esp/esp-idf-v5.1.1/components/ulp /home/gamba/esp/esp-idf-v5.1.1/components/unity /home/gamba/esp/esp-idf-v5.1.1/components/usb /home/gamba/esp/esp-idf-v5.1.1/components/vfs /home/gamba/esp/esp-idf-v5.1.1/components/wear_levelling /home/gamba/esp/esp-idf-v5.1.1/components/wifi_provisioning /home/gamba/esp/esp-idf-v5.1.1/components/wpa_supplicant /home/gamba/esp/esp-idf-v5.1.1/components/xtensa
+-- Configuring done (2.8s)
+-- Generating done (0.4s)
+-- Build files have been written to: /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/build

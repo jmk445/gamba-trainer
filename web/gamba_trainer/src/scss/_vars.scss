@@ -1,0 +1,99 @@
+/* ======================================================================
+Copyright 2021 Google LLC
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. 
+========================================================================*/
+
+/**
+* @autor Rikard Lindstrom <rlindstrom@google.com>
+*/
+
+$color-bg-primary: #fff;
+$color-bg-secondary: #ffa800;
+$color-bg-tertiary: #f8f9fa;
+$color-bg-quaternary: #e1e1e6;
+$color-bg-highlight: #ff6f00;
+$color-fg-primary: #000;
+$color-fg-secondary: #999;
+$border-width: 2.5px;
+$color-menu-disabled: $color-bg-quaternary;
+
+/** 기존 홈페이지 스타일시트 색상 변수는 남겨둡니다. 아래로 추가합니다.**/
+/** <name>은 페이지를 뜻합니다. 색상이 사용된 곳은 색상 변수의 아래에 작성합니다.**/
+/** 총 12개이되, Input Button(<Capture>)이 icon.png로 대체될시 관련 색상이 지워질 예정입니다.**/
+
+$color-white : #fff;
+$color-black : #030303;
+
+/** 
+카테고리,
+모델 다운로드 비활성화 버튼, 
+<Capture> 레코딩 박스
+**/
+$color-grey-step01 : #f6f5f6; 
+
+/** 
+모델 다운로드 비활성화 버튼, 
+<Main>의 나눔선,
+<Setting/Train> 수치 아래 선
+**/
+$color-grey-step02 : #e4e7e8; 
+
+$color-grey-step03 : #d4d6d7; // <Capture> 슬라이드 바 선
+/**
+카테고리 비활성화된 페이지,
+모델 다운로드 비활성화 버튼,
+<Capture>의 Record to pupulate,
+<Train>의 Use early stopping 체크 박스,
+<Capture/Test> 점선 
+**/
+$color-grey-step04 : #84869a;
+
+/**
+카테고리 페이지 표시,
+모델 다운로드 활성화 버튼,
+<Setting> 슬라이드 바,
+<Capture> Start recording button 스트로크와 폰트,
+<Train> 체크 박스 체크시 & Start training 스트로크와 폰트,
+<Test> 퍼센테이지 바
+**/
+$color-deepblue : #386dff;
+
+/** 
+모델 다운로드 활성화 버튼,
+<모든 페이지> 설명 박스,
+hover button
+**/
+$color-lightblue : #d1f4ff;
+
+/**
+모델 다운로드 활성화 버튼,
+click button
+**/
+$color-skyblue : #39D0FF;
+
+$color-value-blue : #6bdcff; // <Train> Validation accuracy
+$color-button-grey-step01 : #d9d9d9; // 비활성화 버튼 stroke
+$color-button-grey-steop02 : #c2c2c2; // 비활성화 버튼 아이콘 stroke
+
+
+
+//------------------------------------------------------------------------
+$color-lightsky : #D0E8F6;
+$color-banner-blue : #A6D2ED;
+$color-nav-blue : #103951;
+$color-nav-gray : #DFE4E7;
+$color-btn-green : #21A594;
+$color-btn-blue : #2174A5;
+$color-btn-purple : #5221A5;
+$color-btn-hover-blue : #08517C;
+$color-disabled-gray : #DFE4E7;
