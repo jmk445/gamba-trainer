@@ -20,8 +20,7 @@ limitations under the License.
 <script>
   import { onMount, onDestroy } from "svelte";
   import { Link } from "svelte-routing";
-  import { isConnected$3 } from "../FUI/stores/tf4micro-motion-kit copy";
-
+  import { isConnected$3, addEventListner } from "../FUI/stores/tf4micro-motion-kit copy";  
   // import { isConnected } from "@motion/stores/bleInterfaceStore/store";
   // import { testIsUnlocked } from "../src_motion/stores/test/store";
   // import { trainIsUnlocked } from "../src_motion/stores/train/store";
@@ -36,6 +35,10 @@ limitations under the License.
     interval = setInterval(() => {
       connectionUpdate();
     }, 1000);
+  });
+
+  onMount(() => {
+    addEventListner();
   });
 
   onDestroy(() => {
