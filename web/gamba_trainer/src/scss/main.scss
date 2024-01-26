@@ -1,0 +1,223 @@
+/* ======================================================================
+Copyright 2021 Google LLC
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. 
+========================================================================*/
+
+/**
+* @autor Rikard Lindstrom <rlindstrom@google.com>
+*/
+
+@import "reset";
+@import "vars";
+@import "fonts";
+@import "text";
+@import "layout";
+
+p {
+  margin: 5px 0;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  .icon {
+    margin-right: 8px;
+  }
+}
+
+.description {
+  background-color: $color-lightblue;
+  padding: 40px;
+  border-radius: 10px;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.button {
+  // position: relative;
+  padding: 14px 36px;
+  // height: 52px;
+  // background: none;
+  background-color: $color-btn-blue;
+  font-size: 1.25rem;
+  border-radius: 162px;
+  // border: 2px solid $color-fg-primary;
+  letter-spacing: 0.1px;
+  // display: flex;
+  //justify-content: space-between;
+  align-items: center;
+  // color: $color-deepblue;
+  color: white;
+
+
+  @extend .subhead-1;
+
+  // transition: transform 0.25s;
+
+  &:disabled {
+    // color: $color-deepblue;
+    background-color: #dbdbdb;
+    color: black;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .icon {
+    margin-left: -6px;
+    margin-right: 2px;
+  }
+
+  &.small {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   outline: $border-width solid $color-deepblue;
+  // }
+
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: $border-width;
+  //   left: 1px;
+  //   bottom: -$border-width * 2;
+  //   right: -$border-width * 2;
+  //   z-index: -1;
+  //   background: $color-bg-tertiary;
+  //   transition: background-color 0.25s, top 0.25s, left 0.25s, right 0.25s, bottom 0.25s;
+  // }
+
+  &.icon-button {
+    padding: 0 2.8rem;
+  }
+
+  &.primary {
+    &:before {
+      background-color: transparent;
+    }
+    &:disabled {
+      &:before {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &:hover {
+    // transform: translate($border-width, $border-width);
+    background-color: $color-btn-hover-blue;
+    // &:before {
+    //   background: $color-lightblue;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    // }
+  }
+
+  &.prompt-button {
+    // color: black;
+    color: white;
+    // &:after, &:before {
+    //   content: "";
+    //   z-index: -1;
+    //   border-radius: 30px;
+    //   outline-color: $color-fg-primary;
+    //   background-color: $color-lightblue;
+    // }
+  }
+}
+
+.logo-img {
+  width: 80px;
+}
+
+.icon-button {
+  padding: 0;
+  img {
+    margin: 0;
+  }
+}
+
+.no-transition {
+  * {
+    transition: none;
+    animation: none;
+  }
+}
+
+.warning {
+  color: $color-bg-highlight;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  &.red {
+    background-color: #d92525;
+  }
+
+  &.green {
+    background-color: #20e200;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
+  background-color: $color-deepblue;
+}
+.nav{
+  ul{
+    display: flex;
+    margin-bottom: 78px;
+    border-radius: 100px;
+    // height: 50px;
+    justify-content: space-between;
+    text-align: center;
+    background-color: $color-nav-gray;
+    li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      &:hover {
+        color: white;
+      }
+      &.disabled {
+        opacity: 0.25;
+        pointer-events: none;
+      }
+      &.active {
+        background-color: $color-nav-blue ;
+        color: white;
+        border-radius: 100px;
+      }
+    }
+  }
+}
