@@ -45,6 +45,7 @@ export function clearPersistantStorage() {
 
 
 export async function convertToTflite(quantize = false){
+  console.log("convert to tflite function executed");
   // URL to backend
   const apiUrl = "http://127.0.0.1:5000";
   //proc 요청
@@ -80,6 +81,45 @@ export async function convertToTflite(quantize = false){
   //tfLiteModel.set(result.responses[0]);    
 }
 
+export async function downloadTrainedModel(quantize = false) {
+  // URL to backend
+  const apiUrl = "http://127.0.0.1:5000";
+
+  //proc 요청
+  let url = `${apiUrl}/proc?labels=${get(labels).join(",")}&delay=${Math.floor(
+    get(captureDelay) * 1000
+  )}&numSamples=${get(captureSamples)}&sensitivity=${get(captureThreshold)}`;
+
+  url += `&version=${arduinoTemplateVersion}`;
+  if (quantize) {
+    url += "&quantize=true";
+  }
+
+  const rq = tf.io.browserHTTPRequest(url, {
+    fetchFunc: (url, req) => {
+      if (quantize) {
+        const [, , test_x] = shuffleAndSplitDataSet(
+          prepareDataSet(),
+          1 - get(trainTestSplit)
+        );
+        req.body.append("quantize_data", JSON.stringify(test_x));
+      }
+      return fetch(url, req);
+    },
+  });
+
+  // if(my-model-jmk (indexeddb) 존재){
+  //   그 model을 indexeddb에서 삭제
+  // }
+
+  const result = await get(trainedModel).save(rq);
+  
+  const blob = await result.responses[0].blob();
+  downloadBlob(
+    blob,
+    `TinyMotionTrainer-models-${getDateString()}.tflite`
+  );
+}
 export async function downloadTfliteModel(){
 
   downloadBlob(

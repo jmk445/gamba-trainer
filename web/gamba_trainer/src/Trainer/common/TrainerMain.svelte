@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <script>
   import { onMount } from "svelte";
-
   import SubBanner from "../../common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";

@@ -63,7 +63,6 @@
 </div>
 
 <style lang="scss">
-
     .btn-container {
         margin-bottom: 12px;
     }

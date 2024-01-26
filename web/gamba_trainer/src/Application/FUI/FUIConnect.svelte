@@ -1,11 +1,10 @@
 <script>    
     import AppMain from "../common/AppMain.svelte";
-    import {handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit";
+    import {handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit copy";
     
-    function handleClickConnect_(){        
+    function handleClickConnect_(){
         handleClickConnect();
     }
-    
 </script>
 
 

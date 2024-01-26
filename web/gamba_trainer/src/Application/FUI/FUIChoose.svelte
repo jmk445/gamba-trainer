@@ -1,13 +1,53 @@
 <script>
     import AppMain from "../common/AppMain.svelte";
     import Description from "../../common/Description.svelte";
+    import {
+        handleSendModel,
+        handleFileInput,
+    } from "./stores/tf4micro-motion-kit copy.js";
 
-    function handleChoose(){
-        
+    let fileInput$1 = 0;
+    function handleButtonClick() {                
+        fileInput$1.click();        
     }
 
-    function handleCheckModel(){
+    function handleFileChange(event) {
+        const fileInput = event.target;        
+        if (fileInput.files.length > 0) {            
+            const file = fileInput.files[0];
+            handleFileInput(file);
+        }
+    }
+
+    //사용자가 입력한 file에서 model(.tflite)을 가져옵니다.
+    function handleSendModelInterface() {
+        handleSendModel_(0);
+    }
+
+    //IDB에서 model(.tflite)을 가져옵니다.
+    function handleSendModelInterface$1() {
+        handleSendModel_(1);
+    }
+
+    function handleSendModel_(fromIDB) {
+        // let experimentConfig;
+        // const defaultConfig = {
+        //     autoTransfer: true,
+        // };
+        // const modelConfig = {
+        //     //model: "./model.tflite",
+        //     numClasses: 5,
+        //     threshold: 0.181,
+        //     numSamples: 25,
+        //     captureDelay: 30,
+        //     useMagnetometer: false,
+        // };
+
+        // experimentConfig = { ...defaultConfig, ...modelConfig };
         
+        //handleClickConnect(modelConfig);
+
+        handleSendModel(fromIDB);
     }
 </script>
 
@@ -27,8 +67,13 @@
                 수 있습니다.
             </p>
             <div class="btn-container">
-                <button class="btn-start btn-stroke" on:click={handleCheckModel()}> Start</button>
-                <button class="btn-app btn-fill" disabled>
+                <button
+                    class="btn-start button"
+                    on:click={handleSendModelInterface$1}
+                >
+                    Start</button
+                >
+                <button class="btn-app button" disabled>
                     <img src="#" />Application으로 이동</button
                 >
             </div>
@@ -43,8 +88,19 @@
                 내장되어 있는 예제 모델을 선택할 수 있습니다.
             </p>
             <div class="btn-container">
-                <button class="btn-select-model btn-stroke"> 모델 선택</button>
-                <button class="btn-ex btn-stroke" on:click={handleChoose()}>
+                <button
+                    class="btn-select-model button"
+                    on:click={handleButtonClick}
+                >
+                    모델 선택</button
+                >
+                <input
+                    type="file"
+                    style="display: none;"
+                    bind:this={fileInput$1}
+                    on:change={handleFileChange}
+                />
+                <button class="btn-ex button">
                     예제모델 선택<img src="#" /></button
                 >
             </div>
@@ -53,10 +109,15 @@
             <h2>3. Send</h2>
             <p>
                 선택한 모델을 Kit로 보냅니다. Send가 완료되면 Application을
-                체험할 수 있습니다.
+                체험할 수 있습니다. 
             </p>
             <div class="btn-container">
-                <button class="btn-send btn-stroke"> Send</button>
+                <button
+                    class="btn-send btn-stroke"
+                    on:click={handleSendModelInterface}
+                >
+                    Send</button
+                >
                 <!-- <span>Send가 완료되었습니다.</span> -->
             </div>
             <div class="myProgress" hidden>

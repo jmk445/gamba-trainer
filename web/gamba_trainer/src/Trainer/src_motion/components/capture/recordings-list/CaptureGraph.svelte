@@ -33,7 +33,6 @@ limitations under the License.
 </script>
 
 <div class="capture-graph">
-
   {#each Array($captureDataLength) as _, index}
     <CaptureGraphLine
       {data}
