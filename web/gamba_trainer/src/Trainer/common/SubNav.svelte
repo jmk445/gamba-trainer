@@ -26,10 +26,16 @@ limitations under the License.
     import { isConnected } from "@motion/stores/bleInterfaceStore/store";
     import DropDown from "../../general/DropDown.svelte";
     import ClearAllPrompt from "../../general/prompts/ClearAllPrompt.svelte";
-    import { saveFile, loadFile, saveFileAs } from "../../Trainer/src_motion/stores/file/actions";
+    import {
+        saveFile,
+        loadFile,
+        saveFileAs,
+    } from "../../Trainer/src_motion/stores/file/actions";
+    import HelpPrompt from "../../general/prompts/HelpPrompt.svelte";
 
     let dropDownVisible;
-    let showClearAllPrompt = false;    
+    let showClearAllPrompt = false;
+    let showHelpPrompt = false;
     let connectionClass = "red";
     let interval;
 
@@ -49,10 +55,10 @@ limitations under the License.
         const connection = document.getElementById("connection");
         if ($isConnected) {
             connectionClass = "green";
-            connection.innerText = "Disconnect";
+            connection.innerText = strAsset.navOneA;
         } else {
             connectionClass = "red";
-            connection.innerText = "Connect";
+            connection.innerText = strAsset.navOneA;
         }
     }
 
@@ -104,65 +110,83 @@ limitations under the License.
             document.addEventListener("click", handleDocumentClick, true);
         };
     });
+
+    const strAsset = {
+        navOneA: "연결",
+        navOneB: "연결 끊기",
+        navTwo: "저장",
+        navThree: "불러오기",
+        navFour: "재시작",
+        navFive: "도움말",
+        navTwoA: "프로젝트 저장",
+        navTwoB: "다른 이름으로 프로젝트 저장"
+    };
 </script>
-  
-    
-<nav class="sub-nav section">
-    <div>
-        <ul>        
 
+<div class="sub-nav">
+    <ul>
+        <li>
+            <span class={`dot ${connectionClass}`} />
+            <button id="connection" on:click={handleConnect}
+                >{strAsset.navOneA}</button
+            >
+        </li>
+        <li>
+            <button class="menu-item-save" on:click={() => showDropDown("save")}
+                >{strAsset.navTwo}</button
+            >
 
-
-
-            <li>
-                <button on:click={handleConnect}>Help</button>
-            </li>
-            <li>
-                <button on:click={() => (showClearAllPrompt = true)}
-                    >Start Over</button
-                >
-                {#if showClearAllPrompt}
-                    <ClearAllPrompt onClose={() => (showClearAllPrompt = false)} />
-                {/if}
-    
-            </li>
-            <li>
-                <button on:click={handleLoad}>Load</button>
-            </li>
-            <li>
-                <button class="menu-item-save" on:click={() => showDropDown("save")}
-                    >Save</button>
-    
-                {#if dropDownVisible === "save"}
-                    <DropDown
-                        options={[
-                            { label: "Save Project", value: "save" },
-                            { label: "Save Project As...", value: "save-as" },
-                        ]}
-                        onSelect={handleSaveSelect}
-                        selector=".menu-item-save"
-                    />
-                {/if}
-            </li>
-            <li>
-                <span class={`dot ${connectionClass}`}/>
-                <button id='connection' on:click={handleConnect}>Connect</button>
-                
-            </li>
-        </ul>
-    </div>
-</nav>
+            {#if dropDownVisible === "save"}
+                <DropDown
+                    options={[
+                        { label: (strAsset.navTwoA), value: "save" },
+                        { label: (strAsset.navTwoB), value: "save-as" },
+                    ]}
+                    onSelect={handleSaveSelect}
+                    selector=".menu-item-save"
+                />
+            {/if}
+        </li>
+        <li>
+            <button on:click={() => (showClearAllPrompt = true)}
+                >{strAsset.navFour}</button
+            >
+            {#if showClearAllPrompt}
+                <ClearAllPrompt onClose={() => (showClearAllPrompt = false)} />
+            {/if}
+        </li>
+        <li>
+            <button on:click={handleLoad}>{strAsset.navThree}</button>
+        </li>
+        <li>
+            <button on:click={() => (showHelpPrompt = true)}
+                >{strAsset.navFive}</button
+            >
+            {#if showHelpPrompt}
+                <HelpPrompt onClose={() => (showHelpPrompt = false)} />
+            {/if}
+        </li>
+    </ul>
+</div>
 
 <style lang="scss">
     .sub-nav {
-        margin-bottom: 80px;
+        margin: 12px 0 72px 0px;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            // margin-left: auto;
+            justify-content: flex-end;
+        }
         li {
-            float: right;
+            // float: right;
+            display: inline-block;
             margin-left: 32px;
-        }        
+            // margin-left: auto;
+        }
     }
-    .dot{
+    .dot {
         margin: 0;
     }
 </style>
-

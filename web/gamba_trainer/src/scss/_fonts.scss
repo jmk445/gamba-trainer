@@ -16,7 +16,27 @@ limitations under the License.
 /**
 * @autor Rikard Lindstrom <rlindstrom@google.com>
 */
-
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("../assets/fonts/NotoSansKR/NotoSansKR-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("../assets/fonts/NotoSansKR/NotoSansKR-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("../assets/fonts/NotoSansKR/NotoSansKR-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
 @font-face {
   font-family: "Roboto";
   src: url("../assets/fonts/Roboto/Roboto-Regular.ttf") format("truetype");

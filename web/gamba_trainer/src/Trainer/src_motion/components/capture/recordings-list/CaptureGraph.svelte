@@ -33,10 +33,6 @@ limitations under the License.
 </script>
 
 <div class="capture-graph">
-  <span class="label h2">{label}</span>
-  <button class="close-button icon-button" on:click={onDelete}
-    ><Icon icon={"close_24px.svg"} /></button
-  >
   {#each Array($captureDataLength) as _, index}
     <CaptureGraphLine
       {data}
@@ -46,6 +42,10 @@ limitations under the License.
         : $imuDataColors[index % $imuDataColors.length]}
     />
   {/each}
+  <span class="label h2">{label}</span>
+  <button class="close-button icon-button" on:click={onDelete}
+    ><Icon icon={"close_24px.svg"} /></button
+  >
 </div>
 
 <style lang="scss">
@@ -67,13 +67,13 @@ limitations under the License.
     .label {
       top: 4px;
       left: 7px;
-      z-index: 1;
+      // z-index: 1;
     }
     .close-button {
       top: 8px;
       right: 8px;
       display: none;
-      z-index: 2;
+      // z-index: 2;
     }
 
     &:hover {

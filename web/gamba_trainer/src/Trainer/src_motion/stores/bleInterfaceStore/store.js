@@ -18,7 +18,7 @@ limitations under the License.
 */
 
 import { derived, get, readable } from "svelte/store";
-import * as bleApi from "../../tf4micro-motion-kit/api";
+import * as bleApi from "motion-tf4micro-motion-kit/api";
 import persistStore from "@motion/stores/utils/persistStore";
 
 export const isConnected = readable(false, (set) => {

@@ -1,9 +1,10 @@
 <script>
     import AppMain from "../common/AppMain.svelte";
+    // import right from "./asset/"
 </script>
 
 <AppMain title="FUI" appName="fui">
-   <h1>설명</h1>
+  
 </AppMain>
 
 <style lang="scss">

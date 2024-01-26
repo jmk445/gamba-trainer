@@ -6,7 +6,7 @@
     let newLabelError = null;
 
     $: if ($labels.includes(newLabelName)) {
-        newLabelError = "Label must be unique";
+        newLabelError = strAsset.labelUnique;
     } else {
         newLabelError = "";
     }
@@ -22,18 +22,24 @@
             }
         }
     }
+
+    const strAsset = {
+        inputLabel : "라벨의 이름을 입력하세요",
+        btnCreate : "생성하기",
+        labelUnique : "똑같은 이름의 라벨이 있습니다."
+    }
 </script>
 
 <TextInput
-    label="라벨의 이름을 입력하세요"
+    label={strAsset.inputLabel}
     bind:value={newLabelName}
     onEnter={handleAddLabel}
     errorMessage={newLabelError}
 />
 <button
-    class="button primary"
+    class="btn-stroke primary"
     disabled={newLabelName.length === 0 || newLabelError}
-    on:click={handleAddLabel}>Create new</button
+    on:click={handleAddLabel}>{strAsset.btnCreate}</button
 >
 
 

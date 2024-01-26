@@ -22,7 +22,10 @@ limitations under the License.
     import { get } from "svelte/store";
     import Description from "../../common/Description.svelte";
     // import { connect } from "@motion/stores/bleInterfaceStore/actions";
-    import {connect, setImuDataMode } from "../src_motion/stores/bleInterfaceStore/actions"
+    import {
+        connect,
+        setImuDataMode,
+    } from "../src_motion/stores/bleInterfaceStore/actions";
     // import { setImuDataMode } from "../../stores/bleInterfaceStore/actions";
 
     // import { imuVelocity } from "../../stores/bleInterfaceStore/store";
@@ -73,31 +76,38 @@ limitations under the License.
     });
 
     function handleCloseChangeAfterRecordPrompt(didClear) {}
+
+    const strAsset = {
+        bluetoothTitle : "Bluetooth를 통해 키트 연결",
+        bluetoothBtn : "연결",
+        bluetoothCaption : "또는, 연결하지 않고 진행합니다.\n추후 상단의 연결 메뉴로 연결할 수 있습니다.",
+        captureSettingTitle : "캡처 설정 선택",
+        captureSettingDesc : '아래 슬라이더를 끌어 데이터를 수집하는 방법을 사용자 지정합니다. "예제용 모델 만들기" 선택한 경우, 설정은 고정됩니다.',
+        modelSettingTitle : "모델 설정 선택",
+        modelSettingDesc : "아래 모델 중 원하는 모델을 선택하여 학습을 진행할 수 있습니다."
+    }
 </script>
 
 <div class="bluetooth-container contents">
-    <p>Bluetooth를 통해 키트 연결</p>
+    <p>{strAsset.bluetoothTitle}</p>
 
-    <button class="btn-connect button" on:click={handleConnect}>
+    <button class="btn-connect btn-stroke" on:click={handleConnect}>
         <img src="#" alt="블루투스" />
 
-        <span>Connect</span>
+        <span>{strAsset.bluetoothBtn}</span>
     </button>
 
-    <p>
-        또는, 연결하지 않고 진행합니다.<br />
-        추후 상단의 Connect 탭으로 연결할 수 있습니다.
-    </p>
+    <p>{strAsset.bluetoothCaption}</p>
 </div>
 
 <div class="capture-choose-container contents">
     <Description
-        title="캡처 설정 선택"
-        explanation="아래 슬라이더를 끌어 모션 데이터를 캡처하는 방법을 사용자 지정합니다. Application Mode를 선택한 경우, 설정은 고정됩니다. "
+        title={strAsset.captureSettingTitle}
+        explanation={strAsset.captureSettingDesc}
     />
 
     <div class="settings-container">
-        <slot name="settings-capture"/>
+        <slot name="settings-capture" />
         <!-- <div class="panel">
             <div>
                 <h2>Capturing threshold</h2>
@@ -171,8 +181,8 @@ limitations under the License.
 
 <div class="model-choose contents">
     <Description
-        title="모델 설정 선택"
-        explanation="아래 모델 중 원하는 모델을 선택하여 학습을 징행시킬 수 있습니다."
+        title={strAsset.modelSettingTitle}
+        explanation={strAsset.modelSettingDesc}
     />
 </div>
 
@@ -182,9 +192,9 @@ limitations under the License.
 />
 
 <style lang="scss">
-
     .bluetooth-container {
         text-align: center;
+        margin-top: 56px;
 
         button {
             margin: auto;
@@ -192,14 +202,12 @@ limitations under the License.
         }
         p:first-child {
             font-size: 1.5rem;
-            margin-bottom: 28px;
+            margin-bottom: 16px;
         }
 
         p:last-child {
-            margin-top: 24px;
+            margin-top: 12px;
             font-size: 0.875rem;
         }
     }
-
-
 </style>

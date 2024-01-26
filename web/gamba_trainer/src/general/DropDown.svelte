@@ -80,12 +80,15 @@ limitations under the License.
 
   ul {
     position: absolute;
-    border: $border-width solid $color-fg-primary;
-    background-color: $color-bg-primary;
+    z-index: 1;
+    // border: $border-width solid $color-fg-primary;
+    background-color: $color-lightsky;
     padding: 0 0;
     li {
       padding: 1em;
-      border-top: 1px solid #e1e1e6;
+      &:nth-child(2n){
+        border-top: 1px solid #ffffff;
+      }
       button {
         width: 100%;
         display: flex;

@@ -12,7 +12,7 @@
             </Link>
         </div>
         <div class="title">
-            <p>{title}</p>
+            <h1>{title}</h1>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
     .sub-banner {
         background-color: $color-banner-blue ;
         padding: 26px 0;
-        margin-bottom: 12px;
+        // margin-bottom: 12px;
     }
     .sub-banner-contents {
         display: flex;
@@ -35,17 +35,5 @@
         .title{
             font-size: 3rem;
         }
-        // height: 100%;
-        // position: relative;
-
-        // img {
-        //     margin-top: 53.59px;
-        // }
-        // .title {
-        //     position: absolute;
-        //     bottom: 12px;
-        //     right: 0;
-        //     font-size: 3rem;
-        // }
     }
 </style>

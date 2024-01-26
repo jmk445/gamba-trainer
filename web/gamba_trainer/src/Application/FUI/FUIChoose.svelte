@@ -105,16 +105,15 @@
                 >
             </div>
         </div>
-
         <div class="send-model-container">
             <h2>3. Send</h2>
             <p>
                 선택한 모델을 Kit로 보냅니다. Send가 완료되면 Application을
-                체험할 수 있습니다.
+                체험할 수 있습니다. 
             </p>
             <div class="btn-container">
                 <button
-                    class="btn-send button"
+                    class="btn-send btn-stroke"
                     on:click={handleSendModelInterface}
                 >
                     Send</button

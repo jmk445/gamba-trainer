@@ -118,9 +118,9 @@ export default function persistStore(key, val, parseFn, onError) {
     store.set(data);
   };
 
-  // store.reset = () => {
-  //   store.set(originalVal);
-  // };
+  store.reset = () => {
+    store.set(originalVal);
+  };
 
   store.disableIndexedDB = (toggle = true) => {
     indexedDBDisabledForKey = toggle;

@@ -52,6 +52,12 @@ limitations under the License.
       // connection.innerText = "Connect";
     }
   }
+
+  const strAsset ={
+    navOne : "연결",
+    navTwo : "선택&전송",
+    navThree : "실행"
+  }
 </script>
 
 <nav class="app-main-nav nav section">
@@ -62,7 +68,7 @@ limitations under the License.
       )}
     >
       <span class={`dot ${connectionClass}`} />
-      <Link to="fui-connect">connect</Link>
+      <Link to="fui-connect">{strAsset.navOne}</Link>
     </li>
 
     <li
@@ -70,15 +76,7 @@ limitations under the License.
         BASE_PATH + `/${appName}-choose`,
       )}
     >
-      <Link to="fui-choose">Choose&Send</Link>
-    </li>
-
-    <li
-      class:active={location.pathname.includes(
-        BASE_PATH + `/${appName}-explanation`,
-      )}
-    >
-      <Link to="fui-explanation">Explanation</Link>
+      <Link to="fui-choose">{strAsset.navTwo}</Link>
     </li>
 
     <li
@@ -86,18 +84,18 @@ limitations under the License.
         BASE_PATH + `/${appName}-experience`,
       )}
     >
-      <Link to="fui-experience">Experience</Link>
+      <Link to="fui-experience">{strAsset.navThree}</Link>
     </li>
+
   </ul>
 </nav>
 
 <style lang="scss">
   @import "@scss/vars";
   .app-main-nav ul {
-    height: 50px;
     margin-top: 110px;
   }
   .dot {
-    margin: 0;
+    margin-right: 4;
   }
 </style>

@@ -26,15 +26,20 @@
       store.set(value);
     }
   }
+  const strAsset = {
+    panelOne: "임계값 설정",
+    panelOneDesc:
+      "기록을 시작하는 최소 동작입니다. 임계값 이상의 동작이 감지되면 기록이 시작됩니다. 해당값은 모델에 의해 샘플 근사화에 사용됩니다.",
+    panalTwo: "다음 수집까지 대기시간(초)",
+    panelTwoDesc:
+      "한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초단위로 제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다.",
+  };
 </script>
 
 <div class="panel">
   <div>
-    <h2>Capturing threshold</h2>
-    <p>
-      기록을 시작하는 최소 동작입니다. 임계값 이상의 동작이 감지되면 기록이
-      시작됩니다. 해당값은 모델에 의해 샘플 근사화에 사용됩니다.
-    </p>
+    <h2>{strAsset.panelOne}</h2>
+    <p>{strAsset.panelOneDesc}</p>
   </div>
   <div class="form-container input-align-right">
     <SettingsInput
@@ -49,7 +54,7 @@
   </div>
 </div>
 
-<div class="panel">
+<!-- <div class="panel">
   <div>
     <h2>Number of samples</h2>
     <p>
@@ -68,15 +73,12 @@
       step={1}
     />
   </div>
-</div>
+</div> -->
 
 <div class="panel">
   <div>
-    <h2>Delay between captures(seconds)s</h2>
-    <p>
-      한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초 단위로
-      제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다.
-    </p>
+    <h2>{strAsset.panalTwo}</h2>
+    <p>{strAsset.panelTwoDesc}</p>
   </div>
   <div class="form-container input-align-right">
     <SettingsInput
@@ -95,18 +97,20 @@
   .panel {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    &:first-child {
+      margin-bottom: 42px;
+    }
 
     div:first-child {
-      width: 34%;
+      width: 40%;
 
       h2 {
-        margin-bottom: 20px;
+        margin-bottom: 12px;
       }
     }
 
     div:last-child {
-      width: 62%;
+      width: 56%;
     }
   }
 </style>

@@ -48,7 +48,6 @@ limitations under the License.
   import MotionTrain_Graph from "../Trainer/src_motion/components/train/MotionTrain_graph.svelte";
   import MotionTest_Progress from "../Trainer/src_motion/components/test/MotionTest_progress.svelte";
 
-  
   import FuiConnect from "../Application/FUI/FUIConnect.svelte";
   import FuiChoose from "../Application/FUI/FUIChoose.svelte";
   import FuiExplanation from "../Application/FUI/FUIExplanation.svelte";
@@ -90,7 +89,7 @@ limitations under the License.
 </script>
 
 <Router {url} {basepath}>
-  <main>
+  <!-- <main> -->
     <Route path="/"><Main /></Route>
     <Route path="/train-select"><Train_Select /></Route>
   <Route path="/motionApps-select"><App_Select><MotionApps/></App_Select></Route>
@@ -120,7 +119,7 @@ limitations under the License.
     <Route path="/motion-mem-test"><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route>
     <Route path="/motion-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route>
 
-  </main>
+  <!-- </main> -->
 </Router>
 
 <style lang="scss">

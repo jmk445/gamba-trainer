@@ -11,7 +11,7 @@
 <AppMain title="FUI" appName="fui">
     <div class="bluetooth-container">
         <p>Bluetooth를 통해 키트 연결</p>
-        <button class="btn-connect button" on:click={handleClickConnect_}>
+        <button class="btn-connect btn-stroke" on:click={handleClickConnect_}>
             <img src="#" alt="블루투스" />
             <span>Connect</span>
         </button>

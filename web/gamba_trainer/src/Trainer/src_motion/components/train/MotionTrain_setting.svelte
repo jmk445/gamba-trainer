@@ -14,6 +14,10 @@
   }
   import { isFullyLoaded } from "../../stores/ui/store";
   import EarlyStopping from "./EarlyStopping.svelte";
+
+  const strAsset = {
+    epochs : "Epochs"
+  }
 </script>
 
 <div class="column">
@@ -22,7 +26,7 @@
       classStr="subhead-1"
       bind:value={$trainEpochs}
       min={1}
-    /><label class="subhead-1" for="input_epochs">Epochs</label>
+    /><label class="subhead-1" for="input_epochs">{strAsset.epochs}</label>
   </div>
   <div class="column">
     <EarlyStopping />

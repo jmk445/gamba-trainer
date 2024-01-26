@@ -19,17 +19,19 @@ limitations under the License.
 -->
 <script>
   import { onMount } from "svelte";
-    
   import SubBanner from "../../common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";
 
   import UnsavedProjectPrompt from "../../general/prompts/UnsavedProjectPrompt.svelte";
   import LocalStorageFullPrompt from "../../general/prompts/LocalStorageFullPrompt.svelte";
-  import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";  
+  import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";
 
   import { promptStack } from "../src_motion/stores/ui/store";
-  import { pushErrorMessage, pushPropmt } from "../src_motion/stores/ui/actions";
+  import {
+    pushErrorMessage,
+    pushPropmt,
+  } from "../src_motion/stores/ui/actions";
   import persistStore, { dirty } from "../src_motion/stores/utils/persistStore";
 
   onMount(() => {
@@ -61,12 +63,14 @@ limitations under the License.
   </div>
 </div> -->
 <header>
-  <SubBanner title="Motion Trainer"/>
-  <SubNav/>
-  <MainNav trainer="motion"/> 
+  <SubBanner title="Motion Trainer" />
+  <div class="section">
+    <SubNav />
+  </div>
 </header>
+<nav class="section"><MainNav trainer="motion" /></nav>
 <main class="section" aria-live="polite">
-  <slot/>
+  <slot />
 </main>
 
 {#if $promptStack}
@@ -79,3 +83,10 @@ limitations under the License.
   {/if}
 {/if}
 
+<style lang="scss">
+  nav {
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+  }
+</style>

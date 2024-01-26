@@ -18,8 +18,13 @@ limitations under the License.
 */
 
 .section{
-  margin: 0 150px;
+  padding: 0 300px;
 }
+@media screen and (max-width:1500px){ 
+  .section{ 
+    padding: 0 80px;
+  }
+ }
 .row {
   // margin: 40px 0;
   display: flex;
@@ -38,9 +43,12 @@ limitations under the License.
   }
 }
 .contents {
-  margin-bottom: 183px;
+  margin-bottom: 128px;
   display: flex;
   flex-direction: column;
+}
+.border-basic{
+  border-radius: 8px;
 }
 // .panel {
 //   // background-color: $color-bg-tertiary;

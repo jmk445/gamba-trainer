@@ -17,7 +17,7 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import * as bleApi from "../tf4micro-motion-kit/api";
+import * as bleApi from "motion-tf4micro-motion-kit/api";
 import DataRecorder from "./DataRecorder";
 
 function sliceArray(array, begin, end) {

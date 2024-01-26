@@ -293,7 +293,6 @@ def upload_file():
            output_filename = 'tinyml-gesture-' + timestr + '.tgz'
            return send_file(file_data, mimetype='application/tflite-model', download_name='hello.tflite')
            # return send_file(file_data, mimetype='application/tar+gzip', download_name=output_filename)
-       
 @app.errorhandler(500)
 def server_error(e):
     # Log the error and stacktrace.

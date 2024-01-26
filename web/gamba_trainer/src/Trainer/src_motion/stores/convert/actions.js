@@ -1,4 +1,3 @@
-import {trainedModel} from "../train/store"
 
 export async function saveTflite(blob) {
 
@@ -29,7 +28,6 @@ function saveModelToIndexedDB(db, blob) {
         const transaction = db.transaction(['models'], 'readwrite');
         const store = transaction.objectStore('models');
         const arrayBuffer = event.target.result;
-        
         // ArrayBuffer를 IndexedDB에 저장
         const request = store.put(arrayBuffer, 'tfliteModel');
 
@@ -48,5 +46,8 @@ function saveModelToIndexedDB(db, blob) {
 }
 
 
+function arrayBuffertoBlob(){
+
+}
 
 

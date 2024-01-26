@@ -12,7 +12,7 @@
     let quantize = false;
     let isDownloading = false;
     let isConverting = false;
-
+    let isbtnDisabled = true;
     async function handleConvert(quantize){
         isConverting = true;        
         await convertToTflite(quantize)    
@@ -26,69 +26,61 @@
         await downloadTfliteModel(quantize);
         isDownloading = false;          
     }
+
+    const strAsset = {
+        convertTitle : "모델 변환 및 전송",
+        convertDesc : '학습된 모델을 .tflite 확장자 모델로 변환 후 키트에 전송합니다. 원하는 경우 모델을 다운로드할 수 있습니다. "예제용 모델 만들기"로 시작했다면 "예제에서 체험" 이동 버튼이 활성화됩니다.',
+        btnconvert : "변환",
+        btnSend : "전송",
+        btnDownload : "다운로드",
+        btnapp : "예제에서 체험"
+    }
 </script>
 
 <div class="contents">
     <Description
-        title="모델 변환 및 전송"
-        explanation="학습된 모델을 .tflite 확장자 모델로 변환 후 키트에 전송합니다. 원하는 경우 모델을 다운로드할 수 있습니다. Application Mode로 시작했다면, Application으로 이동 버튼이 활성화됩니다."
-    />
+        title={strAsset.convertTitle}
+        explanation={strAsset.convertDesc}/>
     <div class="progress-container">
         <div class="btn-container">            
-            <button class="btn-convert button" disabled={isConverting} on:click={() => {handleConvert(false);}}> Convert</button>
-            <button class="btn-send button" disabled> Send</button>
-            <button class="btn-download button" disabled={!$trainedModel || isDownloading}  on:click={() => handleDownload()}> Download</button>
+            <button class="btn-convert btn-stroke" disabled={isConverting} on:click={() => {handleConvert(false);}}>{strAsset.btnconvert}</button>
+            <button class="btn-send btn-stroke" disabled>{strAsset.btnSend}</button>
+            <button class="btn-download btn-stroke" disabled={!$trainedModel || isDownloading}  on:click={() => handleDownload()}>{strAsset.btnDownload}</button>
         </div>
-        <div id="myProgress">
-            <div id="myBar"></div>
+        <div class="myProgress">
+            <div class="myBar"></div>
         </div>
     </div>
     <div class="move-page">
-        <button class="btn-move button" disabled>
-            <img src={arrowRight} alt="arrow" /> Application에서 체험
-        </button>
-        <Link to="/">
+        <button class="btn-app btn-fill" disabled={isbtnDisabled}>
+            <img src={arrowRight} alt="arrow" /> {strAsset.btnapp}</button>
+        <!-- <Link to="/">
             <button class="btn-home button">
                 <img src={arrowRight} alt="arrow" />메인으로 돌아가기
             </button>
-        </Link>
+        </Link> -->
     </div>
 </div>
 
 <style lang="scss">
-    .progress-container {
-        margin-bottom: 60px;
-    }
     .btn-container {
         margin-bottom: 12px;
     }
     .btn-download,
-    .btn-move,
+    .btn-app,
     .btn-home {
         float: right;
     }
     .btn-convert {
-        margin-right: 12px;
+        margin-right: 24px;
     }
     .progress-container {
-        margin-bottom: 58px;
-    }
-    #myProgress {
-        width: 100%;
-        height: 12px;
-        background-color: #dbdbdb;
-        border-radius: 50px;
-    }
-    #myBar {
-        width: 10%;
-        height: 100%;
-        background-color: aqua;
-        border-radius: 50px;
+        margin-bottom: 128px;
     }
     .btn-move {
         margin-bottom: 16px;
     }
-    .btn-move,
+    .btn-app,
     .btn-home {
         display: block;
         margin-left: 12px;
