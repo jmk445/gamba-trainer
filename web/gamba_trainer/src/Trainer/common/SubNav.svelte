@@ -55,10 +55,10 @@ limitations under the License.
         const connection = document.getElementById("connection");
         if ($isConnected) {
             connectionClass = "green";
-            connection.innerText = "Disconnect";
+            connection.innerText = strAsset.navOneA;
         } else {
             connectionClass = "red";
-            connection.innerText = "Connect";
+            connection.innerText = strAsset.navOneA;
         }
     }
 
@@ -112,11 +112,14 @@ limitations under the License.
     });
 
     const strAsset = {
-        navOne: "연결",
+        navOneA: "연결",
+        navOneB: "연결 끊기",
         navTwo: "저장",
         navThree: "불러오기",
         navFour: "재시작",
         navFive: "도움말",
+        navTwoA: "프로젝트 저장",
+        navTwoB: "다른 이름으로 프로젝트 저장"
     };
 </script>
 
@@ -125,7 +128,7 @@ limitations under the License.
         <li>
             <span class={`dot ${connectionClass}`} />
             <button id="connection" on:click={handleConnect}
-                >{strAsset.navOne}</button
+                >{strAsset.navOneA}</button
             >
         </li>
         <li>
@@ -136,8 +139,8 @@ limitations under the License.
             {#if dropDownVisible === "save"}
                 <DropDown
                     options={[
-                        { label: "Save Project", value: "save" },
-                        { label: "Save Project As...", value: "save-as" },
+                        { label: (strAsset.navTwoA), value: "save" },
+                        { label: (strAsset.navTwoB), value: "save-as" },
                     ]}
                     onSelect={handleSaveSelect}
                     selector=".menu-item-save"

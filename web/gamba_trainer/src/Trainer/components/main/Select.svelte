@@ -134,7 +134,7 @@
         </div>
     </div>
     <div class="btn-move-wrap contents">
-        <button class="button" disabled={isBtnDisabled} on:click={goToTrainer}>{strAsset.btnGoToTrainer}</button>
+        <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}>{strAsset.btnGoToTrainer}</button>
     </div>
 </main>
 <footer>

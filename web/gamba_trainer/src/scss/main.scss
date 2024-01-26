@@ -26,9 +26,12 @@ limitations under the License.
 // p {
 //   margin: 5px 0;
 // }
-p, h1, h2, h3{
+p,
+h1,
+h2,
+h3 {
   line-height: 1.2;
-  letter-spacing : 1.2;
+  letter-spacing: 1.2;
 }
 
 button {
@@ -45,39 +48,24 @@ button {
   background-color: $color-lightblue;
   padding: 40px;
   border-radius: 10px;
+
   h1 {
     margin-bottom: 10px;
   }
 }
 
 .button {
-  // position: relative;
   padding: 14px 36px;
-  // height: 52px;
-  // background: none;
-  background-color: $color-btn-blue;
   font-size: 1rem;
   border-radius: 162px;
-  // border: 2px solid $color-fg-primary;
   letter-spacing: 0.1px;
-  // display: flex;
-  //justify-content: space-between;
   align-items: center;
-  // color: $color-deepblue;
-  color: white;
-
+  min-width: 130px;
 
   @extend .subhead-1;
 
   // transition: transform 0.25s;
 
-  &:disabled {
-    // color: $color-deepblue;
-    background-color: #dbdbdb;
-    color: black;
-    opacity: 0.4;
-    pointer-events: none;
-  }
 
   .icon {
     margin-left: -6px;
@@ -90,28 +78,6 @@ button {
     font-size: 14px;
   }
 
-  // &:after {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   outline: $border-width solid $color-deepblue;
-  // }
-
-  // &:before {
-  //   content: "";
-  //   position: absolute;
-  //   top: $border-width;
-  //   left: 1px;
-  //   bottom: -$border-width * 2;
-  //   right: -$border-width * 2;
-  //   z-index: -1;
-  //   background: $color-bg-tertiary;
-  //   transition: background-color 0.25s, top 0.25s, left 0.25s, right 0.25s, bottom 0.25s;
-  // }
-
   &.icon-button {
     padding: 0 2.8rem;
   }
@@ -120,6 +86,7 @@ button {
     &:before {
       background-color: transparent;
     }
+
     &:disabled {
       &:before {
         background-color: transparent;
@@ -127,28 +94,46 @@ button {
     }
   }
 
-  &:hover {
-    // transform: translate($border-width, $border-width);
-    background-color: $color-btn-hover-blue;
-    // &:before {
-    //   background: $color-lightblue;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    // }
-  }
 
   &.prompt-button {
-    // color: black;
     color: white;
-    // &:after, &:before {
-    //   content: "";
-    //   z-index: -1;
-    //   border-radius: 30px;
-    //   outline-color: $color-fg-primary;
-    //   background-color: $color-lightblue;
-    // }
+  }
+}
+
+.btn-stroke {
+  @extend .button;
+  background-color: white;
+  border: 1px solid $color-btn-blue;
+  color: $color-btn-blue;
+
+  &:disabled {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  &:hover{
+    background-color: white;
+    border: 1px solid $color-btn-hover-blue;
+    color: $color-btn-hover-blue;
+  }
+
+}
+.btn-fill{
+  @extend .button;
+  background-color: $color-btn-blue;
+  color: white;
+
+  &:disabled {
+    background-color:$color-disabled-gray;
+    color: black;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  &:hover{
+    background-color: $color-btn-hover-blue;
+    color: white;
   }
 }
 
@@ -158,6 +143,7 @@ button {
 
 .icon-button {
   padding: 0;
+
   img {
     margin: 0;
   }
@@ -180,6 +166,7 @@ button {
   border-radius: 50%;
   display: inline-block;
   margin-right: 10px;
+
   &.red {
     background-color: #d92525;
   }
@@ -196,33 +183,39 @@ button {
 .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
   background-color: $color-deepblue;
 }
-.nav{
+
+.nav {
   // height: 64px;
   margin-bottom: 72px;
   font-size: 1.25rem;
-  ul{
+
+  ul {
     display: flex;
     border-radius: 100px;
     // height: 100%;
     justify-content: space-between;
     text-align: center;
     background-color: $color-nav-gray;
-    
-    li{
+
+    li {
       display: flex;
       justify-content: center;
       align-items: center;
       flex: 1;
-      a{
+
+      a {
         padding: 16px 0;
       }
+
       &:hover {
         color: white;
       }
+
       &.disabled {
         opacity: 0.25;
         pointer-events: none;
       }
+
       &.active {
         background-color: $color-nav-blue ;
         color: white;
@@ -235,9 +228,10 @@ button {
 .myProgress {
   width: 100%;
   height: 5px;
-  background-color: #dbdbdb;
+  background-color: $color-disabled-gray;
   border-radius: 50px;
 }
+
 .myBar {
   width: 10%;
   height: 100%;
@@ -245,6 +239,6 @@ button {
   border-radius: 50px;
 }
 
-main{
+main {
   margin-bottom: 100px;
 }

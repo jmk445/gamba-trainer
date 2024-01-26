@@ -79,7 +79,7 @@ limitations under the License.
     <div class="row">
       <div class="rec-button-container">
         <button
-          class="button primary small rec-button"
+          class="btn-stroke primary small rec-button"
           on:click={handleToggleRecording}
           disabled={!active}
           aria-pressed={$captureState !== "idle"}

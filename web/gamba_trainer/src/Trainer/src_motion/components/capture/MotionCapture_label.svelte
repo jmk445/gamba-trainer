@@ -37,7 +37,7 @@
     errorMessage={newLabelError}
 />
 <button
-    class="button primary"
+    class="btn-stroke primary"
     disabled={newLabelName.length === 0 || newLabelError}
     on:click={handleAddLabel}>{strAsset.btnCreate}</button
 >

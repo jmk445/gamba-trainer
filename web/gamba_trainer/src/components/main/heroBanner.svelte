@@ -23,6 +23,9 @@
     .banner-container {
         position: relative;
     }
+    .img-background{
+        overflow: hidden;
+    }
     .banner-contents {
         position: absolute;
         top: 99px;

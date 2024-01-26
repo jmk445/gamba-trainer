@@ -90,6 +90,6 @@ limitations under the License.
   //   margin-bottom: 60px;
   // }
   .data-capture-container{
-    margin-bottom: 24px;
+    margin-bottom: 64px;
   }
 </style>

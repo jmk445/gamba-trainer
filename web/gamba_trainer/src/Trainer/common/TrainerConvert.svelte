@@ -43,16 +43,16 @@
         explanation={strAsset.convertDesc}/>
     <div class="progress-container">
         <div class="btn-container">            
-            <button class="btn-convert button" disabled={isConverting} on:click={() => {handleConvert(false);}}>{strAsset.btnconvert}</button>
-            <button class="btn-send button" disabled>{strAsset.btnSend}</button>
-            <button class="btn-download button" disabled={!$trainedModel || isDownloading}  on:click={() => handleDownload()}>{strAsset.btnDownload}</button>
+            <button class="btn-convert btn-stroke" disabled={isConverting} on:click={() => {handleConvert(false);}}>{strAsset.btnconvert}</button>
+            <button class="btn-send btn-stroke" disabled>{strAsset.btnSend}</button>
+            <button class="btn-download btn-stroke" disabled={!$trainedModel || isDownloading}  on:click={() => handleDownload()}>{strAsset.btnDownload}</button>
         </div>
         <div class="myProgress">
             <div class="myBar"></div>
         </div>
     </div>
     <div class="move-page">
-        <button class="btn-app button" disabled={isbtnDisabled}>
+        <button class="btn-app btn-fill" disabled={isbtnDisabled}>
             <img src={arrowRight} alt="arrow" /> {strAsset.btnapp}</button>
         <!-- <Link to="/">
             <button class="btn-home button">

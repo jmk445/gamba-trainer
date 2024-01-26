@@ -91,7 +91,7 @@ limitations under the License.
 <div class="bluetooth-container contents">
     <p>{strAsset.bluetoothTitle}</p>
 
-    <button class="btn-connect button" on:click={handleConnect}>
+    <button class="btn-connect btn-stroke" on:click={handleConnect}>
         <img src="#" alt="블루투스" />
 
         <span>{strAsset.bluetoothBtn}</span>
