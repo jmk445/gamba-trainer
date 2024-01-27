@@ -15,7 +15,6 @@ limitations under the License.
 ==============================================================================*/
 
 import { tfLiteModel } from "../../../Trainer/src_motion/stores/train/store";
-import * as tf from '@tensorflow/tfjs';
 
 class EventHandler {
   constructor(...eventNames) {
@@ -482,8 +481,7 @@ function handleInferenceChange(event) {
     index: values[0],
     score: values[1],
     velocity: values[2],
-  });
-  console.log("change"+inferenceOn);
+  });  
 }
 
 let FromIDB;
@@ -546,7 +544,7 @@ async function connect$1() {
   log("Requesting device ...");
 
   device = await navigator.bluetooth.requestDevice({
-    filters: [{ services: [SERVICE_UUID] }],
+    filters: [{ services: [SERVICE_UUID] }],  
   });
 
   log("Connecting to device ...");
@@ -871,9 +869,10 @@ function loadFile$1() {
 
 
       getRequest.onsuccess = function (event) {
-        const result = event.target.result;        
+        const result = event.target.result;
         const ArrayBuffer = result.data;
-        const tflite = tf.loadGraphModel(ArrayBuffer);
+        const blob = Blob([ArrayBuffer], { type : 'application/octet-stream' })        
+        const tflite = blob;
         if (result) {
           resolve(tflite);
         } else {
@@ -1106,13 +1105,14 @@ async function handleConnect() {
   //experimentConfig.onConnect && experimentConfig.onConnect();
 }
 
-
+let index = null;
 function handleInference(data) {
-  if (inferenceOn == 1) {
+  if (inferenceOn == 1) {    
     console.log(
       "Got gesture! You should probably supply a onInference function",
       data
     );
+    index= data.index;        
   }
   // if (experimentConfig.onInference) {
   //   experimentConfig.onInference(data);
@@ -1122,6 +1122,12 @@ function handleInference(data) {
   //     data
   //   );
   // }
+  
+}
+
+export function getInferenceResult(){
+  return index;
+
 }
 
 function handleFileTransferProgress(p) {
@@ -1133,21 +1139,7 @@ function handleFileTransferCompleted(p) {
     experimentConfig.onTransferCompleted(p);
 }
 
-export async function handleClickConnect() {
-
-  if (!isConnected) {
-    removeEventListener("disconnect", handleDisconnect);
-    removeEventListener("connect", handleConnect);
-    removeEventListener("inference", handleInference);
-    removeEventListener(
-      "file-transfer-progress",
-      handleFileTransferProgress
-    );
-    removeEventListener(
-      "file-transfer-completed",
-      handleFileTransferCompleted
-    );
-
+export function addEventListner(){  
     addEventListener("disconnect", handleDisconnect);
     addEventListener("connect", handleConnect);
     addEventListener("inference", handleInference);
@@ -1156,6 +1148,31 @@ export async function handleClickConnect() {
       "file-transfer-completed",
       handleFileTransferCompleted
     );
+}
+
+export async function handleClickConnect() {
+
+  if (!isConnected) {
+    // removeEventListener("disconnect", handleDisconnect);
+    // removeEventListener("connect", handleConnect);
+    // removeEventListener("inference", handleInference);
+    // removeEventListener(
+    //   "file-transfer-progress",
+    //   handleFileTransferProgress
+    // );
+    // removeEventListener(
+    //   "file-transfer-completed",
+    //   handleFileTransferCompleted
+    // );
+
+    // addEventListener("disconnect", handleDisconnect);
+    // addEventListener("connect", handleConnect);
+    // addEventListener("inference", handleInference);
+    // addEventListener("file-transfer-progress", handleFileTransferProgress);
+    // addEventListener(
+    //   "file-transfer-completed",
+    //   handleFileTransferCompleted
+    // );
 
     await connect();
   } else {
@@ -1253,7 +1270,7 @@ export async function handleSendModel(flag) {
   const modelInputSizeArray = Uint32Array.of(20);
   await modelInputSizeTxChar.writeValue(modelInputSizeArray);
 
-  
+
   const thresholdArray = Float32Array.of(0.03);
   await thresholdTxChar.writeValue(thresholdArray);
 

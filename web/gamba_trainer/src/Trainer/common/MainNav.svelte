@@ -20,7 +20,7 @@ limitations under the License.
 <script>
   import { Link } from "svelte-routing";
   import { testIsUnlocked } from "../src_motion/stores/test/store";
-  import { trainIsUnlocked } from "../src_motion/stores/train/store";
+  import { trainIsUnlocked} from "../src_motion/stores/train/store"
   export let trainer;
 
   const strAsset = {
