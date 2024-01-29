@@ -869,12 +869,9 @@ function loadFile$1() {
 
 
       getRequest.onsuccess = function (event) {
-        const result = event.target.result;
-        const ArrayBuffer = result.data;
-        const blob = Blob([ArrayBuffer], { type : 'application/octet-stream' })        
-        const tflite = blob;
-        if (result) {
-          resolve(tflite);
+        const result = event.target.result;                
+        if (result) {          
+          resolve(result);
         } else {
           reject("Record not found in IndexedDB.");
         }
