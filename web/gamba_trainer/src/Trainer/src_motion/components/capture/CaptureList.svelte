@@ -19,7 +19,11 @@ limitations under the License.
 -->
 <script>
   import { imuDataColors } from "@motion/stores/ui/store";
-  import { armedLabelIndex, labels, recordings } from "@motion/stores/capture/store";
+  import {
+    armedLabelIndex,
+    labels,
+    recordings,
+  } from "@motion/stores/capture/store";
   import { captureImuLabels } from "@motion/stores/captureSettings/store";
 
   import Icon from "../../../../general/Icon.svelte";
@@ -52,6 +56,9 @@ limitations under the License.
       hoverFilter = null;
     }
   }
+  const strAsset = {
+    filter: "필터",
+  };
 </script>
 
 <div class="capture-list">
@@ -75,7 +82,7 @@ limitations under the License.
     {#if $hasRecordings}
       <div class="filter-section">
         <button class="small subhead-2" on:click={handleToggleFilter}
-          ><Icon icon="filter_18px.svg" />Filter</button
+          ><Icon icon="filter_18px.svg" />{strAsset.filter}</button
         >
         {#if showFilter}
           <div>

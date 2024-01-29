@@ -34,13 +34,13 @@ limitations under the License.
 <Prompt title="Start Over">
   <div class="inner">
     <p class="instructions h2">
-      현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까? 
+      현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?
     </p>
     <div class="button-row">
-      <button class="button primary prompt-button" on:click={onClose}
+      <button class="btn-fill primary prompt-button" on:click={onClose}
         >아니요</button
       >
-      <button class="button primary prompt-button" on:click={handleClearAll}
+      <button class="btn-fill primary prompt-button" on:click={handleClearAll}
         >예</button
       >
     </div>
@@ -48,16 +48,6 @@ limitations under the License.
 </Prompt>
 
 <style lang="scss">
-
-  .button-row {
-    display: flex;
-    justify-content: center;
-    button {
-      width: 184px;
-      height: 56px;
-      margin: 0 12px !important;
-    }
-  }
   .instructions {
     margin-bottom: 36px;
   }
@@ -68,9 +58,15 @@ limitations under the License.
     z-index: 1;
     max-width: 800px - 60px;
     padding: 100px 70px;
-    button {
-      margin: 6px auto;
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      button {
+        width: 184px;
+        height: 56px;
+        margin: 6px auto;
+      }
     }
   }
-
 </style>

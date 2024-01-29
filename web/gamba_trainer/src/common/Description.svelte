@@ -12,10 +12,10 @@
     @import "@scss/vars";
 
     .description {
-        padding: 20px 102px;
+        padding: 48px 32px;
         background-color: $color-lightsky;
         border-radius: 8px;
-        margin-bottom: 80px;
+        margin-bottom: 64px;
 
         h2 {
             margin-bottom: 16px;

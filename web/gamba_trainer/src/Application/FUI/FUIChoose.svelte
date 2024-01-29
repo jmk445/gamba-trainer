@@ -7,11 +7,11 @@
     }
 
     function handleCheckModel(){
-        
+
     }
 </script>
 
-<AppMain title="FUI" appName="fui">
+<AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="model-choose-container">
         <Description
             title="모델 선택 및 전송"
@@ -27,8 +27,8 @@
                 수 있습니다.
             </p>
             <div class="btn-container">
-                <button class="btn-start button" on:click={handleCheckModel()}> Start</button>
-                <button class="btn-app button" disabled>
+                <button class="btn-start btn-stroke" on:click={handleCheckModel()}> Start</button>
+                <button class="btn-app btn-fill" disabled>
                     <img src="#" />Application으로 이동</button
                 >
             </div>
@@ -43,8 +43,8 @@
                 내장되어 있는 예제 모델을 선택할 수 있습니다.
             </p>
             <div class="btn-container">
-                <button class="btn-select-model button"> 모델 선택</button>
-                <button class="btn-ex button" on:click={handleChoose()}>
+                <button class="btn-select-model btn-stroke"> 모델 선택</button>
+                <button class="btn-ex btn-stroke" on:click={handleChoose()}>
                     예제모델 선택<img src="#" /></button
                 >
             </div>
@@ -56,7 +56,7 @@
                 체험할 수 있습니다.
             </p>
             <div class="btn-container">
-                <button class="btn-send button"> Send</button>
+                <button class="btn-send btn-stroke"> Send</button>
                 <!-- <span>Send가 완료되었습니다.</span> -->
             </div>
             <div class="myProgress" hidden>

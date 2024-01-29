@@ -51,7 +51,7 @@ limitations under the License.
 
   import FuiConnect from "../Application/FUI/FUIConnect.svelte";
   import FuiChoose from "../Application/FUI/FUIChoose.svelte";
-  import FuiExplanation from "../Application/FUI/FUIExplanation.svelte";
+  // import FuiExplanation from "../Application/FUI/FUIExplanation.svelte";
   import FuiExperience from "../Application/FUI/FUIExperience.svelte";
   
   // import Speech_Start from "../Trainer/src_speech/components/dev/Start.svelte";
@@ -100,7 +100,7 @@ limitations under the License.
   <!-- <Route path="/fui-connect"><p>1st</p><FuiConnect/></Route> -->
   <Route path="/fui-connect"><FuiConnect/></Route>
   <Route path="/fui-choose"><FuiChoose/></Route>
-  <Route path="/fui-explanation"><FuiExplanation/></Route>
+  <!-- <Route path="/fui-explanation"><FuiExplanation/></Route> -->
   <Route path="/fui-experience"><FuiExperience/></Route>
     <!-- <Route path="/motion-start"><Trainer_Start /></Route>
     <Route path="/motion-settings"><Trainer_Main><Trainer_Settings /></Trainer_Main></Route>    
@@ -123,11 +123,7 @@ limitations under the License.
   <!-- </main> -->
 </Router>
 
-<style lang="scss">
-  main {
-    height: 100vh;
-  }
-</style>
+
 
 
 

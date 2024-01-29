@@ -47,6 +47,14 @@ limitations under the License.
       endRecording();
     }
   }
+
+  const strAsset = {
+    btnStart : "기록하기",
+    btnStop : "중지하기",
+    captionIng : "기록 중...",
+    captionDetecting : "움직임 감지",
+    captionWating : `수집이 완료되었습니다. ${$captureDelayTimeout.toFixed(2)}초만 기다려주세요.`
+  }
 </script>
 
 <li class:active>
@@ -71,7 +79,7 @@ limitations under the License.
     <div class="row">
       <div class="rec-button-container">
         <button
-          class="button primary small rec-button"
+          class="btn-stroke primary small rec-button"
           on:click={handleToggleRecording}
           disabled={!active}
           aria-pressed={$captureState !== "idle"}
@@ -83,9 +91,9 @@ limitations under the License.
             class:armed={$captureState === "armed"}
           />
           {#if $captureState === "idle"}
-            Start recording
+            {strAsset.btnStart}
           {:else}
-            Stop recording
+            {strAsset.btnStop}
           {/if}
         </button>
         {#if ["recording", "armed", "waiting"].includes($captureState)}
@@ -97,13 +105,11 @@ limitations under the License.
             class:armed={$captureState === "armed"}
           >
             {#if $captureState === "recording"}
-              Recording...
+              {strAsset.captionIng}
             {:else if $captureState === "armed"}
-              Detecting motion...
+            {strAsset.captionDetecting}
             {:else if $captureState === "waiting"}
-              {`Capture completed. Waiting ${$captureDelayTimeout.toFixed(
-                2
-              )}s...`}
+              {strAsset.captionWating}
             {/if}
           </p>
         {/if}

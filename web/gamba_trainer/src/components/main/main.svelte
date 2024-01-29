@@ -3,6 +3,13 @@
 	import HeroBanner from "./heroBanner.svelte";
 	import MainLinkModule from "./mainLinkModule.svelte";
 	import Footer from "../../common/footer.svelte";
+
+	const strAsset = {
+		modeOneTitle : "트레이너",
+		modeOneCaption : "인공지능 모델을 학습시킬 수 있습니다.",
+		modeTwoTitle : "TInyML 예제",
+		modeTwoCaption : "모델을 활용 및 체험할 수 있습니다."
+	}
 </script>
 
 <HeroBanner />
@@ -12,16 +19,16 @@
 		<div class="main-link-module">
 			<Link to="train-select">
 				<MainLinkModule
-					title="Trainer"
-					caption="인공지능 모델을 학습시킬 수 있습니다."
+					title={strAsset.modeOneTitle}
+					caption={strAsset.modeOneCaption}
 				/>
 			</Link>
 		</div>
 		<div class="main-link-module">
 			<Link to="motionApps-select">
 				<MainLinkModule
-					title="Application"
-					caption="모델을 활용 및 체험할 수 있습니다."
+					title={strAsset.modeTwoTitle}
+					caption={strAsset.modeTwoCaption}
 				/>
 			</Link>
 		</div>
@@ -38,10 +45,12 @@
 	.main-link-module {
 		width: 47%;
 	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	.contents{
+		margin: 128px 0;
 	}
+	// @media (min-width: 640px) {
+	// 	main {
+	// 		max-width: none;
+	// 	}
+	// }
 </style>

@@ -22,16 +22,24 @@ limitations under the License.
   import { testIsUnlocked } from "../src_motion/stores/test/store";
   import { trainIsUnlocked } from "../src_motion/stores/train/store";
   export let trainer;
+
+  const strAsset = {
+    navOne: "사전 설정",
+    navTwo: "데이터 수집",
+    navThree: "모델 학습",
+    navFour: "모델 테스트",
+    navFive: "변환/전송",
+  };
 </script>
 
-<div class="train-nav nav section">
+<div class="train-nav nav">
   <ul>
     <li
       class:active={location.pathname.includes(
         BASE_PATH + `/${trainer}-settings`,
       )}
     >
-      <Link to="{trainer}-settings">Choose your settings</Link>
+      <Link to="{trainer}-settings">{strAsset.navOne}</Link>
     </li>
 
     <li
@@ -39,7 +47,7 @@ limitations under the License.
         BASE_PATH + `/${trainer}-capture`,
       )}
     >
-      <Link to="{trainer}-capture">Capture your data</Link>
+      <Link to="{trainer}-capture">{strAsset.navTwo}</Link>
     </li>
 
     <li
@@ -47,7 +55,7 @@ limitations under the License.
       class:disabled={!$trainIsUnlocked}
       aria-disabled={!$trainIsUnlocked}
     >
-      <Link to="{trainer}-train">Train your model</Link>
+      <Link to="{trainer}-train">{strAsset.navThree}</Link>
     </li>
 
     <li
@@ -55,7 +63,7 @@ limitations under the License.
       class:disabled={!$testIsUnlocked}
       aria-disabled={!$testIsUnlocked}
     >
-      <Link to="{trainer}-test">Test your model</Link>
+      <Link to="{trainer}-test">{strAsset.navFour}</Link>
     </li>
 
     <li
@@ -63,17 +71,12 @@ limitations under the License.
         BASE_PATH + `/${trainer}-convertSend`,
       )}
     >
-      <Link to="{trainer}-convertSend">Convert/Send</Link>
+      <Link to="{trainer}-convertSend">{strAsset.navFive}</Link>
     </li>
   </ul>
 </div>
 
 <style lang="scss">
   @import "@scss/vars";
-  .train-nav {
 
-    ul {
-      height: 50px;
-    }
-  }
 </style>

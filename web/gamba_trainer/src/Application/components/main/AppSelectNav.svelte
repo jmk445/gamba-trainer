@@ -22,6 +22,12 @@ limitations under the License.
     // import { testIsUnlocked } from "../../stores/test/store";
     // import { trainIsUnlocked } from "../../stores/train/store";
     // export let trainer;
+
+    const strAsset = {
+      navOne : "모션",
+      navTwo : "소리&음성",
+      navThree : "이미지"
+    }
   </script>
   
   <div class="app-nav nav section">
@@ -31,7 +37,7 @@ limitations under the License.
         BASE_PATH + "motionApps-select",
       )}
       >
-        <Link to="motionApps-select">Motion</Link>
+        <Link to="motionApps-select">{strAsset.navOne}</Link>
       </li>
   
       <li
@@ -39,12 +45,12 @@ limitations under the License.
           BASE_PATH + "speechApps-select",
         )}
       >
-        <Link to="speechApps-select">Speech</Link>
+        <Link to="speechApps-select">{strAsset.navTwo}</Link>
       </li>
   
       <li
         class:active={location.pathname.includes(BASE_PATH + "visionApps-select")}>
-        <Link to="visionApps-select">Vision</Link>
+        <Link to="visionApps-select">{strAsset.navThree}</Link>
       </li>
     </ul>
   </div>

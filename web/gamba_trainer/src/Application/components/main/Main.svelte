@@ -2,10 +2,13 @@
     import SubBanner from "../../../common/SubBanner.svelte";
     import AppSelectNav from "./AppSelectNav.svelte";
     import Footer from "../../../common/footer.svelte";
+    const strAsset ={
+        bannerTitle : "TinyML 예제"
+    }
 </script>
 
 <header>
-    <SubBanner title="Application" />
+    <SubBanner title={strAsset.bannerTitle} />
 </header>
 <nav><AppSelectNav /></nav>
 <main class="section" aria-live="polite">

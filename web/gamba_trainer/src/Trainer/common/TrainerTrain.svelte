@@ -50,14 +50,23 @@ limitations under the License.
             navigate(BASE_PATH, { replace: true });
         }
     }
+
+    const strAsset = {
+        trainTitle : "모델 교육",
+        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 모션 데이터를 기록하십시오.",
+        btnStart : "학습 시작",
+        btnStop : "학습 중지",
+        captionStop : "멈추는 중...",
+        captionAlert : "이 페이지는 학습이 진행되는 동안 열려 있어야 합니다."
+    }
 </script>
 
 <div class="contents">
     <Description
-        title="모델 교육"
-        explanation="모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 모션 데이터를 기록하십시오."
+        title={strAsset.trainTitle}
+        explanation={strAsset.trainDesc}
     />
-    <div class="row">
+    <div class="row input-container">
         <slot name="train-setting" />
         <!-- <div class="column">
         <NumberInput
@@ -71,17 +80,17 @@ limitations under the License.
         <EarlyStopping />
     </div> -->
     </div>
-    <div class="row btn-start">
+    <div class="btn-start">
         {#if $trainingState === "idle"}
-            <button class="button primary" on:click={beginTraining}
-                >Start training</button
+            <button class="btn-stroke primary" on:click={beginTraining}
+                >{strAsset.btnStart}</button
             >
         {:else if $trainingState === "training"}
-            <button class="button primary" on:click={stopTraining}
-                >Stop training</button
+            <button class="btn-stroke primary" on:click={stopTraining}
+                >{strAsset.btnStop}</button
             >
         {:else if $trainingState === "stop_queued"}
-            <button class="button primary" disabled>Stopping...</button>
+            <button class="btn-stroke primary" disabled>{strAsset.captionStop}</button>
         {/if}
 
         {#if $trainingState !== "idle"}
@@ -100,7 +109,7 @@ limitations under the License.
                         fill="#386dff"
                     />
                 </svg>
-                이 페이지는 트레이닝이 진행되는 동안 열려 있어야 합니다.
+                {strAsset.captionAlert}
             </p>
         {/if}
     </div>
@@ -135,7 +144,9 @@ limitations under the License.
     // .row {
     //     padding: 0 40px;
     // }
-
+    .input-container{
+        margin-bottom: 32px;
+    }
     .train-alert {
         margin-left: 35px;
         color: $color-deepblue;
@@ -144,7 +155,7 @@ limitations under the License.
         }
     }
     .btn-start {
-        margin-bottom: 60px;
+        margin-bottom: 64px;
     }
     .gragh_div {
         width: 100%;

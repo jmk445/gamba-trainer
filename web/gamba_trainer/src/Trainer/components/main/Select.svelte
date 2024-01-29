@@ -81,15 +81,15 @@
     <div class="contents trainer">
         <h1>{strAsset.typeTrainer}</h1>
 
-        <div class="trainer-container">
-            <div class="trainer-wrap">
+        <div class="select-container">
+            <div class="trainer-container">
                 <input type="radio" name="trainer" value="moiton" id="motionTrainer"
                     on:click={() => selectTrainer("motionTrainer")}/>
                 <label for="motionTrainer">
                     <p>{strAsset.trainerOne}</p>
                 </label>
             </div>
-            <div class="trainer-wrap">
+            <div class="trainer-container">
                 <input
                     type="radio" name="trainer" value="speech" id="speechTrainer"
                     on:click={() => selectTrainer("speechTrainer")} />
@@ -97,7 +97,7 @@
                     <p>{strAsset.trainerTwo}</p>
                 </label>
             </div>
-            <div class="trainer-wrap">
+            <div class="trainer-container">
                 <input
                     type="radio" name="trainer" value="vision" id="visionTrainer"
                     on:click={() => selectTrainer("visionTrainer")}/>
@@ -110,31 +110,31 @@
     <div class="contents {modeActive}" id="modeDisabled">
         <h1>{strAsset.typeMode}</h1>
 
-        <div class="mode-container">
-            <div class="contents-container">
+        <div class="select-container">
+            <div class="mode-wrap">
                 <input type="radio" name="mode" value="basic" id="basicMode"
                     on:click={() => selectMode("basicMode")}/>
                 <label for="basicMode">
                     <span>{strAsset.modeOneType}</span>
-                    <span>{strAsset.modeOneCaption}</span>
                     <p class="mode-title">{strAsset.modeOne}</p>
+                    <p>{strAsset.modeOneCaption}</p>
                 </label>
             </div>
-            <div class="contents-container">
+            <div class="mode-wrap">
                 <input type="radio" name="mode" value="app" id="appMode"
                     on:click={() => {
                         selectMode("appMode");
                         showSelectApp = true;}}/>
                 <label for="appMode">
                     <span>{strAsset.modeTwoType}</span>
-                    <span>{strAsset.modeTwoCaption}</span>
                     <p class="mode-title">{strAsset.modeTwo}</p>
+                    <p>{strAsset.modeTwoCaption}</p>
                 </label>
             </div>
         </div>
     </div>
     <div class="btn-move-wrap contents">
-        <button class="button" disabled={isBtnDisabled} on:click={goToTrainer}>{strAsset.btnGoToTrainer}</button>
+        <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}>{strAsset.btnGoToTrainer}</button>
     </div>
 </main>
 <footer>
@@ -161,24 +161,24 @@
         // margin-bottom: 12px;
 
         h1 {
+            font-size: 2.25rem;
             margin-bottom: 32px;
+            font-weight: 700;
         }
     }
-    // .trainer {
-    //     margin-bottom: 136px;
-    // }
+
     input[type="radio"] {
         display: none;
     }
-    .contents-container, .trainer-wrap {
+    .mode-wrap, .trainer-container {
         flex: 1;
     }
-    .trainer-container {
+    .select-containerr {
         display: flex;
         flex-direction: row;
-        gap: 6%;
+        gap: 2%;
 
-        .trainer-wrap label {
+        .trainer-container label {
             box-sizing: border-box;
             display: inline-block;
             background-color: $color-btn-blue;
@@ -190,40 +190,42 @@
             font-size: 2rem;
             text-align: center;
             color: white;
-
+            font-weight: 400;
             &:hover {
                 color: white;
             }
         }
     }
-    .mode-container {
+    .select-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 2%;
     }
 
-.contents-container {
+.mode-wrap {
     &:first-child{
      margin-bottom: 24px;
     }
     label {
-        display: block;
+        box-sizing: border-box;
+        display: inline-block;
         background-color: $color-lightsky;
         border-radius: 8px;
-        padding: 20px 20px;
+        padding: 24px 24px;
         cursor: pointer;
+        text-align: center;
 
-        span:first-child {
+        span {
+            justify-content: flex-end;
             font-size: 0.875rem;
-        }
-        span:nth-child(2) {
-            float: right;
+            
         }
         &:hover {
             color: white;
         }
         .mode-title {
             font-size: 3rem;
-            margin: 32px 0 0 0;
+            margin-top: 64px;
             line-height: 100%;
         }
     }
