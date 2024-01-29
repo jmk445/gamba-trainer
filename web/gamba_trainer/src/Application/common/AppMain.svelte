@@ -22,12 +22,12 @@ limitations under the License.
   import SubBanner from "../../common/SubBanner.svelte";
   import AppMainNav from "./AppMainNav.svelte";
 
-  export let title;
+  export let bannerTitle;
   export let appName;
 </script>
 <!-- <h1>3st</h1> -->
 <header>
-  <SubBanner title={title}/>
+  <SubBanner title={bannerTitle}/>
   <AppMainNav appName={appName}/> 
 </header>
 <!-- <h1>3st</h1> -->

@@ -47,6 +47,8 @@ export default function (p5) {
 
   p5.setup = function () {
     p5.windowResized();
+    x = p5.width / 2;
+    y = p5.height / 2;
   };
 
   p5.draw = function () {
@@ -76,7 +78,6 @@ export default function (p5) {
     sc = 255;
     wave_text = 0;
 
-    y = p5.windowHeight / 2;
     p5.push();
     p5.fill(224, 155, 11);
     p5.ellipse(x, y - 300, 300, 300);
@@ -101,7 +102,7 @@ export default function (p5) {
     b = 11;
     sc = 255;
     wave_text = 0;
-    y = p5.windowHeight / 2;
+
 
     p5.push();
     p5.fill(195, 184, 245);
@@ -129,7 +130,7 @@ export default function (p5) {
     b = 245;
     sc = 255;
     wave_text = 0;
-    x = p5.windowWidth / 2;
+
     p5.push();
     p5.fill(134, 224, 163);
     p5.ellipse(x, y, 600, 600);
@@ -173,7 +174,7 @@ export default function (p5) {
     sc = 255;
     wave_text = 0;
 
-    x = p5.windowWidth / 2;
+
 
     p5.push();
     p5.fill(g, b, b);
@@ -205,7 +206,6 @@ export default function (p5) {
     wave_text = 0;
     sc = 255;
 
-    x = p5.windowWidth / 2;
     p5.push();
     p5.fill(23, 114, 250);
     p5.ellipse(x - x / 2, y, 500, 500);

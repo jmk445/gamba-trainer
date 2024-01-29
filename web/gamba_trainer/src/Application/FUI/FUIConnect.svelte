@@ -8,7 +8,7 @@
 </script>
 
 
-<AppMain title="FUI" appName="fui">
+<AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="bluetooth-container">
         <p>Bluetooth를 통해 키트 연결</p>
         <button class="btn-connect btn-stroke" on:click={handleClickConnect_}>

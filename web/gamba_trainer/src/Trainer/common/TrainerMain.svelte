@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <script>
   import { onMount } from "svelte";
+
   import SubBanner from "../../common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";
@@ -47,23 +48,16 @@ limitations under the License.
       }
     });
   });
+
+  const strAsset = {
+    bannerTitleMotion : "모션",
+    bannerTitleSpeech : "소리&음성",
+    bannerTitlevision : "이미지"
+  }
 </script>
 
-<!-- <div class="main-container">
-  <SubBanner title="Motion Tainer" />
-  <SubNav />
-  
-  <div class="container">    
-    <aside class="nav-container">
-      <MainNav trainer="motion"/>      
-    </aside>
-    <main class="section" aria-live="polite">
-      <slot />
-    </main>
-  </div>
-</div> -->
 <header>
-  <SubBanner title="Motion Trainer" />
+  <SubBanner title={strAsset.bannerTitleMotion} />
   <div class="section">
     <SubNav />
   </div>

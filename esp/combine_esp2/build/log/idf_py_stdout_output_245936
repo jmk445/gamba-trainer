@@ -1,0 +1,134 @@
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/build/bootloader/esp-idf/esptool_py && /home/gamba/.espressif/python_env/idf5.1_py3.10_env/bin/python /home/gamba/esp/esp-idf-v5.1.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/build/bootloader/bootloader.bin
+Bootloader binary size 0x51f0 bytes. 0x2e10 bytes (36%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/main_functions.cc.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/main_functions.cc.obj 
+/home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-g++ -DESP_PLATFORM -DIDF_VER=\"v5.1.1\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/build/config -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main -I/home/gamba/esp/esp-idf-v5.1.1/components/newlib/platform_include -I/home/gamba/esp/esp-idf-v5.1.1/components/freertos/FreeRTOS-Kernel/include -I/home/gamba/esp/esp-idf-v5.1.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/gamba/esp/esp-idf-v5.1.1/components/freertos/esp_additions/include/freertos -I/home/gamba/esp/esp-idf-v5.1.1/components/freertos/esp_additions/include -I/home/gamba/esp/esp-idf-v5.1.1/components/freertos/esp_additions/arch/xtensa/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support/include/soc -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support/include/soc/esp32s3 -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support/port/esp32s3/. -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_hw_support/port/esp32s3/private_include -I/home/gamba/esp/esp-idf-v5.1.1/components/heap/include -I/home/gamba/esp/esp-idf-v5.1.1/components/log/include -I/home/gamba/esp/esp-idf-v5.1.1/components/soc/include -I/home/gamba/esp/esp-idf-v5.1.1/components/soc/esp32s3 -I/home/gamba/esp/esp-idf-v5.1.1/components/soc/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/hal/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/hal/include -I/home/gamba/esp/esp-idf-v5.1.1/components/hal/platform_port/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/include/esp32s3 -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_rom/esp32s3 -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_common/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_system/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_system/port/soc -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_system/port/include/private -I/home/gamba/esp/esp-idf-v5.1.1/components/xtensa/include -I/home/gamba/esp/esp-idf-v5.1.1/components/xtensa/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/include/apps -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/include/apps/sntp -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/lwip/src/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/port/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/port/freertos/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/port/esp32xx/include -I/home/gamba/esp/esp-idf-v5.1.1/components/lwip/port/esp32xx/include/arch -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/include/esp32c3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/common/osi/include -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/common/api/include/api -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/common/btc/profile/esp/blufi/include -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/common/btc/profile/esp/include -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/host/bluedroid/api/include/api -I/home/gamba/esp/esp-idf-v5.1.1/components/bt/porting/ext/tinycrypt/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_timer/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_wifi/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_wifi/wifi_apps/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_event/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_phy/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_phy/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_netif/include -I/home/gamba/esp/esp-idf-v5.1.1/components/nvs_flash/include -I/home/gamba/esp/esp-idf-v5.1.1/components/spi_flash/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_partition/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/deprecated -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/analog_comparator/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/dac/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/gpio/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/gptimer/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/i2c/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/i2s/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/ledc/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/mcpwm/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/parlio/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/pcnt/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/rmt/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/sdio_slave/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/sdmmc/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/sigma_delta/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/spi/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/temperature_sensor/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/touch_sensor/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/twai/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/uart/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/usb_serial_jtag/include -I/home/gamba/esp/esp-idf-v5.1.1/components/driver/touch_sensor/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_pm/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_ringbuf/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_adc/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_adc/interface -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_adc/esp32s3/include -I/home/gamba/esp/esp-idf-v5.1.1/components/esp_adc/deprecated/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670 -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/i2cdev -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp_idf_lib_helpers -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/third_party/gemmlowp -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/third_party/flatbuffers/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/third_party/ruy -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/third_party/kissfft -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/signal/micro/kernels -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/signal/src -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/signal/src/kiss_fft_wrappers -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/dotprod/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/support/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/support/mem/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/hann/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/blackman/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/blackman_harris/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/blackman_nuttall/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/nuttall/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/windows/flat_top/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/iir/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/fir/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/add/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/sub/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/mul/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/addc/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/mulc/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/math/sqrt/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/matrix/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/fft/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/dct/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/conv/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/common/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/kalman/ekf/include -I/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/esp-dsp/modules/kalman/ekf_imu13states/include -mlongcalls  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fmacro-prefix-map=/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2=. -fmacro-prefix-map=/home/gamba/esp/esp-idf-v5.1.1=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -DconfigENABLE_FREERTOS_DEBUG_OCDAWARE=1 -std=gnu++2b -fno-exceptions -fno-rtti -Wno-maybe-uninitialized -Wno-missing-field-initializers -Wno-error=sign-compare -Wno-error=double-promotion -Wno-type-limits -DTF_LITE_STATIC_MEMORY -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main_functions.cc.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/main_functions.cc.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/main_functions.cc.obj -c /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:44: warning: "ICM42670_I2C_ADDR_GND" redefined
+   44 | #define ICM42670_I2C_ADDR_GND (0x68)
+      | 
+In file included from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:35:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670/icm42670.h:41: note: this is the location of the previous definition
+   41 | #define ICM42670_I2C_ADDR_GND 0x68
+      | 
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:45: warning: "ICM42670_I2C_ADDR_VCC" redefined
+   45 | #define ICM42670_I2C_ADDR_VCC (0x69)
+      | 
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670/icm42670.h:42: note: this is the location of the previous definition
+   42 | #define ICM42670_I2C_ADDR_VCC 0x69
+      | 
+In file included from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/tensorflow/lite/micro/tflite_bridge/flatbuffer_conversions_bridge.h:19,
+                 from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/tensorflow/lite/micro/micro_allocator.h:26,
+                 from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/tensorflow/lite/micro/micro_interpreter.h:26,
+                 from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:27:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/tensorflow/lite/core/api/flatbuffer_conversions.h: In member function 'T* tflite::BuiltinDataAllocator::AllocatePOD()':
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/tflite-lib/tensorflow/lite/core/api/flatbuffer_conversions.h:46:24: warning: 'template<class _Tp> struct std::is_pod' is deprecated: use is_standard_layout && is_trivial instead [-Wdeprecated-declarations]
+   46 |     static_assert(std::is_pod<T>::value, "Builtin data structure must be POD.");
+      |                        ^~~~~~
+In file included from /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/include/c++/12.2.0/bits/stl_pair.h:60,
+                 from /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/include/c++/12.2.0/bits/stl_algobase.h:64,
+                 from /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/include/c++/12.2.0/bits/specfun.h:45,
+                 from /home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/include/c++/12.2.0/cmath:1935,
+                 from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:19:
+/home/gamba/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/include/c++/12.2.0/type_traits:757:5: note: declared here
+  757 |     is_pod
+      |     ^~~~~~
+In file included from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:41:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h: At global scope:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:71:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   71 |     BUTTON_EVENT_A_PRESSED      = BTN_TYPE_A + B_PRESSED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:72:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   72 |     BUTTON_EVENT_A_RELEASED     = BTN_TYPE_A + B_RELEASED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:73:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   73 |     BUTTON_EVENT_A_LONG_PRESS   = BTN_TYPE_A + B_LONG_PRESS,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:75:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   75 |     BUTTON_EVENT_B_PRESSED      = BTN_TYPE_B + B_PRESSED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:76:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   76 |     BUTTON_EVENT_B_RELEASED     = BTN_TYPE_B + B_RELEASED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:77:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   77 |     BUTTON_EVENT_B_LONG_PRESS   = BTN_TYPE_B + B_LONG_PRESS,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:79:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   79 |     BUTTON_EVENT_X_PRESSED      = BTN_TYPE_X + B_PRESSED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:80:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   80 |     BUTTON_EVENT_X_RELEASED     = BTN_TYPE_X + B_RELEASED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:81:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   81 |     BUTTON_EVENT_X_LONG_PRESS   = BTN_TYPE_X + B_LONG_PRESS,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:83:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   83 |     BUTTON_EVENT_Y_PRESSED      = BTN_TYPE_Y + B_PRESSED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:84:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   84 |     BUTTON_EVENT_Y_RELEASED     = BTN_TYPE_Y + B_RELEASED,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/buttonApp.h:85:46: warning: arithmetic between different enumeration types 'button_type_t' and '<unnamed enum>' is deprecated [-Wdeprecated-enum-enum-conversion]
+   85 |     BUTTON_EVENT_Y_LONG_PRESS   = BTN_TYPE_Y + B_LONG_PRESS,
+      |                                   ~~~~~~~~~~~^~~~~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc: In function 'void inference()':
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:147:24: error: invalid conversion from 'int' to 'i2c_port_t' [-fpermissive]
+  147 |     icm42670_t dev = { 0 };
+      |                        ^
+      |                        |
+      |                        int
+In file included from /home/gamba/esp/esp-idf-v5.1.1/components/esp_system/include/esp_system.h:12,
+                 from /home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:22:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:46:14: error: invalid conversion from 'int' to 'i2c_port_t' [-fpermissive]
+   46 | #define PORT 0
+      |              ^
+      |              |
+      |              int
+/home/gamba/esp/esp-idf-v5.1.1/components/esp_common/include/esp_err.h:117:30: note: in definition of macro 'ESP_ERROR_CHECK'
+  117 |         esp_err_t err_rc_ = (x);                                        \
+      |                              ^
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:148:56: note: in expansion of macro 'PORT'
+  148 |     ESP_ERROR_CHECK(icm42670_init_desc(&dev, I2C_ADDR, PORT, EXAMPLE_I2C_MASTER_SDA, EXAMPLE_I2C_MASTER_SCL));
+      |                                                        ^~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670/icm42670.h:372:72: note:   initializing argument 3 of 'esp_err_t icm42670_init_desc(icm42670_t*, uint8_t, i2c_port_t, gpio_num_t, gpio_num_t)'
+  372 | esp_err_t icm42670_init_desc(icm42670_t *dev, uint8_t addr, i2c_port_t port, gpio_num_t sda_gpio, gpio_num_t scl_gpio);
+      |                                                             ~~~~~~~~~~~^~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:199:21: warning: unused variable 'velocity' [-Wunused-variable]
+  199 |         const float velocity = (fabs(buffer[0]) + fabs(buffer[1]) + fabs(buffer[2])) / 3.0;
+      |                     ^~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:166:13: warning: unused variable 'raw_reading' [-Wunused-variable]
+  166 |     int16_t raw_reading;
+      |             ^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc: In function 'void challenge()':
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:380:24: error: invalid conversion from 'int' to 'i2c_port_t' [-fpermissive]
+  380 |     icm42670_t dev = { 0 };
+      |                        ^
+      |                        |
+      |                        int
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:46:14: error: invalid conversion from 'int' to 'i2c_port_t' [-fpermissive]
+   46 | #define PORT 0
+      |              ^
+      |              |
+      |              int
+/home/gamba/esp/esp-idf-v5.1.1/components/esp_common/include/esp_err.h:117:30: note: in definition of macro 'ESP_ERROR_CHECK'
+  117 |         esp_err_t err_rc_ = (x);                                        \
+      |                              ^
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:381:56: note: in expansion of macro 'PORT'
+  381 |     ESP_ERROR_CHECK(icm42670_init_desc(&dev, I2C_ADDR, PORT, EXAMPLE_I2C_MASTER_SDA, EXAMPLE_I2C_MASTER_SCL));
+      |                                                        ^~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/components/icm42670/icm42670.h:372:72: note:   initializing argument 3 of 'esp_err_t icm42670_init_desc(icm42670_t*, uint8_t, i2c_port_t, gpio_num_t, gpio_num_t)'
+  372 | esp_err_t icm42670_init_desc(icm42670_t *dev, uint8_t addr, i2c_port_t port, gpio_num_t sda_gpio, gpio_num_t scl_gpio);
+      |                                                             ~~~~~~~~~~~^~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:432:21: warning: unused variable 'velocity' [-Wunused-variable]
+  432 |         const float velocity = (fabs(buffer[0]) + fabs(buffer[1]) + fabs(buffer[2])) / 3.0;
+      |                     ^~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:399:13: warning: unused variable 'raw_reading' [-Wunused-variable]
+  399 |     int16_t raw_reading;
+      |             ^~~~~~~~~~~
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc: At global scope:
+/home/gamba/Main/Gamba_Trainer_Dev/esp/combine_esp2/main/main_functions.cc:77:6: warning: '{anonymous}::isModelLoded' defined but not used [-Wunused-variable]
+   77 | bool isModelLoded = false;
+      |      ^~~~~~~~~~~~
+ninja: build stopped: subcommand failed.

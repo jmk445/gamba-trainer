@@ -51,7 +51,7 @@
     }
 </script>
 
-<AppMain title="FUI" appName="fui">
+<AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="model-choose-container">
         <Description
             title="모델 선택 및 전송"
@@ -68,12 +68,12 @@
             </p>
             <div class="btn-container">
                 <button
-                    class="btn-start button"
+                    class="btn-start btn-stroke"
                     on:click={handleSendModelInterface$1}
                 >
                     Start</button
                 >
-                <button class="btn-app button" disabled>
+                <button class="btn-app btn-fill" disabled>
                     <img src="#" />Application으로 이동</button
                 >
             </div>
@@ -89,7 +89,7 @@
             </p>
             <div class="btn-container">
                 <button
-                    class="btn-select-model button"
+                    class="btn-select-model btn-stroke"
                     on:click={handleButtonClick}
                 >
                     모델 선택</button
@@ -100,7 +100,7 @@
                     bind:this={fileInput$1}
                     on:change={handleFileChange}
                 />
-                <button class="btn-ex button">
+                <button class="btn-ex btn-stroke">
                     예제모델 선택<img src="#" /></button
                 >
             </div>
@@ -131,6 +131,7 @@
     .confirm-model-container p,
     .choose-model-container p,
     .send-model-container p {
+        
         margin-bottom: 50px;
     }
     .btn-container {

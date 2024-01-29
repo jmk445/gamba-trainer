@@ -1,0 +1,51 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037e57e
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3818,len:0x16e0
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xc00
+load:0x403cc700,len:0x2eb0
+entry 0x403c9908
+[0;32mI (27) boot: ESP-IDF v5.1.1 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Nov 10 2023 15:58:12[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.1[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (38) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 4MB[0m
+[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (57) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (72) boot:  1 phy_init         RF data          01 01 00210000 00001000[0m
+[0;32mI (79) boot:  2 nvs              WiFi data        01 02 00211000 00025800[0m
+[0;32mI (87) boot:  3 fr               unknown          20 20 00237000 00020000[0m
+[0;32mI (94) boot: End of partition table[0m
+[0;32mI (98) esp_image: segment 0: paddr=00010020 vaddr=3c0c0020 size=419fch (268796) map[0m
+[0;32mI (155) esp_image: segment 1: paddr=00051a24 vaddr=3fc99900 size=04138h ( 16696) load[0m
+[0;32mI (159) esp_image: segment 2: paddr=00055b64 vaddr=40374000 size=0a4b4h ( 42164) load[0m
+[0;32mI (170) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=bffc4h (786372) map[0m
+[0;32mI (312) esp_image: segment 4: paddr=0011ffec vaddr=4037e4b4 size=0b3ech ( 46060) load[0m
+[0;32mI (322) esp_image: segment 5: paddr=0012b3e0 vaddr=600fe010 size=00004h (     4) load[0m
+[0;32mI (332) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (332) boot: Disabling RNG early entropy source...[0m
+[0;32mI (344) cpu_start: Multicore app[0m
+[0;32mI (344) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (345) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (348) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (353) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (358) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (364) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (369) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (374) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (380) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (386) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (392) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (397) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (402) esp_psram: Speed: 40MHz[0m
+[0;32mI (406) cpu_start: Pro cpu up.[0m
+[0;32mI (409) cpu_start: Starting app cpu, entry point is 0x4037564c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m

@@ -1,7 +1,14 @@
 <script>
     import p5 from "./p5/index";
     import AppMain from "../common/AppMain.svelte";
-    import { onMount } from "svelte";        
+
+    import left from "../components/asset/left.gif";
+    import right from "../components/asset/right.gif";
+    import pluck from "../components/asset/pluck.gif";
+    import twirl from "../components/asset/twirl.gif";
+    import poke from "../components/asset/poke.gif";
+
+    import { onMount } from "svelte";    
     import { getInferenceResult } from "./stores/tf4micro-motion-kit copy";
 
     let clickCount = -1;
@@ -40,7 +47,7 @@
     });
 </script>
 
-<AppMain title="FUI" appName="fui">
+<AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="fui-explanation-container">
         <h2>5가지의 제스처:</h2>
         <ol>
@@ -52,31 +59,31 @@
         </ol>
         <div class="img-gesture-container">
             <img
-                src="./asset/left.gif"
+                src={left}
                 loading="lazy"
                 alt="left gesture"
                 class="image-6"
             />
             <img
-                src="./asset/right.gif"
+                src={left}
                 loading="lazy"
                 alt="right gesture"
                 class="image-7"
             />
             <img
-                src="./asset/twirl.gif"
+                src={twirl}
                 loading="lazy"
                 alt="twirl gesture"
                 class="image-8"
             />
             <img
-                src="./asset/pluck.gif"
+                src={pluck}
                 loading="lazy"
                 alt="pluck gesture"
                 class="image-9"
             />
             <img
-                src="./asset/poke.gif"
+                src={poke}
                 loading="lazy"
                 alt="poke gesture"
                 class="image-10"
@@ -87,9 +94,8 @@
             보드를 손가락 뒤쪽(끝부분에 가까이)에 부착합니다. LED가 사용자를
             향하고 USB 커넥터가 손목을 향하고 있는지 확인합니다.
         </p>
-        <button on:click={handleClick} class="btn-fill">wow</button>
     </div>
-    <div bind:this={sketchEl} class="p5-container" />
+    <div bind:this={sketchEl} on:click={handleClick} class="p5-container" />
 </AppMain>
 
 <style lang="scss">
@@ -102,6 +108,10 @@
         margin-bottom: 128px;
         ol {
             margin-bottom: 20px;
+            padding: 16px;
+            li{
+                list-style-type: decimal;
+            }
         }
 
         .img-gesture-container {
@@ -117,6 +127,6 @@
     }
     .p5-container {
         border-radius: 8px;
-        height: 500px;
+        height: calc(100vh - 100px);
     }
 </style>

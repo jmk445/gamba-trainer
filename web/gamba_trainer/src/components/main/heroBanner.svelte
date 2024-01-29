@@ -1,5 +1,5 @@
 <script>
-    import imageSrc from "../../assets/icons/Gamba_HeroBanner.png";
+    import imageSrc from "../../assets/img/banner_hero.svg";
 
     const strAsset = {
         title: "Gamba Trainer",
@@ -8,9 +8,7 @@
 </script>
 
 <div class="banner-container">
-    <div class="img-background">
-        <img src={imageSrc} alt="hero-img" class="hero-image" />
-    </div>
+    <img src={imageSrc} alt="hero-img" class="hero-image" />
     <div class="banner-contents section">
         <h1 class="banner-title">{strAsset.title}</h1>
         <p>{strAsset.caption}</p>
@@ -23,15 +21,12 @@
     .banner-container {
         position: relative;
     }
-    .img-background{
-        overflow: hidden;
-    }
     .banner-contents {
         position: absolute;
-        top: 99px;
+        top: 25%;
 
         p:last-child {
-            width: 600px;
+            width : 80%
         }
     }
     .banner-title {
