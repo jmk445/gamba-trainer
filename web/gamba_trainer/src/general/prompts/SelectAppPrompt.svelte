@@ -19,7 +19,7 @@
     });
   </script>
   
-  <Prompt title="Select Appllication">
+  <Prompt title="Select Appllication" closePrompt={onClose}>
     <div class="inner">
         <div class="example-contents-container">
             {#if TrainerType === "motionTrainer"}

@@ -27,6 +27,7 @@ limitations under the License.
   import UnsavedProjectPrompt from "../../general/prompts/UnsavedProjectPrompt.svelte";
   import LocalStorageFullPrompt from "../../general/prompts/LocalStorageFullPrompt.svelte";
   import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";
+  import motionIcon from "../../assets/img/ic_motion.svg";
 
   import { promptStack } from "../src_motion/stores/ui/store";
   import {
@@ -57,7 +58,7 @@ limitations under the License.
 </script>
 
 <header>
-  <SubBanner title={strAsset.bannerTitleMotion} />
+  <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon}/>
   <div class="section">
     <SubNav />
   </div>

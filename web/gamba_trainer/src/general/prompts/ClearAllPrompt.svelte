@@ -31,7 +31,7 @@ limitations under the License.
   }
 </script>
 
-<Prompt title="Start Over">
+<Prompt title="Start Over" closePrompt={onClose}>
   <div class="inner">
     <p class="instructions h2">
       현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?

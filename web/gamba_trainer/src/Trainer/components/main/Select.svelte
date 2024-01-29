@@ -2,12 +2,13 @@
     import SubBanner from "../../../common/SubBanner.svelte";
     import Footer from "../../../common/footer.svelte";
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
+    import trainerIcon from "../../../assets/img/ic_trainer.svg"
     let selectTrainerID = null;
     let selectModeID = null;
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-    let trainer;
+    
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
@@ -81,7 +82,7 @@
 </script>
 
 <header>
-    <SubBanner title={strAsset.bannerTitle} />
+    <SubBanner title={strAsset.bannerTitle} titleIcon={trainerIcon} altTxt="트레이너 아이콘"/>
 </header>
 
 <main class="select section">
