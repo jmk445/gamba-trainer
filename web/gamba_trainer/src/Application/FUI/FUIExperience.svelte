@@ -8,7 +8,9 @@
     import twirl from "../components/asset/twirl.gif";
     import poke from "../components/asset/poke.gif";
 
-    import { onMount } from "svelte";
+    import { onMount } from "svelte";    
+    import { getInferenceResult } from "./stores/tf4micro-motion-kit copy";
+
     let clickCount = -1;
     let sketchEl;
     function handleClick() {
@@ -26,6 +28,22 @@
     onMount(() => {
         p5.setup(sketchEl);
         console.log(clickCount);
+    });
+
+    let index;
+    let interval;
+    let index_before;
+
+    onMount(() => {
+        p5.triggerGesture(index);
+        interval = setInterval(() => {
+            index = getInferenceResult();            
+            index_before = index;
+            if (index != index_before) {
+                console.log("index changed!" + index);
+            }
+            p5.triggerGesture(index);
+        }, 500);
     });
 </script>
 

@@ -68,6 +68,7 @@ export default function (p5) {
     const b = p5.canvas.parentElement.getBoundingClientRect();
     p5.resizeCanvas(b.width, b.height);
   };
+  
 
   //LEFT KEY
   function left_gesture() {
@@ -279,16 +280,22 @@ export default function (p5) {
       case 2:
         gesture = "poke";
         poke_gesture();
+
         break;
       case 3:
         gesture = "twirl";
         twirl_gesture();
+
         break;
       case 4:
         gesture = "pluck";
         pluck_gesture();
 
         break;
+      case 5:
+        resizeCanvas();
+        
+        break;        
       default:
     }
   };

@@ -48,7 +48,6 @@ limitations under the License.
   import MotionTrain_Graph from "../Trainer/src_motion/components/train/MotionTrain_graph.svelte";
   import MotionTest_Progress from "../Trainer/src_motion/components/test/MotionTest_progress.svelte";
 
-
   import FuiConnect from "../Application/FUI/FUIConnect.svelte";
   import FuiChoose from "../Application/FUI/FUIChoose.svelte";
   // import FuiExplanation from "../Application/FUI/FUIExplanation.svelte";
@@ -123,7 +122,11 @@ limitations under the License.
   <!-- </main> -->
 </Router>
 
-
+<style lang="scss">
+  main {
+    height: 100vh;
+  }
+</style>
 
 
 

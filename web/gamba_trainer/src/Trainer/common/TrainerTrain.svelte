@@ -80,7 +80,7 @@ limitations under the License.
         <EarlyStopping />
     </div> -->
     </div>
-    <div class="btn-start">
+    <div class="btn-start row">
         {#if $trainingState === "idle"}
             <button class="btn-stroke primary" on:click={beginTraining}
                 >{strAsset.btnStart}</button

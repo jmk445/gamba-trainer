@@ -7,7 +7,7 @@
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-    let trainer
+    let trainer;
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
@@ -22,26 +22,35 @@
 
     function goToTrainer() {
         // console.log(selectTrainerID, selectModeID);
-        if ( selectTrainerID === "motionTrainer" && selectModeID === "basicMode" ) {
+        if (
+            selectTrainerID === "motionTrainer" &&
+            selectModeID === "basicMode"
+        ) {
             window.location.href = "/motion-settings";
         }
-        if ( selectTrainerID === "speechTrainer" && selectModeID === "basicMode" ) {
+        if (
+            selectTrainerID === "speechTrainer" &&
+            selectModeID === "basicMode"
+        ) {
             // window.location.href = "/speech-settings";
             alert("speech, basic");
         }
-        if ( selectTrainerID === "visionTrainer" && selectModeID === "basicMode" ) {
+        if (
+            selectTrainerID === "visionTrainer" &&
+            selectModeID === "basicMode"
+        ) {
             // window.location.href = "/vision-settings";
             alert("vision, basic");
         }
-        if ( selectTrainerID === "motionTrainer" && selectModeID === "appMode" ) {
+        if (selectTrainerID === "motionTrainer" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("motion, app");
         }
-        if ( selectTrainerID === "speechTrainer" && selectModeID === "appMode" ) {
+        if (selectTrainerID === "speechTrainer" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("sppech, app");
         }
-        if ( selectTrainerID === "visionTrainer" && selectModeID === "appMode" ) {
+        if (selectTrainerID === "visionTrainer" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("vision, app");
         }
@@ -51,22 +60,24 @@
     }
 
     const strAsset = {
-        bannerTitle : "트레이너", 
-        pageDesc: "데이터를 캡처하고 모델을 학습한 후 마이크로컨트롤러용 텐서플로우 라이트로 구동되는 ESP32-S3 보드에 업로드합니다.",
-        typeTrainer : "트레이너 선택",
-        trainerOne : "모션",
-        trainerTwo : "소리&음성",
-        trainerThree : "이미지",
-        typeMode : "모드 선택",
-        modeOne : "새로운 모델 만들기",
-        modeTwo : "예제용 모델 만들기",
-        modeOneType : "트레이닝",
-        modeTwoType : "트레이닝 + 어플리케이션",
-        modeOneCaption : "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
-        modeTwoCaption : "어플리케이션에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
-        btnGoToTrainer : "트레이너 시작"
-
-    }
+        bannerTitle: "트레이너",
+        pageDesc:
+            "데이터를 캡처하고 모델을 학습한 후 마이크로컨트롤러용 텐서플로우 라이트로 구동되는 ESP32-S3 보드에 업로드합니다.",
+        typeTrainer: "트레이너 선택",
+        trainerOne: "모션",
+        trainerTwo: "소리&음성",
+        trainerThree: "이미지",
+        typeMode: "모드 선택",
+        modeOne: "새로운 모델 만들기",
+        modeTwo: "예제용 모델 만들기",
+        modeOneType: "트레이닝",
+        modeTwoType: "트레이닝 + 어플리케이션",
+        modeOneCaption:
+            "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
+        modeTwoCaption:
+            "어플리케이션에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
+        btnGoToTrainer: "트레이너 시작",
+    };
 </script>
 
 <header>
@@ -83,24 +94,37 @@
 
         <div class="select-container">
             <div class="trainer-container">
-                <input type="radio" name="trainer" value="moiton" id="motionTrainer"
-                    on:click={() => selectTrainer("motionTrainer")}/>
+                <input
+                    type="radio"
+                    name="trainer"
+                    value="moiton"
+                    id="motionTrainer"
+                    on:click={() => selectTrainer("motionTrainer")}
+                />
                 <label for="motionTrainer">
                     <p>{strAsset.trainerOne}</p>
                 </label>
             </div>
             <div class="trainer-container">
                 <input
-                    type="radio" name="trainer" value="speech" id="speechTrainer"
-                    on:click={() => selectTrainer("speechTrainer")} />
+                    type="radio"
+                    name="trainer"
+                    value="speech"
+                    id="speechTrainer"
+                    on:click={() => selectTrainer("speechTrainer")}
+                />
                 <label for="speechTrainer">
                     <p>{strAsset.trainerTwo}</p>
                 </label>
             </div>
             <div class="trainer-container">
                 <input
-                    type="radio" name="trainer" value="vision" id="visionTrainer"
-                    on:click={() => selectTrainer("visionTrainer")}/>
+                    type="radio"
+                    name="trainer"
+                    value="vision"
+                    id="visionTrainer"
+                    on:click={() => selectTrainer("visionTrainer")}
+                />
                 <label for="visionTrainer">
                     <p>{strAsset.trainerThree}</p>
                 </label>
@@ -111,20 +135,31 @@
         <h1>{strAsset.typeMode}</h1>
 
         <div class="select-container">
-            <div class="mode-wrap">
-                <input type="radio" name="mode" value="basic" id="basicMode"
-                    on:click={() => selectMode("basicMode")}/>
+            <div class="mode-container">
+                <input
+                    type="radio"
+                    name="mode"
+                    value="basic"
+                    id="basicMode"
+                    on:click={() => selectMode("basicMode")}
+                />
                 <label for="basicMode">
                     <span>{strAsset.modeOneType}</span>
                     <p class="mode-title">{strAsset.modeOne}</p>
                     <p>{strAsset.modeOneCaption}</p>
                 </label>
             </div>
-            <div class="mode-wrap">
-                <input type="radio" name="mode" value="app" id="appMode"
+            <div class="mode-container">
+                <input
+                    type="radio"
+                    name="mode"
+                    value="app"
+                    id="appMode"
                     on:click={() => {
                         selectMode("appMode");
-                        showSelectApp = true;}}/>
+                        showSelectApp = true;
+                    }}
+                />
                 <label for="appMode">
                     <span>{strAsset.modeTwoType}</span>
                     <p class="mode-title">{strAsset.modeTwo}</p>
@@ -134,21 +169,27 @@
         </div>
     </div>
     <div class="btn-move-wrap contents">
-        <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}>{strAsset.btnGoToTrainer}</button>
+        <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}
+            >{strAsset.btnGoToTrainer}</button
+        >
     </div>
 </main>
 <footer>
     <Footer />
 </footer>
 {#if showSelectApp === true}
-<ShowSelectAppPrompt  onClose={() => (showSelectApp = false)} trainer={selectTrainerID}/>
-    {/if}
+    <ShowSelectAppPrompt
+        onClose={() => (showSelectApp = false)}
+        trainer={selectTrainerID}
+    />
+{/if}
+
 <style lang="scss">
     @import "@scss/vars";
 
     .caption {
-        margin: 32px 0 72PX 0;
-    }   
+        margin: 32px 0 72px 0;
+    }
     .select {
         display: flex;
         flex-direction: column;
@@ -170,30 +211,50 @@
     input[type="radio"] {
         display: none;
     }
-    .mode-wrap, .trainer-container {
+    .mode-container,
+    .trainer-container {
         flex: 1;
     }
-    .select-containerr {
+    .select-container {
         display: flex;
         flex-direction: row;
         gap: 2%;
 
-        .trainer-container label {
+        label {
             box-sizing: border-box;
             display: inline-block;
-            background-color: $color-btn-blue;
+            background-color: white;
+            border: 1px solid $color-select-blue;
             border-radius: 8px;
             width: 100%;
-            padding: 20px 0;
+            text-align: center;
             cursor: pointer;
             margin: 0;
-            font-size: 2rem;
+
             text-align: center;
-            color: white;
+            color: black;
             font-weight: 400;
             &:hover {
+                background-color: $color-select-blue;
                 color: white;
             }
+        }
+    }
+    .trainer-container label {
+        padding: 20px 0;
+        font-size: 2rem;
+    }
+    .mode-container label {
+        padding: 24px 24px;
+        min-height: 264px;
+        span {
+            justify-content: flex-end;
+            font-size: 0.875rem;
+        }
+        .mode-title {
+            font-size: 3rem;
+            margin: 64px 0 12px 0;
+            line-height: 100%;
         }
     }
     .select-container {
@@ -202,44 +263,32 @@
         gap: 2%;
     }
 
-.mode-wrap {
-    &:first-child{
-     margin-bottom: 24px;
-    }
-    label {
-        box-sizing: border-box;
-        display: inline-block;
-        background-color: $color-lightsky;
-        border-radius: 8px;
-        padding: 24px 24px;
-        cursor: pointer;
-        text-align: center;
+    // .mode-container {
+    //     &:first-child{
+    //      margin-bottom: 24px;
+    //     }
+    //     label {
+    //         box-sizing: border-box;
+    //         display: inline-block;
+    //         background-color: $color-lightsky;
+    //         border-radius: 8px;
 
-        span {
-            justify-content: flex-end;
-            font-size: 0.875rem;
-            
-        }
-        &:hover {
-            color: white;
-        }
-        .mode-title {
-            font-size: 3rem;
-            margin-top: 64px;
-            line-height: 100%;
-        }
-    }
-}
-    
+    //         cursor: pointer;
+
+    //         &:hover {
+    //             color: white;
+    //         }
+    //     }
+    // }
+
     input[type="radio"]:checked + label {
         background-color: #000000;
         color: white;
     }
 
-
     .btn-move-wrap {
         align-items: center;
-        button{
+        button {
             max-width: 200px;
         }
     }

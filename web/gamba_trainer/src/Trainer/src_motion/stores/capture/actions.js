@@ -46,6 +46,9 @@ export function addLabel(labelName) {
     return [...$labels, labelName];        
   });
   
+  // labelsCount.update(($labelsCount) => {
+  //   return ($labelsCount + 1);
+  // })
   recordings.update(($recordings) => [...$recordings, []]);
 }
 

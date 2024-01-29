@@ -23,8 +23,7 @@
     }
     .banner-contents {
         position: absolute;
-        padding-top : auto;
-        padding-bottom : auto;
+        top: 25%;
 
         p:last-child {
             width : 80%
