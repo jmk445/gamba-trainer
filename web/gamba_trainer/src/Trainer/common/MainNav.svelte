@@ -18,10 +18,23 @@ limitations under the License.
 */
 -->
 <script>
-  import { Link } from "svelte-routing";
+  import {get} from "svelte/store";
+  import { Link } from "svelte-routing";  
+  import {trainerADD} from "../stores/store";
   import { testIsUnlocked } from "../src_motion/stores/test/store";
   import { trainIsUnlocked } from "../src_motion/stores/train/store";
-  export let trainer;
+  import { FromPixels } from "@tensorflow/tfjs";
+  import { onMount } from "svelte";
+  
+  let trainer;
+  onMount(() => {        
+    trainerADD.subscribe((data)=>{
+      trainer = data;
+    })
+    console.log("trainerADD in main nav:" + trainer);
+    console.log("trainerADD in main nav:" + get(trainerADD));
+    console.log("haha " + get(trainerADD));
+  });
 
   const strAsset = {
     navOne: "사전 설정",
@@ -36,10 +49,10 @@ limitations under the License.
   <ul>
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-settings`,
+        BASE_PATH + `/$get(trainerADD)-settings`,
       )}
     >
-      <Link to="{trainer}-settings">{strAsset.navOne}</Link>
+      <Link to= '/$get(trainerADD)-settings'>{strAsset.navOne}</Link>
     </li>
 
     <li
@@ -47,7 +60,7 @@ limitations under the License.
         BASE_PATH + `/${trainer}-capture`,
       )}
     >
-      <Link to="{trainer}-capture">{strAsset.navTwo}</Link>
+      <Link to={'/$get(trainerADD)-settings'}>{strAsset.navTwo}</Link>
     </li>
 
     <li
@@ -55,7 +68,7 @@ limitations under the License.
       class:disabled={!$trainIsUnlocked}
       aria-disabled={!$trainIsUnlocked}
     >
-      <Link to="{trainer}-train">{strAsset.navThree}</Link>
+      <Link to={'/$get(trainerADD)-settings'}>{strAsset.navThree}</Link>
     </li>
 
     <li
@@ -63,7 +76,7 @@ limitations under the License.
       class:disabled={!$testIsUnlocked}
       aria-disabled={!$testIsUnlocked}
     >
-      <Link to="{trainer}-test">{strAsset.navFour}</Link>
+      <Link to={'/$get(trainerADD)-settings'}>{strAsset.navFour}</Link>
     </li>
 
     <li
@@ -71,7 +84,7 @@ limitations under the License.
         BASE_PATH + `/${trainer}-convertSend`,
       )}
     >
-      <Link to="{trainer}-convertSend">{strAsset.navFive}</Link>
+      <Link to={'/$get(trainerADD)-settings'}>{strAsset.navFive}</Link>
     </li>
   </ul>
 </div>

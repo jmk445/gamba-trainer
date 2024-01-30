@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import SettingsInput from "./SettingsInput.svelte";
   import { hasRecordings } from "../../stores/capture/store";
   import {
@@ -32,7 +32,7 @@
       "기록을 시작하는 최소 동작입니다. 임계값 이상의 동작이 감지되면 기록이 시작됩니다. 해당값은 모델에 의해 샘플 근사화에 사용됩니다.",
     panalTwo: "다음 수집까지 대기시간(초)",
     panelTwoDesc:
-      "한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초단위로 제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다.",
+      "한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초단위로 제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다."
   };
 </script>
 
@@ -54,26 +54,6 @@
   </div>
 </div>
 
-<!-- <div class="panel">
-  <div>
-    <h2>Number of samples</h2>
-    <p>
-      기록은 초당 약 100개의 샘플로 이루어집니다. 더 적은 수의 샘플을 선택하면
-      움직임 데이터를 캡처하는 과정이 빨라질 것입니다.
-    </p>
-  </div>
-  <div class="form-container input-align-right">
-    <SettingsInput
-      name="number-of-samples"
-      value={$captureSamples}
-      label="Number of samples to record"
-      onChange={(value) => checkForRecordings(captureSamples, value)}
-      min={minMaxValues.captureSamples[0]}
-      max={minMaxValues.captureSamples[1]}
-      step={1}
-    />
-  </div>
-</div> -->
 
 <div class="panel">
   <div>
@@ -113,4 +93,4 @@
       width: 56%;
     }
   }
-</style>
+</style> -->

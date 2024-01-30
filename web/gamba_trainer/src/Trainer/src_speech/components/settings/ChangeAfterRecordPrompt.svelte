@@ -20,8 +20,10 @@ limitations under the License.
 <script>
   import Prompt from "@speech/components/general/prompts/Prompt.svelte";
   import { clearRecordings } from "@speech/stores/capture/actions";
+  // import Prompt from "../../../../general/prompts/Prompt.svelte";
+  // import { clearRecordings } from "@motion/stores/capture/actions";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
-
+// 
   let isShowing = false;
   let onClose;
 
@@ -40,26 +42,27 @@ limitations under the License.
     isShowing = false;
     onClose(false);
   }
+  const strAsset = {
+    promptTitle : "설정값 변경",
+    promptDesc : "이미 캡쳐가 진행된 모델의 세팅을 바꾸면 캡쳐(레코딩)한 데이터가 초기화 됩니다.",
+    promptYes : "예",
+    promptNo : "아니요"
+  }
 </script>
 
 {#if isShowing}
-  <Prompt>
+  <Prompt title={strAsset.promptTitle} closePrompt={onClose}>
     <div class="inner">
-      <h1>Are you sure?</h1>
       <p class="instructions h2">
-        Changing these settings will clear all recordings.
-      </p>
+              </p>
       <div class="button-row">
-        <button class="button primary prompt-button" on:click={dismiss}
-          >No, leave unchanged</button
+        <button class="btn-fill primary prompt-button" on:click={dismiss}
+          >{strAsset.promptNo}</button
         >
-        <button class="button primary prompt-button" on:click={handleClearRecordings}
-          >Yes, change settings</button
+        <button class="btn-fill primary prompt-button" on:click={handleClearRecordings}
+          >{strAsset.promptYes}</button
         >
       </div>
-      <footer>
-        <img class="logo-img" src={logoPng} alt="Gamba Logo" />
-      </footer>
     </div>
   </Prompt>
 {/if}

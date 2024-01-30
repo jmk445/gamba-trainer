@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  https://www.apache.org/licenses/LICENSE-2.0
+https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,7 +18,8 @@ limitations under the License.
 */
 -->
 <script>
-  import { onMount } from "svelte";
+  import { getContext, onMount } from "svelte";
+  import trainerADD  from "../stores/store";
 
   import SubBanner from "../../common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
@@ -27,6 +28,9 @@ limitations under the License.
   import UnsavedProjectPrompt from "../../general/prompts/UnsavedProjectPrompt.svelte";
   import LocalStorageFullPrompt from "../../general/prompts/LocalStorageFullPrompt.svelte";
   import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";
+  import motionIcon from "../../assets/img/ic_motion.svg";
+  import speechIcon from "../../assets/img/ic_speech.svg";
+  import visionIcon from "../../assets/img/ic_vision.svg";
 
   import { promptStack } from "../src_motion/stores/ui/store";
   import {
@@ -50,19 +54,26 @@ limitations under the License.
   });
 
   const strAsset = {
-    bannerTitleMotion : "모션",
-    bannerTitleSpeech : "소리&음성",
-    bannerTitlevision : "이미지"
-  }
+    bannerTitleMotion: "모션",
+    bannerTitleSpeech: "소리&음성",
+    bannerTitlevision: "이미지",
+  };
 </script>
 
-<header>
-  <SubBanner title={strAsset.bannerTitleMotion} />
+<header>  
+  <!-- {#if trainerADD === "motion"}
+    <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon} />
+  {:else if trainerADD === "speech"}
+    <SubBanner title={strAsset.bannerTitleSpeech} titleIcon={speechIcon} />
+  {:else if trainerADD === "vision"}
+    <SubBanner title={strAsset.bannerTitlevision} titleIcon={visionIcon} />
+  {/if} -->
+  <SubBanner />
   <div class="section">
     <SubNav />
   </div>
 </header>
-<nav class="section"><MainNav trainer="motion" /></nav>
+<nav class="section"><MainNav /></nav>
 <main class="section" aria-live="polite">
   <slot />
 </main>

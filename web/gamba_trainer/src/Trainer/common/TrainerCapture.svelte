@@ -17,34 +17,9 @@ limitations under the License.
 * @author Rikard Lindstrom <rlindstrom@google.com>
 */
 -->
-<script>
-  // import { addLabel,getLabelCnt } from "../../stores/capture/actions";
-  // import { labels } from "../../stores/capture/store";
-  // import { trainIsUnlocked } from "../../stores/train/store";
-  // import TextInput from "../../../../general/TextInput.svelte";
-  // import CaptureList from "./CaptureList";
+<script> 
   import Description from "../../common/Description.svelte";
-
-  // let newLabelName = "";
-  // let newLabelError = null;
-
-  // $: if ($labels.includes(newLabelName)) {
-  //   newLabelError = "Label must be unique";
-  // } else {
-  //   newLabelError = "";
-  // }
-
-  // function handleAddLabel() {
-  //   newLabelError = null;
-  //   if (newLabelName.length > 0) {
-  //     try {
-  //       addLabel(newLabelName);
-  //       newLabelName = "";
-  //     } catch (e) {
-  //       newLabelError = e.toString();
-  //     }
-  //   }
-  // }
+ 
   const strAsset = {
     captureTitle : "데이터 수집",
     captureDesc : "각 제스처에 대한 데이터를 기록하기 위해 새 라벨을 만듭니다. 모델을 훈련시키려면 제스처를 최소 2개, 샘플을 최소 3개 이상 선택해야 하지만, 더 나은 결과를 위해 최소 20개의 샘플을 기록하는 것이 좋습니다. 설정에서 더 적은 수의 샘플을 선택하면 프로세스가 가속화됩니다",
@@ -58,37 +33,13 @@ limitations under the License.
     explanation={strAsset.captureDesc}
   />
   <div class="row data-capture-container">
-    <slot name="capture-label" />
-    <!-- <TextInput
-      label="Add unique label"
-      bind:value={newLabelName}
-      onEnter={handleAddLabel}
-      errorMessage={newLabelError}
-    />
-    <button
-      class="button primary"
-      disabled={newLabelName.length === 0 || newLabelError}
-      on:click={handleAddLabel}>Create new</button
-    > -->
+    <slot name="capture-label" />    
   </div>
-  <slot name="capture-list" />
-  <!-- <CaptureList /> -->
-
-  <!-- {#if !$trainIsUnlocked}
-    <div class="row warning notation-text">
-      * We need at least 2 labels and 3 recordings for each. Recommended is at
-      least 2- recordings for each label.
-    </div>
-  {/if} -->
+  <slot name="capture-list" />  
 </div>
 
 <style lang="scss">
-  // .row {
-  //   //   button {
-  //   //     margin-left: 1rem;
-  //   //   }
-  //   margin-bottom: 60px;
-  // }
+  
   .data-capture-container{
     margin-bottom: 64px;
   }

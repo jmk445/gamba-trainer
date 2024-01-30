@@ -31,7 +31,7 @@ limitations under the License.
   // }
 </script>
 
-<Prompt title="Help">
+<Prompt title="Help" closePrompt={onClose}>
   <div class="inner">
     <p class="helpCaption">
       감바 트레이너 서비스는 일반인들이 AI를 보다 친숙하게 여기고 자유롭게

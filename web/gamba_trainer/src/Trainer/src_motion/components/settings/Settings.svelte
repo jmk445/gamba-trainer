@@ -17,6 +17,7 @@ limitations under the License.
 * @author Rikard Lindstrom <rlindstrom@google.com>
 */
 -->
+<!-- 안씀 -->
 <script>
   import { onMount } from "svelte";
   import { get } from "svelte/store";

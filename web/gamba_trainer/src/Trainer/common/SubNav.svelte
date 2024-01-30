@@ -176,14 +176,12 @@ limitations under the License.
         ul {
             display: flex;
             flex-direction: row;
-            // margin-left: auto;
             justify-content: flex-end;
         }
         li {
-            // float: right;
             display: inline-block;
             margin-left: 32px;
-            // margin-left: auto;
+
         }
     }
     .dot {
