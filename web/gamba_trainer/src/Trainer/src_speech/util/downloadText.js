@@ -1,5 +1,4 @@
-<!--
-Copyright 2021 Google LLC
+/* Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -12,20 +11,20 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+======================================================================*/
 
-/**
-* @author Rikard Lindstrom <rlindstrom@google.com>
-*/
--->
-<script>
-  import titlePng from "./assets/title.png";
-</script>
+export default function (filename, text) {
+  const element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+  );
+  element.setAttribute("download", filename);
 
-<img src={titlePng} alt="Tiny Motion Trainer" />
+  element.style.display = "none";
+  document.body.appendChild(element);
 
-<style>
-  img {
-    width: 1100px;
-    max-width: 80%;
-  }
-</style>
+  element.click();
+
+  document.body.removeChild(element);
+}

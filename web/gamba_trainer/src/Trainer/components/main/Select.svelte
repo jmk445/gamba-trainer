@@ -1,17 +1,20 @@
 <script>
+    import {trainerADD} from "../store/store"
     import SubBanner from "../../../common/SubBanner.svelte";
     import Footer from "../../../common/footer.svelte";
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
+    import trainerIcon from "../../../assets/img/ic_trainer.svg"
+    import { FromPixels } from "@tensorflow/tfjs";
     let selectTrainerID = null;
     let selectModeID = null;
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-    let trainer;
+    
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
-        // console.log(selectTrainerID);
+        console.log(selectTrainerID);
     }
 
     function selectMode(id) {
@@ -26,14 +29,18 @@
             selectTrainerID === "motionTrainer" &&
             selectModeID === "basicMode"
         ) {
+            
             window.location.href = "/motion-settings";
+            $trainerADD = "motion";
+            // console.log("trainerADD : "+ trainerADD);
         }
         if (
             selectTrainerID === "speechTrainer" &&
             selectModeID === "basicMode"
         ) {
             // window.location.href = "/speech-settings";
-            alert("speech, basic");
+            window.location.href = "/speech-settings";
+            $trainerADD = "speech";
         }
         if (
             selectTrainerID === "visionTrainer" &&
@@ -81,7 +88,7 @@
 </script>
 
 <header>
-    <SubBanner title={strAsset.bannerTitle} />
+    <SubBanner title={strAsset.bannerTitle} titleIcon={trainerIcon} altTxt="트레이너 아이콘"/>
 </header>
 
 <main class="select section">

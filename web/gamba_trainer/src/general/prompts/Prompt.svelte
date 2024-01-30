@@ -19,8 +19,10 @@ limitations under the License.
 -->
 <script>
   import { popPrompt } from "@motion/stores/ui/actions";
+  import closeBtn from "../../assets/icons/close_24px.svg";
   export let title;
   export let allowClickDismiss = true;
+  export let closePrompt = () => {};
   let promtContainer;
 
   function handleClickClose(e) {
@@ -38,6 +40,10 @@ limitations under the License.
   <div class="content">
     <div class="title">
       <p>{title}</p>
+      <button on:click={closePrompt}
+        ><span class="btn-close"><img src={closeBtn} alt="닫기" /></span
+        ></button
+      >
     </div>
     <slot />
   </div>
@@ -61,11 +67,18 @@ limitations under the License.
       background: $color-bg-primary;
       border-radius: 8px;
 
-      .title{
+      .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         border-radius: 8px 8px 0 0;
-        padding: 25px 24px;
+        padding:24px;
         background-color: $color-banner-blue;
-        font-size: 1.5rem;
+        p{
+          display: inline;
+          font-size: 1.5rem;
+        }
+        
       }
     }
   }
