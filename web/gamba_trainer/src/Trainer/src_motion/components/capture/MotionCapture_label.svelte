@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import TextInput from "../../../../general/TextInput.svelte";
     import { addLabel, getLabelCnt } from "../../stores/capture/actions";
     import { labels } from "../../stores/capture/store";
@@ -49,4 +49,4 @@
       margin-left: 1rem;
     }
 
-</style>
+</style> -->

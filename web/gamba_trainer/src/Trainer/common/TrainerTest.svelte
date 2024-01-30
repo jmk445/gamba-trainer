@@ -21,7 +21,7 @@ limitations under the License.
   import { onMount } from "svelte";
   import { navigate } from "svelte-routing";
   import { isConnected } from "@motion/stores/bleInterfaceStore/store";
-  import { labels } from "@motion/stores/capture/store";
+  // import { labels } from "@motion/stores/capture/store";
   import { beginTesting, endTesting } from "@motion/stores/test/actions";
   import { testIsUnlocked, testPredictions } from "@motion/stores/test/store";
   import { isFullyLoaded } from "@motion/stores/ui/store";

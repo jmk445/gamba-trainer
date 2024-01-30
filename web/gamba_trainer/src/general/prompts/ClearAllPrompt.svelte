@@ -29,19 +29,25 @@ limitations under the License.
     onClose();
     navigate("motion-settings", { replace: true });
   }
+  const strAsset={
+    promptTitle : "Start Over",
+    promptDesc : "현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?",
+    promptNo : "아니요",
+    promptYes : "예"
+  }
 </script>
 
-<Prompt title="Start Over" closePrompt={onClose}>
+<Prompt title={strAsset.promptTitle} closePrompt={onClose}>
   <div class="inner">
     <p class="instructions h2">
-      현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?
+      {strAsset.promptDesc}
     </p>
     <div class="button-row">
       <button class="btn-fill primary prompt-button" on:click={onClose}
-        >아니요</button
+        >{strAsset.promptNo}</button
       >
       <button class="btn-fill primary prompt-button" on:click={handleClearAll}
-        >예</button
+        >{strAsset.promptYes}</button
       >
     </div>
   </div>

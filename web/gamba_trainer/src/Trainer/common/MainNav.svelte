@@ -19,10 +19,16 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
+  import {trainerADD} from "../components/store/store"
   import { testIsUnlocked } from "../src_motion/stores/test/store";
   import { trainIsUnlocked } from "../src_motion/stores/train/store";
-  export let trainer;
-
+    import { FromPixels } from "@tensorflow/tfjs";
+    import { onMount } from "svelte";
+  let trainer;
+  onMount =(() => {
+    trainer = $trainerADD;
+    console.log("trainerADD :" + trainer);
+  })
   const strAsset = {
     navOne: "사전 설정",
     navTwo: "데이터 수집",

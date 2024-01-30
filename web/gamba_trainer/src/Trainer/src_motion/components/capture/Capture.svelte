@@ -1,4 +1,4 @@
-<!--
+<!-- 
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,8 @@ limitations under the License.
 * @author Rikard Lindstrom <rlindstrom@google.com>
 */
 -->
+
+<!-- 안씀 -->
 <script>
   import { addLabel,getLabelCnt } from "../../stores/capture/actions";
   import { labels } from "../../stores/capture/store";

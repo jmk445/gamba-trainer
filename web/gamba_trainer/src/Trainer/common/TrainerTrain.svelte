@@ -66,7 +66,7 @@ limitations under the License.
         title={strAsset.trainTitle}
         explanation={strAsset.trainDesc}
     />
-    <div class="row input-container">
+    <div class="input-container">
         <slot name="train-setting" />
         <!-- <div class="column">
         <NumberInput
@@ -114,7 +114,7 @@ limitations under the License.
         {/if}
     </div>
 
-    <div class="row gragh_div">
+    <div class=" gragh_div">
         <slot name="train-graph" />
         <!-- <GraphContainer
         title="Accuracy"

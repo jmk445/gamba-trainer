@@ -53,29 +53,29 @@ limitations under the License.
         //popPrompt();
     }
 
-    async function checkForRecordings(store, value) {
-        if ($hasRecordings) {
-            clearRecordPrompt.show((didClear) => {
-                if (didClear) {
-                    store.set(value);
-                } else {
-                    const prevValue = get(store);
-                    store.set(value);
+    // async function checkForRecordings(store, value) {
+    //     if ($hasRecordings) {
+    //         clearRecordPrompt.show((didClear) => {
+    //             if (didClear) {
+    //                 store.set(value);
+    //             } else {
+    //                 const prevValue = get(store);
+    //                 store.set(value);
 
-                    setTimeout(() => {
-                        store.set(prevValue);
-                    }, 10);
-                }
-            });
-        } else {
-            store.set(value);
-        }
-    }
+    //                 setTimeout(() => {
+    //                     store.set(prevValue);
+    //                 }, 10);
+    //             }
+    //         });
+    //     } else {
+    //         store.set(value);
+    //     }
+    // }
     onMount(() => {
         setImuDataMode();
     });
 
-    function handleCloseChangeAfterRecordPrompt(didClear) {}
+    // function handleCloseChangeAfterRecordPrompt(didClear) {}
 
     const strAsset = {
         bluetoothTitle : "Bluetooth를 통해 키트 연결",
@@ -186,10 +186,10 @@ limitations under the License.
     />
 </div>
 
-<ChangeAfterRecordPrompt
+<!-- <ChangeAfterRecordPrompt
     onClose={handleCloseChangeAfterRecordPrompt}
     bind:this={clearRecordPrompt}
-/>
+/> -->
 
 <style lang="scss">
     .bluetooth-container {
