@@ -5,15 +5,20 @@
     function handleClickConnect_(){
         handleClickConnect();
     }
+
+    const strAsset = {
+        BluetoothTitle : "Bluetooth를 통해 키트 연결",
+        bluetoothBtn : "연결"
+    }
 </script>
 
 
 <AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="bluetooth-container">
-        <p>Bluetooth를 통해 키트 연결</p>
+        <p>{strAsset.BluetoothTitle}</p>
         <button class="btn-connect btn-stroke" on:click={handleClickConnect_}>
             <img src="#" alt="블루투스" />
-            <span>Connect</span>
+            <span>{strAsset.bluetoothBtn}</span>
         </button>
     </div>
 </AppMain>

@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import { getContext, onMount } from "svelte";
-  import { trainerADD } from "../components/store/store";
+  import { trainerADD } from "../store/store";
 
   import SubBanner from "../../common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
@@ -51,6 +51,7 @@ limitations under the License.
         pushErrorMessage(error.message);
       }
     });
+    console.log("TrainerMain-trainerADD : ", $trainerADD);
   });
 
   const strAsset = {
@@ -61,11 +62,11 @@ limitations under the License.
 </script>
 
 <header>
-  {#if { $trainerADD } === "motion"}
+  {#if $trainerADD === "motion"}
     <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon} />
-  {:else if { $trainerADD } === "speech"}
+  {:else if $trainerADD === "speech"}
     <SubBanner title={strAsset.bannerTitleSpeech} titleIcon={speechIcon} />
-  {:else if { $trainerADD } === "vision"}
+  {:else if $trainerADD === "vision"}
     <SubBanner title={strAsset.bannerTitlevision} titleIcon={visionIcon} />
   {/if}
   <div class="section">

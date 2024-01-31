@@ -171,7 +171,7 @@ limitations under the License.
 
 <style lang="scss">
     .sub-nav {
-        margin: 12px 0 72px 0px;
+        margin: 12px 0 72px 0;
 
         ul {
             display: flex;

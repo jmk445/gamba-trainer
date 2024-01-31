@@ -49,76 +49,57 @@
 
         handleSendModel(fromIDB);
     }
+    const strAsset = {
+        selectTitle : "모델 선택 및 전송",
+        selectDesc : 'TF4Micro 모션 키트는 저전력 블루투스를 통해 본 웹사이트와 소통하므로 무선 경험을 할 수 있습니다. 첫째, "학습하기"를 통해 구체적인 제스처를 학습하고 모델을 다운로드합니다. 둘째, 저장된 모델에 .tflite 확장자를 로드하고 "전송" 버튼을 클릭하여 모델을 ESP32s3 보드로 전송합니다.',
+        stepOne : "1. Kit 모델 확인",
+        stepOneDesc: "키트에 해당 예제와 호환되는 모델이 저장되어 있는지 확인하는 과정입니다. 모델이 저장되어있다면, 저장된 모델로 아래의 과정을 생략하고 예제를 바로 체험할 수 있습니다. 모델의 유무와 상관없이 새로운 모델을 선택하여 전송하고 예제를 체험할 수 있습니다.",
+        stepTwo : "2. 모델 선택",
+        stepTwoDesc : "원하는 모델을 선택할 수 있습니다. PC로부터 업로드 또는 메모리에 내장되어있는 예제 모델을 선택할 수 있습니다.",
+        stepThree : "3. 전송",
+        stepThreeDesc : "선택한 모델을 Kit로 보냅니다. 전송이 완료되면 예제를 체험할 수 있습니다.",
+        btnStart : "시작",
+        btnApp : "예제 체험하기",
+        btnModel : "모델 선택",
+        btnAppModel : "예제 모델 선택",
+        btnSend : "전송",
+        captionSend : "전송이 완료되었습니다."
+    }
 </script>
 
 <AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
     <div class="model-choose-container">
         <Description
-            title="모델 선택 및 전송"
-            explanation="TF4Micro 모션 키트는 저전력 블루투스를 통해 본 웹사이트와 소통하므로 무선 경험을 할 수 있습니다. 첫째, Motion Trainer를 통해 구체적인 제스처를 학습하고 모델을 다운로드합니다. 둘째, 저장된 모델에 .tflite 확장자를 로드하고 Send 버튼을 클릭하여 모델을 ESP32s3 보드로 전송합니다."
+            title={strAsset.selectTitle}
+            explanation={strAsset.selectDesc}
         />
         <div class="confirm-model-container">
-            <h2>1. Kit 모델 확인</h2>
-            <p>
-                키트에 Application과 호환되는 모델이 저장되어 있는 지 확인하는
-                과정입니다. 모델이 저장되어 있다면, 저장된 모델로 아래의 과정을
-                생략하고, Application을 바로 체험할 수 있습니다. 모델의 유무와
-                상관 없이, 새로운 모델을 선택하여 Send하고, Application을 체험할
-                수 있습니다.
-            </p>
+            <h2>{strAsset.stepOne}</h2>
+            <p>{strAsset.stepOneDesc}</p>
             <div class="btn-container">
-                <button
-                    class="btn-start btn-stroke"
-                    on:click={handleSendModelInterface$1}
-                >
-                    Start</button
-                >
+                <button class="btn-start btn-stroke" on:click={handleSendModelInterface$1}>{strAsset.btnStart}</button>
                 <button class="btn-app btn-fill" disabled>
-                    <img src="#" />Application으로 이동</button
-                >
+                    <img src="#"/>{strAsset.btnApp}</button>
             </div>
             <div id="myProgress" hidden>
                 <div id="myBar"></div>
             </div>
         </div>
         <div class="choose-model-container">
-            <h2>2. 모델 선택</h2>
-            <p>
-                원하는 모델을 선택할 수 있습니다. PC로부터 업로드 또는 메모리에
-                내장되어 있는 예제 모델을 선택할 수 있습니다.
-            </p>
+            <h2>{strAsset.stepTwo}</h2>
+            <p>{strAsset.stepTwoDesc}</p>
             <div class="btn-container">
-                <button
-                    class="btn-select-model btn-stroke"
-                    on:click={handleButtonClick}
-                >
-                    모델 선택</button
-                >
-                <input
-                    type="file"
-                    style="display: none;"
-                    bind:this={fileInput$1}
-                    on:change={handleFileChange}
-                />
-                <button class="btn-ex btn-stroke">
-                    예제모델 선택<img src="#" /></button
-                >
+                <button class="btn-select-model btn-stroke" on:click={handleButtonClick}>{strAsset.btnModel}</button>
+                <input type="file" style="display: none;" bind:this={fileInput$1} on:change={handleFileChange}/>
+                <button class="btn-ex btn-stroke"><img src="#"/>{strAsset.btnAppModel}</button>
             </div>
         </div>
         <div class="send-model-container">
-            <h2>3. Send</h2>
-            <p>
-                선택한 모델을 Kit로 보냅니다. Send가 완료되면 Application을
-                체험할 수 있습니다. 
-            </p>
+            <h2>{strAsset.stepThree}</h2>
+            <p>{strAsset.stepThreeDesc}</p>
             <div class="btn-container">
-                <button
-                    class="btn-send btn-stroke"
-                    on:click={handleSendModelInterface}
-                >
-                    Send</button
-                >
-                <!-- <span>Send가 완료되었습니다.</span> -->
+                <button class="btn-send btn-stroke" on:click={handleSendModelInterface}>{strAsset.btnSend}</button>
+                <!-- <span>{strAsset.captionSend}</span> -->
             </div>
             <div class="myProgress" hidden>
                 <div class="myBar"></div>

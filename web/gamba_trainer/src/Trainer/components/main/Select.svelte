@@ -1,71 +1,79 @@
 <script>
-    import {trainerADD} from "../store/store"
+    import { Link } from "svelte-routing";
+    import {trainerADD} from "../../store/store"
     import SubBanner from "../../../common/SubBanner.svelte";
     import Footer from "../../../common/footer.svelte";
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
     import trainerIcon from "../../../assets/img/ic_trainer.svg"
     import { FromPixels } from "@tensorflow/tfjs";
-    let selectTrainerID = null;
-    let selectModeID = null;
+    import { onMount } from "svelte";
+    let selectTrainerID;
+    let selectModeID;
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-    
+    let setADD;
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
-        console.log(selectTrainerID);
+        // console.log("trainerADD : ", $trainerADD);
+        // setADD(id);
     }
 
     function selectMode(id) {
         selectModeID = id;
         isBtnDisabled = false;
-        // console.log(selectModeID);
+        // console.log("trainerADD : ", $trainerADD);
     }
-
-    function goToTrainer() {
-        // console.log(selectTrainerID, selectModeID);
-        if (
-            selectTrainerID === "motionTrainer" &&
-            selectModeID === "basicMode"
-        ) {
+    $: trainerADD.set(selectTrainerID + selectModeID);
+    $:console.log($trainerADD);
+    // function goToTrainer() {
+    //     // console.log(selectTrainerID, selectModeID);
+    //     if (
+    //         selectTrainerID === "motionTrainer" &&
+    //         selectModeID === "basicMode"
+    //     ) {
             
-            window.location.href = "/motion-settings";
-            $trainerADD = "motion";
-            // console.log("trainerADD : "+ trainerADD);
-        }
-        if (
-            selectTrainerID === "speechTrainer" &&
-            selectModeID === "basicMode"
-        ) {
-            // window.location.href = "/speech-settings";
-            window.location.href = "/speech-settings";
-            $trainerADD = "speech";
-        }
-        if (
-            selectTrainerID === "visionTrainer" &&
-            selectModeID === "basicMode"
-        ) {
-            // window.location.href = "/vision-settings";
-            alert("vision, basic");
-        }
-        if (selectTrainerID === "motionTrainer" && selectModeID === "appMode") {
-            // console.log(selectTrainerID, selectModeID);
-            alert("motion, app");
-        }
-        if (selectTrainerID === "speechTrainer" && selectModeID === "appMode") {
-            // console.log(selectTrainerID, selectModeID);
-            alert("sppech, app");
-        }
-        if (selectTrainerID === "visionTrainer" && selectModeID === "appMode") {
-            // console.log(selectTrainerID, selectModeID);
-            alert("vision, app");
-        }
-        // if(selectModeID === "appMode"){
-        //     showSelectApp = true;
-        // }
-    }
-
+    //         window.location.href = "/motion-settings";
+    //         set($trainerADD, "motion");
+    //         // console.log("trainerADD : "+ trainerADD);
+    //     }
+    //     if (
+    //         selectTrainerID === "speechTrainer" &&
+    //         selectModeID === "basicMode"
+    //     ) {
+    //         // window.location.href = "/speech-settings";
+    //         window.location.href = "/speech-settings";
+    //         set($trainerADD, "speech");
+    //         // $trainerADD = "speech";
+    //     }
+    //     if (
+    //         selectTrainerID === "visionTrainer" &&
+    //         selectModeID === "basicMode"
+    //     ) {
+    //         // window.location.href = "/vision-settings";
+    //         alert("vision, basic");
+    //         setADD("vision");
+    //     }
+    //     if (selectTrainerID === "motionTrainer" && selectModeID === "appMode") {
+    //         // console.log(selectTrainerID, selectModeID);
+    //         alert("motion, app");
+    //     }
+    //     if (selectTrainerID === "speechTrainer" && selectModeID === "appMode") {
+    //         // console.log(selectTrainerID, selectModeID);
+    //         alert("sppech, app");
+    //     }
+    //     if (selectTrainerID === "visionTrainer" && selectModeID === "appMode") {
+    //         // console.log(selectTrainerID, selectModeID);
+    //         alert("vision, app");
+    //     }
+    //     // if(selectModeID === "appMode"){
+    //     //     showSelectApp = true;
+    //     // }
+    // }
+onMount(()=>{
+    console.log("select-trainerADD : "+$trainerADD);
+});
     const strAsset = {
         bannerTitle: "트레이너",
         pageDesc:
@@ -77,8 +85,8 @@
         typeMode: "모드 선택",
         modeOne: "새로운 모델 만들기",
         modeTwo: "예제용 모델 만들기",
-        modeOneType: "트레이닝",
-        modeTwoType: "트레이닝 + 어플리케이션",
+        modeOneType: "트레이너",
+        modeTwoType: "트레이너 + TinyML 예제",
         modeOneCaption:
             "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
         modeTwoCaption:
@@ -106,7 +114,7 @@
                     name="trainer"
                     value="moiton"
                     id="motionTrainer"
-                    on:click={() => selectTrainer("motionTrainer")}
+                    on:click={() => selectTrainer("motion")}
                 />
                 <label for="motionTrainer">
                     <p>{strAsset.trainerOne}</p>
@@ -118,7 +126,7 @@
                     name="trainer"
                     value="speech"
                     id="speechTrainer"
-                    on:click={() => selectTrainer("speechTrainer")}
+                    on:click={() => selectTrainer("speech")}
                 />
                 <label for="speechTrainer">
                     <p>{strAsset.trainerTwo}</p>
@@ -130,7 +138,7 @@
                     name="trainer"
                     value="vision"
                     id="visionTrainer"
-                    on:click={() => selectTrainer("visionTrainer")}
+                    on:click={() => selectTrainer("vision")}
                 />
                 <label for="visionTrainer">
                     <p>{strAsset.trainerThree}</p>
@@ -148,7 +156,7 @@
                     name="mode"
                     value="basic"
                     id="basicMode"
-                    on:click={() => selectMode("basicMode")}
+                    on:click={() => selectMode("")}
                 />
                 <label for="basicMode">
                     <span>{strAsset.modeOneType}</span>
@@ -176,9 +184,25 @@
         </div>
     </div>
     <div class="btn-move-wrap contents">
-        <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}
+        {#if $trainerADD === "motion"}
+        <Link to="/motion-settings">
+        <button class="btn-fill" disabled={isBtnDisabled} 
             >{strAsset.btnGoToTrainer}</button
         >
+    </Link>
+    {:else if $trainerADD === "speech"}
+    <Link to="/speech-settings">
+        <button class="btn-fill" disabled={isBtnDisabled} 
+            >{strAsset.btnGoToTrainer}</button
+        >
+    </Link>
+    {:else}
+    <Link to="/">
+        <button class="btn-fill" disabled={isBtnDisabled} 
+            >{strAsset.btnGoToTrainer}</button
+        >
+    </Link>
+    {/if}
     </div>
 </main>
 <footer>
@@ -205,14 +229,10 @@
             align-items: center;
         }
     }
-    .contents {
-        // margin-bottom: 12px;
-
-        h1 {
-            font-size: 2.25rem;
-            margin-bottom: 32px;
-            font-weight: 700;
-        }
+    h1 {
+        font-size: 2.25rem;
+        margin-bottom: 32px;
+        font-weight: 700;
     }
 
     input[type="radio"] {
@@ -231,19 +251,17 @@
             box-sizing: border-box;
             display: inline-block;
             background-color: white;
-            border: 1px solid $color-select-blue;
+            border: 2px solid $color-select-blue;
             border-radius: 8px;
             width: 100%;
             text-align: center;
             cursor: pointer;
             margin: 0;
 
-            text-align: center;
             color: black;
             font-weight: 400;
             &:hover {
-                background-color: $color-select-blue;
-                color: white;
+                background-color: $color-lightsky;
             }
         }
     }
@@ -252,9 +270,11 @@
         font-size: 2rem;
     }
     .mode-container label {
-        padding: 24px 24px;
+        padding: 24px;
         min-height: 264px;
         span {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: flex-end;
             font-size: 0.875rem;
         }
@@ -270,26 +290,9 @@
         gap: 2%;
     }
 
-    // .mode-container {
-    //     &:first-child{
-    //      margin-bottom: 24px;
-    //     }
-    //     label {
-    //         box-sizing: border-box;
-    //         display: inline-block;
-    //         background-color: $color-lightsky;
-    //         border-radius: 8px;
-
-    //         cursor: pointer;
-
-    //         &:hover {
-    //             color: white;
-    //         }
-    //     }
-    // }
-
     input[type="radio"]:checked + label {
-        background-color: #000000;
+        border: 2px solid $color-btn-hover-blue;
+        background-color: $color-btn-hover-blue;
         color: white;
     }
 

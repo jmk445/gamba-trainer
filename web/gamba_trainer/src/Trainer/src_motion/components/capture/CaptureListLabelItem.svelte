@@ -176,7 +176,7 @@ limitations under the License.
         outline-color: $color-deepblue;
       }
       // color: $color-deepblue;
-      color: white;
+      color: rgb(0, 0, 0);
     }
 
     .remove-button {

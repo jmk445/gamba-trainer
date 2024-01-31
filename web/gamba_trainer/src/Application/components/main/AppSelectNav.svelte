@@ -56,15 +56,21 @@ limitations under the License.
   </div>
   
   <style lang="scss">
+    @import "@scss/vars";
+
     .app-nav {
       margin-top: 112px;
       margin-bottom: 74px;
+      font-size: 1.5rem;
       ul {
-      // display: flex;
-      width: 480px;
-      
-      // border-radius: 100px;
+      background-color:$color-lightsky ;
+      width: 414px;
       height: 62px;
+      li {
+        &.active{
+        background-color: $color-btn-blue;
+      }
+      }
     }
   }
   </style>

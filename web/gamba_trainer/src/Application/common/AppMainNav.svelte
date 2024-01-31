@@ -98,7 +98,5 @@ limitations under the License.
   .app-main-nav ul {
     margin-top: 110px;
   }
-  .dot {
-    margin-right: 4;
-  }
+  
 </style>

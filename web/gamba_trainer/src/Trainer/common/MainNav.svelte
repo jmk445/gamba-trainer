@@ -19,15 +19,16 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  import {trainerADD} from "../components/store/store"
+  import {trainerADD} from "../store/store"
   import { testIsUnlocked } from "../src_motion/stores/test/store";
   import { trainIsUnlocked } from "../src_motion/stores/train/store";
     import { FromPixels } from "@tensorflow/tfjs";
     import { onMount } from "svelte";
   let trainer;
+  // $: trainer = $trainerADD;
   onMount =(() => {
-    trainer = $trainerADD;
-    console.log("trainerADD :" + trainer);
+    
+    console.log("mainNav-trainerADD :" + $trainerADD);
   })
   const strAsset = {
     navOne: "사전 설정",
@@ -42,42 +43,42 @@ limitations under the License.
   <ul>
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-settings`,
+        BASE_PATH + `/${$trainerADD}-settings`,
       )}
     >
-      <Link to="{trainer}-settings">{strAsset.navOne}</Link>
+      <Link to="{$trainerADD}-settings">{strAsset.navOne}</Link>
     </li>
 
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-capture`,
+        BASE_PATH + `/${$trainerADD}-capture`,
       )}
     >
-      <Link to="{trainer}-capture">{strAsset.navTwo}</Link>
+      <Link to="{$trainerADD}-capture">{strAsset.navTwo}</Link>
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-train`)}
+      class:active={location.pathname.includes(BASE_PATH + `/${$trainerADD}-train`)}
       class:disabled={!$trainIsUnlocked}
       aria-disabled={!$trainIsUnlocked}
     >
-      <Link to="{trainer}-train">{strAsset.navThree}</Link>
+      <Link to="{$trainerADD}-train">{strAsset.navThree}</Link>
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-test`)}
+      class:active={location.pathname.includes(BASE_PATH + `/${$trainerADD}-test`)}
       class:disabled={!$testIsUnlocked}
       aria-disabled={!$testIsUnlocked}
     >
-      <Link to="{trainer}-test">{strAsset.navFour}</Link>
+      <Link to="{$trainerADD}-test">{strAsset.navFour}</Link>
     </li>
 
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-convertSend`,
+        BASE_PATH + `/${$trainerADD}-convertSend`,
       )}
     >
-      <Link to="{trainer}-convertSend">{strAsset.navFive}</Link>
+      <Link to="{$trainerADD}-convertSend">{strAsset.navFive}</Link>
     </li>
   </ul>
 </div>

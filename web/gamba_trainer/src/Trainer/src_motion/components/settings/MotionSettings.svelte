@@ -75,13 +75,12 @@
           step={0.001}
         />
       </div>
-      <!-- 오류 발생 -->
-      <ChangeAfterRecordPrompt
-        onClose={handleCloseChangeAfterRecordPrompt}
-        bind:this={clearRecordPrompt}
-      />
     </div>
   </div>
+  <ChangeAfterRecordPrompt
+    onClose={handleCloseChangeAfterRecordPrompt}
+    bind:this={clearRecordPrompt}
+  />
 </TrainerSettings>
 
 <style lang="scss">
@@ -96,6 +95,8 @@
       width: 40%;
 
       h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
         margin-bottom: 12px;
       }
     }

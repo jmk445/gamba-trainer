@@ -58,11 +58,11 @@ button {
   padding: 14px 36px;
   font-size: 1rem;
   border-radius: 162px;
-  letter-spacing: 0.1px;
+  // letter-spacing: 0.1px;
   align-items: center;
   min-width: 130px;
 
-  @extend .subhead-1;
+  // @extend .subhead-1;
 
   // transition: transform 0.25s;
 
@@ -104,7 +104,7 @@ button {
   @extend .button;
   background-color: white;
   border: 1px solid $color-btn-blue;
-  color: $color-btn-blue;
+  color: black;
 
   &:disabled {
     background-color: white;
@@ -114,9 +114,9 @@ button {
     pointer-events: none;
   }
   &:hover{
-    background-color: white;
+    background-color: $color-lightsky;
     border: 1px solid $color-btn-hover-blue;
-    color: $color-btn-hover-blue;
+    color: black;
   }
 
 }

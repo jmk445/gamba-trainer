@@ -28,38 +28,7 @@ limitations under the License.
   // import LinearProgress from "../../../../general/LinearProgress.svelte";
   import Description from "../../common/Description.svelte";
 
-  onMount(async () => {
-    let unsubFromConnect;
-    let isDestroyed = false;
-    setTimeout(async () => {
-      if ($isConnected) {
-        await beginTesting();
-      } else {
-        unsubFromConnect = isConnected.subscribe(async ($isConnected) => {
-          if ($isConnected) {
-            if (!isDestroyed) {
-              await beginTesting();
-            }
-            unsubFromConnect();
-          }
-        });
-      }
-    }, 100);
 
-    return () => {
-      isDestroyed = true;
-      if (unsubFromConnect) {
-        unsubFromConnect();
-      }
-      endTesting();
-    };
-  });
-
-  $: if ($isFullyLoaded) {
-    if (!$testIsUnlocked) {
-      navigate(BASE_PATH, { replace: true });
-    }
-  }
 </script>
 
 <div class="contents">
