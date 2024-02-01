@@ -20,11 +20,11 @@ limitations under the License.
 <script>
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    import { isConnected } from "@motion/stores/bleInterfaceStore/store";
-    import { labels } from "@motion/stores/capture/store";
-    import { beginTesting, endTesting } from "@motion/stores/test/actions";
-    import { testIsUnlocked, testPredictions } from "@motion/stores/test/store";
-    import { isFullyLoaded } from "@motion/stores/ui/store";
+    import { isConnected } from "@speech/stores/bleInterfaceStore/store";
+    import { labels } from "@speech/stores/capture/store";
+    import { beginTesting, endTesting } from "@speech/stores/test/actions";
+    import { testIsUnlocked, testPredictions } from "@speech/stores/test/store";
+    import { isFullyLoaded } from "@speech/stores/ui/store";
     import TrainerTest from "../../../common/TrainerTest.svelte";
     import LinearProgress from "../../../../general/LinearProgress.svelte";
     // import Description from "../../../../common/Description.svelte";

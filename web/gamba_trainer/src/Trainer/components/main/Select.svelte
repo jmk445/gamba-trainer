@@ -44,7 +44,7 @@ onMount(()=>{
         modeOneCaption:
             "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
         modeTwoCaption:
-            "어플리케이션에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
+            "TinyML예제에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
         btnGoToTrainer: "트레이너 시작",
     };
 </script>

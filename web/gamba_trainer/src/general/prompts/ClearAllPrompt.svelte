@@ -30,7 +30,7 @@ limitations under the License.
     navigate("motion-settings", { replace: true });
   }
   const strAsset={
-    promptTitle : "Start Over",
+    promptTitle : "재시작",
     promptDesc : "현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?",
     promptNo : "아니요",
     promptYes : "예"

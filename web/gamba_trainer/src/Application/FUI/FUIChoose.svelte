@@ -55,13 +55,13 @@
         stepOne : "1. Kit 모델 확인",
         stepOneDesc: "키트에 해당 예제와 호환되는 모델이 저장되어 있는지 확인하는 과정입니다. 모델이 저장되어있다면, 저장된 모델로 아래의 과정을 생략하고 예제를 바로 체험할 수 있습니다. 모델의 유무와 상관없이 새로운 모델을 선택하여 전송하고 예제를 체험할 수 있습니다.",
         stepTwo : "2. 모델 선택",
-        stepTwoDesc : "원하는 모델을 선택할 수 있습니다. PC로부터 업로드 또는 메모리에 내장되어있는 예제 모델을 선택할 수 있습니다.",
+        stepTwoDesc : "원하는 모델을 선택할 수 있습니다. PC로부터 업로드 또는 메모리에 내장되어있는 TinyML예제 모델을 선택할 수 있습니다.",
         stepThree : "3. 전송",
         stepThreeDesc : "선택한 모델을 Kit로 보냅니다. 전송이 완료되면 예제를 체험할 수 있습니다.",
         btnStart : "시작",
-        btnApp : "예제 체험하기",
+        btnApp : "TinyML예제 체험하기",
         btnModel : "모델 선택",
-        btnAppModel : "예제 모델 선택",
+        btnAppModel : "TinyML예제 모델 선택",
         btnSend : "전송",
         captionSend : "전송이 완료되었습니다."
     }

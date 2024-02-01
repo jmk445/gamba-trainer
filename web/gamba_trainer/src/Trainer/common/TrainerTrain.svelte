@@ -42,18 +42,18 @@ limitations under the License.
     } from "../src_motion/stores/train/store";
 
     // import { isFullyLoaded } from "../../stores/ui/store";
-    import { isFullyLoaded } from "../src_motion/stores/ui/store";
+    // import { isFullyLoaded } from "../src_motion/stores/ui/store";
     // import EarlyStopping from "./EarlyStopping.svelte";
     import Description from "../../common/Description.svelte";
-    $: if ($isFullyLoaded) {
-        if (!$trainIsUnlocked) {
-            navigate(BASE_PATH, { replace: true });
-        }
-    }
+    // $: if ($isFullyLoaded) {
+    //     if (!$trainIsUnlocked) {
+    //         navigate(BASE_PATH, { replace: true });
+    //     }
+    // }
 
     const strAsset = {
         trainTitle : "모델 교육",
-        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 모션 데이터를 기록하십시오.",
+        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 데이터를 기록하십시오.",
         btnStart : "학습 시작",
         btnStop : "학습 중지",
         captionStop : "멈추는 중...",

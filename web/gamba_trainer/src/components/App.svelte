@@ -44,8 +44,8 @@ limitations under the License.
   // 뭔지 모름
   import Motion_MemoryTest from "../Trainer/src_motion/components/dev/MemoryTest.svelte";
   import Motion_LabelDeleteTest from "../Trainer/src_motion/components/dev/LabelDeleteTest.svelte";
-  // import Speech_MemoryTest from "../Trainer/src_speech/components/dev/MemoryTest.svelte";
-  // import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
+  import Speech_MemoryTest from "../Trainer/src_speech/components/dev/MemoryTest.svelte";
+  import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
   //after 파일 정리
   // 모션
   import MotionSettings from "../Trainer/src_motion/components/settings/MotionSettings.svelte";
@@ -54,11 +54,11 @@ limitations under the License.
   import MotionTest from "../Trainer/src_motion/components/test/MotionTest.svelte";
   import MotionConvert from "../Trainer/src_motion/components/convert/motionConvert.svelte";
   // 스피치
-  // import SpeechSettings from "../Trainer/src_speech/components/settings/SpeechSettings.svelte";
-  // import SpeechCapture from "../Trainer/src_speech/components/capture/SpeechCapture.svelte";
-  // import SpeechTrain from "../Trainer/src_speech/components/train/SpeechTrain.svelte";
-  // import SpeechTest from "../Trainer/src_speech/components/test/SpeechTest.svelte";
-  // import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
+  import SpeechSettings from "../Trainer/src_speech/components/settings/SpeechSettings.svelte";
+  import SpeechCapture from "../Trainer/src_speech/components/capture/SpeechCapture.svelte";
+  import SpeechTrain from "../Trainer/src_speech/components/train/SpeechTrain.svelte";
+  import SpeechTest from "../Trainer/src_speech/components/test/SpeechTest.svelte";
+  import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
   export let url = "";
   const basepath = BASE_PATH === "" ? "/" : BASE_PATH;
 </script>
@@ -76,14 +76,6 @@ limitations under the License.
   <Route path="/fui-connect"><FuiConnect/></Route>
   <Route path="/fui-choose"><FuiChoose/></Route>
   <Route path="/fui-experience"><FuiExperience/></Route>
-    <!-- <Route path="/motion-start"><Trainer_Start /></Route>
-    <Route path="/motion-settings"><Trainer_Main><Trainer_Settings /></Trainer_Main></Route>    
-    <Route path="/motion-capture"><Trainer_Main><Trainer_Capture /></Trainer_Main></Route>
-    <Route path="/motion-train"><Trainer_Main><Trainer_Train /></Trainer_Main></Route>
-    <Route path="/motion-test"><Trainer_Main><Trainer_Test /></Trainer_Main></Route>
-    <Route path="/motion-convertSend"><Trainer_Main><Motion_ConvertSend /></Trainer_Main></Route>
-    <Route path="/motion-mem-test"><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route>
-    <Route path="/motion-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route> -->
 
     
     <!-- <Route path="/motion-settings"><Trainer_Main><Trainer_Settings><MotionSettings_Capture slot="settings-capture"/></Trainer_Settings></Trainer_Main></Route>     -->
@@ -95,7 +87,7 @@ limitations under the License.
 
     <!-- 여기서부터 모션 시작 -->
     <Route path="/motion-start"><Trainer_Start /></Route>
-    <Route path="/motion-settings"><Trainer_Main><MotionSettings/></Trainer_Main></Route>
+    <Route path="/motion-settings"><Trainer_Main><MotionSettings/></Trainer_Main></Route>    
     <Route path="/motion-capture"><Trainer_Main><MotionCapture/></Trainer_Main></Route>
     <Route path="/motion-train"><Trainer_Main><MotionTrain/></Trainer_Main></Route>
     <Route path="/motion-test"><Trainer_Main><MotionTest/></Trainer_Main></Route>
@@ -104,14 +96,14 @@ limitations under the License.
     <Route path="/motion-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route>
 
       <!-- 스피치 시작 -->
-    <!-- <Route path="/speech-start"><Trainer_Start /></Route>
+    <Route path="/speech-start"><Trainer_Start /></Route>
     <Route path="/speech-settings"><Trainer_Main><SpeechSettings/></Trainer_Main></Route>
     <Route path="/speech-capture"><Trainer_Main><SpeechCapture/></Trainer_Main></Route>
     <Route path="/speech-train"><Trainer_Main><SpeechTrain/></Trainer_Main></Route>
     <Route path="/speech-test"><Trainer_Main><SpeechTest/></Trainer_Main></Route>
     <Route path="/speech-convertSend"><Trainer_Main><SpeechConvert/></Trainer_Main></Route>
     <Route path="/motion-mem-test"><Trainer_Main><Speech_MemoryTest /></Trainer_Main></Route>
-    <Route path="/motion-label-test"><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route> -->
+    <Route path="/motion-label-test"><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route>
 
   <!-- </main> -->
 </Router>
