@@ -16,61 +16,15 @@
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
-        // console.log("trainerADD : ", $trainerADD);
-        // setADD(id);
+
     }
 
     function selectMode(id) {
         selectModeID = id;
         isBtnDisabled = false;
-        // console.log("trainerADD : ", $trainerADD);
     }
     $: trainerADD.set(selectTrainerID + selectModeID);
     $:console.log($trainerADD);
-    // function goToTrainer() {
-    //     // console.log(selectTrainerID, selectModeID);
-    //     if (
-    //         selectTrainerID === "motionTrainer" &&
-    //         selectModeID === "basicMode"
-    //     ) {
-            
-    //         window.location.href = "/motion-settings";
-    //         set($trainerADD, "motion");
-    //         // console.log("trainerADD : "+ trainerADD);
-    //     }
-    //     if (
-    //         selectTrainerID === "speechTrainer" &&
-    //         selectModeID === "basicMode"
-    //     ) {
-    //         // window.location.href = "/speech-settings";
-    //         window.location.href = "/speech-settings";
-    //         set($trainerADD, "speech");
-    //         // $trainerADD = "speech";
-    //     }
-    //     if (
-    //         selectTrainerID === "visionTrainer" &&
-    //         selectModeID === "basicMode"
-    //     ) {
-    //         // window.location.href = "/vision-settings";
-    //         alert("vision, basic");
-    //         setADD("vision");
-    //     }
-    //     if (selectTrainerID === "motionTrainer" && selectModeID === "appMode") {
-    //         // console.log(selectTrainerID, selectModeID);
-    //         alert("motion, app");
-    //     }
-    //     if (selectTrainerID === "speechTrainer" && selectModeID === "appMode") {
-    //         // console.log(selectTrainerID, selectModeID);
-    //         alert("sppech, app");
-    //     }
-    //     if (selectTrainerID === "visionTrainer" && selectModeID === "appMode") {
-    //         // console.log(selectTrainerID, selectModeID);
-    //         alert("vision, app");
-    //     }
-    //     // if(selectModeID === "appMode"){
-    //     //     showSelectApp = true;
-    //     // }
-    // }
 onMount(()=>{
     console.log("select-trainerADD : "+$trainerADD);
 });

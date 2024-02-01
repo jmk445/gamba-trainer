@@ -83,7 +83,7 @@ limitations under the License.
         bluetoothCaption : "또는, 연결하지 않고 진행합니다.\n추후 상단의 연결 메뉴로 연결할 수 있습니다.",
         captureSettingTitle : "캡처 설정 선택",
         captureSettingDesc : '아래 슬라이더를 끌어 데이터를 수집하는 방법을 사용자 지정합니다. "예제용 모델 만들기" 선택한 경우, 설정은 고정됩니다.',
-        modelSettingTitle : "모델 설정 선택",
+        modelSettingTitle : "모델 선택",
         modelSettingDesc : "아래 모델 중 원하는 모델을 선택하여 학습을 진행할 수 있습니다."
     }
 </script>
@@ -184,6 +184,9 @@ limitations under the License.
         title={strAsset.modelSettingTitle}
         explanation={strAsset.modelSettingDesc}
     />
+    <div class="model-select-container">
+        <slot name="settings-model"/>
+    </div>
 </div>
 
 <!-- <ChangeAfterRecordPrompt
@@ -210,4 +213,5 @@ limitations under the License.
             font-size: 0.875rem;
         }
     }
+
 </style>

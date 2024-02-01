@@ -45,7 +45,9 @@ limitations under the License.
   }
 
   onMount(() => {
+    console.log("hi");
     selectorEl = document.querySelector(selector);
+    
     if (!selectorEl) {
       throw new Error("No match for selector: " + selector);
     }
@@ -80,7 +82,7 @@ limitations under the License.
 
   ul {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     // border: $border-width solid $color-fg-primary;
     background-color: $color-lightsky;
     padding: 0 0;

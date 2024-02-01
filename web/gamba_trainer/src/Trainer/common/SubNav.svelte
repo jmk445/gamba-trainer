@@ -171,17 +171,19 @@ limitations under the License.
 
 <style lang="scss">
     .sub-nav {
-        margin: 12px 0 72px 0;
+        margin: 12px 0 72px 0px;
 
         ul {
             display: flex;
             flex-direction: row;
+            // margin-left: auto;
             justify-content: flex-end;
         }
         li {
+            // float: right;
             display: inline-block;
             margin-left: 32px;
-
+            // margin-left: auto;
         }
     }
     .dot {

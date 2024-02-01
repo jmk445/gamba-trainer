@@ -35,6 +35,9 @@
     panalTwo: "다음 수집까지 대기시간(초)",
     panelTwoDesc:
       "한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초단위로 제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다.",
+    modelOne : "Gambalabs-001",
+    modelTwo : "Gambalabs-002",
+    modelThree : "Gambalabs-003"
   };
   function handleCloseChangeAfterRecordPrompt(didClear) {}
 </script>
@@ -77,6 +80,22 @@
       </div>
     </div>
   </div>
+  <div slot="settings-model">
+    <div class="radio-container">
+      <div class="model-container">
+        <input type="radio" name="model" value="numOne" id="numOne">
+        <label for="numOne">{strAsset.modelOne}</label>
+      </div>
+      <div class="model-container">
+        <input type="radio" name="model" value="numTwo" id="numTwo">
+        <label for="numTwo">{strAsset.modelTwo}</label>
+      </div>
+      <div class="model-container">
+        <input type="radio" name="model" value="numThree" id="numThree">
+        <label for="numThree">{strAsset.modelThree}</label>
+      </div>
+    </div>
+  </div>
   <ChangeAfterRecordPrompt
     onClose={handleCloseChangeAfterRecordPrompt}
     bind:this={clearRecordPrompt}
@@ -105,4 +124,24 @@
       width: 56%;
     }
   }
+.radio-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .model-container{
+    cursor: pointer;
+    margin-bottom: 12px;
+
+    input{
+      cursor: pointer;
+    }
+    label{
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+  }
+}
+
 </style>
