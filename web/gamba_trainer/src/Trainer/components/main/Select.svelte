@@ -144,12 +144,12 @@ onMount(()=>{
             >{strAsset.btnGoToTrainer}</button
         >
     </Link>
-    {:else if $trainerADD === "speech"}
+    <!-- {:else if $trainerADD === "speech"}
     <Link to="/speech-settings">
         <button class="btn-fill" disabled={isBtnDisabled} 
             >{strAsset.btnGoToTrainer}</button
         >
-    </Link>
+    </Link> -->
     {:else}
     <Link to="/">
         <button class="btn-fill" disabled={isBtnDisabled} 

@@ -1,8 +1,9 @@
 <script>
-  import SettingsInput from "./SettingsInput.svelte";
   import TrainerSettings from "../../../common/TrainerSettings.svelte";
-  import { hasRecordings } from "../../stores/capture/store";
   import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
+  import SettingsInput from "./SettingsInput.svelte";
+  
+  import { hasRecordings } from "../../stores/capture/store";
   import {
     captureDelay,
     captureSamples,
