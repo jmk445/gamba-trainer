@@ -19,8 +19,8 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  import { testIsUnlocked } from "../../src_motion/stores/test/store";
-  import { trainIsUnlocked } from "../../src_motion/stores/train/store";
+  import { testIsUnlocked } from "../../src_{trainer}/stores/test/store";
+  import { trainIsUnlocked } from "../../src_{trainer}/stores/train/store";
   import { FromPixels } from "@tensorflow/tfjs";
   import { onMount } from "svelte";
   // import {trainer} from "../stores/store.js";  

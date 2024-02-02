@@ -37,6 +37,12 @@ limitations under the License.
     pushPropmt,
   } from "../../src_motion/stores/ui/actions";
   import persistStore, { dirty } from "../../src_motion/stores/utils/persistStore";
+  import {getTrainerADD} from "../../stores/actions";
+
+  let trainer;
+  onMount(async () => {    
+    trainer = await getTrainerADD();        
+  });
 
   onMount(() => {
     persistStore.onError((error) => {
@@ -59,15 +65,15 @@ limitations under the License.
   };
 </script>
 
-<header>  
-  <!-- {#if trainerADD === "motion"}
+<header>
+  {#if trainer === "motion"}
     <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon} />
-  {:else if trainerADD === "speech"}
+  {:else if trainer === "speech"}
     <SubBanner title={strAsset.bannerTitleSpeech} titleIcon={speechIcon} />
-  {:else if trainerADD === "vision"}
+  {:else if trainer === "vision"}
     <SubBanner title={strAsset.bannerTitlevision} titleIcon={visionIcon} />
-  {/if} -->
-  <SubBanner />
+  {/if}
+  <!-- <SubBanner /> -->
   <div class="section">
     <SubNav />
   </div>
