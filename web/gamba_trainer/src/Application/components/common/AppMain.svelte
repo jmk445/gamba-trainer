@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
     
-  import SubBanner from "../../components/common/SubBanner.svelte";
+  import SubBanner from "../../../components/common/SubBanner.svelte"
   import AppMainNav from "./AppMainNav.svelte";
 
   export let bannerTitle;

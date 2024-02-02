@@ -3,8 +3,9 @@
     import logoPng from "@assets/icons/Symbol_RGB.png";
     import { exp } from "@tensorflow/tfjs";
     export let titleIcon;
-    export let title = "hello";
+    export let title;
     export let altTxt;
+    export let appTitle = "";
 </script>
 
 <div class="sub-banner">
@@ -16,7 +17,10 @@
         </div>
         <div class="title">
             <img class="title-icon" src={titleIcon} alt={altTxt} />
-            <h1>{title}</h1>
+            <div class="title-container">
+                <h1>{title}</h1>
+                <span>{appTitle}</span>
+            </div>
         </div>
     </div>
 </div>
@@ -39,11 +43,21 @@
         .title {
             display: flex;
             align-items: center;
-            h1 {
-                display: inline-block;
-                font-weight: 500;
-                font-size: 3rem;
+
+            .title-container{
+                display: flex;
+                justify-content: flex-end;
+                    h1 {
+                    display: inline-block;
+                    font-weight: 500;
+                    font-size: 3rem;
+                }
+                span{
+                    font-weight: 500;
+                    font-size: 1rem;
+                }
             }
+            
 
             .title-icon {
                 width: 60px;

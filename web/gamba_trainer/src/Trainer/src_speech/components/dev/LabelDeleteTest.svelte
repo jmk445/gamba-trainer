@@ -21,7 +21,7 @@ limitations under the License.
   import { onMount } from "svelte";
   import { clearPersistantStorage } from "../../stores/aggregatedActions";
   import { addLabel, addRecording } from "../../stores/capture/actions";
-  import Capture from "../capture/SpeechCapture.svelte";
+  import Capture from "../capture/Capture.svelte";
 
   onMount(() => {
     clearPersistantStorage();

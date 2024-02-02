@@ -18,15 +18,11 @@ limitations under the License.
 */
 -->
 <script>
-  import { imuDataColors } from "@motion/stores/ui/store";
-  import {
-    armedLabelIndex,
-    labels,
-    recordings,
-  } from "@motion/stores/capture/store";
-  import { captureImuLabels } from "@motion/stores/captureSettings/store";
+  import { imuDataColors } from "@speech/stores/ui/store";
+  import { armedLabelIndex, labels, recordings } from "@speech/stores/capture/store";
+  import { captureImuLabels } from "@speech/stores/captureSettings/store";
 
-  import Icon from "../../../../general/Icon.svelte";
+  import Icon from "../general/Icon.svelte";
   import CaptureListLabelItem from "./CaptureListLabelItem.svelte";
   import CaptureListRecordings from "./recordings-list/CaptureListRecordings.svelte";
   import { downloadCsvForAllLabels } from "../../stores/aggregatedActions";
@@ -56,9 +52,6 @@ limitations under the License.
       hoverFilter = null;
     }
   }
-  const strAsset = {
-    filter: "필터",
-  };
 </script>
 
 <div class="capture-list">
@@ -79,15 +72,14 @@ limitations under the License.
     </ul>
   </div>
   <div class="recordings">
-    {#if $hasRecordings}
+    <!-- {#if $hasRecordings}
       <div class="filter-section">
         <button class="small subhead-2" on:click={handleToggleFilter}
-          ><Icon icon="filter_18px.svg" />{strAsset.filter}</button
+          ><Icon icon="filter_18px.svg" />Filter</button
         >
         {#if showFilter}
           <div>
             {#each $captureImuLabels as label, index}
-              <!-- svelte-ignore a11y-mouse-events-have-key-events -->
               <button
                 on:mouseenter={() => handleFilterHover(index)}
                 on:mouseout={() => handleFilterHover(-1)}
@@ -101,7 +93,7 @@ limitations under the License.
           </div>
         {/if}
       </div>
-    {/if}
+    {/if} -->
     <div class="recordings-list">
       {#if $armedLabelIndex > -1}
         <CaptureListRecordings

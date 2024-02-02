@@ -24,19 +24,19 @@ limitations under the License.
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";
 
-  import UnsavedProjectPrompt from "../../general/prompts/UnsavedProjectPrompt.svelte";
-  import LocalStorageFullPrompt from "../../general/prompts/LocalStorageFullPrompt.svelte";
-  import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";
-  import motionIcon from "../../assets/img/ic_motion.svg";
-  import speechIcon from "../../assets/img/ic_speech.svg";
-  import visionIcon from "../../assets/img/ic_vision.svg";
+  import UnsavedProjectPrompt from "../../../general/prompts/UnsavedProjectPrompt.svelte";
+  import LocalStorageFullPrompt from "../../../general/prompts/LocalStorageFullPrompt.svelte";
+  import DownloadModelPrompt from "../../../general/prompts/DownloadModelPrompt.svelte";
+  import motionIcon from "../../../assets/img/ic_motion.svg";
+  import speechIcon from "../../../assets/img/ic_speech.svg";
+  import visionIcon from "../../../assets/img/ic_vision.svg";
 
-  import { promptStack } from "../src_motion/stores/ui/store";
+  import { promptStack } from "../../src_motion/stores/ui/store";
   import {
     pushErrorMessage,
     pushPropmt,
-  } from "../src_motion/stores/ui/actions";
-  import persistStore, { dirty } from "../src_motion/stores/utils/persistStore";
+  } from "../../src_motion/stores/ui/actions";
+  import persistStore, { dirty } from "../../src_motion/stores/utils/persistStore";
 
   onMount(() => {
     persistStore.onError((error) => {

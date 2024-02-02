@@ -1,5 +1,5 @@
 <script>    
-    import Description from "../../common/Description.svelte";
+    import Description from "../../../components/common/Description.svelte";
 
     const strAsset = {
         convertTitle : "모델 변환 및 전송",

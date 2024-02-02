@@ -22,7 +22,7 @@
   <Prompt title="Select Appllication" closePrompt={onClose}>
     <div class="inner">
         <div class="example-contents-container">
-            {#if TrainerType === "motionTrainer"}
+            {#if TrainerType === "motion"}
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
@@ -34,7 +34,7 @@
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            {:else if TrainerType === "speechTrainer"}
+            {:else if TrainerType === "speech"}
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
@@ -46,7 +46,7 @@
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            {:else if TrainerType === "visionTrainer"}
+            {:else if TrainerType === "vision"}
             <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>

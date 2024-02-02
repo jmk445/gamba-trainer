@@ -38,14 +38,14 @@ limitations under the License.
   import VisionApps from "../Application/components/main/VisionApps.svelte";
   
   // 모든 트레이너 페이지에 공통으로 쓰임
-  import Trainer_Start from "../Trainer/src_motion/components/dev/Start.svelte"
-  import Trainer_Main from "../Trainer/common/TrainerMain.svelte";
+  import Trainer_Start from "../Trainer/components/main/Start.svelte"
+  import Trainer_Main from "../Trainer/components/common/TrainerMain.svelte";
   
   // 뭔지 모름
   import Motion_MemoryTest from "../Trainer/src_motion/components/dev/MemoryTest.svelte";
   import Motion_LabelDeleteTest from "../Trainer/src_motion/components/dev/LabelDeleteTest.svelte";
-  import Speech_MemoryTest from "../Trainer/src_speech/components/dev/MemoryTest.svelte";
-  import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
+  // import Speech_MemoryTest from "../Trainer/src_speech/components/dev/MemoryTest.svelte";
+  // import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
   //after 파일 정리
   // 모션
   import MotionSettings from "../Trainer/src_motion/components/settings/MotionSettings.svelte";

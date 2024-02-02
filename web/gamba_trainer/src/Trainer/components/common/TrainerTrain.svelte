@@ -24,7 +24,7 @@ limitations under the License.
     import {
         beginTraining,
         stopTraining,
-    } from "../src_motion/stores/train/actions";
+    } from "../../src_motion/stores/train/actions";
     // import GraphContainer from "./GraphContainer.svelte";
     // import {
     //     trainEpochs,
@@ -39,12 +39,12 @@ limitations under the License.
         trainIsUnlocked,
         trainLogAccuracy,
         trainLogLoss,
-    } from "../src_motion/stores/train/store";
+    } from "../../src_motion/stores/train/store";
 
     // import { isFullyLoaded } from "../../stores/ui/store";
-    import { isFullyLoaded } from "../src_motion/stores/ui/store";
+    import { isFullyLoaded } from "../../src_motion/stores/ui/store";
     // import EarlyStopping from "./EarlyStopping.svelte";
-    import Description from "../../common/Description.svelte";
+    import Description from "../../../components/common/Description.svelte";
     $: if ($isFullyLoaded) {
         if (!$trainIsUnlocked) {
             navigate(BASE_PATH, { replace: true });

@@ -1,27 +1,29 @@
-<script>    
-    import {trainerADD} from "../../stores/store";
-    import SubBanner from "../../../common/SubBanner.svelte";
-    import Footer from "../../../common/footer.svelte";
+<script>
+    import SubBanner from "../../../components/common/SubBanner.svelte";
+    import Footer from "../../../components/common/footer.svelte";
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
     import trainerIcon from "../../../assets/img/ic_trainer.svg";
+    import persistStore from "../../stores/utils/persistStore";
     import { FromPixels } from "@tensorflow/tfjs";
-    import {onMount} from "svelte";
-    import {get} from "svelte/store"
+    import { onMount } from "svelte";
+
     let selectTrainerID = null;
     let selectModeID = null;
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-    
-    onMount(()=>{
-        trainerADD.subscribe((data)=>{
-            console.log(data);
-        })
-    })
+
+    export function clearPersistantStorage() {
+        persistStore.clear();        
+    }
+    //trainerADD clear
+    onMount(() => {        
+        clearPersistantStorage();
+    });
+
     function selectTrainer(id) {
         selectTrainerID = id;
         modeActive = "";
-        console.log(selectTrainerID);
     }
 
     function selectMode(id) {
@@ -32,37 +34,27 @@
 
     function goToTrainer() {
         // console.log(selectTrainerID, selectModeID);
-        if (
-            selectTrainerID === "motionTrainer" &&
-            selectModeID === "basicMode"
-        ) { 
-            trainerADD.set("motion");
-            console.log(get(trainerADD));
-            window.location.href = "/motion-start";                      
+        if (selectTrainerID === "motion" && selectModeID === "basicMode") {
+            persistStore("trainerADD!", "motion");
+            window.location.href = "/motion-start";
         }
-        if (
-            selectTrainerID === "speechTrainer" &&
-            selectModeID === "basicMode"
-        ) { 
-            trainerADD.set("speech");           
-            window.location.href = "/speech-start";            
+        if (selectTrainerID === "speech" && selectModeID === "basicMode") {            
+            persistStore("trainerADD!", "speech");
+            window.location.href = "/speech-start";
         }
-        if (
-            selectTrainerID === "visionTrainer" &&
-            selectModeID === "basicMode"
-        ) {
+        if (selectTrainerID === "vision" && selectModeID === "basicMode") {
             // window.location.href = "/vision-settings";
             alert("vision, basic");
         }
-        if (selectTrainerID === "motionTrainer" && selectModeID === "appMode") {
+        if (selectTrainerID === "motion" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("motion, app");
         }
-        if (selectTrainerID === "speechTrainer" && selectModeID === "appMode") {
+        if (selectTrainerID === "speech" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("sppech, app");
         }
-        if (selectTrainerID === "visionTrainer" && selectModeID === "appMode") {
+        if (selectTrainerID === "vision" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
             alert("vision, app");
         }
@@ -93,7 +85,11 @@
 </script>
 
 <header>
-    <SubBanner title={strAsset.bannerTitle} titleIcon={trainerIcon} altTxt="트레이너 아이콘"/>
+    <SubBanner
+        title={strAsset.bannerTitle}
+        titleIcon={trainerIcon}
+        altTxt="트레이너 아이콘"
+    />
 </header>
 
 <main class="select section">
@@ -111,7 +107,7 @@
                     name="trainer"
                     value="moiton"
                     id="motionTrainer"
-                    on:click={() => selectTrainer("motionTrainer")}
+                    on:click={() => selectTrainer("motion")}
                 />
                 <label for="motionTrainer">
                     <p>{strAsset.trainerOne}</p>
@@ -123,7 +119,7 @@
                     name="trainer"
                     value="speech"
                     id="speechTrainer"
-                    on:click={() => selectTrainer("speechTrainer")}
+                    on:click={() => selectTrainer("speech")}
                 />
                 <label for="speechTrainer">
                     <p>{strAsset.trainerTwo}</p>
@@ -135,7 +131,7 @@
                     name="trainer"
                     value="vision"
                     id="visionTrainer"
-                    on:click={() => selectTrainer("visionTrainer")}
+                    on:click={() => selectTrainer("vision")}
                 />
                 <label for="visionTrainer">
                     <p>{strAsset.trainerThree}</p>

@@ -1,4 +1,3 @@
-
 /* Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,62 +30,21 @@ import {
   captureThreshold,
 } from "./captureSettings/store";
 import { prepareDataSet } from "./train/actions";
-import { trainedModel, trainTestSplit, tfLiteModel } from "./train/store";
+import { trainedModel, trainTestSplit } from "./train/store";
 import { dataLabels } from "./bleInterfaceStore/store";
 import downloadText from "../util/downloadText";
 import { addRecording } from "./capture/actions";
 import { pushErrorMessage } from "./ui/actions";
 
-import {tfliteModelBlob,blob} from "../stores/convert/store";
-import { saveTflite } from "./convert/actions";
 export function clearPersistantStorage() {
   persistStore.reset();
   removeTrainedModel();
-}
-
-
-export async function convertToTflite(quantize = false){
-  console.log("convert to tflite function executed");
-  // URL to backend
-  const apiUrl = "http://127.0.0.1:5000";
-  //proc 요청
-  let url = `${apiUrl}/proc?labels=${get(labels).join(",")}&delay=${Math.floor(
-    get(captureDelay) * 1000
-  )}&numSamples=${get(captureSamples)}&sensitivity=${get(captureThreshold)}`;
-
-  url += `&version=${arduinoTemplateVersion}`;
-  if (quantize) {
-    url += "&quantize=true";
-  }
-
-  const rq = tf.io.browserHTTPRequest(url, {
-    fetchFunc: (url, req) => {
-      if (quantize) {
-        const [, , test_x] = shuffleAndSplitDataSet(
-          prepareDataSet(),
-          1 - get(trainTestSplit)
-        );
-        req.body.append("quantize_data", JSON.stringify(test_x));
-      }
-      return fetch(url, req);
-    },
-  });
-
-  const result = await get(trainedModel).save(rq);
-  blob = await result.responses[0].blob();
-  
-  saveTflite(blob);
-  
-  //tfliteModelBlob.set(await result.responses[0].blob());  
-  //문제점 : tflitemodel이 아예 indexeddb에 생성이 안됨 , 만약에 구현한다면 clear하는 것도 필요할듯
-  //tfLiteModel.set(result.responses[0]);    
 }
 
 export async function downloadTrainedModel(quantize = false) {
   // URL to backend
   const apiUrl = "http://127.0.0.1:5000";
 
-  //proc 요청
   let url = `${apiUrl}/proc?labels=${get(labels).join(",")}&delay=${Math.floor(
     get(captureDelay) * 1000
   )}&numSamples=${get(captureSamples)}&sensitivity=${get(captureThreshold)}`;
@@ -109,68 +67,14 @@ export async function downloadTrainedModel(quantize = false) {
     },
   });
 
-  // if(my-model-jmk (indexeddb) 존재){
-  //   그 model을 indexeddb에서 삭제
-  // }
-
   const result = await get(trainedModel).save(rq);
-  
+
   const blob = await result.responses[0].blob();
   downloadBlob(
     blob,
-    `TinyMotionTrainer-models-${getDateString()}.tflite`
+    `TinySpeechTrainer-models-${getDateString()}.tgz`
   );
 }
-export async function downloadTfliteModel(){
-
-  downloadBlob(
-    blob,
-    `TinyMotionTrainer-models-${getDateString()}.tflite`
-  );
-
-  // downloadBlob(
-  //   get(tfliteModelBlob),
-  //   `TinyMotionTrainer-models-${getDateString()}.tflite`
-  // );
-}
-
-// export async function downloadTrainedModel(quantize = false) {
-//   // URL to backend
-//   const apiUrl = "http://127.0.0.1:5000";
-
-//   //proc 요청
-//   let url = `${apiUrl}/proc?labels=${get(labels).join(",")}&delay=${Math.floor(
-//     get(captureDelay) * 1000
-//   )}&numSamples=${get(captureSamples)}&sensitivity=${get(captureThreshold)}`;
-
-//   url += `&version=${arduinoTemplateVersion}`;
-//   if (quantize) {
-//     url += "&quantize=true";
-//   }
-
-//   const rq = tf.io.browserHTTPRequest(url, {
-//     fetchFunc: (url, req) => {
-//       if (quantize) {
-//         const [, , test_x] = shuffleAndSplitDataSet(
-//           prepareDataSet(),
-//           1 - get(trainTestSplit)
-//         );
-//         req.body.append("quantize_data", JSON.stringify(test_x));
-//       }
-//       return fetch(url, req);
-//     },
-//   });
-
-//   const result = await get(trainedModel).save(rq);
-//   tfLiteModel.set(result.responses[0]);
-
-//   const blob = await result.responses[0].blob();
-//   downloadBlob(
-//     blob,
-//     `TinyMotionTrainer-models-${getDateString()}.tflite`
-//   );
-
-// }
 
 export async function downloadTfJSModel() {
   await get(trainedModel).save(

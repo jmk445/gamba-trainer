@@ -10,8 +10,12 @@
     let trainer; //= asyncgetTrainerADD();
     onMount(async()=>{
         trainer = await getTrainerADD();
-        clearPersistantStorageMotion();
-        clearPersistantStorageSpeech();
+        if(trainer == "motion"){
+            clearPersistantStorageMotion();
+        }else if(trainer == "speech"){
+            clearPersistantStorageSpeech();
+            console.log("hello");
+        }        
         navigate(`/${trainer}-settings`, { replace: false });
     })
     

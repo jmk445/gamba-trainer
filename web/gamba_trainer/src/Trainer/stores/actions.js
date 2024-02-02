@@ -1,5 +1,5 @@
 // export let trainerADD;
-import { trainer_ } from "./store";
+// import { trainer_ } from "./store";
 export function getTrainerADD() {
     // let trainerADD;
     const dbName = "TrainerADD";
@@ -20,7 +20,8 @@ export function getTrainerADD() {
                 const result = event.target.result;
                 if (result) {
                     // trainerADD = result;
-                    trainer_.set(result);   
+                    // trainer_.set(result);   
+                    console.log("trainer add get successed");
                     resolve(result);                 
                     // return (result);
                     // console.log("current trainer mode :" + trainer);

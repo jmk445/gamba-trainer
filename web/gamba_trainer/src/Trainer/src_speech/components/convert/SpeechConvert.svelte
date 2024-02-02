@@ -1,8 +1,8 @@
 <script>
     import arrowRight from "@assets/icons/arrow_right.png";
     import TrainerConvert from "../../../common/TrainerConvert.svelte";
-    import { pushPropmt } from "../../stores/ui/store";
-    import { trainedModel } from "../../stores/train/store";
+    // import { pushPropmt } from "../src_motion/stores/ui/actions";
+    import { trainedModel } from "../../stores/ui/actions";
     import {
         convertToTflite,
         downloadTfliteModel,
@@ -30,7 +30,7 @@
         btnconvert: "변환",
         btnSend: "전송",
         btnDownload: "다운로드",
-        btnapp: "예제에서 체험",
+        btnapp: "TinyML예제에서 체험",
     };
 </script>
 <TrainerConvert>

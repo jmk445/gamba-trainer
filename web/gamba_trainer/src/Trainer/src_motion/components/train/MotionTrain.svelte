@@ -1,7 +1,7 @@
 <script>
     import NumberInput from "../../../../general/NumberInput.svelte";
     import GraphContainer from "./GraphContainer.svelte";
-    import TrainerTrain from "../../../common/TrainerTrain.svelte";
+    import TrainerTrain from "../../../components/common/TrainerTrain.svelte";
     import {
         trainEpochs,
         trainingState,

@@ -1,7 +1,7 @@
 <script>
-    import SubBanner from "../../../common/SubBanner.svelte";
+    import SubBanner from "../../../components/common/SubBanner.svelte";
     import AppSelectNav from "./AppSelectNav.svelte";
-    import Footer from "../../../common/footer.svelte";
+    import Footer from "../../../components/common/footer.svelte";
     const strAsset ={
         bannerTitle : "TinyML 예제"
     }

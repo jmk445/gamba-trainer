@@ -18,7 +18,7 @@ limitations under the License.
 */
 -->
 <script> 
-  import Description from "../../common/Description.svelte";
+  import Description from "../../../components/common/Description.svelte";
  
   const strAsset = {
     captureTitle : "데이터 수집",
