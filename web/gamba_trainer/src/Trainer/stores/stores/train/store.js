@@ -34,16 +34,9 @@ export const trainingState = stateStore("idle", [
 export const modelArchitecture = readable({
   type: "sequential",
   layers: [
-    { type: "conv2d", props: { filters: 16, kernelSize: [3,3], pad: 'same', activation: 'relu'} },
-    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
-    { type: "dropout", props: { rate: 0.25 } },
-    { type: "conv2d", props: { filters: 32, kernelSize: [3,3], pad: 'same', activation: 'relu' } },
-    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
-    { type: "dropout", props: { rate: 0.25 } },
-    { type: "flatten", props: {} },
-    { type: "dense", props: { units: 64, activation: 'relu' } },
-    { type: "dropout", props: { rate: 0.25 } },
-    { type: "dense", props: { units: labels.length, activation: 'softmax' } },
+    { type: "dense", props: { units: 50, activation: "relu" } },
+    { type: "dense", props: { units: 15, activation: "relu" } },
+    { type: "dense", props: { activation: "softmax" } },
   ],
 });
 
@@ -66,17 +59,25 @@ export const trainLogAccuracy = persistStore("train.log.accurcay", {
   validation: [],
 });
 
+
 export const trainLogLoss = persistStore("train.log.loss", {
   train: [],
   validation: [],
 });
 
 export const trainedModel = writable(null);
+export const tfLiteModel = writable(null);
 
+export const existTrainedModel = derived(
+  trainedModel,
+  ($trainedModel)=>{
+    return !!$trainedModel;
+  }
+)
 
 //derived의 첫번째인자: store, 두번째인자: 스토어가 변경될 때 실행되는 함수
 //train 항목을 열수 있는지 확인하는 변수(라벨수가 2개 이상이고, 각 라벨당 레코딩이 3개이상)
-export const trainIsUnlockedSpeech = derived(
+export const trainIsUnlocked = derived(
   [recordings, labels],
   ([$recordings, $labels]) => {
     let unlocked = $labels.length >= 2;
@@ -108,6 +109,7 @@ trainedModel.subscribe(async (model) => {
     }
   }
 });
+
 
 async function loadTrainedModel() {
   try {

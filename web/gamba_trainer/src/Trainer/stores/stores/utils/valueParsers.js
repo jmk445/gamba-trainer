@@ -17,11 +17,23 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import { writable, derived } from "svelte/store";
-import { trainedModel } from "../train/store";
+export const clampValue = function (min, max) {
+  return (value) => {
+    if (isFinite(value)) {
+      return Math.min(max, Math.max(min, value));
+    } else {
+      console.warn(`${value} is not finite`);
+    }
+  };
+};
 
-export const testPredictions = writable(null);
-
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
-  return !!$trainedModel; //존재여부 확인(!!)
-});
+export const parseFloat32Array = function (arr) {
+  if (!Array.isArray(arr) && typeof arr === "object" && arr[0] !== undefined) {
+    const newArr = [];
+    Object.keys(arr).forEach((k) => (newArr[k] = arr[k]));
+    return new Float32Array(newArr);
+  } else {
+    arr = arr.map((v) => parseFloat32Array(v));
+  }
+  return arr;
+};

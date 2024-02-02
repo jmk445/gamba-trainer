@@ -17,11 +17,34 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import { writable, derived } from "svelte/store";
-import { trainedModel } from "../train/store";
+import { get, writable } from "svelte/store";
 
-export const testPredictions = writable(null);
+export default function (initial, validStates) {
+  const store = writable(initial);
+  const { subscribe, set, update } = store;
 
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
-  return !!$trainedModel; //존재여부 확인(!!)
-});
+  subscribe((v) => {
+    if (!validStates.includes(v)) {
+      throw new Error(
+        `Invalid state set (${v}). Valid states are: ${validStates.join(", ")}`
+      );
+    }
+  });
+
+  const compare = (state) => {
+    if (!validStates.includes(state)) {
+      throw new Error(
+        `Invalid state check (${state}). Valid states are: ${validStates.join(
+          ", "
+        )}`
+      );
+    }
+    return state === get(store);
+  };
+  return {
+    subscribe,
+    set,
+    update,
+    compare,
+  };
+}

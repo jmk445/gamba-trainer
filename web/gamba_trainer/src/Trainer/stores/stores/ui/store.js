@@ -17,11 +17,35 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import { writable, derived } from "svelte/store";
-import { trainedModel } from "../train/store";
+import { derived, readable, writable } from "svelte/store";
+import { isLoaded as isTrainLoaded } from "../train/store";
 
-export const testPredictions = writable(null);
+export const imuDataColors = readable([
+  "#f94144",
+  "#f8961e",
+  "#f9c74f",
+  "#43aa8b",
+  "#577590",
+  "#277da1",
+  "#ef476f",
+  "#118ab2",
+  "#06d6a0",
+  "#f15bb5",
+  "#9b5de5",
+  "#00f5d4",
+]);
 
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
-  return !!$trainedModel; //존재여부 확인(!!)
+// add anything else that requires loading here
+export const isFullyLoaded = derived([isTrainLoaded], ([$isTrainLoaded]) => {
+  return $isTrainLoaded;
 });
+
+export const promptStack = writable(null);
+
+export const hasShownConnectPrompt = writable(false);
+
+export const sketchFileUrl = readable(
+  "https://github.com/googlecreativelab/tf4micro-motion-kit/releases/latest"
+);
+
+export const errorStack = writable([]);

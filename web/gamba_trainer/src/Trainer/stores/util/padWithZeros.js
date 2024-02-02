@@ -17,11 +17,7 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import { writable, derived } from "svelte/store";
-import { trainedModel } from "../train/store";
-
-export const testPredictions = writable(null);
-
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
-  return !!$trainedModel; //존재여부 확인(!!)
-});
+export default function padWithZeros(num, pad) {
+  pad = Math.max(pad, ("" + num).length);
+  return (new Array(pad).fill("0").join("") + num).slice(-pad);
+}

@@ -17,11 +17,15 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import { writable, derived } from "svelte/store";
-import { trainedModel } from "../train/store";
+import { readable } from "svelte/store";
 
-export const testPredictions = writable(null);
-
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
-  return !!$trainedModel; //존재여부 확인(!!)
+export const currentRoute = readable(null, () => {
+  console.log("start listening!");
+  const handlePopState = (event) => {
+    console.log(event);
+  };
+  window.addEventListener("popstate", handlePopState);
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
 });

@@ -17,9 +17,9 @@ import * as tf from "@tensorflow/tfjs";
 import { get } from "svelte/store";
 
 import { arduinoTemplateVersion } from "../version";
-import getDateString from "@motion/util/getDateString";
-import { shuffleAndSplitDataSet } from "@motion/util/datasetUtils";
-import downloadBlob from "@motion/util/downloadBlob";
+import getDateString from "../util/getDateString";
+import { shuffleAndSplitDataSet } from "../util/datasetUtils";
+import downloadBlob from "../util/downloadBlob";
 
 import { removeTrainedModel } from "./train/actions";
 import persistStore from "./utils/persistStore";

@@ -19,26 +19,51 @@ limitations under the License.
 -->
 <script>
     import { onMount, onDestroy } from "svelte";
-    import {
-        connect,
-        disconnect,
-    } from "@motion/stores/bleInterfaceStore/actions";
-    import { isConnected } from "@motion/stores/bleInterfaceStore/store";
+    import { writable } from "svelte/store";
+
+    // import { isConnected } from "@motion/stores/bleInterfaceStore/store";
     import DropDown from "../../../general/DropDown.svelte";
     import ClearAllPrompt from "../../../general/prompts/ClearAllPrompt.svelte";
-    
+
     import {
         saveFile,
         loadFile,
         saveFileAs,
     } from "../../../Trainer/src_motion/stores/file/actions";
+
     import HelpPrompt from "../../../general/prompts/HelpPrompt.svelte";
+    import { getTrainerADD } from "../../stores/actions";
+    import { isConnected } from "../../src_motion/stores/bleInterfaceStore/store";
 
     let dropDownVisible;
     let showClearAllPrompt = false;
     let showHelpPrompt = false;
     let connectionClass = "red";
     let interval;
+
+    let trainer;
+    let bleModuleAction, bleModuleStore;
+
+    let isConnected_ = writable ();
+    //동적 import
+    onMount(async () => {
+        trainer = await getTrainerADD();
+        console.log("executed first : " + trainer);
+        
+        import(`../../src_${trainer}/stores/bleInterfaceStore/actions`).then(
+            (module) => {
+                bleModuleAction = module;
+            },
+        );
+
+        import(`../../src_${trainer}/stores/bleInterfaceStore/store`).then(
+            (module) => {
+                bleModuleStore = module;
+                isConnected_ = module.isConnected;
+            },
+        );
+        
+    });
 
     onMount(() => {
         connectionUpdate();
@@ -53,8 +78,9 @@ limitations under the License.
     });
 
     function connectionUpdate() {
+        isConnected_ = bleModuleStore.isConnected;
         const connection = document.getElementById("connection");
-        if ($isConnected) {
+        if ($isConnected_) {
             connectionClass = "green";
             connection.innerText = strAsset.navOneA;
         } else {
@@ -89,10 +115,10 @@ limitations under the License.
     }
 
     function handleConnect() {
-        if ($isConnected) {
-            disconnect();
+        if ($isConnected_) {
+            bleModuleAction.disconnect();
         } else {
-            connect();
+            bleModuleAction.connect();
         }
     }
 
@@ -120,7 +146,7 @@ limitations under the License.
         navFour: "재시작",
         navFive: "도움말",
         navTwoA: "프로젝트 저장",
-        navTwoB: "다른 이름으로 프로젝트 저장"
+        navTwoB: "다른 이름으로 프로젝트 저장",
     };
 </script>
 
@@ -140,8 +166,8 @@ limitations under the License.
             {#if dropDownVisible === "save"}
                 <DropDown
                     options={[
-                        { label: (strAsset.navTwoA), value: "save" },
-                        { label: (strAsset.navTwoB), value: "save-as" },
+                        { label: strAsset.navTwoA, value: "save" },
+                        { label: strAsset.navTwoB, value: "save-as" },
                     ]}
                     onSelect={handleSaveSelect}
                     selector=".menu-item-save"
@@ -182,7 +208,6 @@ limitations under the License.
         li {
             display: inline-block;
             margin-left: 32px;
-
         }
     }
     .dot {
