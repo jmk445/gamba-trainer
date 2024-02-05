@@ -38,7 +38,7 @@ import { pushErrorMessage } from "./ui/actions";
 
 import {tfliteModelBlob,blob} from "../stores/convert/store";
 import { saveTflite } from "./convert/actions";
-export function clearPersistantStorageMotion() {
+export function clearPersistantStorage() {
   persistStore.reset();
   removeTrainedModel();
 }
