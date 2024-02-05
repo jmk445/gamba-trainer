@@ -24,14 +24,7 @@ export const fileDirty = derived(dirty, ($dirty) => $dirty);
 
 export const fileHandle = writable(null);
 
-//derived 를 통해 다른 store에 기초되는 값을 가지는 store를 만들 수 있다.
-//hasFile의 경우 writable 인 fileHandle에 기초하고 있다.
 export const hasFile = derived(fileHandle, ($fileHandle) => {
-  //$ 를 통해 매개 변수 형태로 가져와서 출력 가능하다.
-  // !!를 통해 bool 값으로 강제 변환된다.
-  //즉 hasFile은 fileHandle을 bool형태로 리턴하는 함수
-  console.log(!!$fileHandle) //This has to be deleted
-
   return !!$fileHandle;
 });
 

@@ -15,14 +15,13 @@ limitations under the License.
 
 /**
  * @autor Rikard Lindstrom <rlindstrom@google.com>
-*/
+ */
 
 import { derived, get, readable } from "svelte/store";
 import * as bleApi from "motion-tf4micro-motion-kit/api";
 import persistStore from "@motion/stores/utils/persistStore";
 
 export const isConnected = readable(false, (set) => {
-  console.log("enterd");
   function handleConnected() {
     set(true);
   }

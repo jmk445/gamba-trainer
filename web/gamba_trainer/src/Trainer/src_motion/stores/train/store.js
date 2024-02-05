@@ -59,25 +59,17 @@ export const trainLogAccuracy = persistStore("train.log.accurcay", {
   validation: [],
 });
 
-
 export const trainLogLoss = persistStore("train.log.loss", {
   train: [],
   validation: [],
 });
 
 export const trainedModel = writable(null);
-export const tfLiteModel = writable(null);
 
-export const existTrainedModel = derived(
-  trainedModel,
-  ($trainedModel)=>{
-    return !!$trainedModel;
-  }
-)
 
 //derived의 첫번째인자: store, 두번째인자: 스토어가 변경될 때 실행되는 함수
 //train 항목을 열수 있는지 확인하는 변수(라벨수가 2개 이상이고, 각 라벨당 레코딩이 3개이상)
-export const trainIsUnlockedMotion = derived(
+export const trainIsUnlocked = derived(
   [recordings, labels],
   ([$recordings, $labels]) => {
     let unlocked = $labels.length >= 2;
@@ -86,7 +78,7 @@ export const trainIsUnlockedMotion = derived(
       if (!$recordings[index] || $recordings[index].length < 3) {
         unlocked = false;
       }
-    });
+    });    
     return unlocked;
   }
 );
@@ -109,7 +101,6 @@ trainedModel.subscribe(async (model) => {
     }
   }
 });
-
 
 async function loadTrainedModel() {
   try {

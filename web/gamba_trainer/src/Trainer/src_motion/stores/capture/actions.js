@@ -18,46 +18,23 @@ limitations under the License.
  */
 
 import { get } from "svelte/store";
-import { labels, labelsCount, recordings, armedLabelIndex, captureState } from "./store";
+import { labels, recordings, armedLabelIndex, captureState } from "./store";
 import * as captureSettings from "../captureSettings/store";
 
 import IMUCapturer from "@motion/util/IMUCapturer";
 import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 
-
-
-export function addLabel(labelName) {
+export function addLabel(label) {
   labels.update(($labels) => {
-    //label 개수 제한(10개)
-    if($labels.length > 10){
-      throw new Error(`label cnt should be under 10`);
+    if ($labels.includes(label)) {
+      throw new Error(`${label} already exists`);
     }
-    //label 길이 제한(20자)
-    if(labelName.length > 20){
-      throw new Error(`label length should be under 20`)
-    }    
-    //label의 중복된 이름 제한
-    if ($labels.includes(labelName)) {
-      throw new Error(`${labelName} already exists`);
-    }
-    
-    //이전 label에서 새로운 label을 추가하여 새로운 배열을 반환.
-    return [...$labels, labelName];        
+    return [...$labels, label];
   });
-  
-  // labelsCount.update(($labelsCount) => {
-  //   return ($labelsCount + 1);
-  // })
   recordings.update(($recordings) => [...$recordings, []]);
 }
 
-// export function getLabelCnt(){
-//   console.log(labels.getCnt());
-//   return labels.getCnt();  
-// }
-
-//label을 삭제할 때 실행되는 함수, recordings들도 같이 삭제됨.
 export function removeLabel(index) {
   console.log("remove");
   recordings.update(($recordings) => {
@@ -73,9 +50,7 @@ export function removeLabel(index) {
   });
 }
 
-//label 안에서 특정 recording을 삭제하려고 할때 실행되는 함수
 export function removeRecording(labelIndex, recordingIndex) {
-  console.log("removed recordings")
   recordings.update(($recordings) => {
     $recordings[labelIndex] = $recordings[labelIndex].filter(
       (_, index) => index !== recordingIndex
@@ -129,7 +104,7 @@ export async function beginRecording() {
   if (!get(isConnected)) {
     await connect();
   }
-  console.log("beginned recordings")
+
   await setImuDataMode();
 
   const labelIndex = get(armedLabelIndex);

@@ -76,7 +76,7 @@ export const trainedModel = writable(null);
 
 //derived의 첫번째인자: store, 두번째인자: 스토어가 변경될 때 실행되는 함수
 //train 항목을 열수 있는지 확인하는 변수(라벨수가 2개 이상이고, 각 라벨당 레코딩이 3개이상)
-export const trainIsUnlockedSpeech = derived(
+export const trainIsUnlocked = derived(
   [recordings, labels],
   ([$recordings, $labels]) => {
     let unlocked = $labels.length >= 2;

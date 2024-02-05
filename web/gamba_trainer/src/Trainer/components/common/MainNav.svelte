@@ -19,17 +19,30 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  import { testIsUnlockedMotion } from "../../src_motion/stores/test/store";
-  import { trainIsUnlockedMotion } from "../../src_motion/stores/train/store";
-  import { trainIsUnlockedSpeech } from "../../src_speech/stores/train/store";
-  import { testIsUnlockedSpeech } from "../../src_speech/stores/train/store";
+  
   import { FromPixels } from "@tensorflow/tfjs";
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
+  import { writable } from "svelte/store";
 
   let trainer;
+  let trainStore, testStore;
+  let trainIsUnlocked = writable();
+  let testIsUnlocked = writable();
+  
   onMount(async () => {
     trainer = await getTrainerADD();
+
+    await import(`../../src_${trainer}/stores/train/store`).then((module) => {
+      trainStore = module;
+      trainIsUnlocked = trainStore.trainIsUnlocked;
+    });
+
+    await import(`../../src_${trainer}/stores/test/store`).then((module) => {
+      testStore = module;
+      testIsUnlocked = testStore.testIsUnlocked;
+    
+    });
   });
 
   const strAsset = {
@@ -41,9 +54,6 @@ limitations under the License.
   };
 </script>
 
-<!-- {#if trainer}
-<p>Current Value: {getTrainer()}</p>
-{/if} -->
 <div class="train-nav nav">
   <ul>
     <li
@@ -61,45 +71,23 @@ limitations under the License.
     >
       <Link to="/{trainer}-capture">{strAsset.navTwo}</Link>
     </li>
-    {#if trainer == "motion"}
-      <li
-        class:active={location.pathname.includes(
-          BASE_PATH + `/${trainer}-train`,
-        )}
-        class:disabled={!$trainIsUnlockedMotion}
-        aria-disabled={!$trainIsUnlockedMotion}
-      >
-        <Link to="/{trainer}-train">{strAsset.navThree}</Link>
-      </li>
 
-      <li
-        class:active={location.pathname.includes(BASE_PATH + `/{trainer}-test`)}
-        class:disabled={!$testIsUnlockedMotion}
-        aria-disabled={!$testIsUnlockedMotion}
-      >
-        <Link to="/{trainer}-test">{strAsset.navFour}</Link>
-      </li>
-    {/if}
+    <li
+      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-train`)}
+      class:disabled={!$trainIsUnlocked}
+      aria-disabled={!$trainIsUnlocked}      
+    >
+    
+      <Link to="/{trainer}-train">{strAsset.navThree}</Link>
+    </li>
 
-    {#if trainer == "speech"}
-      <li
-        class:active={location.pathname.includes(
-          BASE_PATH + `/{trainer}-train`,
-        )}
-        class:disabled={!$trainIsUnlockedSpeech}
-        aria-disabled={!$trainIsUnlockedSpeech}
-      >
-        <Link to="/{trainer}-train">{strAsset.navThree}</Link>
-      </li>
-
-      <li
-        class:active={location.pathname.includes(BASE_PATH + `/{trainer}-test`)}
-        class:disabled={!$testIsUnlockedSpeech}
-        aria-disabled={!$testIsUnlockedSpeech}
-      >
-        <Link to="/{trainer}-test">{strAsset.navFour}</Link>
-      </li>
-    {/if}
+    <li
+      class:active={location.pathname.includes(BASE_PATH + `/{trainer}-test`)}
+      class:disabled={!$testIsUnlocked}
+      aria-disabled={!$testIsUnlocked}        
+    >    
+      <Link to="/{trainer}-test">{strAsset.navFour}</Link>
+    </li>
 
     <li
       class:active={location.pathname.includes(

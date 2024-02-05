@@ -22,6 +22,6 @@ import { trainedModel } from "../train/store";
 
 export const testPredictions = writable(null);
 
-export const testIsUnlockedMotion = derived(trainedModel, ($trainedModel) => {
+export const testIsUnlocked = derived(trainedModel, ($trainedModel) => {
   return !!$trainedModel; //존재여부 확인(!!)
 });

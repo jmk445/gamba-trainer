@@ -19,8 +19,8 @@ limitations under the License.
 -->
 <script>
   import { navigate } from "svelte-routing";
-  import { clearPersistantStorageMotion } from "@motion/stores/aggregatedActions";
-  import { clearPersistantStorageSpeech } from "@speech/stores/aggregatedActions";
+  // import { clearPersistantStorageMotion } from "@motion/stores/aggregatedActions";
+  // import { clearPersistantStorageSpeech } from "@speech/stores/aggregatedActions";
   import Prompt from "./Prompt.svelte";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
   import { onMount } from "svelte";
@@ -29,21 +29,34 @@ limitations under the License.
   export let onClose = () => {};
 
   let trainer;
-  onMount(() => {
-    trainer = getTrainerADD();
+  let aggregatedActions;
+  onMount(async () => {
+    trainer = await getTrainerADD();
+    console.log("1 " + trainer);
+    await import(`../../Trainer/src_${trainer}/stores/aggregatedActions`).then(
+      (module) => {
+        aggregatedActions = module;
+        console.log("2 " + trainer);
+      },
+    );
   });
 
   function handleClearAll() {
-    if (trainer == "motion") {
-      clearPersistantStorageMotion();
+    // if (trainer == "motion") {
+    //   clearPersistantStorageMotion();
+    //   console.log("hello");
+    //   onClose();
+    //   navigate("motion-settings", { replace: true });
+    // } else if (trainer == "speech") {
+    //   clearPersistantStorageSpeech();
+    //   onClose();
+    //   navigate("speech-settings", { replace: true });
+    // }
+      aggregatedActions.clearPersistantStorage();
       onClose();
-      navigate("motion-settings", { replace: true });
-    }else if(trainer == "speech"){
-      clearPersistantStorageSpeech();
-      onClose();
-      navigate("speech-settings", { replace: true });
-    }
+      navigate(`/${trainer}-settings`, {replace: false });
   }
+  
   const strAsset = {
     promptTitle: "Start Over",
     promptDesc:

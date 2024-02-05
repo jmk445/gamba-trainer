@@ -36,7 +36,7 @@ import downloadText from "../util/downloadText";
 import { addRecording } from "./capture/actions";
 import { pushErrorMessage } from "./ui/actions";
 
-export function clearPersistantStorageSpeech() {
+export function clearPersistantStorage() {
   persistStore.reset();
   removeTrainedModel();
 }
