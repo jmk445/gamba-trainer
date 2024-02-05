@@ -20,8 +20,7 @@ export function getTrainerADD() {
                 const result = event.target.result;
                 if (result) {
                     // trainerADD = result;
-                    // trainer_.set(result);   
-                    console.log("trainer add get successed");
+                    // trainer_.set(result);                       
                     resolve(result);                 
                     // return (result);
                     // console.log("current trainer mode :" + trainer);

@@ -25,7 +25,8 @@ export default function (p5) {
   let x;
   let y;
   let d = 0;
-  let wave_text = 10;
+  let wave_text_op = 10;
+  let wave_text = " wave your finger ";
   let sc = 0;
   let leftSound, rightSound, poke, pluck, twirl;
   // let drums = [];
@@ -52,15 +53,17 @@ export default function (p5) {
   };
 
   p5.draw = function () {
-    p5.background(r, g, b, 5);
+    
+    p5.background(r, g, b,5);
     p5.noStroke();
 
     p5.push();
-    p5.fill(255, wave_text);
-    p5.textSize(20);
+    p5.fill(255, wave_text_op);
+    p5.strokeWeight(3);
+    p5.textSize(32);
     p5.textFont("Roboto+Mono");
     p5.textAlign(p5.CENTER);
-    p5.text(" wave your finger ", p5.width * 0.5, p5.height * 0.5);
+    p5.text(wave_text, p5.width * 0.5, p5.height * 0.5);
     p5.pop();
   };
 
@@ -75,24 +78,18 @@ export default function (p5) {
     r = 23;
     g = 114;
     b = 250;
-    sc = 255;
-    wave_text = 0;
-
-    p5.push();
+    // sc = 255;
+    // wave_text_op = 0;
+    wave_text = "L E F T"
+    p5.background(r, g, b);
+    // p5.push();
     p5.fill(224, 155, 11);
     p5.ellipse(x, y - 300, 300, 300);
     p5.ellipse(x, y, 150);
     p5.ellipse(x, y + 300, 300, 300);
-    p5.pop();
+    // p5.pop();
 
     // leftSound.play();
-    p5.push();
-    p5.textSize(16);
-    p5.fill(255);
-    p5.textFont("Roboto+Mono");
-    p5.textAlign(p5.RIGHT);
-    p5.text("L E F T", p5.width - 40, 51);
-    p5.pop();
   }
 
   //RIGHT KEY
@@ -100,27 +97,20 @@ export default function (p5) {
     r = 224;
     g = 155;
     b = 11;
-    sc = 255;
-    wave_text = 0;
-
-
-    p5.push();
+    // sc = 255;
+    // wave_text_op = 0;
+    wave_text = "R I G H T"
+    
+    p5.background(r, g, b);
+    // p5.push();
     p5.fill(195, 184, 245);
     p5.ellipse(x - 300, y, 100, 100);
     p5.ellipse(x - 150, y, 100, 100);
     p5.ellipse(x, y, 100, 100);
     p5.ellipse(x + 150, y, 100, 100);
     p5.ellipse(x + 300, y, 100, 100);
-    p5.pop();
+    // p5.pop();
     // rightSound.play();
-
-    p5.push();
-    p5.textSize(16);
-    p5.fill(255);
-    p5.textFont("Roboto+Mono");
-    p5.textAlign(p5.RIGHT);
-    p5.text("R I G H T", p5.width - 40, 71);
-    p5.pop();
   }
 
   //DOWN KEY
@@ -128,42 +118,36 @@ export default function (p5) {
     r = 195;
     g = 184;
     b = 245;
-    sc = 255;
-    wave_text = 0;
+    // sc = 255;
+    // wave_text_op = 0;
+    wave_text = "P O K E"
 
+    p5.background(r, g, b);
     p5.push();
     p5.fill(134, 224, 163);
     p5.ellipse(x, y, 600, 600);
     p5.pop();
 
-    p5.push();
+    // p5.push();
     p5.fill(195, 184, 245);
     p5.ellipse(x, y, 500, 500);
-    p5.pop();
+    // p5.pop();
 
-    p5.push();
+    // p5.push();
     p5.fill(134, 224, 163);
     p5.ellipse(x, y, 400, 400);
-    p5.pop();
+    // p5.pop();
 
-    p5.push();
+    // p5.push();
     p5.fill(195, 184, 245);
     p5.ellipse(x, y, 300, 300);
-    p5.pop();
+    // p5.pop();
 
-    p5.push();
+    // p5.push();
     p5.fill(134, 224, 163);
     p5.ellipse(x, y, 200, 200);
-    p5.pop();
+    // p5.pop();
     // poke.play();
-
-    p5.push();
-    p5.textSize(16);
-    p5.fill(255);
-    p5.textFont("Roboto+Mono");
-    p5.textAlign(p5.RIGHT);
-    p5.text("P O K E", p5.width - 40, 91);
-    p5.pop();
   }
 
   //A KEY
@@ -171,52 +155,46 @@ export default function (p5) {
     r = 134;
     g = 224;
     b = 163;
-    sc = 255;
-    wave_text = 0;
-
-
-
-    p5.push();
+    // sc = 255;
+    // wave_text_op = 0;
+    wave_text = "T W I R L"
+    
+    p5.background(r, g, b);
+    // p5.push();
     p5.fill(g, b, b);
     p5.ellipse(x, y, 900);
-    p5.pop();
-    p5.push();
+    // p5.pop();
+    // p5.push();
     p5.fill(250, 75, 67);
     p5.ellipse(x - x / 2, y - y / 2, 200, 200);
     p5.ellipse(x - x / 2, y + y / 2, 400, 400);
     p5.ellipse(x + x / 2, y + y / 2, 200, 200);
     p5.ellipse(x + x / 2, y - y / 2, 400, 400);
-    p5.pop();
+    // p5.pop();
 
     // twirl.play();
-
-    p5.push();
-    p5.textSize(16);
-    p5.fill(255);
-    p5.textFont("Roboto+Mono");
-    p5.textAlign(p5.RIGHT);
-    p5.text("T W I R L", p5.width - 40, 111);
-    p5.pop();
   }
   //UP KEY
   function pluck_gesture() {
     r = 250;
     g = 75;
     b = 67;
-    wave_text = 0;
-    sc = 255;
-
-    p5.push();
+    // wave_text_op = 0;
+    wave_text = "P L U C K"
+    // sc = 255;
+    
+    p5.background(r, g, b);
+    // p5.push();
     p5.fill(23, 114, 250);
     p5.ellipse(x - x / 2, y, 500, 500);
     p5.ellipse(x + x / 2, y, 500, 500);
-    p5.pop();
+    // p5.pop();
 
-    p5.push();
+    // p5.push();
     p5.fill(r, g, b);
     p5.ellipse(x - x / 2, y - y / 4, 200);
     p5.ellipse(x + x / 2, y + y / 4, 200);
-    p5.pop();
+    // p5.pop();
     // pluck.play();
 
     // if (drums[d].isPlaying()) {
@@ -228,14 +206,6 @@ export default function (p5) {
     // }
 
     // drums[d].loop();
-
-    p5.push();
-    p5.textSize(16);
-    p5.fill(255);
-    p5.textFont("Roboto+Mono");
-    p5.textAlign(p5.RIGHT);
-    p5.text("P L U C K", p5.width - 40, 131);
-    p5.pop();
   }
 
   //Try application with keyboard

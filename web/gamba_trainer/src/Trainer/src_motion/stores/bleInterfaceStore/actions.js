@@ -18,15 +18,12 @@ limitations under the License.
  */
 
 import { writable, get } from "svelte/store";
-// import * as bleApi from "../../tf4micro-motion-kit/api";
 import * as bleApi from "motion-tf4micro-motion-kit/api";
 
 const sketchState = writable("unknown");
 
 export async function connect() {
-  console.log("ble connect required")
   await bleApi.connect();
-  
   if (get(sketchState) !== "unknown") {
     try {
       await bleApi.setState(get(sketchState));

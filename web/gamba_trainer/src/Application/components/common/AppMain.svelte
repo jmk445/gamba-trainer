@@ -28,9 +28,16 @@ limitations under the License.
 <!-- <h1>3st</h1> -->
 <header>
   <SubBanner title={bannerTitle}/>
-  <AppMainNav appName={appName}/> 
+  
 </header>
+<nav><AppMainNav appName={appName}/></nav>
 <!-- <h1>3st</h1> -->
 <main class="section" aria-live="polite">
   <slot/>
 </main>
+
+<style lang="scss">
+main{
+  margin-bottom: 10px;
+}
+</style>

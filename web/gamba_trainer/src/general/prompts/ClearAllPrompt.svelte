@@ -19,22 +19,52 @@ limitations under the License.
 -->
 <script>
   import { navigate } from "svelte-routing";
-  import { clearPersistantStorage } from "@motion/stores/aggregatedActions";
+  // import { clearPersistantStorageMotion } from "@motion/stores/aggregatedActions";
+  // import { clearPersistantStorageSpeech } from "@speech/stores/aggregatedActions";
   import Prompt from "./Prompt.svelte";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
+  import { onMount } from "svelte";
+  import { getTrainerADD } from "../../Trainer/stores/actions";
 
   export let onClose = () => {};
+
+  let trainer;
+  let aggregatedActions;
+  onMount(async () => {
+    trainer = await getTrainerADD();
+    console.log("1 " + trainer);
+    await import(`../../Trainer/src_${trainer}/stores/aggregatedActions`).then(
+      (module) => {
+        aggregatedActions = module;
+        console.log("2 " + trainer);
+      },
+    );
+  });
+
   function handleClearAll() {
-    clearPersistantStorage();
-    onClose();
-    navigate("motion-settings", { replace: true });
+    // if (trainer == "motion") {
+    //   clearPersistantStorageMotion();
+    //   console.log("hello");
+    //   onClose();
+    //   navigate("motion-settings", { replace: true });
+    // } else if (trainer == "speech") {
+    //   clearPersistantStorageSpeech();
+    //   onClose();
+    //   navigate("speech-settings", { replace: true });
+    // }
+      aggregatedActions.clearPersistantStorage();
+      onClose();
+      console.log("this should be sustained");
+      navigate(`/${trainer}-settings`, {replace: false });
   }
-  const strAsset={
-    promptTitle : "Start Over",
-    promptDesc : "현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?",
-    promptNo : "아니요",
-    promptYes : "예"
-  }
+  
+  const strAsset = {
+    promptTitle: "Start Over",
+    promptDesc:
+      "현재까지의 진행상황을 초기화하고 처음부터 다시 진행하시겠습니까?",
+    promptNo: "아니요",
+    promptYes: "예",
+  };
 </script>
 
 <Prompt title={strAsset.promptTitle} closePrompt={onClose}>

@@ -2,7 +2,7 @@
     import { Link } from "svelte-routing";
     import logoPng from "@assets/icons/Symbol_RGB.png";
     import { exp } from "@tensorflow/tfjs";
-    export let titleIcon;
+    export let icTitle;
     export let title;
     export let altTxt;
     export let appTitle = "";
@@ -16,7 +16,7 @@
             </Link>
         </div>
         <div class="title">
-            <img class="title-icon" src={titleIcon} alt={altTxt} />
+            <img class="title-icon" src={icTitle} alt={altTxt} />
             <div class="title-container">
                 <h1>{title}</h1>
                 <span>{appTitle}</span>

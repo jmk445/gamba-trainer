@@ -32,6 +32,7 @@ h2,
 h3 {
   line-height: 1.2;
   letter-spacing: 1.2;
+  word-break: keep-all;
 }
 
 button {
@@ -65,7 +66,6 @@ button {
   // @extend .subhead-1;
 
   // transition: transform 0.25s;
-
 
   .icon {
     margin-left: -6px;
@@ -115,9 +115,11 @@ button {
   }
   &:hover{
     background-color: $color-lightsky;
-    border: 1px solid $color-btn-hover-blue;
-    color: black;
   }
+  &:active{
+    background-color: $color-btn-active-blue;
+  }
+
 
 }
 .btn-fill{
@@ -133,7 +135,9 @@ button {
   }
   &:hover{
     background-color: $color-btn-hover-blue;
-    color: white;
+  }
+  &:active{
+    background-color: $color-nav-blue;
   }
 }
 
@@ -183,7 +187,11 @@ button {
 .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
   background-color: $color-deepblue;
 }
-
+nav {
+  position: sticky;
+  top: 10px;
+  z-index: 1;
+}
 .nav {
   // height: 64px;
   margin-bottom: 72px;
@@ -239,6 +247,6 @@ button {
   border-radius: 50px;
 }
 
-main {
-  margin-bottom: 100px;
+main, .main {
+  margin-bottom: 128px;
 }

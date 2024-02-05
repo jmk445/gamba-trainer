@@ -15,7 +15,7 @@ limitations under the License.
 
 /**
  * @autor Rikard Lindstrom <rlindstrom@google.com>
-*/
+ */
 
 import { derived, get, readable } from "svelte/store";
 import * as bleApi from "motion-tf4micro-motion-kit/api";
