@@ -8,18 +8,23 @@
 
   import NumberInput from "../../../../general/NumberInput.svelte";
   const strAsset = {
-    epochs : "Epochs",
-    checkEarly : "early stopping 사용",
-    inputMax : "회 성능개선이 없을 경우 중단",
-    inputMin : "최소 정확도"
-  }
+    epochs: "Epochs",
+    checkEarly: "early stopping 사용",
+    inputMax: "회 성능개선이 없을 경우 중단",
+    inputMin: "최소 정확도",
+    toolTip: "모델이 일정한 수준으로 교육되면, 모델 교육을 일찍 마칩니다.",
+  };
 </script>
 
-<CheckboxInput
-  name="input_early_stopping_motion"
-  bind:value={$trainEarlyStopping}
-/><label class="subhead-1" for="input_early_stopping_motion">{strAsset.checkEarly}</label>
-
+<div class="check-box row">
+  <span class="tool-tip">{strAsset.toolTip}</span>
+  <CheckboxInput
+    name="input_early_stopping_motion"
+    bind:value={$trainEarlyStopping}
+  /><label class="subhead-1" for="input_early_stopping_motion"
+    >{strAsset.checkEarly}</label
+  >
+</div>
 {#if $trainEarlyStopping}
   <div class="input-container">
     <NumberInput
@@ -28,7 +33,9 @@
       label="Number of epochs before stopping"
       bind:value={$trainEarlyStoppingMaxEpochsWithoutImprovement}
       min={1}
-    /><label class="subhead-1" for="early_stopping_epochs">{strAsset.epochs}</label>
+    /><label class="subhead-1" for="early_stopping_epochs"
+      >{strAsset.epochs}</label
+    >
     <span class="helper-text notation-text">{strAsset.inputMax}</span>
   </div>
   <div class="input-container">
@@ -56,5 +63,26 @@
     position: absolute;
     left: 0;
     bottom: -1.24rem;
+  }
+
+  .check-box {
+    position: relative;
+  }
+  .tool-tip {
+    display: none;
+    position: absolute;
+    top: 40px;
+    border-radius: 8px;
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+    padding: 8px;
+    word-break: keep-all;
+    font-weight: 400;
+    font-size: 0.875rem;
+    width: 352px;
+  }
+  .check-box:hover .tool-tip {
+    display: block;
   }
 </style>

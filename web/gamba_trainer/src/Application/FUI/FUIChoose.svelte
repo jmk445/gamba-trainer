@@ -1,12 +1,21 @@
 <script>
-    import AppMain from "../common/AppMain.svelte";
-    import Description from "../../common/Description.svelte";
+    import AppMain from "../components/common/AppMain.svelte";
+    import Description from "../../components/common/Description.svelte";
     import {
         handleSendModel,
         handleFileInput,
     } from "./stores/tf4micro-motion-kit copy.js";
 
     let fileInput$1 = 0;
+
+    //텍스트 띄우는 용도
+    let isStart = false;
+    let isErrorStart = false;
+    let isSelect = false;
+    let isErrorSelect = false;
+    let isSend = false;
+
+
     function handleButtonClick() {                
         fileInput$1.click();        
     }
@@ -50,6 +59,7 @@
         handleSendModel(fromIDB);
     }
     const strAsset = {
+        bannerTitle : "FUI",
         selectTitle : "모델 선택 및 전송",
         selectDesc : 'TF4Micro 모션 키트는 저전력 블루투스를 통해 본 웹사이트와 소통하므로 무선 경험을 할 수 있습니다. 첫째, "학습하기"를 통해 구체적인 제스처를 학습하고 모델을 다운로드합니다. 둘째, 저장된 모델에 .tflite 확장자를 로드하고 "전송" 버튼을 클릭하여 모델을 ESP32s3 보드로 전송합니다.',
         stepOne : "1. Kit 모델 확인",
@@ -63,11 +73,15 @@
         btnModel : "모델 선택",
         btnAppModel : "TinyML예제 모델 선택",
         btnSend : "전송",
-        captionSend : "전송이 완료되었습니다."
+        finStart : "호환되는 모델이 있습니다.",
+        errorStart : "호환되는 모델이 없습니다.",
+        finSelect : "호환되는 모델을 선택하였습니다.",
+        errorSelect : "호환되지 않는 모델입니다. 다시 선택해주세요.",
+        finSend : "전송이 완료되었습니다."
     }
 </script>
 
-<AppMain bannerTitle="FUI(Finger User Interface)" appName="fui">
+<AppMain bannerTitle={strAsset.bannerTitle} appName="fui">
     <div class="model-choose-container">
         <Description
             title={strAsset.selectTitle}
@@ -75,11 +89,17 @@
         />
         <div class="confirm-model-container">
             <h2>{strAsset.stepOne}</h2>
-            <p>{strAsset.stepOneDesc}</p>
-            <div class="btn-container">
+            <p class="desc">{strAsset.stepOneDesc}</p>
+            <div class="btn-container row">
                 <button class="btn-start btn-stroke" on:click={handleSendModelInterface$1}>{strAsset.btnStart}</button>
+                {#if isStart === true}
+                    <p class="fin-txt">{strAsset.finStart}</p>
+                {:else if isErrorStart === true}
+                    <p class="error-txt">{strAsset.errorStart}</p>
+                {/if}
                 <button class="btn-app btn-fill" disabled>
                     <img src="#"/>{strAsset.btnApp}</button>
+                    
             </div>
             <div id="myProgress" hidden>
                 <div id="myBar"></div>
@@ -87,19 +107,33 @@
         </div>
         <div class="choose-model-container">
             <h2>{strAsset.stepTwo}</h2>
-            <p>{strAsset.stepTwoDesc}</p>
-            <div class="btn-container">
+            <p class="desc">{strAsset.stepTwoDesc}</p>
+            <div class="btn-container row">
                 <button class="btn-select-model btn-stroke" on:click={handleButtonClick}>{strAsset.btnModel}</button>
                 <input type="file" style="display: none;" bind:this={fileInput$1} on:change={handleFileChange}/>
-                <button class="btn-ex btn-stroke"><img src="#"/>{strAsset.btnAppModel}</button>
+                <select class="btn-ex btn-stroke" name="model">
+                    <option value="default">{strAsset.btnAppModel}</option>
+                    <option value="one">1</option>
+                    <option value="two">2</option>
+                    <option value="three">3</option>
+                    <option value="four">4</option>
+
+                </select>
+                {#if isSelect === true}
+                    <p class="fin-txt">{strAsset.finSelect}</p>
+                {:else if isErrorSelect === true}
+                    <p class="error-txt">{strAsset.errorSelect}</p>
+                {/if}
             </div>
         </div>
         <div class="send-model-container">
             <h2>{strAsset.stepThree}</h2>
-            <p>{strAsset.stepThreeDesc}</p>
-            <div class="btn-container">
+            <p class="desc">{strAsset.stepThreeDesc}</p>
+            <div class="btn-container row">
                 <button class="btn-send btn-stroke" on:click={handleSendModelInterface}>{strAsset.btnSend}</button>
-                <!-- <span>{strAsset.captionSend}</span> -->
+                {#if isSend === true}
+                <p class="fin-txt">{strAsset.finSend}</p>
+                {/if}
             </div>
             <div class="myProgress" hidden>
                 <div class="myBar"></div>
@@ -109,17 +143,16 @@
 </AppMain>
 
 <style lang="scss">
-    .confirm-model-container p,
-    .choose-model-container p,
-    .send-model-container p {
-        
+    @import "@scss/vars";
+
+    .desc {        
         margin-bottom: 50px;
     }
     .btn-container {
         margin-bottom: 36px;
     }
     .btn-app {
-        float: right;
+        margin-left: auto;
     }
     .confirm-model-container,
     .choose-model-container,
@@ -128,5 +161,13 @@
     }
     .btn-select-model {
         margin-right: 24px;
+    }
+    .fin-txt{
+        margin-left: 12px;
+        color: $color-deepblue;
+    }
+    .error-txt{
+        margin-left: 12px;
+        color: red;
     }
 </style>

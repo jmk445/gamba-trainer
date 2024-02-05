@@ -25,7 +25,7 @@ limitations under the License.
     import { beginTesting, endTesting } from "@speech/stores/test/actions";
     import { testIsUnlocked, testPredictions } from "@speech/stores/test/store";
     import { isFullyLoaded } from "@speech/stores/ui/store";
-    import TrainerTest from "../../../common/TrainerTest.svelte";
+    import TrainerTest from "../../../components/common/TrainerTest.svelte";
     import LinearProgress from "../../../../general/LinearProgress.svelte";
     // import Description from "../../../../common/Description.svelte";
     onMount(async () => {

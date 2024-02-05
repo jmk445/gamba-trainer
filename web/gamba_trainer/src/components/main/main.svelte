@@ -2,7 +2,7 @@
 	import { Link } from "svelte-routing";
 	import HeroBanner from "./heroBanner.svelte";
 	import MainLinkModule from "./mainLinkModule.svelte";
-	import Footer from "../../common/footer.svelte";
+	import Footer from "../common/footer.svelte";
 
 	const strAsset = {
 		modeOneTitle : "트레이너",

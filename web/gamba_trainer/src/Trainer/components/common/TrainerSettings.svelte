@@ -19,13 +19,13 @@ limitations under the License.
 -->
 <script>
     import { onMount } from "svelte";
-    
-    import Description from "../../common/Description.svelte";
+    import { get } from "svelte/store";
+    import Description from "../../../components/common/Description.svelte";
     // import { connect } from "@motion/stores/bleInterfaceStore/actions";
     import {
         connect,
         setImuDataMode,
-    } from "../src_motion/stores/bleInterfaceStore/actions";
+    } from "../../src_motion/stores/bleInterfaceStore/actions";
     // import { setImuDataMode } from "../../stores/bleInterfaceStore/actions";
 
     // import { imuVelocity } from "../../stores/bleInterfaceStore/store";
@@ -39,10 +39,10 @@ limitations under the License.
 
     // import SettingsInput from "./SettingsInput.svelte";
     // import { hasRecordings } from "../../stores/capture/store";
-    // import { hasRecordings } from "../src_motion/stores/capture/store";
+    import { hasRecordings } from "../../src_motion/stores/capture/store";
     // import { clearRecordings } from "../../stores/capture/actions";
     // import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
-    
+    import ChangeAfterRecordPrompt from "../../src_motion/components/settings/ChangeAfterRecordPrompt.svelte";
 
     // import BleConnect from "./BleConnect.svelte";
 
@@ -184,9 +184,6 @@ limitations under the License.
         title={strAsset.modelSettingTitle}
         explanation={strAsset.modelSettingDesc}
     />
-    <div class="model-select-container">
-        <slot name="settings-model"/>
-    </div>
 </div>
 
 
@@ -209,5 +206,4 @@ limitations under the License.
             font-size: 0.875rem;
         }
     }
-
 </style>

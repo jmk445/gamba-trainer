@@ -79,7 +79,7 @@ export const dataLabels = persistStore("bleInterface.dataLabels", [
   "mag.y",
   "mag.z",
 ]);
-//아 이런건 안써도 되네....
+
 isConnected.subscribe(async ($isConnected) => {
   if ($isConnected) {
     const labels = await bleApi.readDataProviderLabels();

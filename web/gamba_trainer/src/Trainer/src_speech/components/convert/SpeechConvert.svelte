@@ -1,6 +1,6 @@
 <script>
     import arrowRight from "@assets/icons/arrow_right.png";
-    import TrainerConvert from "../../../common/TrainerConvert.svelte";
+    import TrainerConvert from "../../../components/common/TrainerConvert.svelte";
     // import { pushPropmt } from "../src_motion/stores/ui/actions";
     import { trainedModel } from "../../stores/ui/actions";
     import {

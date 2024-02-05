@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  https://www.apache.org/licenses/LICENSE-2.0
+https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,26 +18,31 @@ limitations under the License.
 */
 -->
 <script>
-  import { getContext, onMount } from "svelte";
-  import { trainerADD } from "../store/store";
+  import { getContext, onMount } from "svelte";  
 
-  import SubBanner from "../../common/SubBanner.svelte";
+  import SubBanner from "../../../components/common/SubBanner.svelte";
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";
 
-  import UnsavedProjectPrompt from "../../general/prompts/UnsavedProjectPrompt.svelte";
-  import LocalStorageFullPrompt from "../../general/prompts/LocalStorageFullPrompt.svelte";
-  import DownloadModelPrompt from "../../general/prompts/DownloadModelPrompt.svelte";
-  import motionIcon from "../../assets/img/ic_motion.svg";
-  import speechIcon from "../../assets/img/ic_speech.svg";
-  import visionIcon from "../../assets/img/ic_vision.svg";
+  import UnsavedProjectPrompt from "../../../general/prompts/UnsavedProjectPrompt.svelte";
+  import LocalStorageFullPrompt from "../../../general/prompts/LocalStorageFullPrompt.svelte";
+  import DownloadModelPrompt from "../../../general/prompts/DownloadModelPrompt.svelte";
+  import icMotion from "../../../assets/img/ic_motion.svg";
+  import icSpeech from "../../../assets/img/ic_speech.svg";
+  import icVision from "../../../assets/img/ic_vision.svg";
 
-  import { promptStack } from "../src_motion/stores/ui/store";
+  import { promptStack } from "../../src_motion/stores/ui/store";
   import {
     pushErrorMessage,
     pushPropmt,
-  } from "../src_motion/stores/ui/actions";
-  import persistStore, { dirty } from "../src_motion/stores/utils/persistStore";
+  } from "../../src_motion/stores/ui/actions";
+  import persistStore, { dirty } from "../../src_motion/stores/utils/persistStore";
+  import {getTrainerADD} from "../../stores/actions";
+
+  let trainer;
+  onMount(async () => {    
+    trainer = await getTrainerADD();        
+  });
 
   onMount(() => {
     persistStore.onError((error) => {
@@ -51,7 +56,6 @@ limitations under the License.
         pushErrorMessage(error.message);
       }
     });
-    console.log("TrainerMain-trainerADD : ", $trainerADD);
   });
 
   const strAsset = {
@@ -62,13 +66,14 @@ limitations under the License.
 </script>
 
 <header>
-  {#if $trainerADD === "motion"}
-    <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon} />
-  {:else if $trainerADD === "speech"}
-    <SubBanner title={strAsset.bannerTitleSpeech} titleIcon={speechIcon} />
-  {:else if $trainerADD === "vision"}
-    <SubBanner title={strAsset.bannerTitlevision} titleIcon={visionIcon} />
+  {#if trainer === "motion"}
+    <SubBanner title={strAsset.bannerTitleMotion} icTitle={icMotion} />
+  {:else if trainer === "speech"}
+    <SubBanner title={strAsset.bannerTitleSpeech} icTitle={icSpeech} />
+  {:else if trainer === "vision"}
+    <SubBanner title={strAsset.bannerTitlevision} icTitle={icVision} />
   {/if}
+  <!-- <SubBanner /> -->
   <div class="section">
     <SubNav />
   </div>
@@ -88,10 +93,10 @@ limitations under the License.
   {/if}
 {/if}
 
-<style lang="scss">
+<!-- <style lang="scss">
   nav {
     position: sticky;
     top: 10px;
     z-index: 1;
   }
-</style>
+</style> -->

@@ -6,6 +6,3 @@ export let blob = null;
 
 //convert 된 tflite파일을 스벨트 변수인 writable을 활용하여 저장해보기 위한 노력의 흔적
 export const tfliteModelBlob = writable(null);
-
-
-

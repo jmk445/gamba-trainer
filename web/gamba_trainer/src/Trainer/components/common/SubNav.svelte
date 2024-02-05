@@ -24,14 +24,15 @@ limitations under the License.
         disconnect,
     } from "@motion/stores/bleInterfaceStore/actions";
     import { isConnected } from "@motion/stores/bleInterfaceStore/store";
-    import DropDown from "../../general/DropDown.svelte";
-    import ClearAllPrompt from "../../general/prompts/ClearAllPrompt.svelte";
+    import DropDown from "../../../general/DropDown.svelte";
+    import ClearAllPrompt from "../../../general/prompts/ClearAllPrompt.svelte";
+    
     import {
         saveFile,
         loadFile,
         saveFileAs,
-    } from "../../Trainer/src_motion/stores/file/actions";
-    import HelpPrompt from "../../general/prompts/HelpPrompt.svelte";
+    } from "../../../Trainer/src_motion/stores/file/actions";
+    import HelpPrompt from "../../../general/prompts/HelpPrompt.svelte";
 
     let dropDownVisible;
     let showClearAllPrompt = false;
@@ -176,14 +177,12 @@ limitations under the License.
         ul {
             display: flex;
             flex-direction: row;
-            // margin-left: auto;
             justify-content: flex-end;
         }
         li {
-            // float: right;
             display: inline-block;
             margin-left: 32px;
-            // margin-left: auto;
+
         }
     }
     .dot {

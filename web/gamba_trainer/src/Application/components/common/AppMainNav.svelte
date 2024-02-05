@@ -20,7 +20,7 @@ limitations under the License.
 <script>
   import { onMount, onDestroy } from "svelte";
   import { Link } from "svelte-routing";
-  import { isConnected$3, addEventListner } from "../FUI/stores/tf4micro-motion-kit copy";  
+  import { isConnected$3, addEventListner } from "../../FUI/stores/tf4micro-motion-kit copy";  
   // import { isConnected } from "@motion/stores/bleInterfaceStore/store";
   // import { testIsUnlocked } from "../src_motion/stores/test/store";
   // import { trainIsUnlocked } from "../src_motion/stores/train/store";
@@ -68,10 +68,10 @@ limitations under the License.
     <li
       class:active={location.pathname.includes(
         BASE_PATH + `/${appName}-connect`,
-      )}
+      )} class="connect"
     >
       <span class={`dot ${connectionClass}`} />
-      <Link to="fui-connect">{strAsset.navOne}</Link>
+      <Link to="fui-connect"><span>{strAsset.navOne}</span></Link>
     </li>
 
     <li
@@ -98,5 +98,7 @@ limitations under the License.
   .app-main-nav ul {
     margin-top: 110px;
   }
-  
+  .connect{
+
+  }
 </style>

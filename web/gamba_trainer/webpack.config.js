@@ -42,6 +42,7 @@ module.exports = (env) => {
         "motion-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_motion/tf4micro-motion-kit"),
         "speech-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_speech/tf4micro-motion-kit"),
         "vision-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_vision/tf4micro-motion-kit"),
+        //"tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/stores copy")
         "template-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_template/tf4micro-motion-kit"),
       },
       extensions: [".mjs", ".js", ".svelte"],

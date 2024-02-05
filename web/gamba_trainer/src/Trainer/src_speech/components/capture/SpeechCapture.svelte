@@ -3,7 +3,7 @@
     import TextInput from "../../../../general/TextInput.svelte";
     import { addLabel, getLabelCnt } from "../../stores/capture/actions";
     import { labels } from "../../stores/capture/store";
-    import TrainerCapture from "../../../common/TrainerCapture.svelte";
+    import TrainerCapture from "../../../components/common/TrainerCapture.svelte";
     let newLabelName = "";
     let newLabelError = null;
 
