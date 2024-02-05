@@ -30,7 +30,7 @@ limitations under the License.
   import CaptureListLabelItem from "./CaptureListLabelItem.svelte";
   import CaptureListRecordings from "./recordings-list/CaptureListRecordings.svelte";
   import { downloadCsvForAllLabels } from "../../stores/aggregatedActions";
-  import { hasRecordings } from "../../stores/capture/store";  
+  import { hasRecordings } from "../../stores/capture/store";
 
   let showFilter = false;
   let filter = null;
@@ -102,8 +102,8 @@ limitations under the License.
         {/if}
       </div>
     {/if}
-    <div class="recordings-list">      
-      {#if $armedLabelIndex > -1}           
+    <div class="recordings-list">
+      {#if $armedLabelIndex > -1}
         <CaptureListRecordings
           recordings={$recordings[$armedLabelIndex]}
           filter={hoverFilter || filter}

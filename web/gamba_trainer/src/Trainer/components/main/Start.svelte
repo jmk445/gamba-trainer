@@ -14,7 +14,7 @@
         ).then((module) => {
             aggregatedActions = module;
             console.log("2 " + trainer);
-        });
+        });        
 
         aggregatedActions.clearPersistantStorage();
 

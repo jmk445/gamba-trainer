@@ -27,9 +27,9 @@ limitations under the License.
   import UnsavedProjectPrompt from "../../../general/prompts/UnsavedProjectPrompt.svelte";
   import LocalStorageFullPrompt from "../../../general/prompts/LocalStorageFullPrompt.svelte";
   import DownloadModelPrompt from "../../../general/prompts/DownloadModelPrompt.svelte";
-  import motionIcon from "../../../assets/img/ic_motion.svg";
-  import speechIcon from "../../../assets/img/ic_speech.svg";
-  import visionIcon from "../../../assets/img/ic_vision.svg";
+  import icMotion from "../../../assets/img/ic_motion.svg";
+  import icSpeech from "../../../assets/img/ic_speech.svg";
+  import icVision from "../../../assets/img/ic_vision.svg";
 
   import { promptStack } from "../../src_motion/stores/ui/store";
   import {
@@ -67,11 +67,11 @@ limitations under the License.
 
 <header>
   {#if trainer === "motion"}
-    <SubBanner title={strAsset.bannerTitleMotion} titleIcon={motionIcon} />
+    <SubBanner title={strAsset.bannerTitleMotion} icTitle={icMotion} />
   {:else if trainer === "speech"}
-    <SubBanner title={strAsset.bannerTitleSpeech} titleIcon={speechIcon} />
+    <SubBanner title={strAsset.bannerTitleSpeech} icTitle={icSpeech} />
   {:else if trainer === "vision"}
-    <SubBanner title={strAsset.bannerTitlevision} titleIcon={visionIcon} />
+    <SubBanner title={strAsset.bannerTitlevision} icTitle={icVision} />
   {/if}
   <!-- <SubBanner /> -->
   <div class="section">
@@ -93,10 +93,10 @@ limitations under the License.
   {/if}
 {/if}
 
-<style lang="scss">
+<!-- <style lang="scss">
   nav {
     position: sticky;
     top: 10px;
     z-index: 1;
   }
-</style>
+</style> -->

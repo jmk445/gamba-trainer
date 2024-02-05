@@ -118,7 +118,7 @@ function updateLogs(tfLogs) {
     $logs.train = [...$logs.train, tfLogs.loss];
     $logs.validation = [...$logs.validation, tfLogs.val_loss];
     return { ...$logs };
-  });``
+  });
 }
 
 /**
@@ -127,7 +127,7 @@ function updateLogs(tfLogs) {
 export async function beginTraining() {
   if (get(trainingState) !== "idle") {    //idle 일때만 트레이닝 가능
     throw new Error("Already training");
-  }
+  }  
 
   //=========================================================
   // Prepeare
@@ -141,8 +141,7 @@ export async function beginTraining() {
   //=========================================================
 
   async function train(inputs, outputs) {
-    trainedModel.set(null); //모델 초기화
-
+    trainedModel.set(null); //모델 초기화    
     //모델 세팅
     let model = setupModel(inputs[0].length);
 
@@ -232,6 +231,7 @@ export async function beginTraining() {
       batchSize: get(trainBachSize),
       callbacks: { onEpochEnd },
     });
+    console.log("3");
 
     if (get(trainEarlyStopping)) {
       // load best model
@@ -282,7 +282,9 @@ export async function getModelJson() {
   }
 
   const model = get(trainedModel);
+  //기존 모델 저장
   await model.save("localstorage://tmp-serialize-model");
+  //data 추출
   const data = {
     info: localStorage.getItem("tensorflowjs_models/tmp-serialize-model/info"),
     model_metadata: localStorage.getItem(
@@ -302,7 +304,7 @@ export async function getModelJson() {
   return data;
 }
 
-//json파일로 부터 모델을 생성
+//json 파일로부터 모델을 생성
 export async function modelFromJson(json) {
   localStorage.setItem(
     "tensorflowjs_models/tmp-serialize-model/info",

@@ -2,7 +2,7 @@
   import TrainerSettings from "../../../components/common/TrainerSettings.svelte";
   import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
   import SettingsInput from "./SettingsInput.svelte";
-  
+  import { get } from "svelte/store";
   import { hasRecordings } from "../../stores/capture/store";
   import {
     captureDelay,
@@ -29,6 +29,9 @@
       store.set(value);
     }
   }
+
+  function handleCloseChangeAfterRecordPrompt(didClear) {}
+
   const strAsset = {
     panelOne: "임계값 설정",
     panelOneDesc:
@@ -40,7 +43,6 @@
     modelTwo : "Gambalabs-002",
     modelThree : "Gambalabs-003"
   };
-  function handleCloseChangeAfterRecordPrompt(didClear) {}
 </script>
 
 <TrainerSettings>

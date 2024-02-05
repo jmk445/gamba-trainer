@@ -42,7 +42,7 @@ limitations under the License.
   }
   const strAsset = {
     promptTitle : "설정값 변경",
-    promptDesc : "이미 캡쳐가 진행된 모델의 세팅을 바꾸면 캡쳐(레코딩)한 데이터가 초기화 됩니다.",
+    promptDesc : "이미 수집이 진행된 모델의 세팅을 바꾸면 수집(기록)한 데이터가 초기화됩니다.",
     promptYes : "예",
     promptNo : "아니요"
   }
