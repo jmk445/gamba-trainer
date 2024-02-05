@@ -19,20 +19,13 @@ limitations under the License.
 -->
 <script>
     import { onMount, onDestroy } from "svelte";
-    import {
-        connect,
-        disconnect,
-    } from "@motion/stores/bleInterfaceStore/actions";
-    import { isConnected } from "@motion/stores/bleInterfaceStore/store";
+    import { writable } from "svelte/store";
+    
     import DropDown from "../../../general/DropDown.svelte";
     import ClearAllPrompt from "../../../general/prompts/ClearAllPrompt.svelte";
-    
-    import {
-        saveFile,
-        loadFile,
-        saveFileAs,
-    } from "../../../Trainer/src_motion/stores/file/actions";
+
     import HelpPrompt from "../../../general/prompts/HelpPrompt.svelte";
+    import { getTrainerADD } from "../../stores/actions";    
 
     let dropDownVisible;
     let showClearAllPrompt = false;
@@ -40,9 +33,37 @@ limitations under the License.
     let connectionClass = "red";
     let interval;
 
-    onMount(() => {
-        connectionUpdate();
-        // 1초마다 isConnected 값을 확인
+    let trainer;
+    let bleModuleAction, bleModuleStore, fileAction;
+
+    let isConnected_ = writable();
+
+    //동적 import
+    onMount(async () => {
+        trainer = await getTrainerADD();
+
+        await import(
+            `../../src_${trainer}/stores/bleInterfaceStore/actions`
+        ).then((module) => {
+            bleModuleAction = module;
+        });
+
+        await import(
+            `../../src_${trainer}/stores/bleInterfaceStore/store`
+        ).then((module) => {
+            bleModuleStore = module;
+            isConnected_ = module.isConnected;
+        });
+
+        await import(
+            `../../../Trainer/src_${trainer}/stores/file/actions`
+        ).then((module) => {
+            fileAction = module;
+        });
+
+        //@todo
+        //connect 되고 새로 고침할 시 connection 유지
+
         interval = setInterval(() => {
             connectionUpdate();
         }, 1000);
@@ -53,10 +74,11 @@ limitations under the License.
     });
 
     function connectionUpdate() {
+        isConnected_ = bleModuleStore.isConnected;
         const connection = document.getElementById("connection");
-        if ($isConnected) {
+        if ($isConnected_) {
             connectionClass = "green";
-            connection.innerText = strAsset.navOneA;
+            connection.innerText = strAsset.navOneB;
         } else {
             connectionClass = "red";
             connection.innerText = strAsset.navOneA;
@@ -66,11 +88,11 @@ limitations under the License.
     function handleSaveSelect(value) {
         switch (value) {
             case "save":
-                saveFile();
+                fileAction.saveFile();
                 break;
 
             case "save-as":
-                saveFileAs();
+                fileAction.saveFileAs();
                 break;
         }
         dropDownVisible = null;
@@ -89,10 +111,10 @@ limitations under the License.
     }
 
     function handleConnect() {
-        if ($isConnected) {
-            disconnect();
+        if ($isConnected_) {
+            bleModuleAction.disconnect();
         } else {
-            connect();
+            bleModuleAction.connect();
         }
     }
 
@@ -101,7 +123,7 @@ limitations under the License.
     }
 
     function handleLoad() {
-        loadFile();
+        fileAction.loadFile();
     }
 
     onMount(() => {
@@ -120,7 +142,7 @@ limitations under the License.
         navFour: "재시작",
         navFive: "도움말",
         navTwoA: "프로젝트 저장",
-        navTwoB: "다른 이름으로 프로젝트 저장"
+        navTwoB: "다른 이름으로 프로젝트 저장",
     };
 </script>
 
@@ -140,8 +162,8 @@ limitations under the License.
             {#if dropDownVisible === "save"}
                 <DropDown
                     options={[
-                        { label: (strAsset.navTwoA), value: "save" },
-                        { label: (strAsset.navTwoB), value: "save-as" },
+                        { label: strAsset.navTwoA, value: "save" },
+                        { label: strAsset.navTwoB, value: "save-as" },
                     ]}
                     onSelect={handleSaveSelect}
                     selector=".menu-item-save"
@@ -182,7 +204,6 @@ limitations under the License.
         li {
             display: inline-block;
             margin-left: 32px;
-
         }
     }
     .dot {
