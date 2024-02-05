@@ -1,5 +1,6 @@
 <script>    
     import Description from "../../../components/common/Description.svelte";
+    import FloatingBtn from "../../../general/floatingBtn.svelte";
 
     const strAsset = {
         convertTitle : "모델 변환 및 전송",
@@ -13,3 +14,4 @@
         explanation={strAsset.convertDesc}/>
         <slot name="convert-send"/>   
 </div>
+<FloatingBtn/>

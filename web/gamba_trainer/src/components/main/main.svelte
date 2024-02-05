@@ -3,7 +3,7 @@
 	import HeroBanner from "./heroBanner.svelte";
 	import MainLinkModule from "./mainLinkModule.svelte";
 	import Footer from "../common/footer.svelte";
-
+	import FloatingBtn from "../../general/floatingBtn.svelte";
 	const strAsset = {
 		modeOneTitle : "트레이너",
 		modeOneCaption : "인공지능 모델을 학습시킬 수 있습니다.",
@@ -35,6 +35,7 @@
 	</div>
 </div>
 <Footer />
+<FloatingBtn/>
 
 <style lang="scss">
 	.section{

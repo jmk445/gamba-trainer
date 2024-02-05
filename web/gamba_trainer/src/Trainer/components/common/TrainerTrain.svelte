@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <script>
     import { navigate } from "svelte-routing";
+    import FloatingBtn from "../../../general/floatingBtn.svelte";
     // import NumberInput from "../../../../general/NumberInput.svelte";
     // import { beginTraining, stopTraining } from "../../stores/train/actions";
     import {
@@ -134,6 +135,7 @@ limitations under the License.
     /> -->
     </div>
 </div>
+<FloatingBtn/>
 
 <style lang="scss">
     @import "@scss/vars";
