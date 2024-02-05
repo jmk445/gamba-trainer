@@ -54,6 +54,7 @@ limitations under the License.
     // }
       aggregatedActions.clearPersistantStorage();
       onClose();
+      console.log("this should be sustained");
       navigate(`/${trainer}-settings`, {replace: false });
   }
   
