@@ -15,7 +15,7 @@ limitations under the License.
 
 /**
  * @autor Rikard Lindstrom <rlindstrom@google.com>
- */
+*/
 
 import { writable, get, derived, readable } from "svelte/store";
 import persistStore from "@motion/stores/utils/persistStore";
@@ -34,6 +34,7 @@ persistStore.onError(() => {
 });
 
 export const labels = persistStore("capture.labels", []);
+//export const labelsCount = persistStore("capture.labelsCount", get(labels).length);
 
 export const captureState = stateStore("idle", [
   "idle",

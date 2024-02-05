@@ -2,7 +2,7 @@
     import SubBanner from "../../../components/common/SubBanner.svelte";
     import Footer from "../../../components/common/footer.svelte";
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
-    import trainerIcon from "../../../assets/img/ic_trainer.svg";
+    import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
     import { FromPixels } from "@tensorflow/tfjs";
     import { onMount } from "svelte";
@@ -66,7 +66,7 @@
     const strAsset = {
         bannerTitle: "트레이너",
         pageDesc:
-            "데이터를 캡처하고 모델을 학습한 후 마이크로컨트롤러용 텐서플로우 라이트로 구동되는 ESP32-S3 보드에 업로드합니다.",
+            "데이터를 수집하고 모델을 학습한 후 마이크로컨트롤러용 텐서플로우 라이트로 구동되는 ESP32-S3 보드에 업로드합니다.",
         typeTrainer: "트레이너 선택",
         trainerOne: "모션",
         trainerTwo: "소리&음성",
@@ -74,12 +74,12 @@
         typeMode: "모드 선택",
         modeOne: "새로운 모델 만들기",
         modeTwo: "예제용 모델 만들기",
-        modeOneType: "트레이닝",
-        modeTwoType: "트레이닝 + 어플리케이션",
+        modeOneType: "트레이너 ",
+        modeTwoType: "트레이너 + TinyML 예제",
         modeOneCaption:
             "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
         modeTwoCaption:
-            "어플리케이션에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
+            "TinyML예제에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
         btnGoToTrainer: "트레이너 시작",
     };
 </script>
@@ -87,7 +87,7 @@
 <header>
     <SubBanner
         title={strAsset.bannerTitle}
-        titleIcon={trainerIcon}
+        icTitle={icTrainer}
         altTxt="트레이너 아이콘"
     />
 </header>
@@ -179,7 +179,7 @@
     <div class="btn-move-wrap contents">
         <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}
             >{strAsset.btnGoToTrainer}</button
-        >
+            >
     </div>
 </main>
 <footer>
@@ -194,7 +194,14 @@
 
 <style lang="scss">
     @import "@scss/vars";
-
+    
+    input[type="radio"] {
+        display: none;
+    }
+    input[type="radio"]:checked + label {
+    background-color: $color-select-blue;
+    color: white;
+    }
     .caption {
         margin: 32px 0 72px 0;
     }
@@ -205,93 +212,62 @@
         &:last-child {
             align-items: center;
         }
-    }
-    .contents {
-        // margin-bottom: 12px;
-
-        h1 {
-            font-size: 2.25rem;
-            margin-bottom: 32px;
-            font-weight: 700;
+        .contents {
+            // margin-bottom: 12px;
+    
+            h1 {
+                font-size: 2.25rem;
+                margin-bottom: 32px;
+                font-weight: 700;
+            }
         }
     }
-
-    input[type="radio"] {
-        display: none;
-    }
-    .mode-container,
-    .trainer-container {
-        flex: 1;
-    }
+    
     .select-container {
         display: flex;
         flex-direction: row;
         gap: 2%;
-
+        
+        &>div{
+            flex: 1;
+        }
         label {
             box-sizing: border-box;
             display: inline-block;
             background-color: white;
-            border: 1px solid $color-select-blue;
+            border: 2px solid $color-select-blue;
             border-radius: 8px;
             width: 100%;
             text-align: center;
             cursor: pointer;
             margin: 0;
-
+            
             text-align: center;
             color: black;
             font-weight: 400;
             &:hover {
-                background-color: $color-select-blue;
-                color: white;
+                background-color: $color-lightsky;
+                color: black;
             }
         }
-    }
-    .trainer-container label {
-        padding: 20px 0;
-        font-size: 2rem;
-    }
-    .mode-container label {
-        padding: 24px 24px;
-        min-height: 264px;
-        span {
-            justify-content: flex-end;
-            font-size: 0.875rem;
+        .trainer-container label {
+            padding: 20px 0;
+            font-size: 2rem;
         }
-        .mode-title {
-            font-size: 3rem;
-            margin: 64px 0 12px 0;
-            line-height: 100%;
+        .mode-container label {
+            padding: 24px 24px;
+            min-height: 264px;
+            span {
+                display: flex;
+                justify-content: flex-end;
+                font-size: 0.875rem;
+            }
+            .mode-title {
+                font-size: 3rem;
+                margin: 64px 0 12px 0;
+                line-height: 100%;
+            }
         }
-    }
-    .select-container {
-        display: flex;
-        flex-direction: row;
-        gap: 2%;
-    }
-
-    // .mode-container {
-    //     &:first-child{
-    //      margin-bottom: 24px;
-    //     }
-    //     label {
-    //         box-sizing: border-box;
-    //         display: inline-block;
-    //         background-color: $color-lightsky;
-    //         border-radius: 8px;
-
-    //         cursor: pointer;
-
-    //         &:hover {
-    //             color: white;
-    //         }
-    //     }
-    // }
-
-    input[type="radio"]:checked + label {
-        background-color: #000000;
-        color: white;
     }
 
     .btn-move-wrap {

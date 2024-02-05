@@ -46,7 +46,7 @@ limitations under the License.
 
     // import BleConnect from "./BleConnect.svelte";
 
-    let clearRecordPrompt;
+    // let clearRecordPrompt;
 
     async function handleConnect() {
         await connect();
@@ -75,15 +75,15 @@ limitations under the License.
         setImuDataMode();
     });
 
-    // function handleCloseChangeAfterRecordPrompt(didClear) {}
+    
 
     const strAsset = {
         bluetoothTitle : "Bluetooth를 통해 키트 연결",
         bluetoothBtn : "연결",
-        bluetoothCaption : "또는, 연결하지 않고 진행합니다.\n추후 상단의 연결 메뉴로 연결할 수 있습니다.",
+        bluetoothCaption : `또는, 연결하지 않고 진행합니다.\n추후 상단의 연결 메뉴로 연결할 수 있습니다.`,
         captureSettingTitle : "캡처 설정 선택",
-        captureSettingDesc : '아래 슬라이더를 끌어 데이터를 수집하는 방법을 사용자 지정합니다. "예제용 모델 만들기" 선택한 경우, 설정은 고정됩니다.',
-        modelSettingTitle : "모델 설정 선택",
+        captureSettingDesc : '아래 슬라이더를 끌어 데이터를 수집하는 방법을 사용자가 지정합니다. "예제용 모델 만들기" 선택한 경우, 설정은 고정됩니다.',
+        modelSettingTitle : "모델 선택",
         modelSettingDesc : "아래 모델 중 원하는 모델을 선택하여 학습을 진행할 수 있습니다."
     }
 </script>
@@ -186,10 +186,6 @@ limitations under the License.
     />
 </div>
 
-<!-- <ChangeAfterRecordPrompt
-    onClose={handleCloseChangeAfterRecordPrompt}
-    bind:this={clearRecordPrompt}
-/> -->
 
 <style lang="scss">
     .bluetooth-container {

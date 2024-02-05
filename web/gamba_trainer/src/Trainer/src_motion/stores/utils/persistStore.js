@@ -50,6 +50,7 @@ export default function persistStore(key, val, parseFn, onError) {
   const originalVal = JSON.parse(JSON.stringify(val));
   let indexedDBDisabledForKey = false;
 
+  console.log("saved!");
   if (allStores[key]) {
     throw new Error(`Persistent store with key ${key} already exists`);
   }
