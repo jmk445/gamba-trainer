@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script> 
   import Description from "../../../components/common/Description.svelte";
-  import FloatingBtn from "../../../general/floating/floatingBtn.svelte";
+  import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
 
   const strAsset = {
     captureTitle : "데이터 수집",

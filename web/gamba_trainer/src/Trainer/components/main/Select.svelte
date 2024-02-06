@@ -3,7 +3,7 @@
     import Footer from "../../../components/common/footer.svelte";
 
     import ShowSelectAppPrompt from "../../../components/general/prompts/SelectAppPrompt.svelte";
-
+    import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
     import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
     import { getTrainerADD } from "../../stores/actions";
@@ -203,6 +203,8 @@
         trainer={selectTrainerID}
     />
 {/if}
+<FloatingBtn/>
+
 
 <style lang="scss">
     @import "@scss/vars";

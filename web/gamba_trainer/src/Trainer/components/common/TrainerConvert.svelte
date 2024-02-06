@@ -1,6 +1,6 @@
 <script>    
     import Description from "../../../components/common/Description.svelte";
-    import FloatingBtn from "../../../general/floating/floatingBtn.svelte";
+    import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
 
     const strAsset = {
         convertTitle : "모델 변환 및 전송",
