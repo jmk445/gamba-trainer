@@ -21,10 +21,10 @@ limitations under the License.
     import { onMount, onDestroy } from "svelte";
     import { writable } from "svelte/store";
     
-    import DropDown from "../../../general/DropDown.svelte";
-    import ClearAllPrompt from "../../../general/prompts/ClearAllPrompt.svelte";
+    import DropDown from "../../../components/general/DropDown.svelte";
+    import ClearAllPrompt from "../../../components/general/prompts/ClearAllPrompt.svelte";
 
-    import HelpPrompt from "../../../general/prompts/HelpPrompt.svelte";
+    import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
     import { getTrainerADD } from "../../stores/actions";    
 
     let dropDownVisible;
