@@ -4,9 +4,11 @@
     trainEarlyStoppingMaxEpochsWithoutImprovement,
     trainEarlyStoppingMinAccuracy,
   } from "../../stores/train/store";
+
   import CheckboxInput from "../../../../components/general/CheckboxInput.svelte";
 
   import NumberInput from "../../../../components/general/NumberInput.svelte";
+
   const strAsset = {
     epochs : "Epochs",
     checkEarly : "early stopping 사용",

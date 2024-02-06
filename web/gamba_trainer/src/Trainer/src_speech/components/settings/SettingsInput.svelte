@@ -18,6 +18,7 @@ limitations under the License.
 */
 -->
 <script>
+
   import NumberInput from "../../../../components/general/NumberInput.svelte";
   import Slider from "../../../../components/general/Slider.svelte";
 

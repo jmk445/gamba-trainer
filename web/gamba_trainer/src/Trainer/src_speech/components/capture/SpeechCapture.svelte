@@ -1,5 +1,6 @@
 <script>
     import CaptureList from "./CaptureList";
+
     import TextInput from "../../../../components/general/TextInput.svelte";
     import { addLabel, getLabelCnt } from "../../stores/capture/actions";
     import { labels } from "../../stores/capture/store";
