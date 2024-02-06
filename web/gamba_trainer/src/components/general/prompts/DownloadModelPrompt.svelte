@@ -24,7 +24,7 @@ limitations under the License.
   import {
     downloadTfJSModel,
     downloadTfliteModel,
-  } from "../../Trainer/src_motion/stores/aggregatedActions";
+  } from "../../../Trainer/src_motion/stores/aggregatedActions";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
 
   let downloadOption = "arduino"; // || 'tfjs'

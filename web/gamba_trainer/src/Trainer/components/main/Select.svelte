@@ -1,10 +1,12 @@
 <script>
     import SubBanner from "../../../components/common/SubBanner.svelte";
     import Footer from "../../../components/common/footer.svelte";
-    import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
+
+    import ShowSelectAppPrompt from "../../../components/general/prompts/SelectAppPrompt.svelte";
+
     import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
-    // import { getTrainerADD } from "../../stores/actions";
+    import { getTrainerADD } from "../../stores/actions";
     import { FromPixels } from "@tensorflow/tfjs";
     import { onMount } from "svelte";
 
@@ -48,12 +50,15 @@
             alert("vision, basic");
         }
         if (selectTrainerID === "motion" && selectModeID === "appMode") {
-            // persistStore("trainerADD!", "speech");
-            // trainer = getTrainerADD();
-            // window.location.href = `${trainer}-start`;
-            console.log("appmode-fui");
-            // console.log(selectTrainerID, selectModeID);
-            // alert("motion, app");
+            console.log("0 : 버튼 클릭함수 실행")
+            setTrainerADD().then(()=>{
+                console.log("3 : trainer값 얻음");
+                window.location.href = `${trainer}-start`;
+                console.log("appmode-fui : ", trainer);
+            });
+            
+            
+            
         }
         if (selectTrainerID === "speech" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
@@ -63,11 +68,13 @@
             // console.log(selectTrainerID, selectModeID);
             alert("vision, app");
         }
-        // if(selectModeID === "appMode"){
-        //     showSelectApp = true;
-        // }
     }
-
+    async function setTrainerADD(){
+        console.log("1 : setTrainerADD함수 실행");
+        trainer = await getTrainerADD();
+        
+        return trainer;
+    }
     const strAsset = {
         bannerTitle: "트레이너",
         pageDesc:

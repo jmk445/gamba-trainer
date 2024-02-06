@@ -4,9 +4,9 @@
 </script>
 
 <div>
-    {#if isBg===true}
+    <!-- {#if isBg===true}
         <HelpSettings/>
-    {/if}
+    {/if} -->
     <button class="btn-floating">?</button>
 
 </div>

@@ -24,9 +24,11 @@ limitations under the License.
   import SubNav from "./SubNav.svelte";
   import MainNav from "./MainNav.svelte";
 
-  import UnsavedProjectPrompt from "../../../general/prompts/UnsavedProjectPrompt.svelte";
-  import LocalStorageFullPrompt from "../../../general/prompts/LocalStorageFullPrompt.svelte";
-  import DownloadModelPrompt from "../../../general/prompts/DownloadModelPrompt.svelte";
+
+  import UnsavedProjectPrompt from "../../../components/general/prompts/UnsavedProjectPrompt.svelte";
+  import LocalStorageFullPrompt from "../../../components/general/prompts/LocalStorageFullPrompt.svelte";
+  import DownloadModelPrompt from "../../../components/general/prompts/DownloadModelPrompt.svelte";
+
   import icMotion from "../../../assets/img/ic_motion.svg";
   import icSpeech from "../../../assets/img/ic_speech.svg";
   import icVision from "../../../assets/img/ic_vision.svg";
@@ -72,7 +74,10 @@ limitations under the License.
     <SubBanner title={strAsset.bannerTitleSpeech} icTitle={icSpeech} />
   {:else if trainer === "vision"}
     <SubBanner title={strAsset.bannerTitlevision} icTitle={icVision} />
+    {:else}
+    <SubBanner title={trainer} />
   {/if}
+
   <!-- <SubBanner /> -->
   <div class="section">
     <SubNav />

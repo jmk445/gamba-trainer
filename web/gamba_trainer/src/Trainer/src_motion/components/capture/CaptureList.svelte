@@ -26,7 +26,7 @@ limitations under the License.
   } from "@motion/stores/capture/store";
   import { captureImuLabels } from "@motion/stores/captureSettings/store";
 
-  import Icon from "../../../../general/Icon.svelte";
+  import Icon from "../../../../components/general/Icon.svelte";
   import CaptureListLabelItem from "./CaptureListLabelItem.svelte";
   import CaptureListRecordings from "./recordings-list/CaptureListRecordings.svelte";
   import { downloadCsvForAllLabels } from "../../stores/aggregatedActions";

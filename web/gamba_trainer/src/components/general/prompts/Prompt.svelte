@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import { popPrompt } from "@motion/stores/ui/actions";
-  import closeBtn from "../../assets/icons/close_24px.svg";
+  import closeBtn from "../../../assets/icons/close_24px.svg";
   export let title;
   export let allowClickDismiss = true;
   export let closePrompt = () => {};

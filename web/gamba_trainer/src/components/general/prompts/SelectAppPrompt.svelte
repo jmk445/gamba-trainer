@@ -1,14 +1,14 @@
 <script>
     import Prompt from "./Prompt.svelte";
-    import AppLinkModule from "../../Application/components/main/AppLinkModule.svelte";
-    // import persistStore from "../../Trainer/stores/utils/persistStore";
+    import AppLinkModule from "../../../Application/components/main/AppLinkModule.svelte";
     import { onMount } from "svelte";
+    import persistStore from "../../../Trainer/stores/utils/persistStore";
     // import logoPng from "@assets/icons/Symbol_Black_RGB.png";
   
     export let onClose = () => {};
     const hanleAppClick = (event) =>{
         console.log(event.detail.value.title);
-        // persistStore("trainerADD!", event.detail.value.title);
+        persistStore("trainerADD!", event.detail.value.title);
         onClose();
     }
     export let trainer;
@@ -26,12 +26,12 @@
         <div class="example-contents-container">
             {#if TrainerType === "motion"}
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+            <AppLinkModule title="two" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+            <AppLinkModule title="three" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
         
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+            <AppLinkModule title="four" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+            <AppLinkModule title="five" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+            <AppLinkModule title="six" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
         
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
             <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>

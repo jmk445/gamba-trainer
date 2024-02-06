@@ -22,6 +22,7 @@ export function getTrainerADD() {
                     // trainerADD = result;
                     // trainer_.set(result);   
                     console.log("trainer add get successed");
+                    console.log("2 : getTrainerADD 실행");
                     resolve(result);                 
                     // return (result);
                     // console.log("current trainer mode :" + trainer);
