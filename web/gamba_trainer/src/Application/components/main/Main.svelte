@@ -3,7 +3,7 @@
     import AppSelectNav from "./AppSelectNav.svelte";
     import Footer from "../../../components/common/footer.svelte";
     import icApp from "../../../assets/img/ic_application.svg";
-    import FloatingBtn from "../../../general/floatingBtn.svelte";
+    import FloatingBtn from "../../../general/floating/floatingBtn.svelte";
     const strAsset = {
         bannerTitle: "TinyML 예제",
     };

@@ -1,12 +1,14 @@
 <script>
     import Prompt from "./Prompt.svelte";
     import AppLinkModule from "../../Application/components/main/AppLinkModule.svelte";
+    // import persistStore from "../../Trainer/stores/utils/persistStore";
     import { onMount } from "svelte";
     // import logoPng from "@assets/icons/Symbol_Black_RGB.png";
   
     export let onClose = () => {};
     const hanleAppClick = (event) =>{
         console.log(event.detail.value.title);
+        // persistStore("trainerADD!", event.detail.value.title);
         onClose();
     }
     export let trainer;

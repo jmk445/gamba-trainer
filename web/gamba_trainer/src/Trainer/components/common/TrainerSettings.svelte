@@ -21,7 +21,7 @@ limitations under the License.
     import { onMount } from "svelte";
     import { get } from "svelte/store";
     import Description from "../../../components/common/Description.svelte";
-    import FloatingBtn from "../../../general/floatingBtn.svelte";
+    import FloatingBtn from "../../../general/floating/floatingBtn.svelte";
     // import { connect } from "@motion/stores/bleInterfaceStore/actions";
     import {
         connect,

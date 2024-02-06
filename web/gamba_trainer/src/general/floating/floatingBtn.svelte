@@ -1,5 +1,14 @@
+<script>
+    import HelpSettings from "./HelpSettings.svelte";
+
+</script>
+
 <div>
+    {#if isBg===true}
+        <HelpSettings/>
+    {/if}
     <button class="btn-floating">?</button>
+
 </div>
 <style lang="scss">
     @import "@scss/vars";

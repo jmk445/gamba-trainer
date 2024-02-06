@@ -4,6 +4,7 @@
     import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
     import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
+    // import { getTrainerADD } from "../../stores/actions";
     import { FromPixels } from "@tensorflow/tfjs";
     import { onMount } from "svelte";
 
@@ -12,7 +13,7 @@
     let modeActive = "disabled";
     let isBtnDisabled = true;
     let showSelectApp = false;
-
+    let trainer;
     export function clearPersistantStorage() {
         persistStore.clear();        
     }
@@ -47,8 +48,12 @@
             alert("vision, basic");
         }
         if (selectTrainerID === "motion" && selectModeID === "appMode") {
+            // persistStore("trainerADD!", "speech");
+            // trainer = getTrainerADD();
+            // window.location.href = `${trainer}-start`;
+            console.log("appmode-fui");
             // console.log(selectTrainerID, selectModeID);
-            alert("motion, app");
+            // alert("motion, app");
         }
         if (selectTrainerID === "speech" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);

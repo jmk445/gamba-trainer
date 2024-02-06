@@ -46,6 +46,8 @@ limitations under the License.
   import Motion_LabelDeleteTest from "../Trainer/src_motion/components/dev/LabelDeleteTest.svelte";
   import Speech_MemoryTest from "../Trainer/src_speech/components/dev/MemoryTest.svelte";
   import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
+  // import App_Fui_MemoryTest from "../Trainer/app_mode/mode-fui/components/dev/MemoryTest.svelte";
+  // import App_Fui_LabelDeleteTest from "../Trainer/app_mode/mode-fui/components/dev/LabelDeleteTest.svelte";
   //after 파일 정리
   // 모션
   import MotionSettings from "../Trainer/src_motion/components/settings/MotionSettings.svelte";
@@ -59,6 +61,14 @@ limitations under the License.
   import SpeechTrain from "../Trainer/src_speech/components/train/SpeechTrain.svelte";
   import SpeechTest from "../Trainer/src_speech/components/test/SpeechTest.svelte";
   import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
+
+  //앱모드 fui
+  // import AppFuiSettings from "../Trainer/app_mode/mode-fui/components/settings/AppSettings.svelte";
+  // import AppFuiCapture from "../Trainer/app_mode/mode-fui/components/capture/AppCapture.svelte";
+  // import AppFuiTrain from "../Trainer/app_mode/mode-fui/components/train/AppTrain.svelte";
+  // import AppFuiTest from "../Trainer/app_mode/mode-fui/components/test/AppTest.svelte";
+  // import AppFuiConvert from "../Trainer/app_mode/mode-fui/components/convert/AppConvert.svelte";
+
   export let url = "";
   const basepath = BASE_PATH === "" ? "/" : BASE_PATH;
 </script>
@@ -105,6 +115,19 @@ limitations under the License.
     <Route path="/motion-mem-test"><Trainer_Main><Speech_MemoryTest /></Trainer_Main></Route>
     <Route path="/motion-label-test"><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route>
 
+
+
+
+
+    <!-- 앱모드 fui -->
+    <!-- <Route path="/FUI-start"><Trainer_Start /></Route>
+    <Route path="/FUI-settings"><Trainer_Main><AppFuiSettings/></Trainer_Main></Route>    
+    <Route path="/FUI-capture"><Trainer_Main><AppFuiCapture/></Trainer_Main></Route>
+    <Route path="/FUI-train"><Trainer_Main><AppFuiTrain/></Trainer_Main></Route>
+    <Route path="/FUI-test"><Trainer_Main><AppFuiTest/></Trainer_Main></Route>
+    <Route path="/FUI-convertSend"><Trainer_Main><AppFuiConvert/></Trainer_Main></Route>
+    <Route path="/FUI-mem-test"><Trainer_Main><App_Fui_MemoryTest /></Trainer_Main></Route>
+    <Route path="/FUI-label-test"><Trainer_Main><App_Fui_LabelDeleteTest /></Trainer_Main></Route> -->
   <!-- </main> -->
 </Router>
 
