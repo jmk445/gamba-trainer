@@ -1,6 +1,6 @@
 <script>
     import Prompt from "./Prompt.svelte";
-    import AppLinkModule from "../../Application/components/main/AppLinkModule.svelte";
+    import AppLinkModule from "../../../Application/components/main/AppLinkModule.svelte";
     import { onMount } from "svelte";
     // import logoPng from "@assets/icons/Symbol_Black_RGB.png";
   

@@ -18,13 +18,11 @@ limitations under the License.
 */
 -->
 <script>
-  import { navigate } from "svelte-routing";
-  // import { clearPersistantStorageMotion } from "@motion/stores/aggregatedActions";
-  // import { clearPersistantStorageSpeech } from "@speech/stores/aggregatedActions";
+  import { navigate } from "svelte-routing";  
   import Prompt from "./Prompt.svelte";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
   import { onMount } from "svelte";
-  import { getTrainerADD } from "../../Trainer/stores/actions";
+  import { getTrainerADD } from "../../../Trainer/stores/actions";
 
   export let onClose = () => {};
 
@@ -33,7 +31,7 @@ limitations under the License.
   onMount(async () => {
     trainer = await getTrainerADD();
     console.log("1 " + trainer);
-    await import(`../../Trainer/src_${trainer}/stores/aggregatedActions`).then(
+    await import(`../../../Trainer/src_${trainer}/stores/aggregatedActions`).then(
       (module) => {
         aggregatedActions = module;
         console.log("2 " + trainer);

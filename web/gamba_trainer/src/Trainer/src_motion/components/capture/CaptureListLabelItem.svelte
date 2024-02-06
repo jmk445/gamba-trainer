@@ -28,7 +28,7 @@ limitations under the License.
   import { captureState, labels } from "../../stores/capture/store";
   import { captureDelayTimeout } from "../../stores/capture/store";
 
-  import Icon from "../../../../general/Icon.svelte";
+  import Icon from "../../../../components/general/Icon.svelte";
 
   export let labelIndex;
   export let active = false;

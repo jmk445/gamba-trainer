@@ -1,6 +1,6 @@
 <script>
     import TrainerCapture from "../../../components/common/TrainerCapture.svelte";
-    import TextInput from "../../../../general/TextInput.svelte";
+    import TextInput from "../../../../components/general/TextInput.svelte";
     import CaptureList from "./CaptureList";
     import { addLabel, getLabelCnt } from "../../stores/capture/actions";
     import { labels } from "../../stores/capture/store";

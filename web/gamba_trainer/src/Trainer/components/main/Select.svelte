@@ -1,7 +1,7 @@
 <script>
     import SubBanner from "../../../components/common/SubBanner.svelte";
     import Footer from "../../../components/common/footer.svelte";
-    import ShowSelectAppPrompt from "../../../general/prompts/SelectAppPrompt.svelte";
+    import ShowSelectAppPrompt from "../../../components/general/prompts/SelectAppPrompt.svelte";
     import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
     import { FromPixels } from "@tensorflow/tfjs";

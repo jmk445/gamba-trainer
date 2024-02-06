@@ -18,7 +18,7 @@ limitations under the License.
 */
 -->
 <script>
-  import Icon from "../../../../../general/Icon.svelte";
+  import Icon from "../../../../../components/general/Icon.svelte";
   import CaptureGraphLine from "./CaptureGraphLine.svelte";
   import { imuDataColors } from "@motion/stores/ui/store";
   import { captureDataLength } from "@motion/stores/capture/store";

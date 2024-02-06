@@ -18,7 +18,7 @@ limitations under the License.
 */
 -->
 <script>
-  import { popPrompt } from "../../Trainer/src_motion/stores/ui/actions";
+  import { popPrompt } from "../../../Trainer/src_motion/stores/ui/actions";
 
   import Prompt from "./Prompt.svelte";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
