@@ -8,15 +8,24 @@
 
     onMount(async () => {
         trainer = await getTrainerADD();
-
-        await import(
-            `../../src_${trainer}/stores/aggregatedActions`
-        ).then((module) => {
-            aggregatedActions = module;
-            console.log("2 " + trainer);
-        });        
-
-        aggregatedActions.clearPersistantStorage();
+        if (trainer === "motion" || trainer === "speech" || trainer === "vision") {
+            await import(`../../src_${trainer}/stores/aggregatedActions`).then(
+                (module) => {
+                    aggregatedActions = module;
+                    console.log("2 " + trainer);
+                },
+            );
+            aggregatedActions.clearPersistantStorage();
+        }
+        // else{
+        //     await import(`../../app_mode/mode_${trainer}/stores/aggregatedActions`).then(
+        //         (module) => {
+        //             aggregatedActions = module;
+        //             console.log("2 " + trainer);
+        //         },
+        //     );
+        // }
+        
 
         navigate(`/${trainer}-settings`, { replace: false });
     });

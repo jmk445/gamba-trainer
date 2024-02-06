@@ -27,6 +27,7 @@ limitations under the License.
   import { isFullyLoaded } from "@motion/stores/ui/store";
   // import LinearProgress from "../../../../general/LinearProgress.svelte";
   import Description from "../../../components/common/Description.svelte";
+  import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
 
   onMount(async () => {
     let unsubFromConnect;
@@ -85,6 +86,7 @@ limitations under the License.
     {/each} -->
   </div>
 </div>
+<FloatingBtn/>
 
 <style lang="scss">
   // .panel{
