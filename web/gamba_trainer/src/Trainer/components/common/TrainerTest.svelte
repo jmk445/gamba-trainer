@@ -67,6 +67,7 @@ limitations under the License.
   <Description
     title="모델 테스트"
     explanation="언제든지 데이터를 다시 캡처할 수 있습니다."
+    pageNum = "four"
   />
 
   <div class="column stack">

@@ -66,6 +66,7 @@ limitations under the License.
     <Description
         title={strAsset.trainTitle}
         explanation={strAsset.trainDesc}
+        pageNum = "three"
     />
     <div class="input-container">
         <slot name="train-setting" />

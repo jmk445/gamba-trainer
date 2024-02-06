@@ -105,6 +105,7 @@ limitations under the License.
     <Description
         title={strAsset.captureSettingTitle}
         explanation={strAsset.captureSettingDesc}
+        pageNum = "one"
     />
 
     <div class="settings-container">
@@ -184,6 +185,7 @@ limitations under the License.
     <Description
         title={strAsset.modelSettingTitle}
         explanation={strAsset.modelSettingDesc}
+        pageNum = "one"
     />
     <div class="model-select-container">
         <slot name="settings-model"/>

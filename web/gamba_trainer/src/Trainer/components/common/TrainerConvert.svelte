@@ -11,7 +11,8 @@
 <div class="contents">
     <Description
         title={strAsset.convertTitle}
-        explanation={strAsset.convertDesc}/>
+        explanation={strAsset.convertDesc}
+        pageNum = "five"/>
         <slot name="convert-send"/>   
 </div>
 <FloatingBtn/>

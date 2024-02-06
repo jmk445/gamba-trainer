@@ -32,6 +32,7 @@ limitations under the License.
   <Description
     title={strAsset.captureTitle}
     explanation={strAsset.captureDesc}
+    pageNum = "two"
   />
   <div class="row data-capture-container">
     <slot name="capture-label" />    
