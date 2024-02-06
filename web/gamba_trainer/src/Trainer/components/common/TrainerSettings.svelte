@@ -21,6 +21,7 @@ limitations under the License.
     import { onMount } from "svelte";
     import { get } from "svelte/store";
     import Description from "../../../components/common/Description.svelte";
+    import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
     // import { connect } from "@motion/stores/bleInterfaceStore/actions";
     import {
         connect,
@@ -184,9 +185,12 @@ limitations under the License.
         title={strAsset.modelSettingTitle}
         explanation={strAsset.modelSettingDesc}
     />
+    <div class="model-select-container">
+        <slot name="settings-model"/>
+    </div>
 </div>
 
-
+<FloatingBtn/>
 <style lang="scss">
     .bluetooth-container {
         text-align: center;

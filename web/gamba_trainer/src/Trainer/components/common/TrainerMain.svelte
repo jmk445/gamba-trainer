@@ -74,7 +74,10 @@ limitations under the License.
     <SubBanner title={strAsset.bannerTitleSpeech} icTitle={icSpeech} />
   {:else if trainer === "vision"}
     <SubBanner title={strAsset.bannerTitlevision} icTitle={icVision} />
+    {:else}
+    <SubBanner title={trainer} />
   {/if}
+
   <!-- <SubBanner /> -->
   <div class="section">
     <SubNav />
