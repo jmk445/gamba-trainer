@@ -3,9 +3,9 @@
     export let onClose = () => {};
 </script>
 
-<Prompt title="Flow" closePrompt={onClose}>
+<Prompt title="개요" closePrompt={onClose}>
     <div class="inner">
-        <div class="bg"><p>웹사이트의 전체적인 흐름입니다.</p></div>
+        <div class="bg"><p>웹사이트의 개요입니다.</p></div>
     </div>
 </Prompt>
 

@@ -186,7 +186,7 @@ limitations under the License.
                 >{strAsset.navFive}</button
             >
             {#if showHelpPrompt}
-                <HelpPrompt pageNum="one" onClose={() => (showHelpPrompt = false)} />
+                <HelpPrompt pageNum="defalut" onClose={() => (showHelpPrompt = false)} />
             {/if}
         </li>
     </ul>

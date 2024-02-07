@@ -66,8 +66,7 @@ limitations under the License.
 <div class="contents">
   <Description
     title="모델 테스트"
-    explanation="언제든지 데이터를 다시 캡처할 수 있습니다."
-    pageNum = "four"
+    explanation="언제든지 데이터를 다시 수집할 수 있습니다."
   />
 
   <div class="column stack">

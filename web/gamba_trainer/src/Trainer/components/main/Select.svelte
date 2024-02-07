@@ -84,12 +84,12 @@
         trainerTwo: "소리&음성",
         trainerThree: "이미지",
         typeMode: "모드 선택",
-        modeOne: "새로운 모델 만들기",
-        modeTwo: "예제용 모델 만들기",
         modeOneType: "트레이너 ",
-        modeTwoType: "트레이너 + TinyML 예제",
+        modeOne: "새로운 모델 학습하기",
         modeOneCaption:
             "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
+        modeTwoType: "트레이너 + TinyML 예제",
+        modeTwo: "예제용 모델 학습하기", 
         modeTwoCaption:
             "TinyML예제에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
         btnGoToTrainer: "트레이너 시작",

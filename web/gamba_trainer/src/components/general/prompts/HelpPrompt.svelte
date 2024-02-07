@@ -12,6 +12,7 @@
 <Prompt title="Help" closePrompt={onClose}>
   <div class="inner">
     <div class="btn-container">
+      <button class="btn-stroke" on:click={()=>pageNum="defalut"}>흐름도</button>
       <button class="btn-stroke" on:click={()=>pageNum="one"}>사전 설정</button>
       <button class="btn-stroke" on:click={()=>pageNum="two"}>데이터 수집</button>
       <button class="btn-stroke" on:click={()=>pageNum="three"}>모델 학습</button>
@@ -19,7 +20,9 @@
       <button class="btn-stroke" on:click={()=>pageNum="five"}>변환/전송</button>
     </div>
     <div class="page-container">
-      {#if pageNum === "one"}
+      {#if pageNum === "defalut"}
+      <p>흐름도 어쩌고 저꺼고 이러쿵 저러쿵</p>
+      {:else if pageNum === "one"}
       <p>사전 설정 내용 어쩌고 저꺼고 이러쿵 저러쿵</p>
       {:else if pageNum === "two"}
       <p>데이터 수집 내용 어쩌고 저꺼고 이러쿵 저러쿵</p>
