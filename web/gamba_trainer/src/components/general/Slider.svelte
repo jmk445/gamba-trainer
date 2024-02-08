@@ -26,6 +26,7 @@ limitations under the License.
   export let name;
   export let label = "";
   export let onChange = () => {};
+  
 </script>
 
 <Slider

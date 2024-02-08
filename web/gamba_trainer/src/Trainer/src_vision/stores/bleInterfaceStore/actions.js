@@ -18,7 +18,7 @@ limitations under the License.
  */
 
 import { writable, get } from "svelte/store";
-import * as bleApi from "speech-tf4micro-motion-kit/api";
+import * as bleApi from "vision-tf4micro-motion-kit/api";
 
 const sketchState = writable("unknown");
 

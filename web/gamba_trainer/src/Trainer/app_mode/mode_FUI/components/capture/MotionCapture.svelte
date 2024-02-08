@@ -1,5 +1,7 @@
-<!-- <script>
-    import TextInput from "../../../../general/TextInput.svelte";
+<script>
+    import TrainerCapture from "../../../components/common/TrainerCapture.svelte";
+    import TextInput from "../../../../components/general/TextInput.svelte";
+    import CaptureList from "./CaptureList";
     import { addLabel, getLabelCnt } from "../../stores/capture/actions";
     import { labels } from "../../stores/capture/store";
     let newLabelName = "";
@@ -29,7 +31,8 @@
         labelUnique : "똑같은 이름의 라벨이 있습니다."
     }
 </script>
-
+<TrainerCapture>
+    <div class="row" slot="capture-label">
 <TextInput
     label={strAsset.inputLabel}
     bind:value={newLabelName}
@@ -41,12 +44,14 @@
     disabled={newLabelName.length === 0 || newLabelError}
     on:click={handleAddLabel}>{strAsset.btnCreate}</button
 >
-
+</div>
+<div slot="capture-list">
+    <CaptureList />
+</div>
+</TrainerCapture>
 
 <style lang="scss">
-
-    button {
-      margin-left: 1rem;
-    }
-
-</style> -->
+button {
+    margin-left: 1rem;
+  }
+</style>

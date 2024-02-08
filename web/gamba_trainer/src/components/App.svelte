@@ -48,7 +48,7 @@ limitations under the License.
   import Speech_LabelDeleteTest from "../Trainer/src_speech/components/dev/LabelDeleteTest.svelte";
   // import App_Fui_MemoryTest from "../Trainer/app_mode/mode_fui/components/dev/MemoryTest.svelte";
   // import App_Fui_LabelDeleteTest from "../Trainer/app_mode/mode_fui/components/dev/LabelDeleteTest.svelte";
-  //after 파일 정리
+  // after 파일 정리
   // 모션
   import MotionSettings from "../Trainer/src_motion/components/settings/MotionSettings.svelte";
   import MotionCapture from "../Trainer/src_motion/components/capture/MotionCapture.svelte";
@@ -63,6 +63,7 @@ limitations under the License.
   import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
 
   //앱모드 fui
+  import AppFuiStart from "../Trainer/app_mode/mode_FUI/components/settings/AppSettings.svelte";
   import AppFuiSettings from "../Trainer/app_mode/mode_FUI/components/settings/AppSettings.svelte";
   import AppFuiCapture from "../Trainer/app_mode/mode_FUI/components/capture/AppCapture.svelte";
   import AppFuiTrain from "../Trainer/app_mode/mode_FUI/components/train/AppTrain.svelte";
@@ -87,11 +88,11 @@ limitations under the License.
   <Route path="/fui-choose"><FuiChoose/></Route>
   <Route path="/fui-experience"><FuiExperience/></Route>
 
-    
-    <!-- <Route path="/motion-settings"><Trainer_Main><Trainer_Settings><MotionSettings_Capture slot="settings-capture"/></Trainer_Settings></Trainer_Main></Route>     -->
-    <!-- <Route path="/motion-capture"><Trainer_Main><Trainer_Capture><MotionCapture_Label slot="capture-label"/><MotionCapture_List slot="capture-list"/></Trainer_Capture></Trainer_Main></Route> -->
-    <!-- <Route path="/motion-train"><Trainer_Main><Trainer_Train><MotionTrain_Setting slot="train-setting"/><MotionTrain_Graph slot="train-graph"/></Trainer_Train></Trainer_Main></Route> -->
-    <!-- <Route path="/motion-test"><Trainer_Main><Trainer_Test><MotionTest_Progress slot="test-progress"/></Trainer_Test></Trainer_Main></Route> -->
+  
+  <!-- <Route path="/motion-settings"><Trainer_Main><Trainer_Settings><MotionSettings_Capture slot="settings-capture"/></Trainer_Settings></Trainer_Main></Route>     -->
+  <!-- <Route path="/motion-capture"><Trainer_Main><Trainer_Capture><MotionCapture_Label slot="capture-label"/><MotionCapture_List slot="capture-list"/></Trainer_Capture></Trainer_Main></Route> -->
+  <!-- <Route path="/motion-train"><Trainer_Main><Trainer_Train><MotionTrain_Setting slot="train-setting"/><MotionTrain_Graph slot="train-graph"/></Trainer_Train></Trainer_Main></Route> -->
+  <!-- <Route path="/motion-test"><Trainer_Main><Trainer_Test><MotionTest_Progress slot="test-progress"/></Trainer_Test></Trainer_Main></Route> -->
 
 
 
@@ -105,7 +106,7 @@ limitations under the License.
     <Route path="/motion-mem-test"><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route>
     <Route path="/motion-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route>
 
-      <!-- 스피치 시작 -->
+    <!-- 스피치 시작 -->
     <Route path="/speech-start"><Trainer_Start /></Route>
     <Route path="/speech-settings"><Trainer_Main><SpeechSettings/></Trainer_Main></Route>
     <Route path="/speech-capture"><Trainer_Main><SpeechCapture/></Trainer_Main></Route>
@@ -114,9 +115,6 @@ limitations under the License.
     <Route path="/speech-convertSend"><Trainer_Main><SpeechConvert/></Trainer_Main></Route>
     <Route path="/motion-mem-test"><Trainer_Main><Speech_MemoryTest /></Trainer_Main></Route>
     <Route path="/motion-label-test"><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route>
-
-
-
 
 
     <!-- 앱모드 fui -->
@@ -129,7 +127,3 @@ limitations under the License.
     <!-- <Route path="/FUI-mem-test"><Trainer_Main><App_Fui_MemoryTest /></Trainer_Main></Route>
     <Route path="/FUI-label-test"><Trainer_Main><App_Fui_LabelDeleteTest /></Trainer_Main></Route> -->
 </Router>
-
-
-
-

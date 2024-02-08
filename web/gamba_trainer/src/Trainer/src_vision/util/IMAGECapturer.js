@@ -17,29 +17,15 @@ limitations under the License.
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
 
-import * as bleApi from "speech-tf4micro-motion-kit/api";
+import * as bleApi from "vision-tf4micro-motion-kit/api";
 import DataRecorder from "./DataRecorder";
-import bleManager from "speech-tf4micro-motion-kit/modules/bleManager.js";
-
-function sliceArray(array, begin, end) {
-  const sliced = new Float32Array(end - begin);
-
-  for (var i = 0; i < begin + end; ++i) {
-    sliced[i] = array[begin + i];
-  }
-  return sliced;
-}
+import bleManager from "vision-tf4micro-motion-kit/modules/bleManager.js";
 
 function nowSec() {
   return performance.now() * 0.001;
 }
 
-function checkParam(paramName, value, checkFn) {
-  if (!checkFn(value)) {
-    throw new Error(`Missing required parameter: ${paramName}. Got ${value}`);
-  }
-}
-class AUDIOCapturer {
+class IMAGECapturer {
   constructor({
     // numSamples,
     // sensitivity,
@@ -113,4 +99,4 @@ class AUDIOCapturer {
   }
 }
 
-export default AUDIOCapturer;
+export default IMAGECapturer;

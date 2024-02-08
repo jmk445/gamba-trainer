@@ -18,7 +18,6 @@ limitations under the License.
  */
 
 import { writable, get } from "svelte/store";
-// import * as bleApi from "../../tf4micro-motion-kit/api";
 import * as bleApi from "motion-tf4micro-motion-kit/api";
 
 const sketchState = writable("unknown");

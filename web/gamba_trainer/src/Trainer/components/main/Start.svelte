@@ -2,31 +2,37 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { getTrainerADD } from "../../stores/actions";
-
-    let trainer;
+    import { addLabel, getLabelCnt } from "../../src_motion/stores/capture/actions";
+    let trainer, trainer_;
     let aggregatedActions;
 
     onMount(async () => {
         trainer = await getTrainerADD();
-        if (trainer === "motion" || trainer === "speech" || trainer === "vision") {
-            await import(`../../src_${trainer}/stores/aggregatedActions`).then(
-                (module) => {
-                    aggregatedActions = module;
-                    console.log("2 " + trainer);
-                },
-            );
-            aggregatedActions.clearPersistantStorage();
-        }
-        // else{
-        //     await import(`../../app_mode/mode_${trainer}/stores/aggregatedActions`).then(
-        //         (module) => {
-        //             aggregatedActions = module;
-        //             console.log("2 " + trainer);
-        //         },
-        //     );
-        // }
-        
+        trainer_ = trainer;
 
-        navigate(`/${trainer}-settings`, { replace: false });
+        console.log(trainer);
+        
+        //@todo needs update
+        if (trainer == "FUI") {
+            trainer_ = "motion";
+        }
+
+        console.log(trainer_);
+
+        await import(`../../src_${trainer_}/stores/aggregatedActions`).then(
+            (module) => {
+                aggregatedActions = module;
+            },
+        );
+        // aggregatedActions.clearPersistantStorage();
+
+        if (trainer != "speech") {
+            addLabel("left");
+            addLabel("right");
+
+            console.log("hello");
+        }
+
+        navigate(`/${trainer}-settings`, { replace: true });
     });
 </script>

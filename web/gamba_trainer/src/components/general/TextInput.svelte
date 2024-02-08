@@ -23,6 +23,7 @@ limitations under the License.
   export let label = "";
   export let onEnter = () => {};
   export let errorMessage = "";
+  export let isdisabled;
 </script>
 
 <div>
@@ -36,6 +37,7 @@ limitations under the License.
         onEnter();
       }
     }}
+    disabled = {isdisabled}
   />
   {#if errorMessage}
     <p class="errorMessage notation-text">{errorMessage}</p>

@@ -50,10 +50,10 @@ export default function persistStore(key, val, parseFn, onError) {
   const originalVal = JSON.parse(JSON.stringify(val));
   let indexedDBDisabledForKey = false;
 
-  console.log("saved!");
-  if (allStores[key]) {
-    throw new Error(`Persistent store with key ${key} already exists`);
-  }
+  console.log("saved! motion");
+  // if (allStores[key]) {
+  //   throw new Error(`Persistent store with key ${key} already exists`);
+  // }
 
   let store = writable(val); // Assuming writable is some sort of writable Svelte store or similar
   let request = indexedDB.open("MotionDatabase", 1);

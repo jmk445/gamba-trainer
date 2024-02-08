@@ -42,6 +42,10 @@ limitations under the License.
     onMount(async () => {
         trainer = await getTrainerADD();
 
+        if(trainer == "FUI"){
+            trainer = "motion";
+        }
+
         await import(
             `../../src_${trainer}/stores/bleInterfaceStore/actions`
         ).then((module) => {

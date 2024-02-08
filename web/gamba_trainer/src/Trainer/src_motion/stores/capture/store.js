@@ -18,7 +18,7 @@ limitations under the License.
 */
 
 import { writable, get, derived, readable } from "svelte/store";
-import persistStore from "@motion/stores/utils/persistStore";
+import persistStore from "../utils/persistStore";
 import { parseFloat32Array } from "../utils/valueParsers";
 import { captureDelay, useMagnetometer } from "../captureSettings/store";
 import stateStore from "../utils/stateStore";
@@ -54,6 +54,7 @@ export const armedLabelIndex = writable(-1);
 
 labels.subscribe(($labels) => {
   if ($labels.length) {
+    console.log("entered");
     if (get(armedLabelIndex) === -1) {
       armedLabelIndex.set(0);
     }

@@ -29,6 +29,7 @@ import { isConnected } from "../bleInterfaceStore/store";
 
 export function addLabel(labelName) {
   labels.update(($labels) => {
+    
     //label 개수 제한(10개)
     if($labels.length > 10){
       throw new Error(`label cnt should be under 10`);
@@ -41,7 +42,7 @@ export function addLabel(labelName) {
     if ($labels.includes(labelName)) {
       throw new Error(`${labelName} already exists`);
     }
-    
+        
     //이전 label에서 새로운 label을 추가하여 새로운 배열을 반환.
     return [...$labels, labelName];        
   });

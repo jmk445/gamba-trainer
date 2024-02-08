@@ -18,7 +18,7 @@ limitations under the License.
  */
 
 import { writable, get, derived, readable } from "svelte/store";
-import persistStore from "@speech/stores/utils/persistStore";
+import persistStore from "@vision/stores/utils/persistStore";
 import { parseInt16Array } from "../utils/valueParsers";
 import { captureDelay, useMagnetometer } from "../captureSettings/store";
 import stateStore from "../utils/stateStore";

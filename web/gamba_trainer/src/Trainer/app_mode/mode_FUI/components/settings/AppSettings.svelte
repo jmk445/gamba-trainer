@@ -1,15 +1,21 @@
 <script>
   import TrainerSettings from "../../../../components/common/TrainerSettings.svelte";
   // import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
-  // import SettingsInput from "./SettingsInput.svelte";
+  import SettingsInput from "./SettingsInput.svelte";
   // import { get } from "svelte/store";
   // import { hasRecordings } from "../../stores/capture/store";
-  // import {
-  //   captureDelay,
-  //   captureSamples,
-  //   captureThreshold,
-  //   minMaxValues,
-  // } from "../../stores/captureSettings/store";
+  import loadfile from "../../stores/file/actions"
+  import {
+    captureDelay,
+    captureSamples,
+    captureThreshold,
+    minMaxValues,
+  } from "../../../../app_mode/mode_FUI/stores/captureSettings/store";
+
+  function handleLoadfile(){
+    //db에서 읽어서 넣어 주기 
+    // loadfile();
+  }
   // let clearRecordPrompt;
   // async function checkForRecordings(store, value) {
   //   if ($hasRecordings) {
@@ -53,15 +59,14 @@
         <p>{strAsset.panelOneDesc}</p>
       </div>
       <div class="form-container input-align-right">
-        <!-- <SettingsInput
+        <SettingsInput
           name="capturing-threshold"
           value={$captureThreshold}
-          label="Capture threshold"
-          onChange={(value) => checkForRecordings(captureThreshold, value)}
+          label="Capture threshold"          
           min={minMaxValues.captureThreshold[0]}
           max={minMaxValues.captureThreshold[1]}
-          step={0.001}
-        /> -->
+          step={0.001}          
+        />
       </div>
     </div>
 
@@ -71,15 +76,14 @@
         <p>{strAsset.panelTwoDesc}</p>
       </div>
       <div class="form-container input-align-right">
-        <!-- <SettingsInput
+        <SettingsInput
           name="delay-between-captures"
           value={$captureDelay}
-          label="Delay in seconds between captures"
-          onChange={(value) => checkForRecordings(captureDelay, value)}
+          label="Delay in seconds between captures"          
           min={minMaxValues.captureDelay[0]}
           max={minMaxValues.captureDelay[1]}
           step={0.001}
-        /> -->
+        />
       </div>
     </div>
   </div>

@@ -51,8 +51,7 @@
         }
         if (selectTrainerID === "motion" && selectModeID === "appMode") {
             console.log("0 : 버튼 클릭함수 실행")
-            setTrainerADD().then(()=>{
-                console.log("3 : trainer값 얻음");
+            setTrainerADD().then(()=>{                
                 window.location.href = `${trainer}-start`;
                 console.log("appmode-fui : ", trainer);
             });
