@@ -1,13 +1,16 @@
 <script>
     export let title;
     export let explanation;
+    
 </script>
 
 <div class="description">
+    <div class="title-container">
     <h2>{title}</h2>
+    
+    </div>
     <p>{explanation}</p>
 </div>
-
 <style lang="scss">
     @import "@scss/vars";
 
@@ -23,4 +26,10 @@
             font-weight: 500;
         }
     }
+    .title-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
 </style>

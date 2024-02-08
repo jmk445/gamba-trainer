@@ -86,17 +86,17 @@
   <div slot="settings-model">
     <div class="radio-container">
       <div class="model-container">
-        <input type="radio" name="model" value="numOne" id="numOne">
+        <input type="radio" name="model" value="numOne" id="numOne" checked>
         <label for="numOne">{strAsset.modelOne}</label>
       </div>
-      <div class="model-container">
+      <!-- <div class="model-container">
         <input type="radio" name="model" value="numTwo" id="numTwo">
         <label for="numTwo">{strAsset.modelTwo}</label>
       </div>
       <div class="model-container">
         <input type="radio" name="model" value="numThree" id="numThree">
         <label for="numThree">{strAsset.modelThree}</label>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- <ChangeAfterRecordPrompt

@@ -53,11 +53,11 @@
                 <button class="btn-send btn-stroke" disabled
                     >{strAsset.btnSend}</button
                 >
-                {#if isConvert === true}
+                <!-- {#if isConvert === true} -->
                     <p class="fin-txt">{strAsset.finConvert}</p>
-                {:else if isSend === true}
-                    <p class="fin-txt">{strAsset.finSend}</p>
-                {/if}
+                <!-- {:else if isSend === true} -->
+                    <!-- <p class="fin-txt">{strAsset.finSend}</p> -->
+                <!-- {/if} -->
                 <button
                 class="btn-download btn-stroke"
                 disabled={!$trainedModel || isDownloading}

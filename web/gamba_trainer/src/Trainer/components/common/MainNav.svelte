@@ -24,12 +24,13 @@ limitations under the License.
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
   import { writable } from "svelte/store";
-
+  import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  let showHelpPrompt = false;
   let trainer;
   let trainStore, testStore;
   let trainIsUnlocked = writable();
   let testIsUnlocked = writable();
-  
+  let pageNum;
   onMount(async () => {
     trainer = await getTrainerADD();
 
@@ -62,6 +63,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-settings">{strAsset.navOne}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} >i</button>
     </li>
 
     <li
@@ -70,6 +72,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-capture">{strAsset.navTwo}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}>i</button>
     </li>
 
     <li
@@ -79,26 +82,44 @@ limitations under the License.
     >
     
       <Link to="/{trainer}-train">{strAsset.navThree}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}>i</button>
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/{trainer}-test`)}
+      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-test`)}
       class:disabled={!$testIsUnlocked}
       aria-disabled={!$testIsUnlocked}        
     >    
       <Link to="/{trainer}-test">{strAsset.navFour}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}>i</button>
     </li>
 
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/{trainer}-convertSend`,
+        BASE_PATH + `/${trainer}-convertSend`,
       )}
     >
       <Link to="/{trainer}-convertSend">{strAsset.navFive}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}>i</button>
     </li>
   </ul>
 </div>
 
+{#if showHelpPrompt}
+<HelpPrompt onClose={() => (showHelpPrompt = false)} pageNum = {pageNum}/>
+{/if}
 <style lang="scss">
   @import "@scss/vars";
+    .btn-help{
+        display: none;
+        margin-left: 8px;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        color: $color-deepblue;
+        border-radius: 50%;
+    }
+    .active .btn-help{
+      display: block;
+    }
 </style>
