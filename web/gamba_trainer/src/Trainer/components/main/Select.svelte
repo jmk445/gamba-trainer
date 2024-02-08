@@ -4,12 +4,15 @@
 
     import ShowSelectAppPrompt from "../../../components/general/prompts/SelectAppPrompt.svelte";
     import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
+    import PreparingPrompt from "../../../components/general/prompts/preparingPrompt.svelte";
+
     import icTrainer from "../../../assets/img/ic_trainer.svg";
     import persistStore from "../../stores/utils/persistStore";
     import { getTrainerADD } from "../../stores/actions";
     import { FromPixels } from "@tensorflow/tfjs";
     import { onMount } from "svelte";
 
+    let showPreparing = false;
     let selectTrainerID = null;
     let selectModeID = null;
     let modeActive = "disabled";
@@ -47,7 +50,8 @@
         }
         if (selectTrainerID === "vision" && selectModeID === "basicMode") {
             // window.location.href = "/vision-settings";
-            alert("vision, basic");
+            // alert("vision, basic");
+            showPreparing = true;
         }
         if (selectTrainerID === "motion" && selectModeID === "appMode") {
             console.log("0 : 버튼 클릭함수 실행")
@@ -62,11 +66,13 @@
         }
         if (selectTrainerID === "speech" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
-            alert("sppech, app");
+            // alert("sppech, app");
+            showPreparing = true;
         }
         if (selectTrainerID === "vision" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
-            alert("vision, app");
+            // alert("vision, app");
+            showPreparing = true;
         }
     }
     async function setTrainerADD(){
@@ -204,8 +210,9 @@
     />
 {/if}
 <FloatingBtn/>
-
-
+{#if showPreparing}
+    <PreparingPrompt onClose={()=>showPreparing = false}/>
+{/if}
 <style lang="scss">
     @import "@scss/vars";
     

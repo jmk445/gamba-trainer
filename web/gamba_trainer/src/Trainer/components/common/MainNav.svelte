@@ -63,7 +63,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-settings">{strAsset.navOne}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}}>?</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} >i</button>
     </li>
 
     <li
@@ -72,7 +72,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-capture">{strAsset.navTwo}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}>?</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}>i</button>
     </li>
 
     <li
@@ -82,7 +82,7 @@ limitations under the License.
     >
     
       <Link to="/{trainer}-train">{strAsset.navThree}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}>?</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}>i</button>
     </li>
 
     <li
@@ -91,7 +91,7 @@ limitations under the License.
       aria-disabled={!$testIsUnlocked}        
     >    
       <Link to="/{trainer}-test">{strAsset.navFour}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}>?</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}>i</button>
     </li>
 
     <li
@@ -100,7 +100,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-convertSend">{strAsset.navFive}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}>?</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}>i</button>
     </li>
   </ul>
 </div>
@@ -111,11 +111,15 @@ limitations under the License.
 <style lang="scss">
   @import "@scss/vars";
     .btn-help{
-        margin-left: 12px;
+        display: none;
+        margin-left: 8px;
         width: 24px;
         height: 24px;
         background-color: white;
         color: $color-deepblue;
         border-radius: 50%;
+    }
+    .active .btn-help{
+      display: block;
     }
 </style>

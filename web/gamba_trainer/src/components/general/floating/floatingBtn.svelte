@@ -8,7 +8,7 @@
     {#if showFlow}
         <FlowFrompt onClose={() => (showFlow = false)}/>
     {/if}
-    <button class="btn-floating" on:click={()=>showFlow = true}>~</button>
+    <button class="btn-floating" on:click={()=>showFlow = true}>!</button>
 
 </div>
 <style lang="scss">

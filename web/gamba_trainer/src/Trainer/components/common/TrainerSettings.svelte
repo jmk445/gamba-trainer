@@ -100,7 +100,15 @@ limitations under the License.
 
     <p>{strAsset.bluetoothCaption}</p>
 </div>
-
+<div class="model-choose contents">
+    <Description
+        title={strAsset.modelSettingTitle}
+        explanation={strAsset.modelSettingDesc}
+    />
+    <div class="model-select-container">
+        <slot name="settings-model"/>
+    </div>
+</div>
 <div class="capture-choose-container contents">
     <Description
         title={strAsset.captureSettingTitle}
@@ -180,15 +188,7 @@ limitations under the License.
     </div>
 </div>
 
-<div class="model-choose contents">
-    <Description
-        title={strAsset.modelSettingTitle}
-        explanation={strAsset.modelSettingDesc}
-    />
-    <div class="model-select-container">
-        <slot name="settings-model"/>
-    </div>
-</div>
+
 
 <FloatingBtn/>
 <style lang="scss">
