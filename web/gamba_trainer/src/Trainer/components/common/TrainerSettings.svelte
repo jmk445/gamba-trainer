@@ -19,6 +19,7 @@ limitations under the License.
 -->
 <script>
     import { onMount } from "svelte";
+    import icBluetooth from "@assets/img/ic_bluetooth_black.svg";
     import { get } from "svelte/store";
     import Description from "../../../components/common/Description.svelte";
     import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
@@ -93,7 +94,7 @@ limitations under the License.
     <p>{strAsset.bluetoothTitle}</p>
 
     <button class="btn-connect btn-stroke" on:click={handleConnect}>
-        <img src="#" alt="블루투스" />
+        <img src={icBluetooth} alt="블루투스" />
 
         <span>{strAsset.bluetoothBtn}</span>
     </button>
@@ -196,10 +197,15 @@ limitations under the License.
         text-align: center;
         margin-top: 56px;
 
-        button {
+        .btn-connect {
             margin: auto;
-            display: block;
+            display: flex;
+            padding: 10px 36px;
+            img{
+                margin-right: 12px;
+            }
         }
+        
         p:first-child {
             font-size: 1.5rem;
             margin-bottom: 16px;

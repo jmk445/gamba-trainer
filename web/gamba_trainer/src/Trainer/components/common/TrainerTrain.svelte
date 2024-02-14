@@ -158,8 +158,7 @@ limitations under the License.
     .btn-start {
         margin-bottom: 64px;
     }
-    .gragh_div {
-        width: 100%;
-        padding: 0px;
-    }
+    // .gragh_div {
+    //     padding: 0px;
+    // }
 </style>

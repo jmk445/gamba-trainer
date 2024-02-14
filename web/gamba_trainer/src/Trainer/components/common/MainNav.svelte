@@ -25,6 +25,7 @@ limitations under the License.
   import { getTrainerADD } from "../../stores/actions";
   import { writable } from "svelte/store";
   import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  import icInfo from "@assets/img/ic_info.svg";
   let showHelpPrompt = false;
   let trainer;
   let trainStore, testStore;
@@ -63,7 +64,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-settings">{strAsset.navOne}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} >i</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
@@ -72,7 +73,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-capture">{strAsset.navTwo}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}>i</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}><img src={icInfo} alt=""/></button>
     </li>
 
     <li
@@ -82,7 +83,7 @@ limitations under the License.
     >
     
       <Link to="/{trainer}-train">{strAsset.navThree}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}>i</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}><img src={icInfo} alt=""/></button>
     </li>
 
     <li
@@ -91,7 +92,7 @@ limitations under the License.
       aria-disabled={!$testIsUnlocked}        
     >    
       <Link to="/{trainer}-test">{strAsset.navFour}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}>i</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}><img src={icInfo} alt=""/></button>
     </li>
 
     <li
@@ -100,7 +101,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer}-convertSend">{strAsset.navFive}</Link>
-      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}>i</button>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}><img src={icInfo} alt=""/></button>
     </li>
   </ul>
 </div>
@@ -118,6 +119,7 @@ limitations under the License.
         background-color: white;
         color: $color-deepblue;
         border-radius: 50%;
+        padding: 0;
     }
     .active .btn-help{
       display: block;
