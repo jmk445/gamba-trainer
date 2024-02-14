@@ -1,7 +1,4 @@
-// export let trainerADD;
-// import { trainer_ } from "./store";
-export function getTrainerADD() {
-    // let trainerADD;
+export function getTrainerADD() {    
     const dbName = "TrainerADD";
     const storeName = "DataStore";
     const version = 1;
@@ -18,14 +15,8 @@ export function getTrainerADD() {
 
             getRequest.onsuccess = function (event) {
                 const result = event.target.result;
-                if (result) {
-                    // trainerADD = result;
-                    // trainer_.set(result);   
-                    console.log("trainer add get successed");
-                    console.log("2 : getTrainerADD 실행");
-                    resolve(result);                 
-                    // return (result);
-                    // console.log("current trainer mode :" + trainer);
+                if (result) {                                                            
+                    resolve(result);                                     
                 } else {
                     console.log("Record not found in IndexedDB.");
                 }
@@ -43,7 +34,6 @@ export function getTrainerADD() {
         request.onerror = function (error) {
             console.log("Error opening database: " + error);
         };
-    });
-    // return trainerADD;
+    });    
 
 }

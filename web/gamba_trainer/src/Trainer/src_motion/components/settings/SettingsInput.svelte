@@ -28,6 +28,7 @@ limitations under the License.
   export let name = "";
   export let label = "";
   export let onChange = () => {};
+  export let isdisabled = false;
 
   let _internalValue = min;
 
@@ -50,7 +51,9 @@ limitations under the License.
   bind:value={_internalValue}
   {min}
   {max}
+  {isdisabled}
   {step}
   {onChange}
   {label}
+  
 />

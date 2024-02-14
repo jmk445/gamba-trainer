@@ -38,6 +38,8 @@ module.exports = (env) => {
         "@motion": path.resolve(__dirname, "src/Trainer/src_motion"),
         "@speech": path.resolve(__dirname, "src/Trainer/src_speech"),
         "@vision": path.resolve(__dirname, "src/Trainer/src_vision"),
+        "@fui": path.resolve(__dirname, "src/Trainer/app_mode/mode_fui"),
+
         "@template": path.resolve(__dirname, "src/src_template"),
         "motion-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_motion/tf4micro-motion-kit"),
         "speech-tf4micro-motion-kit": path.resolve(__dirname, "src/Trainer/src_speech/tf4micro-motion-kit"),

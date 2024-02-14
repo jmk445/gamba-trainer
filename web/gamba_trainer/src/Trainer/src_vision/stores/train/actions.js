@@ -20,7 +20,7 @@ limitations under the License.
 import * as tf from "@tensorflow/tfjs";
 import { get } from "svelte/store";
 
-import * as datasetUtils from "@speech/util/datasetUtils";
+import * as datasetUtils from "@vision/util/datasetUtils";
 
 import {
   modelArchitecture,
@@ -45,85 +45,15 @@ const log = (...args) => {
   );
 };
 
-function periodic_hann_window(window_length, dtype) {
-  return 0.5 - 0.5 * tf.cos(2.0 * Math.PI * tf.range(tf.cast(window_length, 'float32')) / tf.cast(window_length, 'float32')); 
-}
-
-function periodicHannWindow(windowLength, dtype) {
-  const range = tf.range(0, windowLength, 1, "float32");
-  const pi = tf.scalar(Math.PI, "float32");
-  const two = tf.scalar(2, "float32");
-  const numerator = tf.mul(two, Math.PI);
-  const denominator = tf.cast(range.size, "float32");
-
-  const cosValues = tf.div(tf.mul(numerator, range), denominator).cos();
-  const hannWindow = tf.sub(0.5, tf.mul(0.5, cosValues));
-
-  return hannWindow;
-}
-
-function bilinearResize(image, height, width) {
-  const img_height = image.length;
-  const img_width = image[0].length;
-
-  const resized = [];
-
-  const x_ratio = parseFloat(img_width - 1) / (width - 1);
-  const y_ratio = parseFloat(img_height - 1) / (height - 1);
-
-  for(let i=0;i<height;i++) {
-    resized[i] = [];
-    for(let j=0;j<width;j++) {
-      const x_l = Math.floor(x_ratio*j);
-      const y_l = Math.floor(y_ratio*i);
-      const x_h = Math.ceil(x_ratio*j);
-      const y_h = Math.ceil(y_ratio*i);
-
-      const x_weight = (x_ratio * j) - x_l;
-      const y_weight = (y_ratio * i) - y_l;
-
-      const a = image[y_l][x_l];
-      const b = image[y_l][x_h];
-      const c = image[y_h][x_l];
-      const d = image[y_h][x_h];
-
-      const pixel = a * (1 - x_weight) * (1 - y_weight)
-                  + b * x_weight * (1 - y_weight)
-                  + c * y_weight * (1 - x_weight)
-                  + d * x_weight * y_weight;
-
-      resized[i][j] = pixel;
-    }
-  }
-
-  return resized;
-}
-
-// spectrogram으로 변환
-export async function createSpectrogram(audioData) {
-  const frameLength = 640; // 적절한 프레임 길이를 설정합니다.
-  const frameStep = 320; // 적절한 프레임 스텝을 설정합니다.
-  const audioTempTensor = tf.tensor1d(audioData);
-
-  let spec = tf.signal.stft(audioTempTensor, frameLength, frameStep, 1024, periodicHannWindow);
-  spec = tf.abs(spec);
-  const spec_array = spec.arraySync();
-  spec.print();
-  console.log(Math.max(...tf.util.flatten(spec_array)));
-
-  const resized = bilinearResize(spec_array, 16, 16);
-  console.log(resized[0]);
-  const newTensor = tf.tensor2d(resized,[16,16]);
-
-  const resultSpec = newTensor.expandDims(-1);
-
-  return resultSpec;
+function change_input_shape(imageData, height, width, channel){
+  return tf.tensor(imageData, [height, width, channel]);
 }
 
 function int16ToFloat32(int16Array) {
   const float32Array = new Float32Array(int16Array.length);
   for (let i = 0; i < int16Array.length; i++) {
-    float32Array[i] = int16Array[i] / 32768.0;
+    // float32Array[i] = int16Array[i] / 32768.0;
+    float32Array[i] = int16Array[i] / 255.0;
   }
 
   return float32Array;
@@ -150,7 +80,7 @@ export async function prepareDataSet() {
         tensor.push(...float32Array);
         //tensor.push(...a);
       }
-      const input = await createSpectrogram(tensor);
+      const input = change_input_shape(tensor,96,96,3);
       X.push(input);
       Y.push(output);
     }

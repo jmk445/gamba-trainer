@@ -2,31 +2,29 @@
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { getTrainerADD } from "../../stores/actions";
+    
 
-    let trainer;
-    let aggregatedActions;
+    let trainer, trainer_;
+    let aggregatedActions;    
 
     onMount(async () => {
         trainer = await getTrainerADD();
-        if (trainer === "motion" || trainer === "speech" || trainer === "vision") {
-            await import(`../../src_${trainer}/stores/aggregatedActions`).then(
-                (module) => {
-                    aggregatedActions = module;
-                    console.log("2 " + trainer);
-                },
-            );
-            aggregatedActions.clearPersistantStorage();
-        }
-        // else{
-        //     await import(`../../app_mode/mode_${trainer}/stores/aggregatedActions`).then(
-        //         (module) => {
-        //             aggregatedActions = module;
-        //             console.log("2 " + trainer);
-        //         },
-        //     );
-        // }
-        
+        trainer_ = trainer;
 
-        navigate(`/${trainer}-settings`, { replace: false });
+        //@todo : needs update
+        if (trainer == "FUI") {
+            trainer_ = "motion";
+        }
+        
+        //@todo : needs update
+        await import(`../../src_${trainer_}/stores/aggregatedActions`).then(
+            (module) => {
+                aggregatedActions = module;
+            },
+        );
+        aggregatedActions.clearPersistantStorage();
+
+        navigate(`/${trainer}-settings`, { replace: true });
     });
+    
 </script>

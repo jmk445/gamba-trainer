@@ -19,7 +19,7 @@ limitations under the License.
 
 import { get } from "svelte/store";
 import * as tf from "@tensorflow/tfjs";
-import AUDIOCapturer from "@speech/util/AUDIOCapturer";
+import IMAGECapturerCapturer from "@vision/util/IMAGECapturer";
 import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 import { trainedModel } from "../train/store";
@@ -31,7 +31,7 @@ import * as captureSettings from "../captureSettings/store";
 function int16ToFloat32(int16Array) {
   const float32Array = new Float32Array(int16Array.length);
   for (let i = 0; i < int16Array.length; i++) {
-    float32Array[i] = int16Array[i] / 32768.0;
+    float32Array[i] = int16Array[i] / 255.0;
   }
 
   return float32Array;
@@ -61,9 +61,9 @@ export async function beginTesting() {
         const float32Array = int16ToFloat32(recording);
         preparedData.push(...float32Array);
       });
-      const specData = await createSpectrogram(preparedData);
+      const input = tf.tensor(preparedData, [96, 96, 3]);
 
-      const predictionsTensor = get(trainedModel).predict(specData.expandDims(0));
+      const predictionsTensor = get(trainedModel).predict(input.expandDims(0));
       const [predictions] = predictionsTensor.arraySync();
       testPredictions.set(predictions);
       endTesting();

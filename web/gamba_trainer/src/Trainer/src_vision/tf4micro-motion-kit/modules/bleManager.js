@@ -91,12 +91,13 @@ async function uint8ArrayTo16BitIntArray(uint8Array) {
 
 async function handleAudioDataChange(event) {
   const originalData = new Uint8Array(event.target.value.buffer);
-  const trans16intData = await uint8ArrayTo16BitIntArray(originalData);
+  // const trans16intData = await uint8ArrayTo16BitIntArray(originalData);
   // let data = new Float32Array(trans16intData.length);
   // for(let i=0;i<trans16intData.length;i++) {
   //   data[i] = trans16intData[i] / 32768.0;
   // }
-  eventHandler.dispatchEvent("audiodata", trans16intData);
+
+  eventHandler.dispatchEvent("visiondata", originalData);
 }
 
 function onDisconnected(event) {

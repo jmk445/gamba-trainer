@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  
+
   import { FromPixels } from "@tensorflow/tfjs";
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
@@ -32,8 +32,14 @@ limitations under the License.
   let trainIsUnlocked = writable();
   let testIsUnlocked = writable();
   let pageNum;
+  let trainer_
   onMount(async () => {
     trainer = await getTrainerADD();
+    trainer_ = trainer;
+
+    if(trainer == "FUI"){
+      trainer = "motion";
+    }
 
     await import(`../../src_${trainer}/stores/train/store`).then((module) => {
       trainStore = module;
@@ -43,7 +49,6 @@ limitations under the License.
     await import(`../../src_${trainer}/stores/test/store`).then((module) => {
       testStore = module;
       testIsUnlocked = testStore.testIsUnlocked;
-    
     });
   });
 
@@ -60,34 +65,39 @@ limitations under the License.
   <ul>
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-settings`,
+        BASE_PATH + `/${trainer_}-settings`,
       )}
     >
-      <Link to="/{trainer}-settings">{strAsset.navOne}</Link>
+
+      <Link to="/{trainer_}-settings">{strAsset.navOne}</Link>
       <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-capture`,
+        BASE_PATH + `/${trainer_}-capture`,
       )}
     >
-      <Link to="/{trainer}-capture">{strAsset.navTwo}</Link>
+
+      <Link to="/{trainer_}-capture">{strAsset.navTwo}</Link>
       <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}><img src={icInfo} alt=""/></button>
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-train`)}
+      class:active={location.pathname.includes(
+        BASE_PATH + `/${trainer_}-train`,
+      )}
       class:disabled={!$trainIsUnlocked}
-      aria-disabled={!$trainIsUnlocked}      
+      aria-disabled={!$trainIsUnlocked}
     >
     
-      <Link to="/{trainer}-train">{strAsset.navThree}</Link>
+
+      <Link to="/{trainer_}-train">{strAsset.navThree}</Link>
       <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}><img src={icInfo} alt=""/></button>
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/${trainer}-test`)}
+      class:active={location.pathname.includes(BASE_PATH + `/${trainer_}-test`)}
       class:disabled={!$testIsUnlocked}
       aria-disabled={!$testIsUnlocked}        
     >    
@@ -97,10 +107,11 @@ limitations under the License.
 
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/${trainer}-convertSend`,
+        BASE_PATH + `/${trainer_}-convertSend`,
       )}
     >
-      <Link to="/{trainer}-convertSend">{strAsset.navFive}</Link>
+
+      <Link to="/{trainer_}-convertSend">{strAsset.navFive}</Link>
       <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}><img src={icInfo} alt=""/></button>
     </li>
   </ul>

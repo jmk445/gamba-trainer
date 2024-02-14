@@ -21,7 +21,7 @@ import { get } from "svelte/store";
 import { labels, recordings, armedLabelIndex, captureState } from "./store";
 import * as captureSettings from "../captureSettings/store";
 
-import AUDIOCapturer from "@speech/util/AUDIOCapturer";
+import IMAGECapturer from "@vision/util/IMAGECapturer";
 import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 
@@ -96,9 +96,9 @@ export function addRecording(labelIndex, data) {
 // Recording
 //=============================================================================
 
-let audioCapturer = null;
+let imageCapturer = null;
 export async function beginRecording() {
-  if (audioCapturer) {
+  if (imageCapturer) {
     throw new Error("Already capturing");
   }
   if (!get(isConnected)) {
@@ -117,7 +117,7 @@ export async function beginRecording() {
     }
   }
 
-  audioCapturer = new AUDIOCapturer({
+  imageCapturer = new IMAGECapturer({
     // numSamples: get(captureSettings.captureSamples),
     // captureDelay: get(captureSettings.captureDelay),
     // sensitivity: get(captureSettings.captureThreshold),
@@ -136,15 +136,15 @@ export async function beginRecording() {
     // useMagnetometer: get(captureSettings.useMagnetometer),
   });
   captureState.set("armed");
-  audioCapturer.start();
+  imageCapturer.start();
 }
 
 export async function endRecording() {
   if (audioCapturer) {
     console.log("end recording");
 
-    await audioCapturer.stop();
-    audioCapturer = null;
+    await imageCapturer.stop();
+    imageCapturer = null;
 
     captureState.set("idle");
   }

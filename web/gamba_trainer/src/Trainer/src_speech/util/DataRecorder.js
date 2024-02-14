@@ -14,7 +14,7 @@ limitations under the License.
 ======================================================================*/
 
 class DataRecorder{
-    constructor(numSamples){
+    constructor(numSamples){        
         this.numSamplesToRecord = numSamples;
         this.buffer = [];
     }

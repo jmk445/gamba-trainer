@@ -18,8 +18,8 @@ limitations under the License.
  */
 
 import { derived, get, readable } from "svelte/store";
-import * as bleApi from "speech-tf4micro-motion-kit/api";
-import persistStore from "@speech/stores/utils/persistStore";
+import * as bleApi from "vision-tf4micro-motion-kit/api";
+import persistStore from "@vision/stores/utils/persistStore";
 
 export const isConnected = readable(false, (set) => {
   function handleConnected() {
