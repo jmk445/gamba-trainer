@@ -53,8 +53,8 @@ limitations under the License.
     }
 
     const strAsset = {
-        trainTitle : "모델 교육",
-        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 모션 데이터를 기록하십시오.",
+        trainTitle : "모델 학습",
+        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 데이터를 기록하십시오.",
         btnStart : "학습 시작",
         btnStop : "학습 중지",
         captionStop : "멈추는 중...",
@@ -65,8 +65,7 @@ limitations under the License.
 <div class="contents">
     <Description
         title={strAsset.trainTitle}
-        explanation={strAsset.trainDesc}
-    />
+        explanation={strAsset.trainDesc}/>
     <div class="input-container">
         <slot name="train-setting" />
         <!-- <div class="column">

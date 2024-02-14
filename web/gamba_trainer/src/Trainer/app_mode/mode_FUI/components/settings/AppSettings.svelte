@@ -1,52 +1,36 @@
 <script>
-  import TrainerSettings from "../../../components/common/TrainerSettings.svelte";
-  import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
-  import SettingsInput from "./SettingsInput.svelte";
-  import { get } from "svelte/store";
-  import { hasRecordings } from "../../stores/capture/store";
-  import { getTrainerADD } from "../../../stores/actions";
-  import persistStore from "../../stores/utils/persistStore";
-  import {
-    captureDelay,
-    captureSamples,
-    captureThreshold,
-    minMaxValues,
-  } from "../../stores/captureSettings/store";
-  import { onMount } from "svelte";
+  import TrainerSettings from "../../../../components/common/TrainerSettings.svelte";
+  // import ChangeAfterRecordPrompt from "./ChangeAfterRecordPrompt.svelte";
+  // import SettingsInput from "./SettingsInput.svelte";
+  // import { get } from "svelte/store";
+  // import { hasRecordings } from "../../stores/capture/store";
+  // import {
+  //   captureDelay,
+  //   captureSamples,
+  //   captureThreshold,
+  //   minMaxValues,
+  // } from "../../stores/captureSettings/store";
+  // let clearRecordPrompt;
+  // async function checkForRecordings(store, value) {
+  //   if ($hasRecordings) {
+  //     clearRecordPrompt.show((didClear) => {
+  //       if (didClear) {
+  //         store.set(value);
+  //       } else {
+  //         const prevValue = get(store);
+  //         store.set(value);
 
-  let clearRecordPrompt;
-  let trainer;
-  let isApplicationMode = false;
+  //         setTimeout(() => {
+  //           store.set(prevValue);
+  //         }, 10);
+  //       }
+  //     });
+  //   } else {
+  //     store.set(value);
+  //   }
+  // }
 
-  onMount(async () => {
-    trainer = await getTrainerADD();
-    if (trainer == "FUI") {      
-      isApplicationMode = true;
-      captureThreshold.set(0.01);
-      captureDelay.set(0.5);
-    }
-  });
-
-  async function checkForRecordings(store, value) {
-    if ($hasRecordings) {
-      clearRecordPrompt.show((didClear) => {
-        if (didClear) {
-          store.set(value);
-        } else {
-          const prevValue = get(store);
-          store.set(value);
-
-          setTimeout(() => {
-            store.set(prevValue);
-          }, 10);
-        }
-      });
-    } else {
-      store.set(value);
-    }
-  }
-
-  function handleCloseChangeAfterRecordPrompt(didClear) {}
+  // function handleCloseChangeAfterRecordPrompt(didClear) {}
 
   const strAsset = {
     panelOne: "임계값 설정",
@@ -55,9 +39,9 @@
     panalTwo: "다음 수집까지 대기시간(초)",
     panelTwoDesc:
       "한 기록이 완료된 후 다른 기록을 허용하기 전에 대기할 시간을 초단위로 제공합니다. 이는 이중 트리거링을 방지하기 위한 것입니다.",
-    modelOne: "Gambalabs-001",
-    modelTwo: "Gambalabs-002",
-    modelThree: "Gambalabs-003",
+    modelOne : "Gambalabs-001",
+    modelTwo : "Gambalabs-002",
+    modelThree : "Gambalabs-003"
   };
 </script>
 
@@ -69,17 +53,15 @@
         <p>{strAsset.panelOneDesc}</p>
       </div>
       <div class="form-container input-align-right">
-        <!-- 현재 fui 모드임에도 슬라이더 값이 바뀌는 에러가 있음 -->
-        <SettingsInput
+        <!-- <SettingsInput
           name="capturing-threshold"
           value={$captureThreshold}
           label="Capture threshold"
+          onChange={(value) => checkForRecordings(captureThreshold, value)}
           min={minMaxValues.captureThreshold[0]}
           max={minMaxValues.captureThreshold[1]}
-          isdisabled={!!isApplicationMode}
           step={0.001}
-          onChange={(value) => checkForRecordings(captureThreshold, value)}
-        />
+        /> -->
       </div>
     </div>
 
@@ -89,16 +71,15 @@
         <p>{strAsset.panelTwoDesc}</p>
       </div>
       <div class="form-container input-align-right">
-        <SettingsInput
+        <!-- <SettingsInput
           name="delay-between-captures"
           value={$captureDelay}
-          label="Delay in seconds between captures"          
+          label="Delay in seconds between captures"
+          onChange={(value) => checkForRecordings(captureDelay, value)}
           min={minMaxValues.captureDelay[0]}
           max={minMaxValues.captureDelay[1]}
-          isdisabled={!!isApplicationMode}
-          step={0.001}          
-          onChange={(value) => checkForRecordings(captureDelay, value)}
-        />
+          step={0.001}
+        /> -->
       </div>
     </div>
   </div>
@@ -113,15 +94,15 @@
         <label for="numTwo">{strAsset.modelTwo}</label>
       </div>
       <div class="model-container">
-        <input type="radio" name="model" value="numThree" id="numThree" />
+        <input type="radio" name="model" value="numThree" id="numThree">
         <label for="numThree">{strAsset.modelThree}</label>
       </div> -->
     </div>
   </div>
-  <ChangeAfterRecordPrompt
+  <!-- <ChangeAfterRecordPrompt
     onClose={handleCloseChangeAfterRecordPrompt}
     bind:this={clearRecordPrompt}
-  />
+  /> -->
 </TrainerSettings>
 
 <style lang="scss">
@@ -146,23 +127,24 @@
       width: 56%;
     }
   }
-  .radio-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.radio-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-    .model-container {
+  .model-container{
+    cursor: pointer;
+    margin-bottom: 12px;
+
+    input{
       cursor: pointer;
-      margin-bottom: 12px;
-
-      input {
-        cursor: pointer;
-      }
-      label {
-        cursor: pointer;
-        font-size: 1.5rem;
-      }
+    }
+    label{
+      cursor: pointer;
+      font-size: 1.5rem;
     }
   }
+}
+
 </style>

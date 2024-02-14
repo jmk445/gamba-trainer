@@ -18,12 +18,14 @@
 
 <div class="check-box row">
   <span class="tool-tip">{strAsset.toolTip}</span>
+  <div class="column">
   <CheckboxInput
     name="input_early_stopping_motion"
     bind:value={$trainEarlyStopping}
   /><label class="subhead-1" for="input_early_stopping_motion"
     >{strAsset.checkEarly}</label
   >
+</div>
 </div>
 {#if $trainEarlyStopping}
   <div class="input-container">
@@ -71,7 +73,8 @@
   .tool-tip {
     display: none;
     position: absolute;
-    top: 40px;
+    left: -8px;
+    bottom: 28px;
     border-radius: 8px;
     background-color: black;
     opacity: 0.5;
@@ -81,6 +84,17 @@
     font-weight: 400;
     font-size: 0.875rem;
     width: 352px;
+
+    &::after{
+      border-bottom: 0px solid transparent;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid black;
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 8px;
+    }
   }
   .check-box:hover .tool-tip {
     display: block;

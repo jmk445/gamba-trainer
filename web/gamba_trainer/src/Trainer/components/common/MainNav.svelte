@@ -24,12 +24,14 @@ limitations under the License.
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
   import { writable } from "svelte/store";
-
-  let trainer, trainer_;
+  import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  let showHelpPrompt = false;
+  let trainer;
   let trainStore, testStore;
   let trainIsUnlocked = writable();
   let testIsUnlocked = writable();
-
+  let pageNum;
+  let trainer_
   onMount(async () => {
     trainer = await getTrainerADD();
     trainer_ = trainer;
@@ -66,6 +68,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer_}-settings">{strAsset.navOne}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} >i</button>
     </li>
 
     <li
@@ -74,6 +77,7 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer_}-capture">{strAsset.navTwo}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true;  pageNum="two";}}>i</button>
     </li>
 
     <li
@@ -83,15 +87,18 @@ limitations under the License.
       class:disabled={!$trainIsUnlocked}
       aria-disabled={!$trainIsUnlocked}
     >
+    
       <Link to="/{trainer_}-train">{strAsset.navThree}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three";}}>i</button>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/${trainer_}-test`)}
       class:disabled={!$testIsUnlocked}
-      aria-disabled={!$testIsUnlocked}
-    >
-      <Link to="/{trainer_}-test">{strAsset.navFour}</Link>
+      aria-disabled={!$testIsUnlocked}        
+    >    
+      <Link to="/{trainer}-test">{strAsset.navFour}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four";}}>i</button>
     </li>
 
     <li
@@ -100,10 +107,26 @@ limitations under the License.
       )}
     >
       <Link to="/{trainer_}-convertSend">{strAsset.navFive}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five";}}>i</button>
     </li>
   </ul>
 </div>
 
+{#if showHelpPrompt}
+<HelpPrompt onClose={() => (showHelpPrompt = false)} pageNum = {pageNum}/>
+{/if}
 <style lang="scss">
   @import "@scss/vars";
+    .btn-help{
+        display: none;
+        margin-left: 8px;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        color: $color-deepblue;
+        border-radius: 50%;
+    }
+    .active .btn-help{
+      display: block;
+    }
 </style>

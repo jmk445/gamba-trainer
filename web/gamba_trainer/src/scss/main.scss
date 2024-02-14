@@ -113,30 +113,35 @@ button {
     opacity: 0.4;
     pointer-events: none;
   }
-  &:hover{
+
+  &:hover {
     background-color: $color-lightsky;
   }
-  &:active{
+
+  &:active {
     background-color: $color-btn-active-blue;
   }
 
 
 }
-.btn-fill{
+
+.btn-fill {
   @extend .button;
   background-color: $color-btn-blue;
   color: white;
 
   &:disabled {
-    background-color:$color-disabled-gray;
+    background-color: $color-disabled-gray;
     color: black;
     opacity: 0.4;
     pointer-events: none;
   }
-  &:hover{
+
+  &:hover {
     background-color: $color-btn-hover-blue;
   }
-  &:active{
+
+  &:active {
     background-color: $color-nav-blue;
   }
 }
@@ -187,11 +192,13 @@ button {
 .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
   background-color: $color-deepblue;
 }
+
 nav {
   position: sticky;
   top: 10px;
   z-index: 1;
 }
+
 .nav {
   // height: 64px;
   margin-bottom: 72px;
@@ -243,10 +250,11 @@ nav {
 .myBar {
   width: 10%;
   height: 100%;
-  background-color: aqua;
+  background-color: $color-btn-blue ;
   border-radius: 50px;
 }
 
-main, .main {
+main,
+.main {
   margin-bottom: 128px;
 }
