@@ -1,5 +1,6 @@
 <script>
-    import arrowRight from "@assets/icons/arrow_right.png";
+    import icArrowBlack from "@assets/img/ic_arrow_black.svg";
+    import icArrowWhite from "@assets/img/ic_arrow_white.svg";
     import TrainerConvert from "../../../components/common/TrainerConvert.svelte";
     // import { pushPropmt } from "../src_motion/stores/ui/actions";
     import { trainedModel } from "../../stores/ui/actions";
@@ -11,7 +12,7 @@
     let quantize = false;
     let isDownloading = false;
     let isConverting = false;
-    let isbtnDisabled = true;
+    let isbtnDisabled = false;
     //문구 등장 변수
     let isConvert = true;
     let isSend = false;
@@ -50,17 +51,17 @@
                         handleConvert(false);
                     }}>{strAsset.btnconvert}</button
                 >
-                <button class="btn-send btn-stroke" disabled
+                <button class="btn-send btn-stroke" 
                     >{strAsset.btnSend}</button
                 >
-                <!-- {#if isConvert === true} -->
+                {#if isConvert === true}
                     <p class="fin-txt">{strAsset.finConvert}</p>
-                <!-- {:else if isSend === true} -->
-                    <!-- <p class="fin-txt">{strAsset.finSend}</p> -->
-                <!-- {/if} -->
+                {:else if isSend === true}
+                    <p class="fin-txt">{strAsset.finSend}</p>
+                {/if}
                 <button
                 class="btn-download btn-stroke"
-                disabled={!$trainedModel || isDownloading}
+                
                 on:click={() => handleDownload()}>{strAsset.btnDownload}</button
             >
 
@@ -71,8 +72,15 @@
     </div>
     <div class="move-page">
         <button class="btn-app btn-fill" disabled={isbtnDisabled}>
-            <img src={arrowRight} alt="arrow" /> {strAsset.btnapp}</button
-        >
+            {#if isbtnDisabled}
+                <img src={icArrowBlack} alt="arrow" />
+            {:else if !isbtnDisabled}
+                <img src={icArrowWhite} alt="arrow" />
+            {/if}
+            {strAsset.btnapp}
+        </button>
+        
+
     </div>
 </div>
 </TrainerConvert>
@@ -99,7 +107,7 @@
         margin-left: 12px;
     }
     .btn-app {
-        display: block;
+        display: flex;
         margin-left: 12px;
     }
     img {

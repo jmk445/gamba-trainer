@@ -66,7 +66,6 @@ limitations under the License.
     .content {
       background: $color-bg-primary;
       border-radius: 8px;
-
       .title {
         display: flex;
         flex-direction: row;

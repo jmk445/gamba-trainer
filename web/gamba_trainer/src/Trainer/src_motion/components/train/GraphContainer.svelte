@@ -52,7 +52,6 @@ limitations under the License.
 
   .graph-container {
     width: 100%;
-    height: 301px;
     margin: 0;
     h2 {
       text-align: right;
