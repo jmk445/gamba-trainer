@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  
+
   import { FromPixels } from "@tensorflow/tfjs";
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
@@ -29,11 +29,12 @@ limitations under the License.
   let trainStore, testStore;
   let trainIsUnlocked = writable();
   let testIsUnlocked = writable();
-  
+
   onMount(async () => {
     trainer = await getTrainerADD();
     trainer_ = trainer;
-    if (trainer = "FUI"){
+
+    if(trainer == "FUI"){
       trainer = "motion";
     }
 
@@ -45,7 +46,6 @@ limitations under the License.
     await import(`../../src_${trainer}/stores/test/store`).then((module) => {
       testStore = module;
       testIsUnlocked = testStore.testIsUnlocked;
-    
     });
   });
 
@@ -77,19 +77,20 @@ limitations under the License.
     </li>
 
     <li
-      class:active={location.pathname.includes(BASE_PATH + `/${trainer_}-train`)}
+      class:active={location.pathname.includes(
+        BASE_PATH + `/${trainer_}-train`,
+      )}
       class:disabled={!$trainIsUnlocked}
-      aria-disabled={!$trainIsUnlocked}      
+      aria-disabled={!$trainIsUnlocked}
     >
-    
       <Link to="/{trainer_}-train">{strAsset.navThree}</Link>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/${trainer_}-test`)}
       class:disabled={!$testIsUnlocked}
-      aria-disabled={!$testIsUnlocked}        
-    >    
+      aria-disabled={!$testIsUnlocked}
+    >
       <Link to="/{trainer_}-test">{strAsset.navFour}</Link>
     </li>
 

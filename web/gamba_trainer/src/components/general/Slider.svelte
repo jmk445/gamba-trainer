@@ -18,15 +18,15 @@ limitations under the License.
 */
 -->
 <script>
-  import Slider from "@smui/slider/styled";
+  import Slider from "@smui/slider/styled";  
   export let value = 0;
   export let min = 0;
   export let max = 100;
   export let step = 1;
   export let name;
   export let label = "";
-  export let onChange = () => {};
-  
+  export let onChange = () => {};  
+  export let isdisabled = false;  
 </script>
 
 <Slider
@@ -35,8 +35,9 @@ limitations under the License.
   {max}
   {step}
   input$aria-label={label}
-  input$name={name}
+  input$name={name}  
   on:MDCSlider:change={() => onChange(value)}
+  disabled = {isdisabled}
 />
 
 <style lang="scss">

@@ -35,6 +35,7 @@ limitations under the License.
         if(trainer == "FUI"){
             trainer = "motion";
         }
+        console.log(trainer);
 
         await import(
             `../../src_${trainer}/stores/bleInterfaceStore/actions.js`

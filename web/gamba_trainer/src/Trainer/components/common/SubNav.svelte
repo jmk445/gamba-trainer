@@ -41,11 +41,11 @@ limitations under the License.
     //동적 import
     onMount(async () => {
         trainer = await getTrainerADD();
-
+                
         if(trainer == "FUI"){
             trainer = "motion";
         }
-
+        
         await import(
             `../../src_${trainer}/stores/bleInterfaceStore/actions`
         ).then((module) => {
@@ -70,7 +70,7 @@ limitations under the License.
 
         interval = setInterval(() => {
             connectionUpdate();
-        }, 1000);
+        }, 1000);        
     });
 
     onDestroy(() => {

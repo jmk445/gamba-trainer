@@ -50,7 +50,6 @@ export default function persistStore(key, val, parseFn, onError) {
   const originalVal = JSON.parse(JSON.stringify(val));
   let indexedDBDisabledForKey = false;
 
-  console.log("saved! motion");
   // if (allStores[key]) {
   //   throw new Error(`Persistent store with key ${key} already exists`);
   // }
@@ -136,6 +135,7 @@ export default function persistStore(key, val, parseFn, onError) {
 
   return store;
 }
+
 
 export const dirty = persistStore("persistStore.dirty", false);
 persistStore.clearDirty = function () {

@@ -34,7 +34,7 @@ persistStore.onError(() => {
 });
 
 export const labels = persistStore("capture.labels", []);
-//export const labelsCount = persistStore("capture.labelsCount", get(labels).length);
+// export const labelsCount = persistStore("capture.labelsCount", get(labels).length);
 
 export const captureState = stateStore("idle", [
   "idle",
