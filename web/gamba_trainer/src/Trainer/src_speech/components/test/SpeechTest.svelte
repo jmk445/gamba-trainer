@@ -29,7 +29,10 @@ limitations under the License.
 
     import LinearProgress from "../../../../components/general/LinearProgress.svelte";
 
-    // import Description from "../../../../common/Description.svelte";
+  function startTest(){
+    //버튼 누르면 테스트 시작
+  }
+
     onMount(async () => {
       let unsubFromConnect;
       let isDestroyed = false;
@@ -62,10 +65,16 @@ limitations under the License.
         navigate(BASE_PATH, { replace: true });
       }
     }
+
+    const strAsset = {
+      btnStart : "테스트 시작"
+    }
+
   </script>
   
   <TrainerTest>
     <div slot="test-progress" class="column stack">
+      <button class="btn-stroke btn-test" on:click={startTest}>{strAsset.btnStart}</button>
       {#each $labels as label, index}
         <div class="panel">
           <div>
@@ -84,6 +93,9 @@ limitations under the License.
   </TrainerTest>
   
   <style lang="scss">
+    .btn-test{
+      margin-bottom:32px ;
+    }
     .panel {
       margin-bottom: 60px;
     }
