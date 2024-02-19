@@ -10,17 +10,21 @@
 
     import { onMount } from "svelte";    
     import { getInferenceResult } from "./stores/tf4micro-motion-kit copy";
+    import { angle, countx, eSize } from "./p5/sketch";
 
     let clickCount = -1;
     let sketchEl;
     function handleClick() {
+        countx = 0;
+        angle = 0;
+        eSize = 0;
         if (clickCount === 4) {
             clickCount = 0;
         } else {
             clickCount += 1;
         }
         p5.triggerGesture(clickCount);
-        console.log("clickCount : " + clickCount);
+        // console.log("clickCount : " + clickCount+ ", countx : "+ countx+ ", angle : "+angle + ", eSize : ", eSize);
     }
     //     $: if ($clickCount) {
     //     p5.triggerGesture($clickCount);

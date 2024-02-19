@@ -13,8 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 ========================================================================*/
 
-import p5 from "./p5_export";
-// import "../../../third_party/p5.sound";
+import p5 from "../../p5_export";
 import sketch, { triggerGesture, resizeCanvas } from "./sketch";
 
 export default {

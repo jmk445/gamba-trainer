@@ -30,6 +30,7 @@ limitations under the License.
   import FuiConnect from "../Application/FUI/FUIConnect.svelte";
   import FuiChoose from "../Application/FUI/FUIChoose.svelte";
   import FuiExperience from "../Application/FUI/FUIExperience.svelte";
+
   
   // 예제 시나리오의 예제 선택페이지
   import App_Select from "../Application/components/main/Main.svelte";
@@ -80,6 +81,7 @@ limitations under the License.
   <Route path="/fui-connect"><FuiConnect/></Route>
   <Route path="/fui-choose"><FuiChoose/></Route>
   <Route path="/fui-experience"><FuiExperience/></Route>
+
 
   
   <!-- <Route path="/motion-settings"><Trainer_Main><Trainer_Settings><MotionSettings_Capture slot="settings-capture"/></Trainer_Settings></Trainer_Main></Route>     -->
