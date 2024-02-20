@@ -71,7 +71,7 @@ limitations under the License.
       )} class="connect"
     >
       <span class={`dot ${connectionClass}`} />
-      <Link to="fui-connect"><span>{strAsset.navOne}</span></Link>
+      <Link to="{appName}-connect"><span>{strAsset.navOne}</span></Link>
     </li>
 
     <li
@@ -79,7 +79,7 @@ limitations under the License.
         BASE_PATH + `/${appName}-choose`,
       )}
     >
-      <Link to="fui-choose">{strAsset.navTwo}</Link>
+      <Link to="{appName}-choose">{strAsset.navTwo}</Link>
     </li>
 
     <li
@@ -87,7 +87,7 @@ limitations under the License.
         BASE_PATH + `/${appName}-experience`,
       )}
     >
-      <Link to="fui-experience">{strAsset.navThree}</Link>
+      <Link to="{appName}-experience">{strAsset.navThree}</Link>
     </li>
 
   </ul>
