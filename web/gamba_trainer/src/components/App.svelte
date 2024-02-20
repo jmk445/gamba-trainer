@@ -35,6 +35,11 @@ limitations under the License.
   import MASKChoose from "../Application/MASK/MASKChoose.svelte";
   import MASKExperience from "../Application/MASK/MASKExperience.svelte";
 
+    // mole
+    import MOLEConnect from "../Application/MOLE/MOLEConnect.svelte";
+  import MOLEChoose from "../Application/MOLE/MOLEChoose.svelte";
+  import MOLEExperience from "../Application/MOLE/MOLEExperience.svelte";
+
   // 예제 시나리오의 예제 선택페이지
   import App_Select from "../Application/components/main/Main.svelte";
   import MotionApps from "../Application/components/main/MotionApps.svelte";
@@ -88,11 +93,15 @@ limitations under the License.
   <Route path="/fui-connect"><FuiConnect /></Route>
   <Route path="/fui-choose"><FuiChoose /></Route>
   <Route path="/fui-experience"><FuiExperience /></Route>
-  <!-- fui 페이지 -->
+  <!-- mask 페이지 -->
   <Route path="/mask-connect"><MASKConnect /></Route>
   <Route path="/mask-choose"><MASKChoose /></Route>
   <Route path="/mask-experience"><MASKExperience /></Route>
-
+  
+  <!-- mole 페이지 -->
+  <Route path="/mole-connect"><MOLEConnect /></Route>
+  <Route path="/mole-choose"><MOLEChoose /></Route>
+  <Route path="/mole-experience"><MOLEExperience /></Route>
   <!-- <Route path="/motion-settings"><Trainer_Main><Trainer_Settings><MotionSettings_Capture slot="settings-capture"/></Trainer_Settings></Trainer_Main></Route>     -->
   <!-- <Route path="/motion-capture"><Trainer_Main><Trainer_Capture><MotionCapture_Label slot="capture-label"/><MotionCapture_List slot="capture-list"/></Trainer_Capture></Trainer_Main></Route> -->
   <!-- <Route path="/motion-train"><Trainer_Main><Trainer_Train><MotionTrain_Setting slot="train-setting"/><MotionTrain_Graph slot="train-graph"/></Trainer_Train></Trainer_Main></Route> -->
@@ -104,61 +113,30 @@ limitations under the License.
     ><Trainer_Main><MotionSettings /></Trainer_Main></Route
   >
   <Route path="/motion-capture"
-    ><Trainer_Main><MotionCapture /></Trainer_Main></Route
-  >
-  <Route path="/motion-train"
-    ><Trainer_Main><MotionTrain /></Trainer_Main></Route
-  >
+    ><Trainer_Main><MotionCapture /></Trainer_Main></Route>
+  <Route path="/motion-train"><Trainer_Main><MotionTrain /></Trainer_Main></Route>
   <Route path="/motion-test"><Trainer_Main><MotionTest /></Trainer_Main></Route>
-  <Route path="/motion-convertSend"
-    ><Trainer_Main><MotionConvert /></Trainer_Main></Route
-  >
-  <Route path="/motion-mem-test"
-    ><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route
-  >
-  <Route path="/motion-label-test"
-    ><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route
-  >
+  <Route path="/motion-convertSend"><Trainer_Main><MotionConvert /></Trainer_Main></Route>
+  <Route path="/motion-mem-test"><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route>
+  <Route path="/motion-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route>
 
   <!-- 스피치 시작 -->
   <Route path="/speech-start"><Trainer_Start /></Route>
-  <Route path="/speech-settings"
-    ><Trainer_Main><SpeechSettings /></Trainer_Main></Route
-  >
-  <Route path="/speech-capture"
-    ><Trainer_Main><SpeechCapture /></Trainer_Main></Route
-  >
-  <Route path="/speech-train"
-    ><Trainer_Main><SpeechTrain /></Trainer_Main></Route
-  >
+  <Route path="/speech-settings"><Trainer_Main><SpeechSettings /></Trainer_Main></Route>
+  <Route path="/speech-capture"><Trainer_Main><SpeechCapture /></Trainer_Main></Route>
+  <Route path="/speech-train"><Trainer_Main><SpeechTrain /></Trainer_Main></Route>
   <Route path="/speech-test"><Trainer_Main><SpeechTest /></Trainer_Main></Route>
-  <Route path="/speech-convertSend"
-    ><Trainer_Main><SpeechConvert /></Trainer_Main></Route
-  >
-  <Route path="/motion-mem-test"
-    ><Trainer_Main><Speech_MemoryTest /></Trainer_Main></Route
-  >
-  <Route path="/motion-label-test"
-    ><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route
-  >
+  <Route path="/speech-convertSend"><Trainer_Main><SpeechConvert /></Trainer_Main></Route>
+  <Route path="/motion-mem-test"><Trainer_Main><Speech_MemoryTest /></Trainer_Main></Route>
+  <Route path="/motion-label-test"><Trainer_Main><Speech_LabelDeleteTest /></Trainer_Main></Route>
 
   <!-- 앱모드 fui -->
   <Route path="/FUI-start"><Trainer_Start /></Route>
-  <Route path="/FUI-settings"
-    ><Trainer_Main><MotionSettings /></Trainer_Main></Route
-  >
-  <Route path="/FUI-capture"
-    ><Trainer_Main><MotionCapture /></Trainer_Main></Route
-  >
+  <Route path="/FUI-settings"><Trainer_Main><MotionSettings /></Trainer_Main></Route>
+  <Route path="/FUI-capture"><Trainer_Main><MotionCapture /></Trainer_Main></Route>
   <Route path="/FUI-train"><Trainer_Main><MotionTrain /></Trainer_Main></Route>
   <Route path="/FUI-test"><Trainer_Main><MotionTest /></Trainer_Main></Route>
-  <Route path="/FUI-convertSend"
-    ><Trainer_Main><MotionConvert /></Trainer_Main></Route
-  >
-  <Route path="/FUI-mem-test"
-    ><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route
-  >
-  <Route path="/FUI-label-test"
-    ><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route
-  >
+  <Route path="/FUI-convertSend"><Trainer_Main><MotionConvert /></Trainer_Main></Route>
+  <Route path="/FUI-mem-test"><Trainer_Main><Motion_MemoryTest /></Trainer_Main></Route>
+  <Route path="/FUI-label-test"><Trainer_Main><Motion_LabelDeleteTest /></Trainer_Main></Route>
 </Router>
