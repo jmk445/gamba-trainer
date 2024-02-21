@@ -18,10 +18,10 @@ limitations under the License.
 */
 -->
 <script>
-  import Icon from "../../../../../components/general/Icon.svelte";
+  import Icon from "@speech/components/general/Icon.svelte";
   import CaptureGraphLine from "./CaptureGraphLine.svelte";
-  import { imuDataColors } from "@motion/stores/ui/store";
-  import { captureDataLength } from "@motion/stores/capture/store";
+  import { imuDataColors } from "@speech/stores/ui/store";
+  import { captureDataLength } from "@speech/stores/capture/store";
 
   export let data;
   export let label;
@@ -33,19 +33,17 @@ limitations under the License.
 </script>
 
 <div class="capture-graph">
-  {#each Array($captureDataLength) as _, index}
-    <CaptureGraphLine
-      {data}
-      {index}
-      color={filter && !filter[index]
-        ? "rgba(225, 225, 230, 0.5)"
-        : $imuDataColors[index % $imuDataColors.length]}
-    />
-  {/each}
   <span class="label h2">{label}</span>
   <button class="close-button icon-button" on:click={onDelete}
     ><Icon icon={"close_24px.svg"} /></button
   >
+  {#each Array($captureDataLength) as _, index}
+    <CaptureGraphLine
+      {data}
+      {index}
+      color={"rgba(56, 109, 255, 0.8)"}
+    />
+  {/each}
 </div>
 
 <style lang="scss">
@@ -67,13 +65,13 @@ limitations under the License.
     .label {
       top: 4px;
       left: 7px;
-      // z-index: 1;
+      z-index: 1;
     }
     .close-button {
       top: 8px;
       right: 8px;
       display: none;
-      // z-index: 2;
+      z-index: 2;
     }
 
     &:hover {

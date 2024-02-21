@@ -18,8 +18,8 @@ limitations under the License.
 */
 -->
 <script>
-  import Prompt from "../../../../general/prompts/Prompt.svelte";
-  import { clearRecordings } from "@speech/stores/capture/actions";
+  import Prompt from "../../../../components/general/prompts/Prompt.svelte";
+  import { clearRecordings } from "@vision/stores/capture/actions";
   import logoPng from "@assets/icons/Symbol_Black_RGB.png";
 
   let isShowing = false;

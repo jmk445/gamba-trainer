@@ -83,16 +83,15 @@ async function handleClickConnect() {
     if(experimentConfig.autoTransfer){
       await api.transferModel(experimentConfig);
     }
-  } else {   
+  } else {
+   
     await api.disconnect();
   }
 }
 
-//이게 default 라서 이 모듈에서 기본으로 제공하는 function.
 export default function (containerEl, config) {
   if (typeof containerEl === "string") {
     let _containerEl = document.querySelector(containerEl);
-    console.log("download button!");
     if (!_containerEl) {
       throw new Error(`Failed finding a element with selector ${containerEl}`);
     }

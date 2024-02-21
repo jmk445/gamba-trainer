@@ -16,7 +16,7 @@ limitations under the License.
 /**
  * @autor Rikard Lindstrom <rlindstrom@google.com>
  */
-
+ 
 import { get } from "svelte/store";
 import { labels, recordings, armedLabelIndex, captureState } from "./store";
 import * as captureSettings from "../captureSettings/store";
@@ -105,7 +105,7 @@ export async function beginRecording() {
     await connect();
   }
 
-  await setImuDataMode();
+  // await setImuDataMode();
 
   const labelIndex = get(armedLabelIndex);
   // any change to armed index must abort recording

@@ -98,6 +98,7 @@ export async function saveFileAs() {
 }
 
 export async function loadFile() {
+  console.log("1");
   const [$fileHandle] = await window.showOpenFilePicker({
     multiple: false,
     types: isChromeOs
@@ -109,6 +110,8 @@ export async function loadFile() {
           },
         ],
   });
+  console.log("2");
   await readFile($fileHandle);
+  console.log("3");
   fileHandle.set($fileHandle);
 }

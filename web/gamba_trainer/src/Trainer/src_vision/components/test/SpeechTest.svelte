@@ -20,40 +20,40 @@ limitations under the License.
 <script>
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    import { isConnected } from "@speech/stores/bleInterfaceStore/store";
-    import { labels } from "@speech/stores/capture/store";
-    import { beginTesting, endTesting } from "@speech/stores/test/actions";
-    import { testIsUnlocked, testPredictions } from "@speech/stores/test/store";
-    import { isFullyLoaded } from "@speech/stores/ui/store";
+    import { isConnected } from "@vision/stores/bleInterfaceStore/store";
+    import { labels } from "@vision/stores/capture/store";
+    import { beginTesting, endTesting } from "@vision/stores/test/actions";
+    import { testIsUnlocked, testPredictions } from "@vision/stores/test/store";
+    import { isFullyLoaded } from "@vision/stores/ui/store";
     import TrainerTest from "../../../components/common/TrainerTest.svelte";
-    import LinearProgress from "../../../../general/LinearProgress.svelte";
+    import LinearProgress from "../../../../components/general/LinearProgress.svelte";
     // import Description from "../../../../common/Description.svelte";
-    onMount(async () => {
-      let unsubFromConnect;
-      let isDestroyed = false;
-      setTimeout(async () => {
-        if ($isConnected) {
-          await beginTesting();
-        } else {
-          unsubFromConnect = isConnected.subscribe(async ($isConnected) => {
-            if ($isConnected) {
-              if (!isDestroyed) {
-                await beginTesting();
-              }
-              unsubFromConnect();
-            }
-          });
-        }
-      }, 100);
+    // onMount(async () => {
+    //   let unsubFromConnect;
+    //   let isDestroyed = false;
+    //   setTimeout(async () => {
+    //     if ($isConnected) {
+    //       await beginTesting();
+    //     } else {
+    //       unsubFromConnect = isConnected.subscribe(async ($isConnected) => {
+    //         if ($isConnected) {
+    //           if (!isDestroyed) {
+    //             await beginTesting();
+    //           }
+    //           unsubFromConnect();
+    //         }
+    //       });
+    //     }
+    //   }, 100);
   
-      return () => {
-        isDestroyed = true;
-        if (unsubFromConnect) {
-          unsubFromConnect();
-        }
-        endTesting();
-      };
-    });
+    //   return () => {
+    //     isDestroyed = true;
+    //     if (unsubFromConnect) {
+    //       unsubFromConnect();
+    //     }
+    //     endTesting();
+    //   };
+    // });
   
     $: if ($isFullyLoaded) {
       if (!$testIsUnlocked) {
@@ -61,7 +61,7 @@ limitations under the License.
       }
     }
   </script>
-  
+  <button id="test_button" on:click={beginTesting}>Test-Button</button>
   <TrainerTest>
     <div slot="test-progress" class="column stack">
       {#each $labels as label, index}

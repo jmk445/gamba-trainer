@@ -38,6 +38,12 @@ function int16ToFloat32(int16Array) {
 }
 
 let audioCapturer;
+
+export async function beginTesting2()
+{
+  console.log("test");
+  console.log(get(trainedModel));
+}
 export async function beginTesting() {
   // make sure we have a model to test
   if (!get(trainedModel)) {
@@ -52,7 +58,7 @@ export async function beginTesting() {
     await connect();
   }
 
-  await setImuDataMode();
+  //await setImuDataMode();
 
   audioCapturer = new AUDIOCapturer({
     onCaptureComplete: async (data) => {

@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import CaptureGraph from "./CaptureGraph.svelte";
-  import padWithZeros from "@motion/util/padWithZeros";
+  import padWithZeros from "@speech/util/padWithZeros";
   import { removeRecording } from "../../../stores/capture/actions";
 
   // recordings here is for one single label

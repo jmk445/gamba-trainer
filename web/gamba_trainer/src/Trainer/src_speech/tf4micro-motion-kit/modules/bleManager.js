@@ -19,7 +19,10 @@ limitations under the License.
  * @author Rikard Lindstrom
  */
 
+import { get } from "svelte/store";
 import EventHandler from "./EventHandler.js";
+import { beginRecording } from "../../stores/capture/actions";
+import { captureState } from "../../stores/capture/store";
 
 /********************************************************************
  * Colorized Logging
@@ -41,6 +44,9 @@ const SERVICE_UUID                = 0x00FF;
 const AUDIO_DATA_RX_UUID          = 0xFF10;
 const REQUEST_DATA_TX_UUID        = 0xFF11;
 
+const TYPE_SIGNAL_TX_UUID         = 0xFF12;
+const BEGIN_RECORDING_RX_UUID     = 0xFF13;
+
 /********************************************************************
  * States / Types - Matches Arduino ENUM
  *******************************************************************/
@@ -61,7 +67,9 @@ let device;
 
 // Characteristics
 let audioDataRxChar,
-  requestDataTxChar
+  requestDataTxChar,
+  typeSignalTxChar,
+  beginRecordingRxChar;
 
 // Keep track of connection
 let isConnected = false;
@@ -97,6 +105,23 @@ async function handleAudioDataChange(event) {
   //   data[i] = trans16intData[i] / 32768.0;
   // }
   eventHandler.dispatchEvent("audiodata", trans16intData);
+}
+
+async function handleBeginRecording(event) {
+  const recording = new Uint8Array(event.target.value.buffer);
+  console.log(recording[0], get(captureState));
+  if(recording[0] == 1 && (get(captureState) != "recording")) {
+    console.log(window.location.pathname);
+    if(window.location.pathname.includes("capture"))
+    {
+      //beginRecording();
+      document.getElementsByClassName("rec-button")[0].click();
+    }
+    else if(window.location.pathname.includes("test"))
+    {
+      document.getElementById("test_button").click();
+    }
+  }
 }
 
 function onDisconnected(event) {
@@ -138,7 +163,10 @@ const bleManagerApi = {
     await connect();
     console.log('SETUP CONNECT!');
     audioDataRxChar           = await service.getCharacteristic(AUDIO_DATA_RX_UUID);
-    requestDataTxChar        = await service.getCharacteristic(REQUEST_DATA_TX_UUID);
+    requestDataTxChar         = await service.getCharacteristic(REQUEST_DATA_TX_UUID);
+    typeSignalTxChar          = await service.getCharacteristic(TYPE_SIGNAL_TX_UUID);
+    beginRecordingRxChar      = await service.getCharacteristic(BEGIN_RECORDING_RX_UUID);
+
     console.log("Complete getCharacteristic!");
 
     await audioDataRxChar.startNotifications();
@@ -147,6 +175,16 @@ const bleManagerApi = {
       handleAudioDataChange
     );
     console.log("Start Notification: audioData");
+    
+    await beginRecordingRxChar.startNotifications();
+    beginRecordingRxChar.addEventListener(
+      "characteristicvaluechanged",
+      handleBeginRecording
+    );
+    console.log("Start Notification: beginRecording");
+
+    // type signal 전송(1: trainer speech)
+    await typeSignalTxChar.writeValue(Uint8Array.of(1));
 
     isConnected = true;
   },
@@ -169,10 +207,6 @@ const bleManagerApi = {
         ).join(", ")}`
       );
     }
-    // const stateTxChar = await service.getCharacteristic(STATE_TX_UUID);
-    // const stateArray = Uint8Array.of(STATES[state]);
-    // console.log("State Change: ", stateArray);
-    // await stateTxChar.writeValue(stateArray);
   },
 
   addEventListener(...args) {

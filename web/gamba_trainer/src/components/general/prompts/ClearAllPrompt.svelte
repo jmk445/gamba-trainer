@@ -29,12 +29,10 @@ limitations under the License.
   let trainer;
   let aggregatedActions;
   onMount(async () => {
-    trainer = await getTrainerADD();
-    console.log("1 " + trainer);
+    trainer = await getTrainerADD();    
     await import(`../../../Trainer/src_${trainer}/stores/aggregatedActions`).then(
       (module) => {
-        aggregatedActions = module;
-        console.log("2 " + trainer);
+        aggregatedActions = module;        
       },
     );
   });
@@ -51,8 +49,7 @@ limitations under the License.
     //   navigate("speech-settings", { replace: true });
     // }
       aggregatedActions.clearPersistantStorage();
-      onClose();
-      console.log("this should be sustained");
+      onClose();      
       navigate(`/${trainer}-settings`, {replace: false });
   }
   

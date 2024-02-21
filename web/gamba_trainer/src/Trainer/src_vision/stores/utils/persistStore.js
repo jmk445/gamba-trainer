@@ -55,9 +55,9 @@ export default function persistStore(key, val, parseFn, onError) {
   }
 
   let store = writable(val); // Assuming writable is some sort of writable Svelte store or similar
-  let request = indexedDB.open("SpeechDatabase", 1);
+  let request = indexedDB.open("VisionDatabase", 1);
 
-  request.onupgradeneeded = function(event) {
+  request.onupgradeneeded = function (event) {
     let db = event.target.result;
     if (!db.objectStoreNames.contains("DataStore")) {
       db.createObjectStore("DataStore");
@@ -90,15 +90,15 @@ export default function persistStore(key, val, parseFn, onError) {
         if (key !== "persistStore.dirty" && !deepCompate(val, originalVal)) {
           dirty.set(true);
         }
-  
+
         if (indexedDBDisabled || indexedDBDisabledForKey) {
           return;
         }
-  
+
         let transaction = db.transaction(["DataStore"], "readwrite");
         let objectStore = transaction.objectStore("DataStore");
         let putRequest = objectStore.put(val, key);
-    
+
         putRequest.onerror = function (event) {
           const error = new Error("Failed to store data");
           onError && onError(error);
@@ -110,9 +110,9 @@ export default function persistStore(key, val, parseFn, onError) {
     }
   };
 
-  store.deserialize = (data) => {
-    if (parseFn) {
-      data = parseFn(data);
+  store.deserialize = (data) => {    
+    if (parseFn) {    
+      data = parseFn(data);      
     }
     store.set(data);
   };
@@ -152,6 +152,7 @@ persistStore.reset = function () {
   dirty.set(false);
 };
 
+//model -> json
 persistStore.serialize = function () {
   return Object.keys(allStores).reduce((data, key) => {
     data[key] = get(allStores[key]);
@@ -159,8 +160,10 @@ persistStore.serialize = function () {
   }, {});
 };
 
+//json -> model
 persistStore.deserialize = function (data) {
   try {
+
     Object.keys(allStores).forEach((key) => {
       if (data[key] !== undefined) {
         allStores[key].deserialize(data[key]);

@@ -40,7 +40,7 @@
     "style-loader": "^2.0.0",
     "svelte": "^3.33.0",
     "svelte-loader": "^3.0.0",
-    "svelte-preprocess": "^4.6.9",
+    "svelte-preprocess": "^4.10.7",
     "svelte-preprocess-sass": "^1.0.0",
     "svelte-routing": "^1.6.0",
     "webpack": "^5.26.3",

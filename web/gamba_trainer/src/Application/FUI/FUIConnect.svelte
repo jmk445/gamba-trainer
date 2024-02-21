@@ -1,8 +1,9 @@
 <script>    
     import AppMain from "../components/common/AppMain.svelte";
-    import {handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit copy";
+    // import {createConnectButton, handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit copy";
+    import {handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit-v2";
     
-    function handleClickConnect_(){
+    function handleClickConnectInterface(){        
         handleClickConnect();
     }
 
@@ -17,7 +18,7 @@
 <AppMain bannerTitle={strAsset.bannerTitle} appName="fui">
     <div class="bluetooth-container">
         <p>{strAsset.BluetoothTitle}</p>
-        <button class="btn-connect btn-stroke" on:click={handleClickConnect_}>
+        <button class="btn-connect btn-stroke" on:click={handleClickConnectInterface}>
             <img src="#" alt="블루투스" />
             <span>{strAsset.bluetoothBtn}</span>
         </button>

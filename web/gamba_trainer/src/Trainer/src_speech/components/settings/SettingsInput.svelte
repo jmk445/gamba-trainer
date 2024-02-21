@@ -18,9 +18,8 @@ limitations under the License.
 */
 -->
 <script>
-
-  import NumberInput from "../../../../components/general/NumberInput.svelte";
-  import Slider from "../../../../components/general/Slider.svelte";
+  import NumberInput from "../general/NumberInput.svelte";
+  import Slider from "../general/Slider.svelte";
 
   export let value = 0;
   export let min = 0;

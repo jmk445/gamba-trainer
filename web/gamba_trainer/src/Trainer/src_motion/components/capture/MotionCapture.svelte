@@ -22,13 +22,15 @@
     onMount(async () => {
         trainer = await getTrainerADD();
 
-        clearAllLabel();
-
         if (trainer == "FUI") {
+            clearAllLabel();
             isApplicationMode = true;
             strAsset.inputLabel = "고정된 라벨입니다.";
             addLabel("left");
             addLabel("right");
+            addLabel("twirl");
+            addLabel("pluck");
+            addLabel("poke");
         }
     });
 

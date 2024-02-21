@@ -19,7 +19,9 @@ limitations under the License.
  * @author Rikard Lindstrom
  */
 
+import { get } from "svelte/store";
 import EventHandler from "./EventHandler.js";
+import { captureState } from "../../stores/capture/store";
 
 /********************************************************************
  * Colorized Logging
@@ -38,8 +40,11 @@ const log = (...args) => {
 
 const SERVICE_UUID                = 0x00FF;
 
-const AUDIO_DATA_RX_UUID          = 0xFF10;
+const VISION_DATA_RX_UUID         = 0xFF19;
 const REQUEST_DATA_TX_UUID        = 0xFF11;
+
+const TYPE_SIGNAL_TX_UUID         = 0xFF12;
+const BEGIN_RECORDING_RX_UUID     = 0xFF13;
 
 /********************************************************************
  * States / Types - Matches Arduino ENUM
@@ -60,14 +65,16 @@ let service;
 let device;
 
 // Characteristics
-let audioDataRxChar,
-  requestDataTxChar
+let visionDataRxChar,
+  requestDataTxChar,
+  typeSignalTxChar,
+  beginRecordingRxChar;
 
 // Keep track of connection
 let isConnected = false;
 
 const eventHandler = new EventHandler(
-  "audiodata",
+  "visiondata",
   "disconnect",
   "connect"
 );
@@ -75,31 +82,29 @@ const eventHandler = new EventHandler(
 /********************************************************************
  * Methods
  *******************************************************************/
-async function uint8ArrayTo16BitIntArray(uint8Array) {
-  const intArray = new Int16Array(uint8Array.length / 2);
+async function handleVisionDataChange(event) {
+  let data = new Int8Array(event.target.value.buffer);
+  console.log(data);
+  eventHandler.dispatchEvent("visiondata", data);
+}
 
-  for (let i = 0; i < uint8Array.length; i += 2) {
-    const byte1 = uint8Array[i];
-    const byte2 = uint8Array[i + 1];
-
-    // Combine two 8-bit bytes into one 16-bit signed integer
-    intArray[i / 2] = (byte2 << 8) | byte1;
+async function handleBeginRecording(event) {
+  const recording = new Uint8Array(event.target.value.buffer);
+  console.log(recording[0], get(captureState));
+  if(recording[0] == 1 && (get(captureState) != "recording")) {
+    console.log(window.location.pathname);
+    if(window.location.pathname.includes("capture"))
+    {
+      //beginRecording();
+      console.log("test","test");
+      document.getElementsByClassName("rec-button")[0].click();
+    }
+    else if(window.location.pathname.includes("test"))
+    {
+      document.getElementById("test_button").click();
+    }
   }
-
-  return intArray;
 }
-
-async function handleAudioDataChange(event) {
-  const originalData = new Uint8Array(event.target.value.buffer);
-  // const trans16intData = await uint8ArrayTo16BitIntArray(originalData);
-  // let data = new Float32Array(trans16intData.length);
-  // for(let i=0;i<trans16intData.length;i++) {
-  //   data[i] = trans16intData[i] / 32768.0;
-  // }
-
-  eventHandler.dispatchEvent("visiondata", originalData);
-}
-
 function onDisconnected(event) {
   eventHandler.dispatchEvent("disconnect");
   isConnected = false;
@@ -138,17 +143,30 @@ const bleManagerApi = {
   
     await connect();
     console.log('SETUP CONNECT!');
-    audioDataRxChar           = await service.getCharacteristic(AUDIO_DATA_RX_UUID);
-    requestDataTxChar        = await service.getCharacteristic(REQUEST_DATA_TX_UUID);
+    visionDataRxChar           = await service.getCharacteristic(VISION_DATA_RX_UUID);
+    requestDataTxChar         = await service.getCharacteristic(REQUEST_DATA_TX_UUID);
+    typeSignalTxChar          = await service.getCharacteristic(TYPE_SIGNAL_TX_UUID);
+    beginRecordingRxChar      = await service.getCharacteristic(BEGIN_RECORDING_RX_UUID);
+    
     console.log("Complete getCharacteristic!");
 
-    await audioDataRxChar.startNotifications();
-    audioDataRxChar.addEventListener(
+    await visionDataRxChar.startNotifications();
+    visionDataRxChar.addEventListener(
       "characteristicvaluechanged",
-      handleAudioDataChange
+      handleVisionDataChange
     );
-    console.log("Start Notification: audioData");
+    console.log("Start Notification: visionData");
 
+    await beginRecordingRxChar.startNotifications();
+    beginRecordingRxChar.addEventListener(
+      "characteristicvaluechanged",
+      handleBeginRecording
+    );
+    console.log("Start Notification: beginRecording");
+    
+    // type signal 전송(2: trainer vision)
+    await typeSignalTxChar.writeValue(Uint8Array.of(2));
+    
     isConnected = true;
   },
 
@@ -157,7 +175,7 @@ const bleManagerApi = {
     await device.gatt.disconnect()
   },
 
-  async requestAudioData() {
+  async requestVisionData() {
     let requestArray = Int16Array.of(1);
     requestDataTxChar.writeValue(requestArray);
   },

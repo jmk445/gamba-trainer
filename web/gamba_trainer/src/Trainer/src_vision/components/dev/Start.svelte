@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { clearPersistantStorage } from "@speech/stores/aggregatedActions";
+    import { clearPersistantStorage } from "@vision/stores/aggregatedActions";
     import { navigate } from "svelte-routing";
 
     onMount(() => {

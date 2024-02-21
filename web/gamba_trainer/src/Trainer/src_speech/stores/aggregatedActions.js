@@ -36,8 +36,6 @@ import downloadText from "../util/downloadText";
 import { addRecording } from "./capture/actions";
 import { pushErrorMessage } from "./ui/actions";
 
-// import {tfliteModelBlob,blob} from "./convert/store";
-// import { saveTflite } from "./convert/actions";
 export function clearPersistantStorage() {
   persistStore.reset();
   removeTrainedModel();

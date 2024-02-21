@@ -26,7 +26,7 @@ limitations under the License.
 
     import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
     import { getTrainerADD } from "../../stores/actions";    
-
+    // import { isConnected } from "../../src_motion/stores/bleInterfaceStore/store";
     let dropDownVisible;
     let showClearAllPrompt = false;
     let showHelpPrompt = false;
@@ -41,11 +41,11 @@ limitations under the License.
     //동적 import
     onMount(async () => {
         trainer = await getTrainerADD();
-                
+
         if(trainer == "FUI"){
             trainer = "motion";
         }
-        
+
         await import(
             `../../src_${trainer}/stores/bleInterfaceStore/actions`
         ).then((module) => {
@@ -70,7 +70,7 @@ limitations under the License.
 
         interval = setInterval(() => {
             connectionUpdate();
-        }, 1000);        
+        }, 1000);
     });
 
     onDestroy(() => {
@@ -78,9 +78,17 @@ limitations under the License.
     });
 
     function connectionUpdate() {
-        isConnected_ = bleModuleStore.isConnected;
+        // isConnected_ = bleModuleStore.isConnected;
+
         const connection = document.getElementById("connection");
-        if ($isConnected_) {
+        // if ($isConnected_) {
+        //     connectionClass = "green";
+        //     connection.innerText = strAsset.navOneB;
+        // } else {
+        //     connectionClass = "red";
+        //     connection.innerText = strAsset.navOneA;
+        // }
+        if (bleModuleStore.getConnection()) {
             connectionClass = "green";
             connection.innerText = strAsset.navOneB;
         } else {
@@ -190,7 +198,7 @@ limitations under the License.
                 >{strAsset.navFive}</button
             >
             {#if showHelpPrompt}
-                <HelpPrompt pageNum="one" onClose={() => (showHelpPrompt = false)} />
+                <HelpPrompt onClose={() => (showHelpPrompt = false)} />
             {/if}
         </li>
     </ul>

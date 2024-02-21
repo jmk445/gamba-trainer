@@ -4,7 +4,8 @@
     import {
         handleSendModel,
         handleFileInput,
-    } from "./stores/tf4micro-motion-kit copy.js";
+    } from "./stores/tf4micro-motion-kit-v2.js";
+    import { onMount } from "svelte";
 
     let fileInput$1 = 0;
 
@@ -29,35 +30,20 @@
     }
 
     //사용자가 입력한 file에서 model(.tflite)을 가져옵니다.
-    function handleSendModelInterface() {
-        handleSendModel_(0);
+    // function handleSendModelFromFile() {
+    //     handleSendModel(0);
+    // }
+
+    // //IDB에서 model(.tflite)을 가져옵니다.
+    // function handleSendModelInterfaceFromIDB() {
+    //     handleSendModel(1);
+    // }
+
+    function handleSendModelInterface() {        
+        handleSendModel();
     }
 
-    //IDB에서 model(.tflite)을 가져옵니다.
-    function handleSendModelInterface$1() {
-        handleSendModel_(1);
-    }
-
-    function handleSendModel_(fromIDB) {
-        // let experimentConfig;
-        // const defaultConfig = {
-        //     autoTransfer: true,
-        // };
-        // const modelConfig = {
-        //     //model: "./model.tflite",
-        //     numClasses: 5,
-        //     threshold: 0.181,
-        //     numSamples: 25,
-        //     captureDelay: 30,
-        //     useMagnetometer: false,
-        // };
-
-        // experimentConfig = { ...defaultConfig, ...modelConfig };
-        
-        //handleClickConnect(modelConfig);
-
-        handleSendModel(fromIDB);
-    }
+    
     const strAsset = {
         bannerTitle : "FUI",
         selectTitle : "모델 선택 및 전송",
@@ -91,7 +77,7 @@
             <h2>{strAsset.stepOne}</h2>
             <p class="desc">{strAsset.stepOneDesc}</p>
             <div class="btn-container row">
-                <button class="btn-start btn-stroke" on:click={handleSendModelInterface$1}>{strAsset.btnStart}</button>
+                <button class="btn-start btn-stroke" on:click={handleSendModelInterface}>{strAsset.btnStart}</button>
                 {#if isStart === true}
                     <p class="fin-txt">{strAsset.finStart}</p>
                 {:else if isErrorStart === true}

@@ -5,10 +5,12 @@
   import { get } from "svelte/store";
   import { hasRecordings } from "../../stores/capture/store";
   import { getTrainerADD } from "../../../stores/actions";
-  import persistStore from "../../stores/utils/persistStore";
+  import Description from "../../../../components/common/Description.svelte";
+  import LinearProgress from "../../../../components/general/LinearProgress.svelte";
+  import { imuVelocity } from "../../stores/bleInterfaceStore/store";
+  import { setImuDataMode } from "../../stores/bleInterfaceStore/actions";
   import {
     captureDelay,
-    captureSamples,
     captureThreshold,
     minMaxValues,
   } from "../../stores/captureSettings/store";
@@ -20,11 +22,14 @@
 
   onMount(async () => {
     trainer = await getTrainerADD();
-    if (trainer == "FUI") {      
+    if (trainer == "FUI") {
       isApplicationMode = true;
       captureThreshold.set(0.01);
       captureDelay.set(0.5);
     }
+  });
+  onMount(() => {
+    setImuDataMode();
   });
 
   async function checkForRecordings(store, value) {
@@ -58,54 +63,17 @@
     modelOne: "Gambalabs-001",
     modelTwo: "Gambalabs-002",
     modelThree: "Gambalabs-003",
+    captureSettingTitle: "캡처 설정 선택",
+    captureSettingDesc:
+      '아래 슬라이더를 끌어 데이터를 수집하는 방법을 사용자가 지정합니다. "예제용 모델 만들기" 선택한 경우, 설정은 고정됩니다.',
   };
 </script>
 
 <TrainerSettings>
-  <div slot="settings-capture">
-    <div class="panel">
-      <div>
-        <h2>{strAsset.panelOne}</h2>
-        <p>{strAsset.panelOneDesc}</p>
-      </div>
-      <div class="form-container input-align-right">
-        <!-- 현재 fui 모드임에도 슬라이더 값이 바뀌는 에러가 있음 -->
-        <SettingsInput
-          name="capturing-threshold"
-          value={$captureThreshold}
-          label="Capture threshold"
-          min={minMaxValues.captureThreshold[0]}
-          max={minMaxValues.captureThreshold[1]}
-          isdisabled={!!isApplicationMode}
-          step={0.001}
-          onChange={(value) => checkForRecordings(captureThreshold, value)}
-        />
-      </div>
-    </div>
-
-    <div class="panel">
-      <div>
-        <h2>{strAsset.panalTwo}</h2>
-        <p>{strAsset.panelTwoDesc}</p>
-      </div>
-      <div class="form-container input-align-right">
-        <SettingsInput
-          name="delay-between-captures"
-          value={$captureDelay}
-          label="Delay in seconds between captures"          
-          min={minMaxValues.captureDelay[0]}
-          max={minMaxValues.captureDelay[1]}
-          isdisabled={!!isApplicationMode}
-          step={0.001}          
-          onChange={(value) => checkForRecordings(captureDelay, value)}
-        />
-      </div>
-    </div>
-  </div>
   <div slot="settings-model">
     <div class="radio-container">
       <div class="model-container">
-        <input type="radio" name="model" value="numOne" id="numOne" checked>
+        <input type="radio" name="model" value="numOne" id="numOne" checked />
         <label for="numOne">{strAsset.modelOne}</label>
       </div>
       <!-- <div class="model-container">
@@ -118,11 +86,65 @@
       </div> -->
     </div>
   </div>
-  <ChangeAfterRecordPrompt
-    onClose={handleCloseChangeAfterRecordPrompt}
-    bind:this={clearRecordPrompt}
-  />
+  <div slot="settings-capture">
+    <Description
+      title={strAsset.captureSettingTitle}
+      explanation={strAsset.captureSettingDesc}
+    />
+    <div class="capture-choose-container contents">
+      <div class="panel">
+        <div>
+          <h2>{strAsset.panelOne}</h2>
+          <p>{strAsset.panelOneDesc}</p>
+        </div>
+        <div class="form-container input-align-right">
+          <!-- 현재 fui 모드임에도 슬라이더 값이 바뀌는 에러가 있음 -->
+          <SettingsInput
+            name="capturing-threshold"
+            value={$captureThreshold}
+            label="Capture threshold"
+            min={minMaxValues.captureThreshold[0]}
+            max={minMaxValues.captureThreshold[1]}
+            isdisabled={!!isApplicationMode}
+            step={0.001}
+            onChange={(value) => checkForRecordings(captureThreshold, value)}
+          />
+          <LinearProgress
+            progress={$imuVelocity}
+            color="secondary"
+            buffer={0}
+            noTransition={true}
+            black={true}
+          />
+        </div>
+      </div>
+
+      <div class="panel">
+        <div>
+          <h2>{strAsset.panalTwo}</h2>
+          <p>{strAsset.panelTwoDesc}</p>
+        </div>
+        <div class="form-container input-align-right">
+          <SettingsInput
+            name="delay-between-captures"
+            value={$captureDelay}
+            label="Delay in seconds between captures"
+            min={minMaxValues.captureDelay[0]}
+            max={minMaxValues.captureDelay[1]}
+            isdisabled={!!isApplicationMode}
+            step={0.001}
+            onChange={(value) => checkForRecordings(captureDelay, value)}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </TrainerSettings>
+
+<ChangeAfterRecordPrompt
+  onClose={handleCloseChangeAfterRecordPrompt}
+  bind:this={clearRecordPrompt}
+/>
 
 <style lang="scss">
   .panel {

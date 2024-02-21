@@ -19,7 +19,7 @@ limitations under the License.
 
 import { get } from "svelte/store";
 import * as tf from "@tensorflow/tfjs";
-import IMAGECapturerCapturer from "@vision/util/IMAGECapturer";
+import IMAGECapturer from "@vision/util/IMAGECapturer";
 import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 import { trainedModel } from "../train/store";
@@ -31,20 +31,20 @@ import * as captureSettings from "../captureSettings/store";
 function int16ToFloat32(int16Array) {
   const float32Array = new Float32Array(int16Array.length);
   for (let i = 0; i < int16Array.length; i++) {
-    float32Array[i] = int16Array[i] / 255.0;
+    float32Array[i] = (int16Array[i] + 128) / 255.0;
   }
 
   return float32Array;
 }
 
-let audioCapturer;
+let imageCapturer;
 export async function beginTesting() {
   // make sure we have a model to test
   if (!get(trainedModel)) {
     throw new Error("No trained model available");
   }
 
-  if (audioCapturer) {
+  if (imageCapturer) {
     throw new Error("Testing already in progress");
   }
   // make sure we're connected
@@ -54,7 +54,7 @@ export async function beginTesting() {
 
   await setImuDataMode();
 
-  audioCapturer = new AUDIOCapturer({
+  imageCapturer = new IMAGECapturer({
     onCaptureComplete: async (data) => {
       const preparedData = [];
       data.forEach((recording) => {
@@ -70,12 +70,12 @@ export async function beginTesting() {
     },
   });
 
-  audioCapturer.start();
+  imageCapturer.start();
 }
 
 export async function endTesting() {
-  if (audioCapturer) {
-    audioCapturer.stop();
-    audioCapturer = null;
+  if (imageCapturer) {
+    imageCapturer.stop();
+    imageCapturer = null;
   }
 }

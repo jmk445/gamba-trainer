@@ -18,6 +18,7 @@ limitations under the License.
  */
 
 import * as tf from "@tensorflow/tfjs";
+
 import { derived, readable, writable } from "svelte/store";
 import { labels, recordings } from "../capture/store";
 import persistStore from "../utils/persistStore";
@@ -40,6 +41,12 @@ export const modelArchitecture = readable({
     { type: "conv2d", props: { filters: 32, kernelSize: [3,3], pad: 'same', activation: 'relu' } },
     { type: "maxPooling2d", props: { poolSize: [2, 2] } },
     { type: "dropout", props: { rate: 0.25 } },
+    { type: "conv2d", props: { filters: 64, kernelSize: [3,3], pad: 'same', activation: 'relu' } },
+    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
+    { type: "dropout", props: { rate: 0.25 } },
+    { type: "conv2d", props: { filters: 64, kernelSize: [3,3], pad: 'same', activation: 'relu' } },
+    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
+    { type: "dropout", props: { rate: 0.25 } },
     { type: "flatten", props: {} },
     { type: "dense", props: { units: 64, activation: 'relu' } },
     { type: "dropout", props: { rate: 0.25 } },
@@ -49,7 +56,7 @@ export const modelArchitecture = readable({
 
 export const trainValidationSplit = persistStore("train.validationSplit", 0.2);
 export const trainTestSplit = persistStore("train.testSplit", 0.2);
-export const trainEpochs = persistStore("train.epochs", 100);
+export const trainEpochs = persistStore("train.epochs", 20);
 export const trainBachSize = persistStore("train.batchSize", 1);
 export const trainEarlyStopping = persistStore("train.earlyStopping", false);
 export const trainEarlyStoppingMaxEpochsWithoutImprovement = persistStore(
@@ -112,6 +119,9 @@ trainedModel.subscribe(async (model) => {
 async function loadTrainedModel() {
   try {
     const model = await tf.loadLayersModel(INDEX_DB_PATH);
+    //const model = await tf.loadLayersModel('../utils/tfjs_caltech_71/model.json');
+    //const model = await tf.loadLayersModel('/tfjs_caltech_71/model.json');
+    model.summary();
     if (model) {
       trainedModel.set(model);
     }

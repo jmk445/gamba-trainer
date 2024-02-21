@@ -80,7 +80,13 @@ export const dataLabels = persistStore("bleInterface.dataLabels", [
   "mag.z",
 ]);
 
+let tmp = false;
+export function getConnection() {  
+  return tmp;
+}
+
 isConnected.subscribe(async ($isConnected) => {
+  tmp = $isConnected;
   // if ($isConnected) {
   //   const labels = await bleApi.readDataProviderLabels();
   //   const labelArray = labels.replace(/ *\, */g, ",").split(",");

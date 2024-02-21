@@ -28,8 +28,7 @@ limitations under the License.
   import { captureState, labels } from "../../stores/capture/store";
   import { captureDelayTimeout } from "../../stores/capture/store";
 
-
-  import Icon from "../../../../components/general/Icon.svelte";
+  import Icon from "../general/Icon.svelte";
 
   export let labelIndex;
   export let active = false;
@@ -37,7 +36,8 @@ limitations under the License.
 
   $: label = $labels[labelIndex];
 
-  function handleRemoveLabel() {    
+  function handleRemoveLabel() {
+    console.log("test");
     removeLabelByName(label);
   }
 
@@ -47,14 +47,6 @@ limitations under the License.
     } else {
       endRecording();
     }
-  }
-
-  const strAsset = {
-    btnStart : "기록하기",
-    btnStop : "중지하기",
-    captionIng : "기록 중...",
-    captionDetecting : "움직임 감지",
-    captionWating : `수집이 완료되었습니다. ${$captureDelayTimeout.toFixed(2)}초만 기다려주세요.`
   }
 </script>
 
@@ -80,7 +72,7 @@ limitations under the License.
     <div class="row">
       <div class="rec-button-container">
         <button
-          class="btn-stroke primary small rec-button"
+          class="button primary small rec-button"
           on:click={handleToggleRecording}
           disabled={!active}
           aria-pressed={$captureState !== "idle"}
@@ -92,9 +84,9 @@ limitations under the License.
             class:armed={$captureState === "armed"}
           />
           {#if $captureState === "idle"}
-            {strAsset.btnStart}
+            Start recording
           {:else}
-            {strAsset.btnStop}
+            Stop recording
           {/if}
         </button>
         {#if ["recording", "armed", "waiting"].includes($captureState)}
@@ -106,11 +98,13 @@ limitations under the License.
             class:armed={$captureState === "armed"}
           >
             {#if $captureState === "recording"}
-              {strAsset.captionIng}
+              Recording...
             {:else if $captureState === "armed"}
-            {strAsset.captionDetecting}
+              Detecting motion...
             {:else if $captureState === "waiting"}
-              {strAsset.captionWating}
+              {`Capture completed. Waiting ${$captureDelayTimeout.toFixed(
+                2
+              )}s...`}
             {/if}
           </p>
         {/if}
@@ -176,13 +170,11 @@ limitations under the License.
         border-radius: 0px;
         outline-color: $color-deepblue;
       }
-      // color: $color-deepblue;
-      color: rgb(0, 0, 0);
+      color: $color-deepblue;
     }
 
     .remove-button {
-      // z-index: 1;
-      position: relative;
+      z-index: 1;
       padding: 0;
       margin: 0;
       :global(.icon) {

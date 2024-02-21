@@ -18,12 +18,15 @@ limitations under the License.
 */
 -->
 <script>
-  import { getContext, onMount } from "svelte";  
+  import { getContext, onMount } from "svelte";
 
   import SubBanner from "../../../components/common/SubBanner.svelte";
-  import SubNav from "./SubNav.svelte";
-  import MainNav from "./MainNav.svelte";
 
+  import SubNav from "./SubNav.svelte";
+  import MainNav from "../../../../../../../trash_bin/MainNav.svelte";
+  import MainNavMotion from "../../src_motion/components/MainNavMotion.svelte";
+  import MainNavSpeech from "../../src_speech/components/MainNavSpeech.svelte";
+  import MainNavVision from "../../src_vision/components/MainNavVision.svelte";
 
   import UnsavedProjectPrompt from "../../../components/general/prompts/UnsavedProjectPrompt.svelte";
   import LocalStorageFullPrompt from "../../../components/general/prompts/LocalStorageFullPrompt.svelte";
@@ -38,12 +41,17 @@ limitations under the License.
     pushErrorMessage,
     pushPropmt,
   } from "../../src_motion/stores/ui/actions";
-  import persistStore, { dirty } from "../../src_motion/stores/utils/persistStore";
-  import {getTrainerADD} from "../../stores/actions";
+  import persistStore, {
+    dirty,
+  } from "../../src_motion/stores/utils/persistStore";
+  import { getTrainerADD } from "../../stores/actions";
 
   let trainer;
-  onMount(async () => {    
-    trainer = await getTrainerADD();        
+  onMount(async () => {
+    trainer = await getTrainerADD();
+    if (trainer === "FUI") {
+      trainer = "motion";
+    }
   });
 
   onMount(() => {
@@ -74,16 +82,22 @@ limitations under the License.
     <SubBanner title={strAsset.bannerTitleSpeech} icTitle={icSpeech} />
   {:else if trainer === "vision"}
     <SubBanner title={strAsset.bannerTitlevision} icTitle={icVision} />
-    {:else}
+  {:else}
     <SubBanner title={trainer} />
   {/if}
 
-  <!-- <SubBanner /> -->
   <div class="section">
     <SubNav />
   </div>
 </header>
-<nav class="section"><MainNav /></nav>
+{#if trainer === "motion"}
+  <nav class="section"><MainNavMotion /></nav>
+{:else if trainer === "speech"}
+  <nav class="section"><MainNavSpeech /></nav>
+{:else if trainer === "vision"}
+  <nav class="section"><MainNavVision /></nav>
+{/if}
+
 <main class="section" aria-live="polite">
   <slot />
 </main>

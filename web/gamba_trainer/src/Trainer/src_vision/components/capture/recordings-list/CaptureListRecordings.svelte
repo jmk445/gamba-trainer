@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <script>
   import CaptureGraph from "./CaptureGraph.svelte";
-  import padWithZeros from "@motion/util/padWithZeros";
+  import padWithZeros from "@vision/util/padWithZeros";
   import { removeRecording } from "../../../stores/capture/actions";
 
   // recordings here is for one single label
@@ -39,6 +39,7 @@ limitations under the License.
       <CaptureGraph
         {data}
         {filter}
+        {index}
         label={padWithZeros(
           recordings.length - index,
           Math.max(2, Math.floor(recordings.length / 100) + 1)

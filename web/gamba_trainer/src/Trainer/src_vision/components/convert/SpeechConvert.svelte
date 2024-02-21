@@ -11,8 +11,11 @@
     let quantize = false;
     let isDownloading = false;
     let isConverting = false;
-    let isbtnDisabled = true;
+    let isbtnDisabled = false;
+
+    
     async function handleConvert(quantize) {
+        console.log("handleConvert");
         isConverting = true;
         await convertToTflite(quantize);
         isConverting = false;
@@ -31,8 +34,11 @@
         btnSend: "전송",
         btnDownload: "다운로드",
         btnapp: "TinyML예제에서 체험",
+        finConvert: "변환이 완료되었습니다.",
+        finSend: "전송이 완료되었습니다.",
     };
 </script>
+
 <TrainerConvert>
 <div slot="convert-send">
     <div class="progress-container">
@@ -49,7 +55,6 @@
             >
             <button
                 class="btn-download btn-stroke"
-                disabled={!$trainedModel || isDownloading}
                 on:click={() => handleDownload()}>{strAsset.btnDownload}</button
             >
         </div>

@@ -20,7 +20,8 @@ limitations under the License.
 <script>
   import { onMount, onDestroy } from "svelte";
   import { Link } from "svelte-routing";
-  import { isConnected$3, addEventListner } from "../../FUI/stores/tf4micro-motion-kit copy";  
+  // import { isConnected$3, addEventListner } from "../../FUI/stores/tf4micro-motion-kit-v1";  
+  import { getIsConnected} from "../../FUI/stores/tf4micro-motion-kit-v2";  
   // import { isConnected } from "@motion/stores/bleInterfaceStore/store";
   // import { testIsUnlocked } from "../src_motion/stores/test/store";
   // import { trainIsUnlocked } from "../src_motion/stores/train/store";
@@ -37,17 +38,28 @@ limitations under the License.
     }, 1000);
   });
 
-  onMount(() => {
-    addEventListner();
-  });
+  // onMount(() => {
+  //   addEventListener();
+  // });
 
   onDestroy(() => {
     clearInterval(interval);
   });
 
+  // function connectionUpdate() {    
+  //   // const connection = document.getElementById("connection");
+  //   if (isConnected$3()) {
+  //     connectionClass = "green";
+  //     // connection.innerText = "Disconnect";
+  //   } else {
+  //     connectionClass = "red";
+  //     // connection.innerText = "Connect";
+  //   }
+  // }
   function connectionUpdate() {    
-    // const connection = document.getElementById("connection");
-    if (isConnected$3()) {
+    // const connection = document.getElementById("connection");    
+    let connection = getIsConnected();    
+    if (connection) {      
       connectionClass = "green";
       // connection.innerText = "Disconnect";
     } else {
