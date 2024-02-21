@@ -81,6 +81,7 @@ export async function convertToTflite(quantize = false){
   //tfLiteModel.set(result.responses[0]);    
 }
 
+//never used
 export async function downloadTrainedModel(quantize = false) {
   // URL to backend
   const apiUrl = "http://127.0.0.1:5000";

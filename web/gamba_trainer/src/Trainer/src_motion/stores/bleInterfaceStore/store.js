@@ -80,16 +80,23 @@ export const dataLabels = persistStore("bleInterface.dataLabels", [
   "mag.z",
 ]);
 
+let tmp = false;
+export function getConnection() {  
+  return tmp;
+}
+
 isConnected.subscribe(async ($isConnected) => {
-  if ($isConnected) {
-    const labels = await bleApi.readDataProviderLabels();
-    const labelArray = labels.replace(/ *\, */g, ",").split(",");
-    if (!get(dataLabels).length) {
-      dataLabels.set(labelArray);
-    } else if (JSON.stringify(get(dataLabels)) !== JSON.stringify(labelArray)) {
-      throw new Error(
-        `Data provider missmatch, using a different data provider Arduino sketch?`
-      );
-    }
-  }
+  tmp = $isConnected;
+  // if ($isConnected) {    
+    // const labels = await bleApi.readDataProviderLabels();
+    // const labelArray = labels.replace(/ *\, */g, ",").split(",");
+    
+    // if (!get(dataLabels).length) {
+    //   dataLabels.set(labelArray);
+    // } else if (JSON.stringify(get(dataLabels)) !== JSON.stringify(labelArray)) {
+    //   throw new Error(
+    //     `Data provider missmatch, using a different data provider Arduino sketch?`
+    //   );
+    // }
+  // }
 });

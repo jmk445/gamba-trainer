@@ -45,7 +45,7 @@ export const captureState = stateStore("idle", [
 export const captureDataLength = derived(
   useMagnetometer,
   ($useMagnetometer) => {
-    return 80;
+    return 1;
   }
 );
 

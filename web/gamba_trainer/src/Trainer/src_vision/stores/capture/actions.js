@@ -25,12 +25,22 @@ import IMAGECapturer from "@vision/util/IMAGECapturer";
 import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 
-export function addLabel(label) {
+export function addLabel(labelName) {
   labels.update(($labels) => {
-    if ($labels.includes(label)) {
-      throw new Error(`${label} already exists`);
+    
+    //label 개수 제한(10개)
+    if ($labels.length > 10) {
+      throw new Error(`label cnt should be under 10`);
     }
-    return [...$labels, label];
+    //label 길이 제한(20자)
+    if (labelName.length > 20) {
+      throw new Error(`label length should be under 20`)
+    }
+    //label의 중복된 이름 제한
+    if ($labels.includes(labelName)) {
+      throw new Error(`${labelName} already exists`);
+    }
+    return [...$labels, labelName];
   });
   recordings.update(($recordings) => [...$recordings, []]);
 }
@@ -122,7 +132,17 @@ export async function beginRecording() {
     // captureDelay: get(captureSettings.captureDelay),
     // sensitivity: get(captureSettings.captureThreshold),
     onCaptureComplete: (data) => {
-      addRecording(labelIndex, data);
+      const reshapedData = new Array(96).fill(null).map(() => new Array(96).fill(null).map(() => [0, 0, 0]));
+      for(let i = 0; i < data.length; i++){
+        for(let j = 0; j < data[0].length; j += 3){
+          reshapedData[i][j/3][0] = data[i][j] + 128;
+          reshapedData[i][j/3][1] = data[i][j+1] + 128;
+          reshapedData[i][j/3][2] = data[i][j+2] + 128;
+        }
+      }
+
+
+      addRecording(labelIndex, reshapedData);
       captureState.set("waiting");
       endRecording();
     },
@@ -140,7 +160,7 @@ export async function beginRecording() {
 }
 
 export async function endRecording() {
-  if (audioCapturer) {
+  if (imageCapturer) {
     console.log("end recording");
 
     await imageCapturer.stop();

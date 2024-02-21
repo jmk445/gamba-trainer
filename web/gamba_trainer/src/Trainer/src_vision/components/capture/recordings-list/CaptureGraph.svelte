@@ -18,13 +18,14 @@ limitations under the License.
 */
 -->
 <script>
-  import Icon from "../../../../../general/Icon.svelte";
+  import Icon from "../../../../../components/general/Icon.svelte";
   import CaptureGraphLine from "./CaptureGraphLine.svelte";
-  import { imuDataColors } from "@motion/stores/ui/store";
-  import { captureDataLength } from "@motion/stores/capture/store";
+  import { imuDataColors } from "@vision/stores/ui/store";
+  import { captureDataLength } from "@vision/stores/capture/store";
 
   export let data;
   export let label;
+  export let index;
   export let filter = null;
 
   export let onDelete = () => {
@@ -33,14 +34,14 @@ limitations under the License.
 </script>
 
 <div class="capture-graph">
-  {#each Array($captureDataLength) as _, index}
+  {#each Array($captureDataLength) as _, nothing}
     <CaptureGraphLine
-      {data}
-      {index}
-      color={filter && !filter[index]
-        ? "rgba(225, 225, 230, 0.5)"
-        : $imuDataColors[index % $imuDataColors.length]}
-    />
+    {data}
+    {index}
+    color={filter && !filter[index]
+      ? "rgba(225, 225, 230, 0.5)"
+      : $imuDataColors[index % $imuDataColors.length]}
+   />
   {/each}
   <span class="label h2">{label}</span>
   <button class="close-button icon-button" on:click={onDelete}

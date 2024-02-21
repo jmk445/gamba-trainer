@@ -84,7 +84,7 @@ export function removeLabel(index) {
 
 //label 안에서 특정 recording을 삭제하려고 할때 실행되는 함수
 export function removeRecording(labelIndex, recordingIndex) {
-  console.log("removed recordings")
+  
   recordings.update(($recordings) => {
     $recordings[labelIndex] = $recordings[labelIndex].filter(
       (_, index) => index !== recordingIndex

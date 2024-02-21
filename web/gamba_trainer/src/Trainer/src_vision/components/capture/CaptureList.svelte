@@ -18,15 +18,15 @@ limitations under the License.
 */
 -->
 <script>
-  import { imuDataColors } from "@speech/stores/ui/store";
+  import { imuDataColors } from "@vision/stores/ui/store";
   import {
     armedLabelIndex,
     labels,
     recordings,
-  } from "@speech/stores/capture/store";
-  import { captureImuLabels } from "@speech/stores/captureSettings/store";
+  } from "@vision/stores/capture/store";
+  import { captureImuLabels } from "@vision/stores/captureSettings/store";
 
-  import Icon from "../../../../general/Icon.svelte";
+  import Icon from "../../../../components/general/Icon.svelte";
   import CaptureListLabelItem from "./CaptureListLabelItem.svelte";
   import CaptureListRecordings from "./recordings-list/CaptureListRecordings.svelte";
   import { downloadCsvForAllLabels } from "../../stores/aggregatedActions";

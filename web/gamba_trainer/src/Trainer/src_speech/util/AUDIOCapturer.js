@@ -79,16 +79,16 @@ class AUDIOCapturer {
     }
     this.isRecording = false;
     this.isArmed = true;
-
+    
     this.onCaptureComplete(capture);
     this.lastCaptureTs = nowSec();
+    //console.log(capture);
   }
 
   handleDataReceived(data) {
     if (this.isRecording) {
       this.dataRecorder.record(data);
-      console.log("recording");
-      if (this.dataRecorder.isFull()) {        
+      if (this.dataRecorder.isFull()) {
         this.handleDoneCapturing();
       }
     }
@@ -97,7 +97,6 @@ class AUDIOCapturer {
   start() {
     this.isArmed = true;
     bleManager.requestAudioData();
-    console.log("started");
     this.dataRecorder = new DataRecorder(80);
     this.onReadyToCapture();
     this.isRecording = true;

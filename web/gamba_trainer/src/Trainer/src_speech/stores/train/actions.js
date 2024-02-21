@@ -109,10 +109,10 @@ export async function createSpectrogram(audioData) {
   spec = tf.abs(spec);
   const spec_array = spec.arraySync();
   spec.print();
-  console.log(Math.max(...tf.util.flatten(spec_array)));
+  //console.log(Math.max(...tf.util.flatten(spec_array)));
 
   const resized = bilinearResize(spec_array, 16, 16);
-  console.log(resized[0]);
+  //console.log(resized[0]);
   const newTensor = tf.tensor2d(resized,[16,16]);
 
   const resultSpec = newTensor.expandDims(-1);
@@ -233,6 +233,7 @@ export async function beginTraining() {
 
     //모델 세팅
     let model = setupModel(inputs[0].shape);
+    console.log("inputShape: " + inputs[0].shape);
 
     //=========================================================
     // Epoch Callback / Logs / Early Stopping

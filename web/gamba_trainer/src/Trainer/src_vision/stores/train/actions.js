@@ -53,7 +53,7 @@ function int16ToFloat32(int16Array) {
   const float32Array = new Float32Array(int16Array.length);
   for (let i = 0; i < int16Array.length; i++) {
     // float32Array[i] = int16Array[i] / 32768.0;
-    float32Array[i] = int16Array[i] / 255.0;
+    float32Array[i] = (int16Array[i]) / 255.0;
   }
 
   return float32Array;
@@ -76,16 +76,23 @@ export async function prepareDataSet() {
     for (let recording of recordings) {
       const tensor = [];
       for (let a of recording) {
-        const float32Array = int16ToFloat32(a);
-        tensor.push(...float32Array);
+        const tmpTensor = [];
+        for(let b of a){
+          const float32Array = int16ToFloat32(b);
+          tmpTensor.push(...float32Array);
+        }
+        
+        tensor.push(tmpTensor);
         //tensor.push(...a);
       }
+      console.log(tensor.shape);
       const input = change_input_shape(tensor,96,96,3);
       X.push(input);
       Y.push(output);
     }
   }
 
+  console.log("Y shape: ", Y.length);
   return [X, Y];
 }
 
@@ -94,27 +101,65 @@ export async function prepareDataSet() {
  * @returns model
  */
 //모델 레이어 구성, 모델 세팅, 모델 컴파일
-function setupModel(inputShape) {
-  const architecture = get(modelArchitecture);
+async function setupModel(inputShape) {
+
+  // console.log("set Model!");
+  // const architecture = get(modelArchitecture);
+  // const numLabels = get(labels).length;
+
+  // let model = tf[architecture.type]();
+  // architecture.layers.forEach((layer, index) => {
+  //   const props = { ...layer.props };
+  //   if (index === 0) {
+  //     props.inputShape = inputShape;
+  //     console.log(inputShape);
+  //   } else if (index === architecture.layers.length - 1) {
+  //     //last layer, units must be numLabels
+  //     props.units = numLabels;
+  //   }
+  //   model.add(tf.layers[layer.type](props));
+  // });
+
+  // try {
+    
+  // } catch (error) {
+  //   console.error('Error loading the model:', error);
+  
+  //   // 에러 메시지를 기반으로 문제 유형 판별
+  //   if (error.message.includes('404')) {
+  //     console.error('The model.json file could not be found. Please check the file path.');
+  //   } else if (error.message.includes('Failed to parse model JSON')) {
+  //     console.error('There was a problem parsing the model.json file. Please ensure it is valid JSON.');
+  //   } else {
+  //     console.error('An unknown error occurred:', error.message);
+  //   }
+  // }
+
+  console.log('Load Model');
+  console.log(tf.version.tfjs);
+  let net = await tf.loadLayersModel('/tfjs_caltech_71/model.json');
+  console.log('Successfully loaded model');
+  net.summary();
+  
+  
   const numLabels = get(labels).length;
 
-  let model = tf[architecture.type]();
-  architecture.layers.forEach((layer, index) => {
-    const props = { ...layer.props };
-    if (index === 0) {
-      props.inputShape = inputShape;
-      console.log(inputShape);
-    } else if (index === architecture.layers.length - 1) {
-      //last layer, units must be numLabels
-      props.units = numLabels;
-    }
-    model.add(tf.layers[layer.type](props));
-  });
+  let model = tf.sequential();
+  for (let i = 0; i < net.layers.length - 1; i++){
+    model.add(net.layers[i]);
+  }
+
+  model.add(tf.layers.dense({
+    units: numLabels,
+    activation: 'softmax',
+  }))
+
 
   model.compile({
-    optimizer: "rmsprop",
-    loss: "meanSquaredError",
-    metrics: ["accuracy", "mae"],
+    //optimizer: "rmsprop",
+    optimizer: 'adam',
+    loss: "categoricalCrossentropy",
+    metrics: ["accuracy"],
     validationSplit: get(trainValidationSplit),   //0.2
   });
 
@@ -150,7 +195,7 @@ export async function beginTraining() {
   //=========================================================
   // Prepeare
   //=========================================================
-
+  console.log("BeginTraining!!!");
   trainLogAccuracy.reset();
   trainLogLoss.reset();
 
@@ -160,16 +205,18 @@ export async function beginTraining() {
 
   async function train(inputs, outputs) {
     trainedModel.set(null); //모델 초기화
-
+    console.log("Start Training");
     //모델 세팅
-    let model = setupModel(inputs[0].shape);
+    let model = await setupModel(inputs[0].shape);
+    console.log("Model load");
 
+    //model.summary();
     //=========================================================
     // Epoch Callback / Logs / Early Stopping
     //=========================================================
 
     const onEpochEnd = async (epoch, logs) => {
-      log(`epoch: ${epoch}, accuracy: ${logs.acc}`);
+      log(`epoch: ${epoch}, accuracy: ${logs.acc}, loss: ${logs.loss}`);
 
       updateLogs(logs);
 
@@ -272,8 +319,9 @@ export async function beginTraining() {
     log("Done training! Final accuracy");
     return [model, info];
   }
-
+  console.log("Prepare Data!!");
   const dataSet = await prepareDataSet();
+  console.log("Prepare Data Clear!!!!");
 
   // split dataset in train / test
   const [train_X, train_Y, test_X, test_Y] =

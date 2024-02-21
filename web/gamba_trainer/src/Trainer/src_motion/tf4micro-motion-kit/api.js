@@ -65,22 +65,9 @@ export function getState() {
   return bleManager.getState();
 }
 
-export function writeMetaString(msg) {
-  return bleManager.writeMetaString(msg);
-}
-
-export function readMetaString() {
-  return bleManager.readMetaString();
-}
-
-
-export function readVersion(){
-  return bleManager.readVersion();
-}
-
-
 export function readDataProviderLabels(){
-  return bleManager.readDataProviderLabels();
+  //@this needs update
+  // return bleManager.readDataProviderLabels();
 }
 
 let _isConnected = false;

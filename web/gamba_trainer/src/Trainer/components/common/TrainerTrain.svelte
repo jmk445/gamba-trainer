@@ -1,4 +1,4 @@
-<!--
+<!-- 
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +20,14 @@ limitations under the License.
 <script>
     import { navigate } from "svelte-routing";
     import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
+    import { onMount } from "svelte";
     // import NumberInput from "../../../../general/NumberInput.svelte";
     // import { beginTraining, stopTraining } from "../../stores/train/actions";
-    import {
-        beginTraining,
-        stopTraining,
-    } from "../../src_motion/stores/train/actions";
+
+    // import {
+    //     beginTraining,
+    //     stopTraining,
+    // } from "../../src_motion/stores/train/actions";
     // import GraphContainer from "./GraphContainer.svelte";
     // import {
     //     trainEpochs,
@@ -34,38 +36,67 @@ limitations under the License.
     //     trainLogAccuracy,
     //     trainLogLoss,
     // } from "../../stores/train/store";
-    import {
-        trainEpochs,
-        trainingState,
-        trainIsUnlocked,
-        trainLogAccuracy,
-        trainLogLoss,
-    } from "../../src_motion/stores/train/store";
+    // import {
+    //     trainEpochs,
+    //     trainingState,
+    //     trainIsUnlocked,
+    //     trainLogAccuracy,
+    //     trainLogLoss,
+    // } from "../../src_motion/stores/train/store";
 
     // import { isFullyLoaded } from "../../stores/ui/store";
     import { isFullyLoaded } from "../../src_motion/stores/ui/store";
     // import EarlyStopping from "./EarlyStopping.svelte";
     import Description from "../../../components/common/Description.svelte";
+    import {writable} from "svelte/store";
+    import { getTrainerADD } from "../../stores/actions";
+
+    let trainActions, trainStore;
+    let trainingState_ = writable();
+    let trainIsUnlocked_ = writable();
+
     $: if ($isFullyLoaded) {
-        if (!$trainIsUnlocked) {
+        if (!$trainIsUnlocked_) {
             navigate(BASE_PATH, { replace: true });
         }
     }
 
+    onMount(async () => {
+        trainer = await getTrainerADD();
+        trainer_ = trainer;
+
+        if (trainer == "FUI") {
+            trainer = "motion";
+        }
+
+        await import(`../../src_${trainer}/stores/train/actions`).then(
+            (module) => {
+                trainActions = module;
+            },
+        );
+
+        await import(`../../src_${trainer}/stores/train/store`).then(
+            (module) => {
+                trainStore = module;
+                trainingState_ = module.trainingState;
+                trainIsUnlocked_ = module.trainIsUnlocked;
+            },
+        );
+    });
+
     const strAsset = {
-        trainTitle : "모델 학습",
-        trainDesc : "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 데이터를 기록하십시오.",
-        btnStart : "학습 시작",
-        btnStop : "학습 중지",
-        captionStop : "멈추는 중...",
-        captionAlert : "이 페이지는 학습이 진행되는 동안 열려 있어야 합니다."
-    }
+        trainTitle: "모델 학습",
+        trainDesc:
+            "모델이 개선을 멈추면 완료되고 훈련을 중단할 수 있습니다. 높은 정확도를 얻는 데 어려움이 있다면 더 많은 고유한 데이터를 기록하십시오.",
+        btnStart: "학습 시작",
+        btnStop: "학습 중지",
+        captionStop: "멈추는 중...",
+        captionAlert: "이 페이지는 학습이 진행되는 동안 열려 있어야 합니다.",
+    };
 </script>
 
 <div class="contents">
-    <Description
-        title={strAsset.trainTitle}
-        explanation={strAsset.trainDesc}/>
+    <Description title={strAsset.trainTitle} explanation={strAsset.trainDesc} />
     <div class="input-container">
         <slot name="train-setting" />
         <!-- <div class="column">
@@ -81,19 +112,25 @@ limitations under the License.
     </div> -->
     </div>
     <div class="btn-start row">
-        {#if $trainingState === "idle"}
-            <button class="btn-stroke primary" on:click={beginTraining}
+        <div>{$trainingState_}</div>
+        {#if $trainingState_ === "idle"}
+            <button
+                class="btn-stroke primary"
+                on:click={trainActions.beginTraining}
                 >{strAsset.btnStart}</button
             >
-        {:else if $trainingState === "training"}
-            <button class="btn-stroke primary" on:click={stopTraining}
-                >{strAsset.btnStop}</button
+        {:else if $trainingState_ === "training"}
+            <button
+                class="btn-stroke primary"
+                on:click={trainActions.stopTraining}>{strAsset.btnStop}</button
             >
-        {:else if $trainingState === "stop_queued"}
-            <button class="btn-stroke primary" disabled>{strAsset.captionStop}</button>
+        {:else if $trainingState_ === "stop_queued"}
+            <button class="btn-stroke primary" disabled
+                >{strAsset.captionStop}</button
+            >
         {/if}
 
-        {#if $trainingState !== "idle"}
+        {#if $trainingState_ !== "idle"}
             <p class="train-alert">
                 <svg
                     width="24"
@@ -134,7 +171,7 @@ limitations under the License.
     /> -->
     </div>
 </div>
-<FloatingBtn/>
+<FloatingBtn />
 
 <style lang="scss">
     @import "@scss/vars";
@@ -145,7 +182,7 @@ limitations under the License.
     // .row {
     //     padding: 0 40px;
     // }
-    .input-container{
+    .input-container {
         margin-bottom: 32px;
     }
     .train-alert {

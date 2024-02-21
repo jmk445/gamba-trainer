@@ -44,8 +44,7 @@ limitations under the License.
     onSelect(value);
   }
 
-  onMount(() => {
-    console.log("hi");
+  onMount(() => {    
     selectorEl = document.querySelector(selector);
     
     if (!selectorEl) {

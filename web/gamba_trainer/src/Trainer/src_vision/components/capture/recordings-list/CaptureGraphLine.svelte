@@ -17,41 +17,71 @@ limitations under the License.
 * @author Rikard Lindstrom <rlindstrom@google.com>
 */
 -->
-<script>
+<!-- <script>
+  import { onMount } from "svelte";
+  import { afterUpdate } from "svelte";
+
   export let data;
   export let index;
-  export let color;
-  function generatePath(data) {
-    const stepSize = 100 / (data.length - 1);
-    // data is in "column" format, so given the index, pick all
-    // entries belonging to one sensor value series
-    const steps = data.map((a) => a[index]);
-    const path = steps
-      .map((y, index) => {
-        if (!isFinite(y)) {
-          throw new Error("y not finite:" + y);
-        }
-        if (index === 0) return `M ${0},${y * 120}`;
-        return `L ${index * stepSize}, ${y * 120}`;
-      })
-      .join("\n");
+  console.log(data);
 
-    return path;
+  //const local_data = data;
+
+  onMount(() => {
+    const local_data = data;
+    // const canvas = document.getElementById('imageCanvas');
+    const canvas = document.getElementById('canvas_'+index);
+    const context = canvas.getContext('2d');
+    console.log(index);
+
+    // 픽셀 데이터 배열을 canvas에 적용
+    for (let y = 0; y < 96; y++) {
+      for (let x = 0; x < 96; x++) {
+        const r = local_data[y][x][0];
+        const g = local_data[y][x][1];
+        const b = local_data[y][x][2];
+        context.fillStyle = `rgb(${r},${g},${b})`;
+        context.fillRect(x, y, 1, 1);
+      }
+    }
+  });
+  
+
+</script> -->
+
+<script>
+  import { onMount, afterUpdate } from "svelte";
+
+  export let data;
+  export let index;
+
+  let canvas, context;
+
+  onMount(() => {
+    canvas = document.getElementById('canvas_' + index);
+    context = canvas.getContext('2d');
+    drawCanvas(data); 
+  });
+
+  afterUpdate(() => {
+    drawCanvas(data); 
+  });
+
+  function drawCanvas(data) {
+    for (let y = 0; y < 96; y++) {
+      for (let x = 0; x < 96; x++) {
+        const [r, g, b] = data[y][x];
+        context.fillStyle = `rgb(${r},${g},${b})`;
+        context.fillRect(96-x, y, 1, 1);
+      }
+    }
   }
 </script>
 
-<svg
-  width="100"
-  height="200"
-  viewBox="0 -100 100 200"
-  preserveAspectRatio="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path fill="none" stroke={color} d={generatePath(data)} />
-</svg>
+<canvas id={"canvas_"+index} width="96" height="96"></canvas>
 
 <style lang="scss">
-  svg {
+  canvas{
     width: 100%;
     height: 100%;
   }

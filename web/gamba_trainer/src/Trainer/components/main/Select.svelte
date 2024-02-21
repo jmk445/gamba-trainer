@@ -20,10 +20,10 @@
     let showSelectApp = false;
     let trainer;
     export function clearPersistantStorage() {
-        persistStore.clear();        
+        persistStore.clear();
     }
     //trainerADD clear
-    onMount(() => {        
+    onMount(() => {
         clearPersistantStorage();
     });
 
@@ -34,34 +34,27 @@
 
     function selectMode(id) {
         selectModeID = id;
-        isBtnDisabled = false;
-        // console.log(selectModeID);
+        isBtnDisabled = false;        
     }
 
-    function goToTrainer() {
-        // console.log(selectTrainerID, selectModeID);
+    function goToTrainer() {        
         if (selectTrainerID === "motion" && selectModeID === "basicMode") {
             persistStore("trainerADD!", "motion");
             window.location.href = "/motion-start";
         }
-        if (selectTrainerID === "speech" && selectModeID === "basicMode") {            
+        if (selectTrainerID === "speech" && selectModeID === "basicMode") {
             persistStore("trainerADD!", "speech");
             window.location.href = "/speech-start";
         }
         if (selectTrainerID === "vision" && selectModeID === "basicMode") {
-            // window.location.href = "/vision-settings";
-            // alert("vision, basic");
-            showPreparing = true;
+            persistStore("trainerADD!", "vision");
+            window.location.href = "/vision-start";
         }
         if (selectTrainerID === "motion" && selectModeID === "appMode") {
-            console.log("0 : 버튼 클릭함수 실행")
-            setTrainerADD().then(()=>{                
+            setTrainerADD().then(() => {
                 window.location.href = `${trainer}-start`;
                 console.log("appmode-fui : ", trainer);
             });
-            
-            
-            
         }
         if (selectTrainerID === "speech" && selectModeID === "appMode") {
             // console.log(selectTrainerID, selectModeID);
@@ -74,10 +67,9 @@
             showPreparing = true;
         }
     }
-    async function setTrainerADD(){
-        console.log("1 : setTrainerADD함수 실행");
+    async function setTrainerADD() {
         trainer = await getTrainerADD();
-        
+
         return trainer;
     }
     const strAsset = {
@@ -94,7 +86,7 @@
         modeOneCaption:
             "나만의 새로운 인공지능 모델을 훈련시키는 과정을 체험해보세요",
         modeTwoType: "트레이너 + TinyML 예제",
-        modeTwo: "예제용 모델 학습하기", 
+        modeTwo: "예제용 모델 학습하기",
         modeTwoCaption:
             "TinyML예제에 호환되도록 모델을 학습시켜 활용 및 체험해보세요",
         btnGoToTrainer: "트레이너 시작",
@@ -196,7 +188,7 @@
     <div class="btn-move-wrap contents">
         <button class="btn-fill" disabled={isBtnDisabled} on:click={goToTrainer}
             >{strAsset.btnGoToTrainer}</button
-            >
+        >
     </div>
 </main>
 <footer>
@@ -208,19 +200,20 @@
         trainer={selectTrainerID}
     />
 {/if}
-<FloatingBtn/>
+<FloatingBtn />
 {#if showPreparing}
-    <PreparingPrompt onClose={()=>showPreparing = false}/>
+    <PreparingPrompt onClose={() => (showPreparing = false)} />
 {/if}
+
 <style lang="scss">
     @import "@scss/vars";
-    
+
     input[type="radio"] {
         display: none;
     }
     input[type="radio"]:checked + label {
-    background-color: $color-select-blue;
-    color: white;
+        background-color: $color-select-blue;
+        color: white;
     }
     .caption {
         margin: 32px 0 72px 0;
@@ -234,7 +227,7 @@
         }
         .contents {
             // margin-bottom: 12px;
-    
+
             h1 {
                 font-size: 2.25rem;
                 margin-bottom: 32px;
@@ -242,13 +235,13 @@
             }
         }
     }
-    
+
     .select-container {
         display: flex;
         flex-direction: row;
         gap: 2%;
-        
-        &>div{
+
+        & > div {
             flex: 1;
         }
         label {
@@ -261,7 +254,7 @@
             text-align: center;
             cursor: pointer;
             margin: 0;
-            
+
             text-align: center;
             color: black;
             font-weight: 400;

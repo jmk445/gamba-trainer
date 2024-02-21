@@ -9,7 +9,7 @@
     import poke from "../components/asset/poke.gif";
 
     import { onMount } from "svelte";    
-    import { getInferenceResult } from "./stores/tf4micro-motion-kit copy";
+    import { getInferenceResult } from "./stores/tf4micro-motion-kit-v2";
 
     let clickCount = -1;
     let sketchEl;
@@ -38,10 +38,10 @@
         p5.triggerGesture(index);
         interval = setInterval(() => {
             index = getInferenceResult();            
-            index_before = index;
-            if (index != index_before) {
-                console.log("index changed!" + index);
-            }
+            // index_before = index;
+            // if (index != index_before) {
+            //     console.log("index changed!" + index);
+            // }
             p5.triggerGesture(index);
         }, 500);
     });

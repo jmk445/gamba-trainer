@@ -81,17 +81,17 @@ class IMAGECapturer {
 
   start() {
     this.isArmed = true;
-    bleManager.requestAudioData();
-    this.dataRecorder = new DataRecorder(80);
+    bleManager.requestVisionData();
+    this.dataRecorder = new DataRecorder(96);
     this.onReadyToCapture();
     this.isRecording = true;
     this.onCaptureBegin();
-    bleApi.addEventListener("audiodata", this.handleDataReceived);
+    bleApi.addEventListener("visiondata", this.handleDataReceived);
   }
 
   stop() {
     console.log("called stop!");
-    bleApi.removeEventListener("audiodata", this.handleDataReceived);
+    bleApi.removeEventListener("visiondata", this.handleDataReceived);
     this.dataRecorder = null;
     this.isRecording = false;
     this.recordingLabel = -1;

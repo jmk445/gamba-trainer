@@ -27,13 +27,14 @@ export const clampValue = function (min, max) {
   };
 };
 
-export const parseInt16Array = function (arr) {
+//vision은 Uint8
+export const parseUint8Array = function (arr) {
   if (!Array.isArray(arr) && typeof arr === "object" && arr[0] !== undefined) {
     const newArr = [];
     Object.keys(arr).forEach((k) => (newArr[k] = arr[k]));
-    return new Int16Array(newArr);
+    return new Uint8Array(newArr);
   } else {
-    arr = arr.map((v) => parseInt16Array(v));
+    arr = arr.map((v) => parseUint8Array(v));
   }
   return arr;
 };

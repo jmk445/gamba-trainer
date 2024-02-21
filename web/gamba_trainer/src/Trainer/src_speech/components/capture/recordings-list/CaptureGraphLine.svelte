@@ -31,8 +31,9 @@ limitations under the License.
         if (!isFinite(y)) {
           throw new Error("y not finite:" + y);
         }
-        if (index === 0) return `M ${0},${y * 120}`;
-        return `L ${index * stepSize}, ${y * 120}`;
+        // y값을 조정하여 수직방향의 그래프 정도를 조정가능
+        if (index === 0) return `M ${0},${y / 100}`;
+        return `L ${index * stepSize}, ${y / 100}`;
       })
       .join("\n");
 
