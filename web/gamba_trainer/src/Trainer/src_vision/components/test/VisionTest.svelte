@@ -1,4 +1,4 @@
-<!--
+<!-- 
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,44 +55,62 @@ limitations under the License.
     //   };
     // });
   
-    $: if ($isFullyLoaded) {
-      if (!$testIsUnlocked) {
-        navigate(BASE_PATH, { replace: true });
-      }
+    // return () => {
+    //   isDestroyed = true;
+    //   if (unsubFromConnect) {
+    //     unsubFromConnect();
+    //   }
+    //   endTesting();
+    // };
+  // });
+
+  $: if ($isFullyLoaded) {
+    if (!$testIsUnlocked) {
+      navigate(BASE_PATH, { replace: true });
     }
-  </script>
-  <button id="test_button" on:click={beginTesting}>Test-Button</button>
-  <TrainerTest>
-    <div slot="test-progress" class="column stack">
-      {#each $labels as label, index}
-        <div class="panel">
-          <div>
-            <span class="label">{label}</span><span class="result"
-              >{Math.round(
-                !$testPredictions ? 0 : $testPredictions[index] * 100,
-              )}%</span
-            >
-          </div>
-          <LinearProgress
-            progress={!$testPredictions ? 0 : $testPredictions[index]}
-          />
+  }
+
+  const strAsset = {
+    btnStart : "테스트 시작"
+  }
+
+</script>
+
+<TrainerTest>
+  <div slot="test-progress" class="column stack">
+    <button class="btn-stroke btn-test" on:click={beginTesting}>{strAsset.btnStart}</button>
+    {#each $labels as label, index}
+      <div class="panel">
+        <div>
+          <span>{label}</span><span class="result"
+            >{Math.round(
+              !$testPredictions ? 0 : $testPredictions[index] * 100,
+            )}%</span
+          >
         </div>
-      {/each}
-    </div>
-  </TrainerTest>
-  
-  <style lang="scss">
-    .panel {
-      margin-bottom: 60px;
-    }
-    .panel > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .label {
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
-  </style>
+        <LinearProgress
+          progress={!$testPredictions ? 0 : $testPredictions[index]}
+        />
+      </div>
+    {/each}
+  </div>
+</TrainerTest>
+
+<style lang="scss">
+  .btn-test{
+    margin-bottom:32px ;
+  }
+  .panel {
+    margin-bottom: 60px;
+  }
+  .panel > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+</style>

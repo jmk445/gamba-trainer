@@ -34,16 +34,19 @@ export const trainingState = stateStore("idle", [
 export const modelArchitecture = readable({
   type: "sequential",
   layers: [
-    { type: "conv2d", props: { filters: 16, kernelSize: [3,3], pad: 'same', activation: 'relu'} },
-    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
-    { type: "dropout", props: { rate: 0.25 } },
-    { type: "conv2d", props: { filters: 32, kernelSize: [3,3], pad: 'same', activation: 'relu' } },
-    { type: "maxPooling2d", props: { poolSize: [2, 2] } },
-    { type: "dropout", props: { rate: 0.25 } },
+    { type: "conv2d", props: { filters: 4, kernelSize: [4,2], padding: 'same', activation: 'relu'} },
+    { type: "maxPooling2d", props: { poolSize: [2, 2], strides: [2, 2] } },
+    { type: "conv2d", props: { filters: 8, kernelSize: [4,2], padding: 'same', activation: 'relu'} },
+    { type: "maxPooling2d", props: { poolSize: [2, 2], strides: [2, 2] } },
+    { type: "conv2d", props: { filters: 16, kernelSize: [4,2], padding: 'same', activation: 'relu'} },
+    { type: "maxPooling2d", props: { poolSize: [2, 2], strides: [2, 2] } },
+    { type: "conv2d", props: { filters: 16, kernelSize: [4,2], padding: 'same', activation: 'relu'} },
+    { type: "maxPooling2d", props: { poolSize: [2, 2], strides: [1, 2]} },
     { type: "flatten", props: {} },
+    { type: "dropout", props: { rate: 0.3 } },
     { type: "dense", props: { units: 64, activation: 'relu' } },
-    { type: "dropout", props: { rate: 0.25 } },
-    { type: "dense", props: { units: labels.length, activation: 'softmax' } },
+    { type: "dropout", props: { rate: 0.5 } },
+    { type: "dense", props: { activation: 'softmax' } },
   ],
 });
 

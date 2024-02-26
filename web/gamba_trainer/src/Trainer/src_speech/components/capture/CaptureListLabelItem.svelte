@@ -25,16 +25,22 @@ limitations under the License.
     endRecording,
     removeLabelByName,
   } from "../../stores/capture/actions";
+  import onMount from "svelte";
   import { captureState, labels } from "../../stores/capture/store";
   import { captureDelayTimeout } from "../../stores/capture/store";
-
+  import { getTrainerADD } from "../../../stores/actions";
   import Icon from "../general/Icon.svelte";
 
   export let labelIndex;
   export let active = false;
   export let onSelect = () => {};
 
+  let trainer;
   $: label = $labels[labelIndex];
+
+  // onMount(async () => {
+  //   trainer = await getTrainerADD();
+  // });
 
   function handleRemoveLabel() {
     console.log("test");
@@ -58,16 +64,29 @@ limitations under the License.
     aria-pressed={active}
   />
 
-  <div class="row firs-row">
-    <span class="label subhead-1">{label}</span><button
-      class="remove-button"
-      aria-label="Delete label"
-      disabled={!active}
-      aria-pressed="undefined"
-      on:click={handleRemoveLabel}
-      ><span class="icon"><Icon icon="close_24px.svg" /></span></button
-    >
-  </div>
+  <!-- {#if trainer == "MOLE"}
+    <div class="row firs-row">
+      <span class="label subhead-1">{label}</span><button
+        class="remove-button"
+        aria-label="Delete label"
+        disabled={active}
+        aria-pressed="undefined"
+        on:click={handleRemoveLabel}
+        ><span class="icon"><Icon icon="close_24px.svg" /></span></button
+      >
+    </div>
+  {:else} -->
+    <div class="row firs-row">
+      <span class="label subhead-1">{label}</span><button
+        class="remove-button"
+        aria-label="Delete label"
+        disabled={!active}
+        aria-pressed="undefined"
+        on:click={handleRemoveLabel}
+        ><span class="icon"><Icon icon="close_24px.svg" /></span></button
+      >
+    </div>
+  <!-- {/if} -->
   {#if active}
     <div class="row">
       <div class="rec-button-container">
@@ -103,7 +122,7 @@ limitations under the License.
               Detecting motion...
             {:else if $captureState === "waiting"}
               {`Capture completed. Waiting ${$captureDelayTimeout.toFixed(
-                2
+                2,
               )}s...`}
             {/if}
           </p>
@@ -166,7 +185,8 @@ limitations under the License.
     }
 
     .rec-button {
-      &:before, &:after {
+      &:before,
+      &:after {
         border-radius: 0px;
         outline-color: $color-deepblue;
       }

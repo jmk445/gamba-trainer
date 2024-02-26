@@ -20,14 +20,19 @@
 
     .banner-container {
         position: relative;
+        height: 400px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            // min-width: none;
+        }
     }
     .banner-contents {
         position: absolute;
-        top: 25%;
+        top: 50%;
+        width: 80%;
+        transform: translate(0, -50%);
 
-        p:last-child {
-            width : 80%
-        }
     }
     .banner-title {
         font-size: 6rem;

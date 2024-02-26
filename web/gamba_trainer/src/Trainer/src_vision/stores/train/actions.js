@@ -139,7 +139,7 @@ async function setupModel(inputShape) {
   console.log(tf.version.tfjs);
   let net = await tf.loadLayersModel('/tfjs_caltech_71/model.json');
   console.log('Successfully loaded model');
-  net.summary();
+  // net.summary();
   
   
   const numLabels = get(labels).length;
@@ -208,6 +208,7 @@ export async function beginTraining() {
     console.log("Start Training");
     //모델 세팅
     let model = await setupModel(inputs[0].shape);
+    model.summary();
     console.log("Model load");
 
     //model.summary();

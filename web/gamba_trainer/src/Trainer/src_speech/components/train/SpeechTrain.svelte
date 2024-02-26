@@ -31,6 +31,7 @@ limitations under the License.
   } from "../../stores/train/store";
   import { isFullyLoaded } from "../../stores/ui/store";
   import EarlyStopping from "./EarlyStopping.svelte";
+  import FloatingBtn from "../../../../components/general/floating/floatingBtn.svelte";
 
   $: if ($isFullyLoaded) {
     if (!$trainIsUnlocked) {
@@ -57,37 +58,38 @@ limitations under the License.
 </script>
 
 <div class="description">
-  <h1>{strAsset.trainTitle}</h1>
-  <p class="subhead-1">
-    {strAsset.trainDesc}
-  </p>
-</div>
-
-<div class="row">
-  <div class="column">
-    <NumberInput
-      name="input_epochs"
-      classStr="subhead-1"
-      bind:value={$trainEpochs}
-      min={1}
-    /><label class="subhead-1" for="input_epochs">{strAsset.epochs}</label>
+  <div class="title-container">
+  <h2>{strAsset.trainTitle}</h2>
+  
   </div>
-  <div class="column">
-    <EarlyStopping />
+  <p> {strAsset.trainDesc}</p>
+</div>
+<div class="input-container">
+  <div class="row">
+    <div class="column">
+      <NumberInput
+        name="input_epochs"
+        classStr="subhead-1"
+        bind:value={$trainEpochs}
+        min={1}
+      /><label class="subhead-1" for="input_epochs">{strAsset.epochs}</label>
+    </div>
+    <div class="column">
+      <EarlyStopping />
+    </div>
   </div>
 </div>
-
-<div class="row">
+<div class="btn-start row">
   {#if $trainingState === "idle"}
-    <button class="button primary" on:click={beginTraining}
+    <button class="btn-stroke" on:click={beginTraining}
       >{strAsset.btnStart}</button
     >
   {:else if $trainingState === "training"}
-    <button class="button primary" on:click={stopTraining}
+    <button class="btn-stroke" on:click={stopTraining}
       >{strAsset.btnStop}</button
     >
   {:else if $trainingState === "stop_queued"}
-    <button class="button primary" disabled>{strAsset.captionStop}</button>
+    <button class="btn-stroke" disabled>{strAsset.captionStop}</button>
   {/if}
 
   {#if $trainingState !== "idle"}
@@ -112,32 +114,47 @@ limitations under the License.
 </div>
 
 <div class="row gragh_div">
-  <GraphContainer
-    title="Accuracy"
-    label1="Train accuracy"
-    label2="Validation accuracy"
-    decimals={2}
-    maxX={$trainEpochs}
-    data={[$trainLogAccuracy.train, $trainLogAccuracy.validation]}
-  />
-  <GraphContainer
-    title="Loss"
-    label1="Train loss"
-    label2="Validation loss"
-    decimals={4}
-    maxX={$trainEpochs}
-    data={[$trainLogLoss.train, $trainLogLoss.validation]}
-  />
+  <div class="graph-container-contents">
+    <GraphContainer
+      title={strAsset.accuracy}
+      label1={strAsset.accuracyTrain}
+      label2={strAsset.accuracyValidation}
+      decimals={2}
+      maxX={$trainEpochs}
+      data={[$trainLogAccuracy.train, $trainLogAccuracy.validation]}
+    />
+    <GraphContainer
+      title={strAsset.loss}
+      label1={strAsset.lossTrain}
+      label2={strAsset.lossValidation}
+      decimals={4}
+      maxX={$trainEpochs}
+      data={[$trainLogLoss.train, $trainLogLoss.validation]}
+    />
+  </div>
 </div>
-
+<FloatingBtn/>
 <style lang="scss">
   @import "@scss/vars";
+  .description {
+        padding: 48px 32px;
+        background-color: $color-lightsky;
+        border-radius: 8px;
+        margin-bottom: 64px;
+
+        h2 {
+            margin-bottom: 16px;
+            font-size: 2.25rem;
+            font-weight: 500;
+        }
+    }
+    .title-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
   label {
     margin-right: 40px;
-  }
-
-  .row {
-    padding: 0 40px;
   }
 
   .train-alert {
@@ -150,5 +167,17 @@ limitations under the License.
 
   .gragh_div {
     padding: 0px;
+  }
+  .graph-container-contents {
+    display: flex;
+    justify-content: space-between;
+    gap: 6%;
+    width: 100%;
+  }
+  .btn-start {
+    margin-bottom: 64px;
+  }
+  .input-container{
+    margin-bottom: 32px;
   }
 </style>

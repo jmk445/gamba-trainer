@@ -52,6 +52,12 @@ limitations under the License.
     if (trainer === "FUI") {
       trainer = "motion";
     }
+    if (trainer === "MOLE") {
+      trainer = "speech";
+    }
+    if (trainer === "MASK") {
+      trainer = "vision";
+    }
   });
 
   onMount(() => {

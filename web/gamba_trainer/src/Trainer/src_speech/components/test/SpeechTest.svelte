@@ -24,35 +24,37 @@ limitations under the License.
   import { labels } from "@speech/stores/capture/store";
   import { beginTesting, endTesting } from "@speech/stores/test/actions";
   import { testIsUnlocked, testPredictions } from "@speech/stores/test/store";
-  import { isFullyLoaded } from "@speech/stores/ui/store";
-  import LinearProgress from "../general/LinearProgress.svelte";
+  import { isFullyLoaded } from "@speech/stores/ui/store";  
+  import Description from "../../../../components/common/Description.svelte";
+  import LinearProgress from "../../../../components/general/LinearProgress.svelte";
+  import FloatingBtn from "../../../../components/general/floating/floatingBtn.svelte";
 
-  // onMount(async () => {
-  //   let unsubFromConnect;
-  //   let isDestroyed = false;
-  //   setTimeout(async () => {
-  //     if ($isConnected) {
-  //       await beginTesting();
-  //     } else {
-  //       unsubFromConnect = isConnected.subscribe(async ($isConnected) => {
-  //         if ($isConnected) {
-  //           if (!isDestroyed) {
-  //             await beginTesting();
-  //           }
-  //           unsubFromConnect();
-  //         }
-  //       });
-  //     }
-  //   }, 100);
+  onMount(async () => {
+    let unsubFromConnect;
+    let isDestroyed = false;
+    setTimeout(async () => {
+      if ($isConnected) {
+        await beginTesting();
+      } else {
+        unsubFromConnect = isConnected.subscribe(async ($isConnected) => {
+          if ($isConnected) {
+            if (!isDestroyed) {
+              await beginTesting();
+            }
+            unsubFromConnect();
+          }
+        });
+      }
+    }, 100);
 
-  //   return () => {
-  //     isDestroyed = true;
-  //     if (unsubFromConnect) {
-  //       unsubFromConnect();
-  //     }
-  //     endTesting();
-  //   };
-  // });
+    return () => {
+      isDestroyed = true;
+      if (unsubFromConnect) {
+        unsubFromConnect();
+      }
+      endTesting();
+    };
+  });
 
   $: if ($isFullyLoaded) {
     if (!$testIsUnlocked) {
@@ -76,18 +78,16 @@ limitations under the License.
   };
 </script>
 
-<div class="description">
-  <h1>Test your model</h1>
-  <p class="subhead-1">
-    You can always go back to recapture your data or download a saved model.
-  </p>
-</div>
+<Description
+    title="모델 테스트"
+    explanation="언제든지 데이터를 다시 수집할 수 있습니다."
+  />
 
-<button class="btn-stroke btn-test" on:click={beginTesting}
+<button class="btn-stroke btn-test" id = "test_button" on:click={beginTesting}
   >{strAsset.btnStart}</button
 >
 
-<div class="row stack">
+<div class="column stack">
   {#each $labels as label, index}
     <div class="panel">
       <div>
@@ -103,17 +103,23 @@ limitations under the License.
     </div>
   {/each}
 </div>
-
+<FloatingBtn/>
 <style lang="scss">
   @import "@scss/vars";
+  .btn-test {
+    margin-bottom: 32px;
+  }
   .panel {
     margin-bottom: 60px;
   }
-  .label {
-    font-size: 20px;
-    margin-bottom: 10px;
+  .panel>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
-  .btn-test {
-    margin-bottom: 32px;
+  .label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
   }
 </style>

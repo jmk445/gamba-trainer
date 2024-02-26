@@ -27,18 +27,21 @@ limitations under the License.
   } from "../../stores/capture/actions";
   import { captureState, labels } from "../../stores/capture/store";
   import { captureDelayTimeout } from "../../stores/capture/store";
-
+  import onMount from "svelte";
   import Icon from "../../../../components/general/Icon.svelte";
 
   export let labelIndex;
   export let active = false;
   export let onSelect = () => {};
-
+  let trainer;
   $: label = $labels[labelIndex];
 
   function handleRemoveLabel() {    
     removeLabelByName(label);
   }
+  // onMount(async () => {
+  //   trainer = await getTrainerADD();
+  // });
 
   function handleToggleRecording() {
     if ($captureState === "idle") {
@@ -65,6 +68,18 @@ limitations under the License.
     aria-pressed={active}
   />
 
+  <!-- {#if trainer == "MASK"}
+  <div class="row firs-row">
+    <span class="label subhead-1">{label}</span><button
+      class="remove-button"
+      aria-label="Delete label"
+      disabled={active}
+      aria-pressed="undefined"
+      on:click={handleRemoveLabel}
+      ><span class="icon"><Icon icon="close_24px.svg" /></span></button
+    >
+  </div>
+{:else} -->
   <div class="row firs-row">
     <span class="label subhead-1">{label}</span><button
       class="remove-button"
@@ -75,6 +90,7 @@ limitations under the License.
       ><span class="icon"><Icon icon="close_24px.svg" /></span></button
     >
   </div>
+<!-- {/if} -->
   {#if active}
     <div class="row">
       <div class="rec-button-container">

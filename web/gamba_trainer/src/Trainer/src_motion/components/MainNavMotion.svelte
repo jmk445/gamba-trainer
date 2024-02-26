@@ -1,4 +1,4 @@
-+<!--
+<!--
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,37 +19,17 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  
+
   import { FromPixels } from "@tensorflow/tfjs";
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
   import { writable } from "svelte/store";
+  import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  import icInfo from "@assets/img/ic_info.svg";
   import { trainIsUnlocked } from "../stores/train/store";
-  import { testIsUnlocked} from "../stores/test/store"
-
-  let trainer, trainer_;
-  let trainStore, testStore;
-  // let trainIsUnlocked = writable();
-  // let testIsUnlocked = writable();
-  
-  // onMount(async () => {
-    // trainer = await getTrainerADD();
-    // trainer_ = trainer;
-    // if (trainer = "FUI"){
-    //   trainer = "motion";
-    // }
-
-    // await import(`../../src_${trainer}/stores/train/store`).then((module) => {
-    //   trainStore = module;
-    //   trainIsUnlocked = trainStore.trainIsUnlocked;
-    // });
-
-    // await import(`../../src_${trainer}/stores/test/store`).then((module) => {
-    //   testStore = module;
-    //   testIsUnlocked = testStore.testIsUnlocked;
-    
-    // });
-  // });
+  import { testIsUnlocked } from "../stores/test/store";
+  let pageNum;
+  let showHelpPrompt = false;
 
   const strAsset = {
     navOne: "사전 설정",
@@ -63,36 +43,63 @@ limitations under the License.
 <div class="train-nav nav">
   <ul>
     <li
-      class:active={location.pathname.includes(
-        BASE_PATH + `/motion-settings`,
-      )}
+      class:active={location.pathname.includes(BASE_PATH + `/motion-settings`)}
     >
       <Link to="/motion-settings">{strAsset.navOne}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "one";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
-      class:active={location.pathname.includes(
-        BASE_PATH + `/motion-capture`,
-      )}
+      class:active={location.pathname.includes(BASE_PATH + `/motion-capture`)}
     >
       <Link to="/motion-capture">{strAsset.navTwo}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "two";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/motion-train`)}
       class:disabled={!$trainIsUnlocked}
-      aria-disabled={!$trainIsUnlocked}      
+      aria-disabled={!$trainIsUnlocked}
     >
-    
       <Link to="/motion-train">{strAsset.navThree}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "three";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/motion-test`)}
       class:disabled={!$testIsUnlocked}
-      aria-disabled={!$testIsUnlocked}        
-    >    
+      aria-disabled={!$testIsUnlocked}
+    >
       <Link to="/motion-test">{strAsset.navFour}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "four";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
@@ -101,10 +108,36 @@ limitations under the License.
       )}
     >
       <Link to="/motion-convertSend">{strAsset.navFive}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "five";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
   </ul>
 </div>
+{#if showHelpPrompt}
+  <HelpPrompt onClose={() => (showHelpPrompt = false)} {pageNum} />
+{/if}
 
 <style lang="scss">
   @import "@scss/vars";
+
+  .btn-help {
+    display: none;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    color: $color-deepblue;
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  .active .btn-help {
+    display: block;
+  }
 </style>

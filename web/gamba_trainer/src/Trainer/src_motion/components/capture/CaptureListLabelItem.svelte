@@ -29,6 +29,8 @@ limitations under the License.
   import { captureDelayTimeout } from "../../stores/capture/store";
 
   import Icon from "../../../../components/general/Icon.svelte";
+  import { getTrainerADD } from "../../../stores/actions";
+    import { onMount } from "svelte";
 
   export let labelIndex;
   export let active = false;
@@ -36,7 +38,14 @@ limitations under the License.
 
   $: label = $labels[labelIndex];
 
-  function handleRemoveLabel() {    
+  let trainer;
+
+  // onMount(async ()=>{
+
+  //   trainer = await getTrainerADD();
+
+  // });
+  function handleRemoveLabel() {
     removeLabelByName(label);
   }
 
@@ -49,12 +58,14 @@ limitations under the License.
   }
 
   const strAsset = {
-    btnStart : "기록하기",
-    btnStop : "중지하기",
-    captionIng : "기록 중...",
-    captionDetecting : "움직임 감지",
-    captionWating : `수집이 완료되었습니다. ${$captureDelayTimeout.toFixed(2)}초만 기다려주세요.`
-  }
+    btnStart: "기록하기",
+    btnStop: "중지하기",
+    captionIng: "기록 중...",
+    captionDetecting: "움직임 감지",
+    captionWating: `수집이 완료되었습니다. ${$captureDelayTimeout.toFixed(
+      2,
+    )}초만 기다려주세요.`,
+  };
 </script>
 
 <li class:active>
@@ -64,17 +75,30 @@ limitations under the License.
     aria-label="Select label"
     aria-pressed={active}
   />
+  <!-- {#if trainer == "FUI"}
+    <div class="row firs-row">
+      <span class="label subhead-1">{label}</span><button
+        class="remove-button"
+        aria-label="Delete label"
+        disabled={active}
+        aria-pressed="undefined"
+        on:click={handleRemoveLabel}
+        ><span class="icon"><Icon icon="close_24px.svg" /></span></button
+      >
+    </div> -->
+  <!-- {:else} -->
+    <div class="row firs-row">
+      <span class="label subhead-1">{label}</span><button
+        class="remove-button"
+        aria-label="Delete label"
+        disabled={!active}
+        aria-pressed="undefined"
+        on:click={handleRemoveLabel}
+        ><span class="icon"><Icon icon="close_24px.svg" /></span></button
+      >
+    </div>
+  <!-- {/if} -->
 
-  <div class="row firs-row">
-    <span class="label subhead-1">{label}</span><button
-      class="remove-button"
-      aria-label="Delete label"
-      disabled={!active}
-      aria-pressed="undefined"
-      on:click={handleRemoveLabel}
-      ><span class="icon"><Icon icon="close_24px.svg" /></span></button
-    >
-  </div>
   {#if active}
     <div class="row">
       <div class="rec-button-container">
@@ -107,7 +131,7 @@ limitations under the License.
             {#if $captureState === "recording"}
               {strAsset.captionIng}
             {:else if $captureState === "armed"}
-            {strAsset.captionDetecting}
+              {strAsset.captionDetecting}
             {:else if $captureState === "waiting"}
               {strAsset.captionWating}
             {/if}
@@ -171,7 +195,8 @@ limitations under the License.
     }
 
     .rec-button {
-      &:before, &:after {
+      &:before,
+      &:after {
         border-radius: 0px;
         outline-color: $color-deepblue;
       }

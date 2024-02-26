@@ -22,6 +22,8 @@ limitations under the License.
   import { Link } from "svelte-routing";
   // import { isConnected$3, addEventListner } from "../../FUI/stores/tf4micro-motion-kit-v1";  
   import { getIsConnected} from "../../FUI/stores/tf4micro-motion-kit-v2";  
+  import { getIsConnectedSpeech} from "../../MOLE/stores/tf4-micro-motion-kit.js";  
+  import { getIsConnectedVision} from "../../MASK/stores/tf4micro-motion-kit copy.js";
   // import { isConnected } from "@motion/stores/bleInterfaceStore/store";
   // import { testIsUnlocked } from "../src_motion/stores/test/store";
   // import { trainIsUnlocked } from "../src_motion/stores/train/store";
@@ -58,7 +60,8 @@ limitations under the License.
   // }
   function connectionUpdate() {    
     // const connection = document.getElementById("connection");    
-    let connection = getIsConnected();    
+    //@needs update
+    let connection = getIsConnected() || getIsConnectedSpeech() || getIsConnectedVision();
     if (connection) {      
       connectionClass = "green";
       // connection.innerText = "Disconnect";
@@ -83,7 +86,9 @@ limitations under the License.
       )} class="connect"
     >
       <span class={`dot ${connectionClass}`} />
-      <Link to="fui-connect"><span>{strAsset.navOne}</span></Link>
+      <div class="nav-connect">
+        <Link to="{appName}-connect"><span>{strAsset.navOne}</span></Link>
+      </div>
     </li>
 
     <li
@@ -91,7 +96,7 @@ limitations under the License.
         BASE_PATH + `/${appName}-choose`,
       )}
     >
-      <Link to="fui-choose">{strAsset.navTwo}</Link>
+      <Link to="{appName}-choose">{strAsset.navTwo}</Link>
     </li>
 
     <li
@@ -99,7 +104,7 @@ limitations under the License.
         BASE_PATH + `/${appName}-experience`,
       )}
     >
-      <Link to="fui-experience">{strAsset.navThree}</Link>
+      <Link to="{appName}-experience">{strAsset.navThree}</Link>
     </li>
 
   </ul>
@@ -110,7 +115,20 @@ limitations under the License.
   .app-main-nav ul {
     margin-top: 110px;
   }
-  .connect{
-
+  .btn-help {
+    display: none;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    color: $color-deepblue;
+    border-radius: 50%;
+    padding: 0;
+  }
+  .active .btn-help {
+    display: block;
+  }
+  .nav-connect {
+    margin-left: 4px;
   }
 </style>

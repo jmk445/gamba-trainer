@@ -6,6 +6,7 @@ export function getTrainerADD() {
     const request = indexedDB.open(dbName, version);
 
     return new Promise((resolve, reject) => {
+        
         request.onsuccess = function (event) {
             const db = event.target.result;
             const transaction = db.transaction(storeName, "readonly");
@@ -16,7 +17,9 @@ export function getTrainerADD() {
             getRequest.onsuccess = function (event) {
                 const result = event.target.result;
                 if (result) {                                                            
-                    resolve(result);                                     
+                    console.log(result);
+                    resolve(result);  
+                    
                 } else {
                     console.log("Record not found in IndexedDB.");
                 }

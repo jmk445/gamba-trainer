@@ -42,9 +42,10 @@ export function clearPersistantStorage() {
   persistStore.reset();
   removeTrainedModel();
 }
+import getTrainerADD from "../../stores/actions"
 
 
-export async function convertToTflite(quantize = false){
+export async function convertToTflite(quantize = false, trainer){
   console.log("convert to tflite function executed");
   // URL to backend
   const apiUrl = "http://127.0.0.1:5000";
@@ -54,9 +55,20 @@ export async function convertToTflite(quantize = false){
   )}&numSamples=${get(captureSamples)}&sensitivity=${get(captureThreshold)}`;
 
   url += `&version=${arduinoTemplateVersion}`;
-  if (quantize) {
-    url += "&quantize=true";
+  
+  console.log(trainer);
+  if(trainer == "motion"){
+    url += "&type=1";
+  }else if(trainer == "speech"){
+    url += "&type=2";
+  }else if(trainer == "vision"){
+    url += "&type=3";
+  }else {
+    //error
   }
+  // if (quantize) {
+  //   url += "&quantize=true";
+  // }
 
   const rq = tf.io.browserHTTPRequest(url, {
     fetchFunc: (url, req) => {
