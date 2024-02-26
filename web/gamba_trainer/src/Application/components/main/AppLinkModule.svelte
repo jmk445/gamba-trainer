@@ -3,6 +3,7 @@
 
     export let title;
     export let caption;
+    export let tumbnail;
     
     const dispatch = createEventDispatcher();
 
@@ -13,7 +14,7 @@
 
 <div class="example-contents" role="button" on:click={sendEvent}>
     <div class="img-example">
-        <img src="#" alt="이미지">
+        <img src={tumbnail} alt="이미지">
     </div>
     <div class="example-caption">
         <p>{title}</p>
@@ -28,7 +29,7 @@
     text-align: center;
     cursor: pointer;
     &:hover{
-        filter: brightness(5%);
+        filter: brightness(0.8);
     }
 }
 .example-caption {
@@ -43,9 +44,9 @@
     }
 }
 .img-example{
-    width: 100%;
-    flex: 8;
-    background-color: #dbdbdb;
+    img{
+        width: 100%;
+    }
 }
 
 </style>

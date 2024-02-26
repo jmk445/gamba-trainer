@@ -38,7 +38,13 @@ limitations under the License.
         if(trainer == "FUI"){
             trainer = "motion";
         }
-        console.log(trainer);
+        if(trainer == "MOLE"){
+            trainer = "speech";
+        }
+        if(trainer == "MASK"){
+            trainer = "vision";
+        }
+        
 
         await import(
             `../../src_${trainer}/stores/bleInterfaceStore/actions.js`

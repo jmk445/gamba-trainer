@@ -43,7 +43,13 @@ limitations under the License.
         trainer = await getTrainerADD();
 
         if(trainer == "FUI"){
-            trainer = "motion";
+            trainer = "motion";            
+        }
+        else if(trainer == "MOLE"){
+            trainer = "speech";
+        }
+        else if(trainer == "MASK"){
+            trainer = "vision";
         }
 
         await import(
@@ -198,7 +204,7 @@ limitations under the License.
                 >{strAsset.navFive}</button
             >
             {#if showHelpPrompt}
-                <HelpPrompt onClose={() => (showHelpPrompt = false)} />
+                <HelpPrompt pageNum = "one" onClose={() => (showHelpPrompt = false)} />
             {/if}
         </li>
     </ul>

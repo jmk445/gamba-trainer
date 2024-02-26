@@ -57,14 +57,16 @@
             });
         }
         if (selectTrainerID === "speech" && selectModeID === "appMode") {
-            // console.log(selectTrainerID, selectModeID);
-            // alert("sppech, app");
-            showPreparing = true;
+            setTrainerADD().then(() => {
+                window.location.href = `${trainer}-start`;
+                console.log("appmode-fui : ", trainer);
+            });
         }
         if (selectTrainerID === "vision" && selectModeID === "appMode") {
-            // console.log(selectTrainerID, selectModeID);
-            // alert("vision, app");
-            showPreparing = true;
+            setTrainerADD().then(() => {
+                window.location.href = `${trainer}-start`;
+                console.log("appmode-fui : ", trainer);
+            });
         }
     }
     async function setTrainerADD() {

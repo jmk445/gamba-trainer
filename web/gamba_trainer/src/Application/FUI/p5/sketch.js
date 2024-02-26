@@ -15,37 +15,111 @@ limitations under the License.
 
 let _p5;
 let handleGesture;
-
+let stop;
+export let countx = 0;
+export let angle = 0;
+export let eSize = 0;
+export let speed = 2;
 export default function (p5) {
   _p5 = p5;
 
-  let r = 0;
-  let g = 0;
-  let b = 0;
   let x;
   let y;
-  let d = 0;
-  let wave_text_op = 10;
-  let wave_text = " wave your finger ";
-  let sc = 0;
-  let leftSound, rightSound, poke, pluck, twirl;
-  // let drums = [];
-  let gesture;
+  let wave_text = "키트를 움직여보세요";
 
-  const GESTURES = ["left", "right", "poke", "twirl", "pluck"];
+  let gap = 150;
 
-  // p5.preload = function () {
-  //   leftSound = p5.loadSound("./sounds/left.wav");
-  //   rightSound = p5.loadSound("./sounds/right.wav");
-  //   twirl = p5.loadSound("./sounds/twirl.wav");
-  //   poke = p5.loadSound("./sounds/poke.wav");
-  //   pluck = p5.loadSound("./sounds/pluck.wav");
-  //   drums[0] = p5.loadSound("./sounds/D1.wav");
-  //   drums[1] = p5.loadSound("./sounds/D2.wav");
-  //   drums[2] = p5.loadSound("./sounds/D3.wav");
-  //   drums[3] = p5.loadSound("./sounds/D4.wav");
-  // };
+  let finished = false;
+  let r = 200;
 
+
+  let txtWidth = 0.5;
+  let txtHeight = 0.5;
+  let start = [];
+
+  class Eyes {
+    constructor() {
+      this.r = 200;
+    }
+
+    display() {
+      p5.background(255, 255, 0);
+      p5.noStroke();
+      p5.fill(255);
+      p5.ellipse(p5.width / 2 - gap, p5.height / 2, this.r, this.r);
+      p5.ellipse(p5.width / 2 + gap, p5.height / 2, this.r, this.r);
+      p5.fill(0);
+      p5.text(wave_text, p5.width * txtWidth, p5.height * txtHeight);
+    }
+    right(x) {
+      p5.noStroke();
+      p5.fill(0);
+      p5.ellipse(p5.width / 2 - gap + countx, p5.height / 2, this.r / 2, this.r / 2);
+      p5.ellipse(p5.width / 2 + gap + countx, p5.height / 2, this.r / 2, this.r / 2);
+      if (countx < x) {
+        countx += speed;
+      }
+      if (countx == x) {
+        finished = true;
+        countx = x;
+      }
+    }
+
+    left(x) {
+      p5.noStroke();
+      p5.fill(0);
+      p5.ellipse(p5.width / 2 - gap - countx, p5.height / 2, this.r / 2, this.r / 2);
+      p5.ellipse(p5.width / 2 + gap - countx, p5.height / 2, this.r / 2, this.r / 2);
+      if (countx < x) {
+        countx += speed;
+      }
+      if (countx == x) {
+        finished = true;
+        countx = x;
+      }
+    }
+
+    poke() {
+      p5.stroke(0);
+      p5.strokeWeight(10);
+      p5.noFill();
+      p5.beginShape();
+      p5.vertex(p5.width / 2 + gap + this.r / 4, p5.height / 2 - this.r / 4);
+      p5.vertex(p5.width / 2 + gap - this.r / 2, p5.height / 2);
+      p5.vertex(p5.width / 2 + gap + this.r / 4, p5.height / 2 + this.r / 4);
+      p5.endShape();
+      p5.beginShape();
+      p5.vertex(p5.width / 2 - gap - this.r / 4, p5.height / 2 - this.r / 4);
+      p5.vertex(p5.width / 2 - gap + this.r / 2, p5.height / 2);
+      p5.vertex(p5.width / 2 - gap - this.r / 4, p5.height / 2 + this.r / 4);
+      p5.endShape();
+      p5.noStroke();
+      p5.fill(0);
+      p5.text(wave_text, p5.width * txtWidth, p5.height * txtHeight);
+    }
+
+    twirl() {
+      p5.noStroke();
+      p5.fill(0);
+      p5.ellipse(this.r / 5 * p5.sin(p5.radians(angle)) + p5.width / 2 + gap, this.r / 5 * p5.cos(p5.radians(angle)) + p5.height / 2, this.r / 2, this.r / 2);
+      p5.ellipse(this.r / 5 * p5.sin(p5.radians(angle)) + p5.width / 2 - gap, this.r / 5 * p5.cos(p5.radians(angle)) + p5.height / 2, this.r / 2, this.r / 2);
+      angle += speed;
+    }
+
+    pluck(size) {
+      p5.fill(0);
+      p5.ellipse(p5.width / 2 - gap, p5.height / 2, this.r / 2 + eSize, this.r / 2 + eSize);
+      p5.ellipse(p5.width / 2 + gap, p5.height / 2, this.r / 2 + eSize, this.r / 2 + eSize);
+      if (eSize < size) {
+        eSize += speed;
+      }
+      if (eSize == size) {
+        finished = true;
+        eSize = size;
+      }
+    }
+  }
+  const e = new Eyes();
   p5.setup = function () {
     p5.windowResized();
     x = p5.width / 2;
@@ -53,159 +127,65 @@ export default function (p5) {
   };
 
   p5.draw = function () {
-    
-    p5.background(r, g, b,5);
+    p5.background(255, 255, 0);
     p5.noStroke();
 
-    p5.push();
-    p5.fill(255, wave_text_op);
+    p5.fill(0);
     p5.strokeWeight(3);
     p5.textSize(32);
     p5.textFont("Roboto+Mono");
     p5.textAlign(p5.CENTER);
-    p5.text(wave_text, p5.width * 0.5, p5.height * 0.5);
-    p5.pop();
+    p5.text(wave_text, p5.width * txtWidth, p5.height * txtHeight);
+
+
+    if (start.length > 0) {
+      start[start.length - 1]();
+    }
   };
 
   p5.windowResized = function () {
     const b = p5.canvas.parentElement.getBoundingClientRect();
     p5.resizeCanvas(b.width, b.height);
   };
-  
+
 
   //LEFT KEY
   function left_gesture() {
-    r = 23;
-    g = 114;
-    b = 250;
-    // sc = 255;
-    // wave_text_op = 0;
-    wave_text = "L E F T"
-    p5.background(r, g, b);
-    // p5.push();
-    p5.fill(224, 155, 11);
-    p5.ellipse(x, y - 300, 300, 300);
-    p5.ellipse(x, y, 150);
-    p5.ellipse(x, y + 300, 300, 300);
-    // p5.pop();
-
-    // leftSound.play();
+    wave_text = "left";
+    txtHeight = 0.9;
+    e.display();
+    e.left(r / 4 - 10);
   }
 
   //RIGHT KEY
   function right_gesture() {
-    r = 224;
-    g = 155;
-    b = 11;
-    // sc = 255;
-    // wave_text_op = 0;
-    wave_text = "R I G H T"
-    
-    p5.background(r, g, b);
-    // p5.push();
-    p5.fill(195, 184, 245);
-    p5.ellipse(x - 300, y, 100, 100);
-    p5.ellipse(x - 150, y, 100, 100);
-    p5.ellipse(x, y, 100, 100);
-    p5.ellipse(x + 150, y, 100, 100);
-    p5.ellipse(x + 300, y, 100, 100);
-    // p5.pop();
-    // rightSound.play();
+    wave_text = "right";
+    txtHeight = 0.9;
+    e.display();
+    e.right(r / 4 - 10);
   }
 
   //DOWN KEY
   function poke_gesture() {
-    r = 195;
-    g = 184;
-    b = 245;
-    // sc = 255;
-    // wave_text_op = 0;
-    wave_text = "P O K E"
-
-    p5.background(r, g, b);
-    p5.push();
-    p5.fill(134, 224, 163);
-    p5.ellipse(x, y, 600, 600);
-    p5.pop();
-
-    // p5.push();
-    p5.fill(195, 184, 245);
-    p5.ellipse(x, y, 500, 500);
-    // p5.pop();
-
-    // p5.push();
-    p5.fill(134, 224, 163);
-    p5.ellipse(x, y, 400, 400);
-    // p5.pop();
-
-    // p5.push();
-    p5.fill(195, 184, 245);
-    p5.ellipse(x, y, 300, 300);
-    // p5.pop();
-
-    // p5.push();
-    p5.fill(134, 224, 163);
-    p5.ellipse(x, y, 200, 200);
-    // p5.pop();
-    // poke.play();
+    wave_text = "poke";
+    txtHeight = 0.9;
+    p5.background(255, 255, 0);
+    e.poke();
   }
 
   //A KEY
   function twirl_gesture() {
-    r = 134;
-    g = 224;
-    b = 163;
-    // sc = 255;
-    // wave_text_op = 0;
-    wave_text = "T W I R L"
-    
-    p5.background(r, g, b);
-    // p5.push();
-    p5.fill(g, b, b);
-    p5.ellipse(x, y, 900);
-    // p5.pop();
-    // p5.push();
-    p5.fill(250, 75, 67);
-    p5.ellipse(x - x / 2, y - y / 2, 200, 200);
-    p5.ellipse(x - x / 2, y + y / 2, 400, 400);
-    p5.ellipse(x + x / 2, y + y / 2, 200, 200);
-    p5.ellipse(x + x / 2, y - y / 2, 400, 400);
-    // p5.pop();
-
-    // twirl.play();
+    wave_text = "twirl";
+    txtHeight = 0.9;
+    e.display();
+    e.twirl();
   }
   //UP KEY
   function pluck_gesture() {
-    r = 250;
-    g = 75;
-    b = 67;
-    // wave_text_op = 0;
-    wave_text = "P L U C K"
-    // sc = 255;
-    
-    p5.background(r, g, b);
-    // p5.push();
-    p5.fill(23, 114, 250);
-    p5.ellipse(x - x / 2, y, 500, 500);
-    p5.ellipse(x + x / 2, y, 500, 500);
-    // p5.pop();
-
-    // p5.push();
-    p5.fill(r, g, b);
-    p5.ellipse(x - x / 2, y - y / 4, 200);
-    p5.ellipse(x + x / 2, y + y / 4, 200);
-    // p5.pop();
-    // pluck.play();
-
-    // if (drums[d].isPlaying()) {
-    //   drums[d].stop();
-    // }
-    // d = d + 1;
-    // if (d > drums.length - 1) {
-    //   d = 0;
-    // }
-
-    // drums[d].loop();
+    wave_text = "pluck";
+    txtHeight = 0.9;
+    e.display();
+    e.pluck(r / 4 - 10);
   }
 
   //Try application with keyboard
@@ -236,42 +216,40 @@ export default function (p5) {
   };
 
   handleGesture = function (index) {
+
     switch (index) {
       case 0:
-        gesture = "left";
-        left_gesture();
+        start.push(left_gesture);
 
         break;
       case 1:
-        gesture = "right";
-        right_gesture();
-
+        start.push(right_gesture);
         break;
       case 2:
-        gesture = "poke";
-        poke_gesture();
-
+        start.push(twirl_gesture);
         break;
       case 3:
-        gesture = "twirl";
-        twirl_gesture();
-
+        start.push(pluck_gesture);
         break;
       case 4:
-        gesture = "pluck";
-        pluck_gesture();
-
+        start.push(poke_gesture);
         break;
       case 5:
         resizeCanvas();
-        
-        break;        
+
+        break;
       default:
     }
   };
+  stop = function () {
+    p5.noLoop();
+  };
 }
-
+export function stopP5() {
+  stop();
+}
 export function triggerGesture(index) {
+
   if (!_p5) return;
   handleGesture(index);
 }

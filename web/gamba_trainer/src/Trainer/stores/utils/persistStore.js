@@ -51,7 +51,7 @@ export default function persistStore(key, val, parseFn, onError) {
   // const originalVal = null;
   let indexedDBDisabledForKey = false;
 
-  console.log("saved! trainer add : " + val);
+  // console.log("saved! trainer add : " + val);
   // if (allStores[key]) {
   //   throw new Error(`Persistent store with key ${key} already exists`);
   // }

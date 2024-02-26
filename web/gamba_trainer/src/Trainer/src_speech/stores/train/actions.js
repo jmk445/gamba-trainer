@@ -45,24 +45,20 @@ const log = (...args) => {
   );
 };
 
+ // 윈도우 함수 (Hann window) 생성
 function periodic_hann_window(window_length, dtype) {
-  return 0.5 - 0.5 * tf.cos(2.0 * Math.PI * tf.range(tf.cast(window_length, 'float32')) / tf.cast(window_length, 'float32')); 
+  return 0.5 - 0.5 * tf.cos(2.0 * Math.PI * 
+    tf.range(tf.cast(window_length, 'float32')) / tf.cast(window_length, 'float32')); 
 }
 
-function periodicHannWindow(windowLength, dtype) {
-  const range = tf.range(0, windowLength, 1, "float32");
-  const pi = tf.scalar(Math.PI, "float32");
-  const two = tf.scalar(2, "float32");
-  const numerator = tf.mul(two, Math.PI);
-  const denominator = tf.cast(range.size, "float32");
-
-  const cosValues = tf.div(tf.mul(numerator, range), denominator).cos();
-  const hannWindow = tf.sub(0.5, tf.mul(0.5, cosValues));
-
-  return hannWindow;
-}
-
-function bilinearResize(image, height, width) {
+/*
+  이차원 배열의 크기를 변경하는 함수
+  image: 이차원 배열
+  height: 변경할 높이
+  width: 변경할 너비
+*/
+async function bilinearResize(image, height, width) {
+  console.log("test", image, height, width);
   const img_height = image.length;
   const img_width = image[0].length;
 
@@ -95,35 +91,131 @@ function bilinearResize(image, height, width) {
       resized[i][j] = pixel;
     }
   }
-
   return resized;
 }
 
-// spectrogram으로 변환
-export async function createSpectrogram(audioData) {
-  const frameLength = 640; // 적절한 프레임 길이를 설정합니다.
-  const frameStep = 320; // 적절한 프레임 스텝을 설정합니다.
-  const audioTempTensor = tf.tensor1d(audioData);
-
-  let spec = tf.signal.stft(audioTempTensor, frameLength, frameStep, 1024, periodicHannWindow);
-  spec = tf.abs(spec);
-  const spec_array = spec.arraySync();
-  spec.print();
-  //console.log(Math.max(...tf.util.flatten(spec_array)));
-
-  const resized = bilinearResize(spec_array, 16, 16);
-  //console.log(resized[0]);
-  const newTensor = tf.tensor2d(resized,[16,16]);
-
-  const resultSpec = newTensor.expandDims(-1);
-
-  return resultSpec;
+function melToHz(mels) {
+  return 700 * (Math.exp(mels / 1127) - 1);
 }
 
-function int16ToFloat32(int16Array) {
+function hzToMel(hertz) {
+  return 1127 * Math.log(1 + hertz/700);
+}
+
+/*
+  멜 필터 뱅크 생성 함수
+  params:
+    numMelBins: 멜 필터뱅크의 수
+    numSpectrogramBins: 스펙트로그램의 빈의 수
+    sampleRate: 샘플링 주파수
+    lowerEdgeHz: 최저 주파수
+    upperEdgeHz: 최고 주파수
+  return: 
+    멜 필터 뱅크
+*/
+function linearToMelWeightMatrix(numMelBins, numSpectrogramBins, sampleRate, lowerEdgeHz, upperEdgeHz) {
+  const lowerEdgeMel = hzToMel(lowerEdgeHz);
+  const upperEdgeMel = hzToMel(upperEdgeHz);
+
+  // 멜 스케일로 균일하게 분할된 주파수 포인트 계산
+  const melPoints = tf.linspace(lowerEdgeMel, upperEdgeMel, numMelBins + 2).dataSync();
+  const hzPoints = melPoints.map(melToHz);
+
+  
+  // FFT 빈의 중심 주파수 계산
+  const fftBins = tf.linspace(0, sampleRate / 2, numSpectrogramBins).dataSync();
+
+  let melWeights = [];
+  for (let i = 0; i < numMelBins; i++) {
+    const lower = fftBins.map(f => {
+      const denominator = hzPoints[i + 1] - hzPoints[i];
+      return denominator === 0 ? 0 : Math.max(0, (f - hzPoints[i]) / denominator);
+    });
+    const upper = fftBins.map(f => {
+      const denominator = hzPoints[i + 2] - hzPoints[i + 1];
+      return denominator === 0 ? 0 : Math.max(0, (hzPoints[i + 2] - f) / denominator);
+    });
+    const filter = lower.map((l, idx) => Math.min(l, upper[idx]));
+    melWeights.push(filter);
+  }
+  const result = tf.tensor(melWeights);
+  return result.transpose();
+}
+
+/*
+  멜 스펙트로그램 생성 함수
+  params:
+    audio: 오디오 데이터
+    label: 라벨
+    sampleRate: 샘플링 주파수
+  return:
+    멜 스펙트로그램
+*/
+async function prepMelspec(audio, label, sampleRate=16000) {
+  // 단시간 푸리에 변환 (STFT) 수행
+  const frameLength = 1024;
+  const frameStep = 320;
+  const fft_length = 1024;
+  const audioTempTensor = tf.tensor1d(audio);
+  let stft = tf.signal.stft(audioTempTensor, frameLength, frameStep,periodic_hann_window); 
+
+  // 스펙트로그램의 크기 계산
+  const spectrogram = tf.abs(stft);
+  
+  // 멜 필터 뱅크 생성 및 멜 스펙트로그램 계산
+  const numMelBins = 80;
+  const lowerEdgeHz = 0.0;
+  const upperEdgeHz = 8000.0;
+  const melFilterBank = linearToMelWeightMatrix(numMelBins, spectrogram.shape[1], sampleRate, lowerEdgeHz, upperEdgeHz);
+  const melSpectrogram = tf.matMul(spectrogram, melFilterBank);
+
+  // 로그 스케일로 변환
+  const logMelSpectrogram = tf.log(melSpectrogram.add(1e-12));
+
+  // 시간 축 기준 정규화
+  // const mean = logMelSpectrogram.mean(1, true);
+  // const variance = logMelSpectrogram.sub(mean).square().mean(1, true);
+  // const normalizedLogMelSpectrogram = logMelSpectrogram.sub(mean).div(variance.sqrt());
+  
+  return [spectrogram,logMelSpectrogram, label];
+}
+
+function transpose(array) {
+  return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+}
+
+export async function processAudioBuffer(buffer) {
+  // 버퍼에서 멜 스펙트로그램으로 변환
+  const [spectrogram,mel_spec, label] = await prepMelspec(buffer, 0, 16000);
+  const resized_spectrogram = await bilinearResize(mel_spec.arraySync(), 49, 80);
+  return resized_spectrogram;
+}
+
+// // spectrogram으로 변환
+// export async function createSpectrogram(audioData) {
+//   const frameLength = 640; // 적절한 프레임 길이를 설정합니다.
+//   const frameStep = 320; // 적절한 프레임 스텝을 설정합니다.
+//   const audioTempTensor = tf.tensor1d(audioData);
+
+//   let spec = tf.signal.stft(audioTempTensor, frameLength, frameStep, 1024, periodicHannWindow);
+//   spec = tf.abs(spec);
+//   const spec_array = spec.arraySync();
+//   spec.print();
+//   //console.log(Math.max(...tf.util.flatten(spec_array)));
+
+//   const resized = bilinearResize(spec_array, 16, 16);
+//   //console.log(resized[0]);
+//   const newTensor = tf.tensor2d(resized,[16,16]);
+
+//   const resultSpec = newTensor.expandDims(-1);
+
+//   return resultSpec;
+// }
+
+export function int16ToFloat32(int16Array) {
   const float32Array = new Float32Array(int16Array.length);
   for (let i = 0; i < int16Array.length; i++) {
-    float32Array[i] = int16Array[i] / 32768.0;
+    float32Array[i] = int16Array[i] / (1 << 15);
   }
 
   return float32Array;
@@ -150,8 +242,8 @@ export async function prepareDataSet() {
         tensor.push(...float32Array);
         //tensor.push(...a);
       }
-      const input = await createSpectrogram(tensor);
-      X.push(input);
+      const input = await processAudioBuffer(tensor);
+      X.push(tf.tensor([input]).squeeze().expandDims(-1));
       Y.push(output);
     }
   }

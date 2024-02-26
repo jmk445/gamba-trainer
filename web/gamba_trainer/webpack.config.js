@@ -33,7 +33,7 @@ module.exports = (env) => {
     resolve: {
       alias: {
         svelte: path.resolve("node_modules", "svelte"),
-        "@assets": path.resolve(__dirname, "src", "assets"),
+        "@assets": path.resolve(__dirname, "src", "assets"),        
         "@scss": path.resolve(__dirname, "src", "scss"),
         "@motion": path.resolve(__dirname, "src/Trainer/src_motion"),
         "@speech": path.resolve(__dirname, "src/Trainer/src_speech"),

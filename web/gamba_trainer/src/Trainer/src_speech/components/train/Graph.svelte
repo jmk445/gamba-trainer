@@ -124,7 +124,7 @@ limitations under the License.
   .graph {
     height: 0;
     width: 100%;
-    padding-bottom: ((300/500) * 100%);
+    padding-bottom: calc((300/500) * 100%);
     position: relative;
     background-color: $color-bg-tertiary;
     svg,

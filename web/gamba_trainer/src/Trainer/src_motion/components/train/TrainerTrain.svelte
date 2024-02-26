@@ -103,15 +103,15 @@ limitations under the License.
     <div class="btn-start row">
         <div>{$trainingState}</div>
         {#if $trainingState === "idle"}
-            <button class="btn-stroke primary" on:click={beginTraining}
+            <button class="btn-stroke" on:click={beginTraining}
                 >{strAsset.btnStart}</button
             >
         {:else if $trainingState === "training"}
-            <button class="btn-stroke primary" on:click={stopTraining}
+            <button class="btn-stroke" on:click={stopTraining}
                 >{strAsset.btnStop}</button
             >
         {:else if $trainingState === "stop_queued"}
-            <button class="btn-stroke primary" disabled
+            <button class="btn-stroke" disabled
                 >{strAsset.captionStop}</button
             >
         {/if}

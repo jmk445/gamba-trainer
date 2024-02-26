@@ -3,11 +3,15 @@
 
   import TextInput from "../../../../components/general/TextInput.svelte";
   import { addLabel, getLabelCnt } from "../../stores/capture/actions";
+  import { clearAllLabel } from "../../stores/capture/actions";
   import { labels } from "../../stores/capture/store";
+  import {onMount} from "svelte";
+  import { getTrainerADD } from "../../../stores/actions";
   import TrainerCapture from "../../../components/common/TrainerCapture.svelte";
   let newLabelName = "";
   let newLabelError = null;
-
+  let trainer;
+  let isApplicationMode = false;
   $: if ($labels.includes(newLabelName)) {
       newLabelError = strAsset.labelUnique;
   } else {
@@ -26,8 +30,26 @@
       }
   }
 
+  
+  onMount(async () => {
+        trainer = await getTrainerADD();
+        console.log("trainer");
+
+        if (trainer == "MOLE") {
+            clearAllLabel();
+            isApplicationMode = true;
+            strAsset.inputLabel = "고정된 라벨입니다.";
+            console.log("hhhhhhhhhhhhh");
+            addLabel("up");            
+            addLabel("down");
+            addLabel("left");
+            addLabel("right");            
+        }
+    });
+
   const strAsset = {
       inputLabel : "라벨의 이름을 입력하세요",
+      inputLabel2: "고정된 라벨입니다.",
       btnCreate : "생성하기",
       labelUnique : "똑같은 이름의 라벨이 있습니다."
   }
@@ -35,10 +57,13 @@
 <TrainerCapture>
   <div class="row" slot="capture-label">
 <TextInput
-  label={strAsset.inputLabel}
+label={isApplicationMode
+  ? strAsset.inputLabel2
+  : strAsset.inputLabel}
   bind:value={newLabelName}
   onEnter={handleAddLabel}
   errorMessage={newLabelError}
+  isdisabled={isApplicationMode}
 />
 <button
   class="btn-stroke primary"

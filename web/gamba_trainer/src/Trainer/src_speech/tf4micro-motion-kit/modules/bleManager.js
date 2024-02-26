@@ -84,17 +84,9 @@ const eventHandler = new EventHandler(
  * Methods
  *******************************************************************/
 async function uint8ArrayTo16BitIntArray(uint8Array) {
-  const intArray = new Int16Array(uint8Array.length / 2);
+  const int16Array = new Int16Array(uint8Array.buffer);
 
-  for (let i = 0; i < uint8Array.length; i += 2) {
-    const byte1 = uint8Array[i];
-    const byte2 = uint8Array[i + 1];
-
-    // Combine two 8-bit bytes into one 16-bit signed integer
-    intArray[i / 2] = (byte2 << 8) | byte1;
-  }
-
-  return intArray;
+  return int16Array;
 }
 
 async function handleAudioDataChange(event) {

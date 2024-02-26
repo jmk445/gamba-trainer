@@ -34,6 +34,12 @@ export function addLabel(label) {
   });
   recordings.update(($recordings) => [...$recordings, []]);
 }
+export function clearAllLabel() {
+  console.log("clear All labels");
+  recordings.update(() => []);
+  labels.update(() => []);
+
+}
 
 export function removeLabel(index) {
   console.log("remove");

@@ -1,28 +1,15 @@
 <script>
-    import AppLinkModule from "./AppLinkModule.svelte";
+    import AppList from "./AppLIst.svelte";
+    import MoleThumbnail from "@assets/img/tumbnail/moleThumbnail.png";
+
+    const strAsset = [
+        {   link : "mole",
+            appOneTitle : "MOLE",
+            appOneCaption : "음성을 활용한 두더지 잡기" ,
+            tumbnail : MoleThumbnail
+        }
+    ]
 </script>
 
-<div class="example-contents-container">
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-    <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스"/>
-</div>
-
-
-<style lang="scss">
-    .example-contents-container{
-        display: grid;
-        grid-template-columns: auto auto auto;
-        grid-template-rows: auto auto auto;
-        gap: 90px;
-        margin-bottom: 133px;
-    }
-</style>   
+<AppList appList={strAsset}/>
+ 

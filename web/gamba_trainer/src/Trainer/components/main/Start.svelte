@@ -15,7 +15,12 @@
         if (trainer == "FUI") {
             trainer_ = "motion";
         }
-        
+        if (trainer == "MOLE") {
+            trainer_ = "speech";
+        }
+        if (trainer == "MASK") {
+            trainer_ = "vision";
+        }
         //@todo : needs update
         await import(`../../src_${trainer_}/stores/aggregatedActions`).then(
             (module) => {

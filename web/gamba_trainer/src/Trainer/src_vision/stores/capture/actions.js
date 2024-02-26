@@ -76,7 +76,12 @@ export function removeLabelByName(label) {
     return removeLabel(index);
   }
 }
+export function clearAllLabel() {
+  console.log("clear All labels");
+  recordings.update(() => []);
+  labels.update(() => []);
 
+}
 export function clearRecordings() {
   get(labels).forEach((_, index) => {
     clearRecordingsForLabel(index);

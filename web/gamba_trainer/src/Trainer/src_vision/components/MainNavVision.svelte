@@ -19,12 +19,14 @@ limitations under the License.
 -->
 <script>
   import { Link } from "svelte-routing";
-  
-  import { FromPixels } from "@tensorflow/tfjs";
-  import { writable } from "svelte/store";
-  import { trainIsUnlocked } from "../stores/train/store";
-  import { testIsUnlocked} from "../stores/test/store"
 
+  import { FromPixels } from "@tensorflow/tfjs";
+  import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  import icInfo from "@assets/img/ic_info.svg";
+  import { trainIsUnlocked } from "../stores/train/store";
+  import { testIsUnlocked } from "../stores/test/store";
+  let pageNum;
+  let showHelpPrompt = false;
   const strAsset = {
     navOne: "사전 설정",
     navTwo: "데이터 수집",
@@ -37,36 +39,63 @@ limitations under the License.
 <div class="train-nav nav">
   <ul>
     <li
-      class:active={location.pathname.includes(
-        BASE_PATH + `/vision-settings`,
-      )}
+      class:active={location.pathname.includes(BASE_PATH + `/vision-settings`)}
     >
       <Link to="/vision-settings">{strAsset.navOne}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "one";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
-      class:active={location.pathname.includes(
-        BASE_PATH + `/vision-capture`,
-      )}
+      class:active={location.pathname.includes(BASE_PATH + `/vision-capture`)}
     >
       <Link to="/vision-capture">{strAsset.navTwo}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "two";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/vision-train`)}
       class:disabled={!$trainIsUnlocked}
-      aria-disabled={!$trainIsUnlocked}      
+      aria-disabled={!$trainIsUnlocked}
     >
-    
       <Link to="/vision-train">{strAsset.navThree}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "three";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
       class:active={location.pathname.includes(BASE_PATH + `/vision-test`)}
       class:disabled={!$testIsUnlocked}
-      aria-disabled={!$testIsUnlocked}        
-    >    
+      aria-disabled={!$testIsUnlocked}
+    >
       <Link to="/vision-test">{strAsset.navFour}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "four";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
 
     <li
@@ -75,10 +104,36 @@ limitations under the License.
       )}
     >
       <Link to="/vision-convertSend">{strAsset.navFive}</Link>
+      <button
+        class="btn-help"
+        on:click={() => {
+          showHelpPrompt = true;
+          pageNum = "five";
+        }}
+        ><img src={icInfo} alt="" />
+      </button>
     </li>
   </ul>
 </div>
+{#if showHelpPrompt}
+  <HelpPrompt onClose={() => (showHelpPrompt = false)} {pageNum} />
+{/if}
 
 <style lang="scss">
   @import "@scss/vars";
+
+  .btn-help {
+    display: none;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    color: $color-deepblue;
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  .active .btn-help {
+    display: block;
+  }
 </style>

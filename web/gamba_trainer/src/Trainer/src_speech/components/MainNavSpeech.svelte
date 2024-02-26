@@ -24,11 +24,12 @@ limitations under the License.
   import { onMount } from "svelte";
   import { getTrainerADD } from "../../stores/actions";
   import { writable } from "svelte/store";
+  import HelpPrompt from "../../../components/general/prompts/HelpPrompt.svelte";
+  import icInfo from "@assets/img/ic_info.svg";
   import { trainIsUnlocked } from "../stores/train/store";
   import { testIsUnlocked} from "../stores/test/store"
-
-  let trainer, trainer_;
-  let trainStore, testStore;
+  let pageNum;
+  let showHelpPrompt = false;  
   // let trainIsUnlocked = writable();
   // let testIsUnlocked = writable();
   
@@ -64,10 +65,11 @@ limitations under the License.
   <ul>
     <li
       class:active={location.pathname.includes(
-        BASE_PATH + `/specch-settings`,
+        BASE_PATH + `/speech-settings`,
       )}
     >
       <Link to="/speech-settings">{strAsset.navOne}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="one"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
@@ -76,6 +78,7 @@ limitations under the License.
       )}
     >
       <Link to="/speech-capture">{strAsset.navTwo}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="two"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
@@ -85,6 +88,7 @@ limitations under the License.
     >
     
       <Link to="/speech-train">{strAsset.navThree}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="three"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
@@ -93,6 +97,7 @@ limitations under the License.
       aria-disabled={!$testIsUnlocked}        
     >    
       <Link to="/speech-test">{strAsset.navFour}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="four"}} ><img src={icInfo} alt=""/> </button>
     </li>
 
     <li
@@ -101,10 +106,28 @@ limitations under the License.
       )}
     >
       <Link to="/speech-convertSend">{strAsset.navFive}</Link>
+      <button class="btn-help" on:click={()=>{showHelpPrompt=true; pageNum="five"}} ><img src={icInfo} alt=""/> </button>
     </li>
   </ul>
 </div>
-
+{#if showHelpPrompt}
+<HelpPrompt onClose={() => (showHelpPrompt = false)} pageNum = {pageNum}/>
+{/if}
 <style lang="scss">
   @import "@scss/vars";
+
+  .btn-help{
+        display: none;
+        margin-left: 8px;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        color: $color-deepblue;
+        border-radius: 50%;
+        padding: 0;
+    }
+
+    .active .btn-help{
+      display: block;
+    }
 </style>

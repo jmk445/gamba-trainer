@@ -284,7 +284,7 @@ async function sendFileBlock(fileContents, bytesAlreadySent) {
     console.log("sendFileBlock called!");
     let bytesRemaining = fileContents.byteLength - bytesAlreadySent;
 
-    const maxBlockLength = 128;
+    const maxBlockLength = 480;
     const blockLength = Math.min(bytesRemaining, maxBlockLength);
     var blockView = new Uint8Array(fileContents, bytesAlreadySent, blockLength);
     isFileTransferInProgress = transferStatusCharacteristic.readValue();
@@ -442,9 +442,9 @@ function handleInferenceChange(event) {
     });
 }
 
-function handleTransferPermissionChange(event) {    
-    const values = new Uint8Array(event.target.value.buffer);    
-    if (values[0] == 1) {        
+function handleTransferPermissionChange(event) {
+    const values = new Uint8Array(event.target.value.buffer);
+    if (values[0] == 1) {
         handleClickTransfer();
     }
 }
@@ -688,7 +688,7 @@ function validate(val, name, type) {
 
 function loadFile() {
     // const fileInput = document.getElementById('fileInput');
-    
+
     return new Promise((resolve, reject) => {
         //hoisting해주겠지...?? oo
         const file = fileInput;
@@ -891,23 +891,23 @@ function handleFileTransferCompleted(p) {
         experimentConfig.onTransferCompleted(p);
 }
 
-export {handleClickConnect, getInferenceResult, handleSendModel, handleFileInput, addEventListener, getIsConnected};
-function getIsConnected(){
+export { handleClickConnect, getInferenceResult, handleSendModel,handleCheckModel, handleFileInput, addEventListener, getIsConnected };
+function getIsConnected() {
     return isConnected;
 }
 let index = null;
 function getInferenceResult() {
     return index;
-  }
-function experimentConfigSetup(){
-    experimentConfig = { ...defaultConfig};
+}
+function experimentConfigSetup() {
+    experimentConfig = { ...defaultConfig };
 }
 //let...??
 let fileInput;
 function handleFileInput(file) {
-  // 파일 입력에 대한 로직을 수행
-  console.log("Received file:", file);
-  fileInput = file;
+    // 파일 입력에 대한 로직을 수행
+    console.log("Received file:", file);
+    fileInput = file;
 }
 
 async function handleClickConnect() {

@@ -51,9 +51,9 @@ limitations under the License.
   @import "@scss/vars";
 
   .graph-container {
-    width: 504px;
-    height: 301px;
-    margin: 0 40px;
+    width: 100%;
+
+    margin: 0;
     h2 {
       text-align: right;
       margin-right: 5px;

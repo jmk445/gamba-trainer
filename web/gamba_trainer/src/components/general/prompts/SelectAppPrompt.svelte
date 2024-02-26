@@ -1,6 +1,9 @@
 <script>
     import Prompt from "./Prompt.svelte";
     import AppLinkModule from "../../../Application/components/main/AppLinkModule.svelte";
+    import FuiThumbnail from "@assets/img/tumbnail/fuiThumbnail.png";
+    import MoleThumbnail from "@assets/img/tumbnail/moleThumbnail.png";
+    import MaskThumbnail from "@assets/img/tumbnail/maskThumbnail.png";
     import { onMount } from "svelte";
     import persistStore from "../../../Trainer/stores/utils/persistStore";
     // import logoPng from "@assets/icons/Symbol_Black_RGB.png";
@@ -15,53 +18,64 @@
     let TrainerType = null;
 
     onMount(()=>{
-        // console.log(trainer);
-        // console.log(typeof(trainer));
         TrainerType = trainer;
     });
+    const strAsset = {
+        bannerTitle : "예제 선택",
+        motion : [
+            {
+                title : "FUI",
+                caption : "손가락을 활용한 유저 인터페이스",
+                tumbnail : FuiThumbnail
+            }
+        ],
+        speech : [
+            {
+                title : "MOLE",
+                caption : "음성을 활용한 두더지 잡기",
+                tumbnail : MoleThumbnail
+            }
+        ],
+        vision : [
+            {
+                title : "MASK",
+                caption : "카메라를 활용한 마스크",
+                tumbnail : MaskThumbnail
+            }
+        ]
+    }
   </script>
   
-  <Prompt title="Select Appllication" closePrompt={onClose}>
+  <Prompt title={strAsset.bannerTitle} closePrompt={onClose}>
     <div class="inner">
-        <div class="example-contents-container">
             {#if TrainerType === "motion"}
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="two" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="three" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-        
-            <AppLinkModule title="four" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="five" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="six" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-        
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="FUI" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+                <div class="example-contents-container">
+                    {#each  strAsset.motion as app}
+                        <AppLinkModule title={app.title} caption={app.caption} tumbnail={app.tumbnail} on:appClick={hanleAppClick}/>
+                    {/each}
+                    {#each Array(Math.max(0, 3 - strAsset.motion.length)) as i}
+                    <div />
+                    {/each}
+                </div>
             {:else if TrainerType === "speech"}
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="speech app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+                <div class="example-contents-container">
+                    {#each  strAsset.speech as app}
+                        <AppLinkModule title={app.title} caption={app.caption} tumbnail={app.tumbnail} on:appClick={hanleAppClick}/>
+                    {/each}
+                    {#each Array(Math.max(0, 3 - strAsset.speech.length)) as i}
+                    <div />
+                    {/each}
+                </div>
             {:else if TrainerType === "vision"}
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
-            <AppLinkModule title="vision app" caption="손가락을 활용한 유저 인터페이스" on:appClick={hanleAppClick}/>
+                <div class="example-contents-container">
+                    {#each  strAsset.vision as app}
+                        <AppLinkModule title={app.title} caption={app.caption} tumbnail={app.tumbnail} on:appClick={hanleAppClick}/>
+                    {/each}
+                    {#each Array(Math.max(0, 3 - strAsset.vision.length)) as i}
+                    <div />
+                    {/each}
+                </div>
             {/if}
-        </div>
         
     </div>
   </Prompt>
@@ -75,15 +89,15 @@
         position: relative;
         text-align: center;
         z-index: 1;
-        max-width: 800px - 60px;
+        min-width: 800px;
         max-height: 580px;
         padding: 44px 90px;
 
     }
     .example-contents-container {
         display: grid;
-        grid-template-columns: auto auto auto;
-        grid-template-rows: 200px 200px 200px;
-        gap: 60px;
+        grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
+        grid-column-gap: 24px;
+        grid-row-gap: 36px;
     }
   </style>

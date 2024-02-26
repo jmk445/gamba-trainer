@@ -1,25 +1,31 @@
-<script>    
+<script>
     import AppMain from "../components/common/AppMain.svelte";
     // import {createConnectButton, handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit copy";
-    import {handleClickConnect, isConnected} from "./stores/tf4micro-motion-kit-v2";
-    
-    function handleClickConnectInterface(){        
+    import icBluetooth from "@assets/img/ic_bluetooth_black.svg";
+    import {
+        handleClickConnect,
+        isConnected,
+    } from "./stores/tf4micro-motion-kit-v2";
+
+    function handleClickConnectInterface() {
         handleClickConnect();
     }
 
     const strAsset = {
-        bannerTitle : "FUI",
-        BluetoothTitle : "Bluetooth를 통해 키트 연결",
-        bluetoothBtn : "연결"
-    }
+        bannerTitle: "FUI",
+        BluetoothTitle: "Bluetooth를 통해 키트 연결",
+        bluetoothBtn: "연결",
+    };
 </script>
-
 
 <AppMain bannerTitle={strAsset.bannerTitle} appName="fui">
     <div class="bluetooth-container">
         <p>{strAsset.BluetoothTitle}</p>
-        <button class="btn-connect btn-stroke" on:click={handleClickConnectInterface}>
-            <img src="#" alt="블루투스" />
+        <button
+            class="btn-connect btn-stroke"
+            on:click={handleClickConnectInterface}
+        >
+            <img src={icBluetooth} alt="블루투스" />
             <span>{strAsset.bluetoothBtn}</span>
         </button>
     </div>
@@ -28,10 +34,13 @@
 <style lang="scss">
     .bluetooth-container {
         text-align: center;
-
-        button {
+        .btn-connect {
             margin: auto;
-            display: block;
+            display: flex;
+            padding: 10px 36px;
+            img{
+                margin-right: 12px;
+            }
         }
         p {
             font-size: 1.5rem;

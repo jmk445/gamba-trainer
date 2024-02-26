@@ -145,6 +145,14 @@ button {
     background-color: $color-nav-blue;
   }
 }
+.btn-connect {
+  margin: auto;
+  display: flex;
+  padding: 10px 36px;
+  img{
+      margin-right: 12px;
+  }
+}
 
 .logo-img {
   width: 80px;

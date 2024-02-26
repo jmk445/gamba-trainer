@@ -24,18 +24,9 @@ import { connect, setImuDataMode } from "../bleInterfaceStore/actions";
 import { isConnected } from "../bleInterfaceStore/store";
 import { trainedModel } from "../train/store";
 import { testPredictions } from "./store";
-import { createSpectrogram } from "../train/actions";
+import { processAudioBuffer, int16ToFloat32 } from "../train/actions";
 
 import * as captureSettings from "../captureSettings/store";
-
-function int16ToFloat32(int16Array) {
-  const float32Array = new Float32Array(int16Array.length);
-  for (let i = 0; i < int16Array.length; i++) {
-    float32Array[i] = int16Array[i] / 32768.0;
-  }
-
-  return float32Array;
-}
 
 let audioCapturer;
 
@@ -67,9 +58,9 @@ export async function beginTesting() {
         const float32Array = int16ToFloat32(recording);
         preparedData.push(...float32Array);
       });
-      const specData = await createSpectrogram(preparedData);
+      const specData = await processAudioBuffer(preparedData);
 
-      const predictionsTensor = get(trainedModel).predict(specData.expandDims(0));
+      const predictionsTensor = get(trainedModel).predict(tf.tensor([specData]).squeeze().expandDims(-1).expandDims(0));
       const [predictions] = predictionsTensor.arraySync();
       testPredictions.set(predictions);
       endTesting();

@@ -1,14 +1,17 @@
 <script>
     import AppMain from "../components/common/AppMain.svelte";
     import Description from "../../components/common/Description.svelte";
+    import icArrowBlack from "@assets/img/ic_arrow_black.svg";
+    import icArrowWhite from "@assets/img/ic_arrow_white.svg";
     import {
         handleSendModel,
         handleFileInput,
+        handleCheckModel,
     } from "./stores/tf4micro-motion-kit-v2.js";
     import { onMount } from "svelte";
 
     let fileInput$1 = 0;
-
+    let isbtnDisabled = true;
     //텍스트 띄우는 용도
     let isStart = false;
     let isErrorStart = false;
@@ -38,6 +41,10 @@
     // function handleSendModelInterfaceFromIDB() {
     //     handleSendModel(1);
     // }
+
+    function handleCheckModelInterface(){
+        handleCheckModel();
+    }
 
     function handleSendModelInterface() {        
         handleSendModel();
@@ -77,15 +84,20 @@
             <h2>{strAsset.stepOne}</h2>
             <p class="desc">{strAsset.stepOneDesc}</p>
             <div class="btn-container row">
-                <button class="btn-start btn-stroke" on:click={handleSendModelInterface}>{strAsset.btnStart}</button>
+                <button class="btn-start btn-stroke" on:click={handleCheckModelInterface}>{strAsset.btnStart}</button>
                 {#if isStart === true}
                     <p class="fin-txt">{strAsset.finStart}</p>
                 {:else if isErrorStart === true}
                     <p class="error-txt">{strAsset.errorStart}</p>
                 {/if}
                 <button class="btn-app btn-fill" disabled>
-                    <img src="#"/>{strAsset.btnApp}</button>
-                    
+                    {#if isbtnDisabled}
+                        <img src={icArrowBlack} alt="arrow" />
+                    {:else if !isbtnDisabled}
+                        <img src={icArrowWhite} alt="arrow" />
+                    {/if}
+                    {strAsset.btnApp}
+                </button> 
             </div>
             <div id="myProgress" hidden>
                 <div id="myBar"></div>
@@ -138,6 +150,7 @@
         margin-bottom: 36px;
     }
     .btn-app {
+        display: flex;
         margin-left: auto;
     }
     .confirm-model-container,
@@ -147,6 +160,13 @@
     }
     .btn-select-model {
         margin-right: 24px;
+    }
+    .btn-ex{
+        appearance: none;
+        background: url("@assets/img/ic_dropdown.svg") no-repeat  95% 50%;
+        &:active option{
+            background-color: white;
+        }
     }
     .fin-txt{
         margin-left: 12px;

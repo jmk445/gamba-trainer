@@ -21,7 +21,7 @@ limitations under the License.
     
   import SubBanner from "../../../components/common/SubBanner.svelte"
   import AppMainNav from "./AppMainNav.svelte";
-
+  import FloatingBtn from "../../../components/general/floating/floatingBtn.svelte";
   export let bannerTitle;
   export let appName;
 </script>
@@ -35,7 +35,7 @@ limitations under the License.
 <main class="section" aria-live="polite">
   <slot/>
 </main>
-
+<FloatingBtn/>
 <style lang="scss">
 main{
   margin-bottom: 10px;
