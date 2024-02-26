@@ -24,14 +24,10 @@ limitations under the License.
   import { labels } from "@speech/stores/capture/store";
   import { beginTesting, endTesting } from "@speech/stores/test/actions";
   import { testIsUnlocked, testPredictions } from "@speech/stores/test/store";
-  import { isFullyLoaded } from "@speech/stores/ui/store";
-  import TrainerTest from "../../../components/common/TrainerTest.svelte";
-
+  import { isFullyLoaded } from "@speech/stores/ui/store";  
+  import Description from "../../../../components/common/Description.svelte";
   import LinearProgress from "../../../../components/general/LinearProgress.svelte";
-
-  function startTest() {
-    //버튼 누르면 테스트 시작
-  }
+  import FloatingBtn from "../../../../components/general/floating/floatingBtn.svelte";
 
   onMount(async () => {
     let unsubFromConnect;
@@ -82,36 +78,41 @@ limitations under the License.
   };
 </script>
 
-<TrainerTest>
-  <div slot="test-progress" class="column stack">
-    <button class="btn-stroke btn-test" on:click={beginTesting}
-      >{strAsset.btnStart}</button
-    >
-    {#each $labels as label, index}
-      <div class="panel">
-        <div>
-          <span class="label">{label}</span><span class="result"
-            >{Math.round(
-              !$testPredictions ? 0 : $testPredictions[index] * 100,
-            )}%</span
-          >
-        </div>
-        <LinearProgress
-          progress={!$testPredictions ? 0 : $testPredictions[index]}
-        />
-      </div>
-    {/each}
-  </div>
-</TrainerTest>
+<Description
+    title="모델 테스트"
+    explanation="언제든지 데이터를 다시 수집할 수 있습니다."
+  />
 
+<button class="btn-stroke btn-test" id = "test_button" on:click={beginTesting}
+  >{strAsset.btnStart}</button
+>
+
+<div class="column stack">
+  {#each $labels as label, index}
+    <div class="panel">
+      <div>
+        <span class="label">{label}</span><span class="result"
+          >{Math.round(
+            !$testPredictions ? 0 : $testPredictions[index] * 100,
+          )}%</span
+        >
+      </div>
+      <LinearProgress
+        progress={!$testPredictions ? 0 : $testPredictions[index]}
+      />
+    </div>
+  {/each}
+</div>
+<FloatingBtn/>
 <style lang="scss">
+  @import "@scss/vars";
   .btn-test {
     margin-bottom: 32px;
   }
   .panel {
     margin-bottom: 60px;
   }
-  .panel > div {
+  .panel>div{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -72,11 +72,11 @@ limitations under the License.
   import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
   
   //비젼
-  import VisionSettings from "../Trainer/src_vision/components/settings/Settings.svelte";
-  import VisionCapture from "../Trainer/src_vision/components/capture/SpeechCapture.svelte";
-  import VisionTrain from "../Trainer/src_vision/components/train/SpeechTrain.svelte";
-  import VisionTest from "../Trainer/src_vision/components/test/SpeechTest.svelte";
-  import VisionConvert from "../Trainer/src_vision/components/convert/SpeechConvert.svelte";
+  import VisionSettings from "../Trainer/src_vision/components/settings/VisionSettings.svelte";
+  import VisionCapture from "../Trainer/src_vision/components/capture/VisionCapture.svelte";
+  import VisionTrain from "../Trainer/src_vision/components/train/VisionTrain.svelte";
+  import VisionTest from "../Trainer/src_vision/components/test/VisionTest.svelte";
+  import VisionConvert from "../Trainer/src_vision/components/convert/VisionConvert.svelte";
 
   export let url = "";
   const basepath = BASE_PATH === "" ? "/" : BASE_PATH;
