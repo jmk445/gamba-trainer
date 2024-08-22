@@ -14,9 +14,9 @@ const port = 4090;
 
 // SSL/TLS 인증서 파일 경로 설정
 const options = {
-  cert: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/cert.pem'),    // SSL/TLS 인증서 파일 경로
-  key: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/privkey.pem'),  // 개인 키 파일 경로
-  ca: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/chain.pem'),     // 중간 인증서 파일 (SSLCertificateChainFile)
+  // cert: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/cert.pem'),    // SSL/TLS 인증서 파일 경로
+  // key: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/privkey.pem'),  // 개인 키 파일 경로
+  // ca: fs.readFileSync('/etc/letsencrypt/live/gambalabs.ai/chain.pem'),     // 중간 인증서 파일 (SSLCertificateChainFile)
 };
 
 // 정적 파일 제공

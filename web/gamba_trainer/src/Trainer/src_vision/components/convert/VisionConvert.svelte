@@ -121,7 +121,7 @@
         margin-bottom: 128px;
     }
     .fin-txt {
-        color: $color-deepblue;
+        // color: $color-deepblue;
         margin-left: 12px;
     }
     .btn-app {

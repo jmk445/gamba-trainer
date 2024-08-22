@@ -65,10 +65,10 @@ limitations under the License.
   import MotionConvert from "../Trainer/src_motion/components/convert/MotionConvert.svelte";
   
   // 스피치
-  import SpeechSettings from "../Trainer/src_speech/components/settings/Settings.svelte";
-  import SpeechCapture from "../Trainer/src_speech/components/capture/Capture.svelte";
-  import SpeechTrain from "../Trainer/src_speech/components/train/Train.svelte";
-  import SpeechTest from "../Trainer/src_speech/components/test/Test.svelte";
+  import SpeechSettings from "../Trainer/src_speech/components/settings/SpeechSettings.svelte";
+  import SpeechCapture from "../Trainer/src_speech/components/capture/SpeechCapture.svelte";
+  import SpeechTrain from "../Trainer/src_speech/components/train/SpeechTrain.svelte";
+  import SpeechTest from "../Trainer/src_speech/components/test/SpeechTest.svelte";
   import SpeechConvert from "../Trainer/src_speech/components/convert/SpeechConvert.svelte";
   
   //비젼

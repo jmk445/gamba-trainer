@@ -23,7 +23,7 @@ limitations under the License.
   import SubBanner from "../../../components/common/SubBanner.svelte";
 
   import SubNav from "./SubNav.svelte";
-  import MainNav from "../../../../../../../trash_bin/MainNav.svelte";
+  // import MainNav from "../../../../../../../trash_bin/MainNav.svelte";
   import MainNavMotion from "../../src_motion/components/MainNavMotion.svelte";
   import MainNavSpeech from "../../src_speech/components/MainNavSpeech.svelte";
   import MainNavVision from "../../src_vision/components/MainNavVision.svelte";
